@@ -12,7 +12,7 @@
 			</a>
 		</li>
 		<li class="nav-item">
-			<a href="${root}/admin/calendar/maint.ree">
+			<a href="${root}/admin/calendar/main.tree">
 				<i class="la la-calendar"></i>
 				<p>일정관리</p>
 				<span class="badge badge-count">14</span>
