@@ -17,7 +17,7 @@ $(document).ready(function(){
 </head>
 <body>
 <%@ include file="/assets/common/top.jsp" %>
-<%@ include file="import/side.jsp" %>
+<%@ include file="/assets/common/member/address/side.jsp" %>
 <div class="main-panel">
 	<div class="content">
 		<div class="container-fluid">
