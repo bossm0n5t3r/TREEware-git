@@ -1,0 +1,47 @@
+-- 아이디, 비밀번호로 EMP 테이블 가져오기
+SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
+	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
+	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
+FROM EMP
+WHERE
+EMP_ID=#{id} and EMP_PW=#{pw}
+
+-- EMP_SQ로 아이디, 비밀번호 변경
+UPDATE EMP
+SET EMP_ID = #{id}, EMP_PW = #{pw}
+WHERE
+EMP_SQ = #{emp_sq}
+
+-- 해당 아이디 존재하는지 여부(count)
+SELECT COUNT(*) 
+FROM EMP
+WHERE
+EMP_ID=#{id}
+
+-- 회원등록
+INSERT INTO EMP (EMP_SQ, PMS_SQ, DPT_SQ, RNK_SQ, PST_SQ, EMP_NM, EMP_ID, EMP_PW, EMP_SEX, EMP_BDATE
+				 , EMP_TEL1, EMP_TEL2, EMP_TEL3, EMP_ZIP, EMP_ADDR, EMP_ADDR_DT
+				 , EMP_BS_TEL1,EMP_BS_TEL2, EMP_BS_TEL3, EMP_CRT, EMP_REG, EMP_EXIT, EMP_FNL_MOD)
+VALUES (#{emp_sq}, #{pms_sq}, #{dpt_sq}, #{rnk_sq}, #{pst_sq}, #{emp_nm}, #{emp_id}, #{emp_pw}
+		, #{emp_sex}, #{emp_bdate}, #{emp_tel1}, #{emp_tel2}, #{emp_tel3}, #{emp_zip}, #{emp_addr}, #{emp_addr_dt}
+		, #{emp_bs_tel1}, #{emp_bs_tel2}, #{emp_bs_tel3}, #{emp_crt}, sysdate, '', sysdate)
+		
+-- 회원목록
+SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
+	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
+	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
+FROM EMP
+
+-- EMP_SQ로 회원정보 가져오기
+SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
+	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
+	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
+FROM EMP
+WHERE
+EMP_SQ = #{emp_sq}
+
+-- 퇴사자 처리
+UPDATE EMP
+SET PMS_SQ = 0, DPT_SQ = 0, RNK_SQ = 0, PST_SQ = 0
+WHERE
+EMP_SQ = #{emp_sq}

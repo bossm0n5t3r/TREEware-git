@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+.form-group{
+	margin:10px;
+}
+.mainform{
+	margin:20px;
+}
+.mainbox{
+	width:100%;
+	height:40px;
+	padding:10px;
+/* 	padding:10px; */
+}
+.clear{
+	clear:both;
+}
+.li-sm{
+	margin:0 0 0 5px;
+}
+.li-lg{
+	margin:10px 0 2px 5px;
+}
+.box-group{
+	padding:5px;
+}
+.simplebtn1{
+	padding:7px 13px;
+	border-radius:5px;
+	border:1px #ccc solid;
+	color:#777;
+	font-size:90%;
+}
+.simplebtn1:hover{
+	padding:7px 13px;
+	border-radius:5px;
+	border:1px #ccc solid;
+	background-color:#eee;
+	color:#444;
+	font-size:90%;
+}
+.simplebtn2{
+	padding:7px 13px;
+	border-radius:5px;
+	border:1px #ccc solid;
+	color:#fff;
+	background-color:#007bff;
+	font-size:90%;
+}
+.simplebtn2:hover{
+	padding:7px 13px;
+	border-radius:5px;
+	border:1px #ccc solid;
+	background-color:#007fff;
+	color:#fff;
+	font-size:90%;
+}
+#info input{
+
+height:50px;
+
+}
+.category:hover{
+
+	text-decoration: none;
+	background: #fbfbfb;
+  
+}

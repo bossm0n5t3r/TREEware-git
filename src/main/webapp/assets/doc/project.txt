@@ -1,0 +1,24 @@
+TREEware (*.tree)
+	- src
+		- main
+		- config
+		- common
+		- util
+		
+		- address
+		- approval
+		- board
+		- commute
+		- email
+		- form
+		- member
+		- schedule
+		
+		- admin
+			- member
+			- board
+			- commute
+			- form
+			- schedule
+			- organization
+			- statics
