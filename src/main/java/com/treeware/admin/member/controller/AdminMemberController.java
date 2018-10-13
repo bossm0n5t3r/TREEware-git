@@ -18,7 +18,7 @@ public class AdminMemberController {
 	@RequestMapping("/account/main.tree")
 	public ModelAndView main2() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/home/main");
+		mav.setViewName("admin/account/main");
 		return mav;
 	}
 }
