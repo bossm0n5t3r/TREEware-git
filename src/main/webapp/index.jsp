@@ -48,7 +48,7 @@
 				<div class="mainform"><button class="btn btn-success" style="width:100%;height:60px" onclick="javascript:login()">로그인</button></div>
 				<div class="mainform">
 					<span class="txt1">비밀번호를 잊으셨나요?</span>
-					<a href="${root}/member?act=mvAskform" class="txt2">관리자에게 문의해주세요</a>
+					<a href="${root}/member/home/main.tree" class="txt2">관리자에게 문의해주세요</a>
 				</div>
 		</div>
 	</div>
