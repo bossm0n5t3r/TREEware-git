@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp" %>
-<%@ include file="/adminmenu/group/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
+<%@ include file="/assets/common/admin/group/import.jsp" %>
 </head>
 <body>
-<%@ include file="/adminmenu/home/top.jsp" %>
-<%@ include file="side.jsp" %>
+<%@ include file="/assets/common/admin/home/top.jsp" %>
+<%@ include file="/assets/common/admin/home/side.jsp" %>
 <div class="main-panel">
 	<div class="content">
 		<div class="container-fluid" style="height:1100px">
@@ -34,7 +34,7 @@
 							</div>
 							<div class="col-md-9" style="padding:0 40px 0px 20px ">
 							<!-- 조직도 페이지  -->
-							<%@ include file="/adminmenu/group/edit-chart.jsp" %>
+							<%@ include file="/assets/common/admin/group/edit-chart.jsp" %>
 							</div>
 						</div>
 					</div>
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 	</div>
-<%@ include file="/common/footer.jsp" %>
+<%@ include file="/assets/common/footer.jsp" %>
 </div>
 </body>
 </html>

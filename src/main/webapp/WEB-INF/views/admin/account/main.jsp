@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp" %>
-<%@ include file="/adminmenu/account/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
+<%@ include file="/assets/common/admin/account/import.jsp" %>
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/adminmenu/home/top.jsp" %>
-		<%@ include file="side.jsp" %>
+		<%@ include file="/assets/common/admin/home/top.jsp" %>
+		<%@ include file="/assets/common/admin/home/side.jsp" %>
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid" style="height:1100px">
@@ -82,7 +82,7 @@
 				
 				</div>
 			</div>
-		<%@ include file="/common/footer.jsp" %>
+		<%@ include file="/assets/common/footer.jsp" %>
 		</div>
 	</div>
 </body>

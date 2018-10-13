@@ -18,7 +18,7 @@
 <body>
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp" %>
-		<%@ include file="side.jsp" %>
+		<%@ include file="/assets/common/admin/home/side.jsp" %>
 		<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid">
@@ -159,11 +159,11 @@
 							<!-- register form end-->
 						</div>	
 					</div>
-					<%@ include file="/common/modal/departments.jsp" %>
-					<%@ include file="/common/modal/zipcode.jsp" %>
+					<%@ include file="/assets/common/modal/departments.jsp" %>
+					<%@ include file="/assets/common/modal/zipcode.jsp" %>
 				</div>
 			</div>
-		<%@ include file="/common/footer.jsp" %>
+		<%@ include file="/assets/common/footer.jsp" %>
 		</div>
 	</div>
 </body>

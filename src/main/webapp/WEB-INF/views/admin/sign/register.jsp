@@ -6,12 +6,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%@ include file="/assets/common/import.jsp" %>
-	<%@ include file="/adminmenu/sign/formimport.jsp" %>
+	<%@ include file="/assets/common/admin/sign/formimport.jsp" %>
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/adminmenu/home/top.jsp" %>
-		<%@ include file="side.jsp" %>
+		<%@ include file="/assets/common/admin/home/top.jsp" %>
+		<%@ include file="/assets/common/admin/home/side.jsp" %>
 		<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid" style="height:1000px">

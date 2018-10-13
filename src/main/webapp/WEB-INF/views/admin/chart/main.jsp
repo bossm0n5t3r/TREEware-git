@@ -4,7 +4,7 @@
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <head>
-<%@ include file="/common/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
 <script>
 $(document).ready(function (){
 	document.getElementById("menu2").setAttribute("class", "nav-item");
@@ -17,8 +17,8 @@ $(document).ready(function (){
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/adminmenu/home/top.jsp" %>
-		<%@ include file="side.jsp" %>
+		<%@ include file="/assets/common/admin/home/top.jsp" %>
+		<%@ include file="/assets/common/admin/home/side.jsp" %>
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
@@ -45,7 +45,7 @@ $(document).ready(function (){
 				</div>
 				
 			</div>
-		<%@ include file="/common/footer.jsp" %>
+		<%@ include file="/assets/common/footer.jsp" %>
 		</div>
 	</div>
 </body>
