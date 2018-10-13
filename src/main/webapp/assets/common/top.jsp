@@ -188,7 +188,7 @@
 							</div>
 						</li>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${root}/adminmenu/home/main.jsp"><i class="ti-user"></i>관리자 페이지</a>
+						<a class="dropdown-item" href="${root}/admin/home/main.tree"><i class="ti-user"></i>관리자 페이지</a>
 						<a class="dropdown-item" href="#"></i>단축 메뉴2</a>
 						<a class="dropdown-item" href="#"><i class="ti-email"></i>단축 메뉴3</a>
 						<div class="dropdown-divider"></div>
