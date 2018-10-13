@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/common/top.jsp" %>
+		<%@ include file="/assets/common/top.jsp" %>
 		<div>
 			<div class="main-panel" style="width:100%;height:1100px">
 			<div class="content">
@@ -22,7 +22,7 @@
 			</div>
 			</div>
 		</div>
-		<%@ include file="/common/footer.jsp" %>
+		<%@ include file="/assets/common/footer.jsp" %>
 	</div>
 </body>
 </html>

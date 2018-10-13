@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
 <%@ include file="/menu/board/import/import.jsp" %>
 <link href="${root}/assets/js/plugin/summernote/summernote.css" rel="stylesheet">
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.css" rel="stylesheet"> -->
@@ -22,7 +22,7 @@ $(document).ready(function() {
 </head>
 <body>
    <div class="wrapper">
-      <%@ include file="/common/top.jsp" %>
+      <%@ include file="/assets/common/top.jsp" %>
       <%@ include file="import/side.jsp" %>
       <div class="main-panel">
          <div class="content">
@@ -72,7 +72,7 @@ $(document).ready(function() {
                 </div>              
             </form>
          </div>
-      <%@ include file="/common/footer.jsp" %>
+      <%@ include file="/assets/common/footer.jsp" %>
       </div>
    </div>
 </body>

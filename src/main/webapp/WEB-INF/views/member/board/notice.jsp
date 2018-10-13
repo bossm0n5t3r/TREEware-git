@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
 <link rel="stylesheet" href="${root}/assets/css/search.css">
 
 <script type="text/javascript">
@@ -30,7 +30,7 @@ $(function(){
 
 <!-- 			https://www.w3schools.com/bootstrap4/bootstrap_navs.asp -->
 	<div class="wrapper">
-		<%@ include file="/common/top.jsp" %>
+		<%@ include file="/assets/common/top.jsp" %>
 		<%@ include file="import/side.jsp" %>
 		<div class="main-panel">
 		<div class="content">
@@ -158,7 +158,7 @@ $(function(){
 				</div>
 				</div>
 			</div>
-		<%@ include file="/common/footer.jsp" %>
+		<%@ include file="/assets/common/footer.jsp" %>
 		</div>
 </body>
 </html>

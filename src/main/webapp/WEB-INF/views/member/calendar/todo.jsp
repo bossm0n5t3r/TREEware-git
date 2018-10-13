@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp" %>
-<%@ include file="/menu/calendar/import/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
+<%@ include file="/assets/common/member/calendar/import.jsp" %>
 <script>
 $(document).ready(function(){
 	document.getElementById("menu1").setAttribute("class", "nav-item");
@@ -14,8 +14,8 @@ $(document).ready(function(){
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/common/top.jsp" %>
-		<%@ include file="import/side.jsp" %>
+		<%@ include file="/assets/common/top.jsp" %>
+		<%@ include file="/assets/common/member/calendar/side.jsp" %>
 			<div class="main-panel">
 				<div class="content">
 					<div class="container-fluid" style="height:1100px">
@@ -100,7 +100,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div>
-		<%@ include file="/common/footer.jsp" %>
+		<%@ include file="/assets/common/footer.jsp" %>
 		</div>
 	</div>
 </body>

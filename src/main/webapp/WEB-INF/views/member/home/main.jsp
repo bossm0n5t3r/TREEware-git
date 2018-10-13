@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/common/top.jsp" %>
-		<%@ include file="/common/side.jsp" %>
+		<%@ include file="/assets/common/top.jsp" %>
+		<%@ include file="/assets/common/side.jsp" %>
 			<div class="main-panel">
 				<div class="content">
 					<div class="container-fluid">
@@ -329,7 +329,7 @@
 								</div>
 							</div>
 						</div>
-			<%@ include file="/common/footer.jsp" %>
+			<%@ include file="/assets/common/footer.jsp" %>
 			</div>
 		</div>
 	</div>

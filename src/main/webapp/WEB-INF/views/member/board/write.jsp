@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp" %>
-<%@ include file="/menu/board/import/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
+<%@ include file="/assets/common/member/board/import.jsp" %>
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/common/top.jsp" %>
-		<%@ include file="import/side.jsp" %>
+		<%@ include file="/assets/common/top.jsp" %>
+		<%@ include file="/assets/common/member/board/side.jsp" %>
 		<div class="main-panel">
 			<div class="content" align="center">
 				<form name="historyform" action="" method="post" style="width:95%">
@@ -30,7 +30,7 @@
 				    </div>
 				</form>
 			</div>
-		<%@ include file="/common/footer.jsp" %>
+		<%@ include file="/assets/common/footer.jsp" %>
 		</div>
 	</div>
 </body>

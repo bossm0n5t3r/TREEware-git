@@ -5,7 +5,7 @@
 	<title>트리웨어 로그인</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%@ include file="/common/import.jsp" %>
+	<%@ include file="/assets/common/import.jsp" %>
 	<c:set var="id" value=""/>
 	<c:set var="loginCk" value=""/>
 	<c:set var="loop_flag" value="false"/>

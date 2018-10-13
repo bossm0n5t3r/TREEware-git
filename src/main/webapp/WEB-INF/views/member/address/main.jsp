@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp" %>
-<%@ include file="/menu/address/import/import.jsp" %>
-<%@ include file="/adminmenu/group/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
+<%@ include file="/assets/common/member/address/import.jsp" %>
+<%@ include file="/assets/common/admin/group/import.jsp" %>
 <script type="text/javascript" src="${root}/assets/js/plugin/jquery-ztree/dept_ztree.js"></script>
 <script>
 $(document).ready(function(){
@@ -18,8 +18,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<%@ include file="/common/top.jsp" %>
-<%@ include file="import/side.jsp" %>
+<%@ include file="/assets/common/top.jsp" %>
+<%@ include file="/assets/common/member/address/side.jsp" %>
 <div class="main-panel">
 	<div class="content">
 		<div class="container-fluid">
@@ -69,7 +69,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-<%@ include file="/common/footer.jsp" %>
+<%@ include file="/assets/common/footer.jsp" %>
 </div>
 </body>
 </html>
