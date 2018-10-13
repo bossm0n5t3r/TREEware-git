@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/common/modal/mail.jsp" %>
+<%@ include file="/assets/common/modal/mail.jsp" %>
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
-		<%@ include file="/common/user.jsp" %>
+		<%@ include file="/assets/common/user.jsp" %>
 		<!-- 
 		<style>
 		#menucate:hover{

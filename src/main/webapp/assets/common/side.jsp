@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="sidebar">
 <div class="scrollbar-inner sidebar-wrapper">
-	<%@ include file="/common/user.jsp" %>
+	<%@ include file="/assets/common/user.jsp" %>
 	<ul class="nav">
 		<li class="nav-item active">
 			<a href="${root}/menu/mail/main.jsp">

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/common/import.jsp" %>
+<%@ include file="/assets/common/import.jsp" %>
 <div class="buttonmenu" align="center" style="margin:20px 0 20px 0">
 	<div class="row" style="width:100%">
 		<div style="width:60%;text-align:left;padding:5px">

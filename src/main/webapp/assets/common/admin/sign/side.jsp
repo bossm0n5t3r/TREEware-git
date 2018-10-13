@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
-		<%@ include file="/common/user.jsp" %>
+		<%@ include file="/assets/common/user.jsp" %>
 		<!-- 
 		<style>
 		#menucate:hover{

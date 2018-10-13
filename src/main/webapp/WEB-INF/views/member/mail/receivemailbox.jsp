@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/common/import.jsp"%>
+<%@ include file="/assets/common/import.jsp"%>
 <link rel="stylesheet" href="${root}/assets/css/search.css">
 
 <script type="text/javascript">
@@ -42,8 +42,8 @@
 
 	<!-- 			https://www.w3schools.com/bootstrap4/bootstrap_navs.asp -->
 	<div class="wrapper">
-		<%@ include file="/common/top.jsp"%>
-		<%@ include file="import/side.jsp"%>
+		<%@ include file="/assets/common/top.jsp"%>
+		<%@ include file="/assets/common/member/mail/side.jsp"%>
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
@@ -180,18 +180,13 @@
 							</div>
 						</div>
 					</div>
-					<%@ include file="/common/modal/delete.jsp"%>
-					<%@ include file="/common/modal/alldelete.jsp"%>
-					<%@ include file="/common/modal/addmailbox.jsp"%>
+					<%@ include file="/assets/common/modal/delete.jsp"%>
+					<%@ include file="/assets/common/modal/alldelete.jsp"%>
+					<%@ include file="/assets/common/modal/addmailbox.jsp"%>
 				</div>
 			</div>
 		</div>
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/assets/common/footer.jsp"%>
 	</div>
-
-
-
-
-
 </body>
 </html>

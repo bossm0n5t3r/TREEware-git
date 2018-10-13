@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
-		<%@ include file="/common/user.jsp" %>
+		<%@ include file="/assets/common/user.jsp" %>
 		<div class="user" id="menucate">
 			<div class="info">
 				<a class="" data-toggle="collapse" href="#collapseMenu" aria-expanded="true" onmouseover="javascript:changecolor()">

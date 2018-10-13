@@ -5,7 +5,7 @@
 	<title>트리웨어 관리자</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%@ include file="/common/import.jsp" %>
+	<%@ include file="/assets/common/import.jsp" %>
 	<script>
 	function submit(){
 		 $("#successMsg").modal();
@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/adminmenu/home/top.jsp" %>
+		<%@ include file="/assets/common/admin/home/top.jsp" %>
 		<%@ include file="side.jsp" %>
 		<div class="main-panel" >
 			<div class="content">
