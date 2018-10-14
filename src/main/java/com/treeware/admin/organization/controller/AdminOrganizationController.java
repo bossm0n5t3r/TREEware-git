@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin/group")
-public class AdminOrganizaionController {
+public class AdminOrganizationController {
 
 	@RequestMapping("/main.tree")
 	public ModelAndView main() {

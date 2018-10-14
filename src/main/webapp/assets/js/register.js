@@ -3,14 +3,14 @@ function submit(){
 		 register_check();
 	}
 function goback(){
-		location.href="${root}/index.jsp";
+		location.href="${root}/admin/account/main.tree";
 	}
 	
 $(document).ready(function (){
 		var dt = new Date();
-		var time = dt.getTime();
+		var year = dt.getFullYear();
 		var empsq;
-		empsq = "TREE"+time;
+		empsq = "TREE"+year;
 		document.getElementById("empnum").value = empsq;
 		document.getElementById("id").value = empsq;
 		document.getElementById("pw").value = "1234";
@@ -18,7 +18,7 @@ $(document).ready(function (){
 		var upload = document.getElementById('photo'),
 	    	photoimg = document.getElementById('photoimg');
 
-		photoimg.src = "assets/img/photo.jpg";
+		photoimg.src = "/treeware/assets/img/photo.jpg";
 	 
 		upload.onchange = function (e) {
 		  e.preventDefault();
@@ -38,15 +38,14 @@ $(document).ready(function (){
 });
 
 function hypen(str) {
-	var x = str
+	var x = str.replace(/[^0-9\-]/g, "");
 	var tmp = "";
-
 	if (x.length > 3 && x.length <= 7) {
 		tmp += x.substr(0, 3);
 		tmp += '-';
-		if(x.length>5){
+		if(x.length>4){
 			tmp += x.substr(4,x.length);
-		} else {			
+		} else {
 			tmp += x.substr(3);
 		}
 		return tmp;
@@ -58,59 +57,39 @@ function hypen(str) {
 		} else {			
 			tmp += x.substr(8);
 		}
-		
+		console.log(tmp);
 		return tmp;
 	}
 	return x;
 }
 
-function hypen33(str) {
-	var x = str
-	var tmp = "";
-
-	if (x.length > 3 && x.length <= 7) {
-		tmp += x.substr(0, 3);
-		tmp += '-';
-		tmp += x.substr(3);
-		return tmp;
-		
-	} else if (x.length > 7) {
-		tmp += x.substr(0, 3);
-		tmp += '-';
-		tmp += x.substr(3, 4);
-		tmp += '-';
-		tmp += x.substr(7);
-		return tmp;
-	}
-	return x;
-}
 //콤마풀기
 function unhypen(str) {
-	var x = str
+	var x = str;
 	var tmp = "";
-
-	if (x.length < 4 && x.length <= 8) {
-		tmp += x.substr(0, 3);
-		tmp += '-';
-		tmp += x.substr(3);
-		
-		return tmp;
-		
-	} else if (x.length > 7) {
-		tmp += x.substr(0, 3);
-		tmp += '-';
-		tmp += x.substr(3, 4);
-		tmp += '-';
-		tmp += x.substr(7);
-		return tmp;
+	if (x.length < 5) {
+		x = x.replace(/-/g, "");
+		return x;
+	} else if (x.length > 5) {
+		x = x.replace(/-$|--$/, "");
+		return x;
 	}
 	return x;
 }
  
 //값 입력시 콤마찍기
-function inputCellPhone(obj) {
-    obj.value = hypen(obj.value);
-}
+
+$(document).ready(function (){
+	$('#empname').keyup(function(){
+		this.value = this.value.replace(/[0-9]|[A-Za-z]|[`~!@#$%^&*|\\\'\";:\/?()-_+={}]/g, "");
+	})
+	$('#phone').keyup(function(){
+		this.value = this.value.replace(/[^0-9]/g, "");
+	})
+	$('#cell').keyup(function (){
+			this.value = hypen(unhypen(this.value));
+	});
+})
 
 function search_zip(){
 	new daum.Postcode({
@@ -132,7 +111,7 @@ function register_check(){
 	} else if(email == '' || !re.test(email)){
 		alert("올바른 이메일 주소를 입력하세요")
 	} else {
-		 document.registerMemberForm.action = "/treeware/adminmember";
+		 document.registerMemberForm.action = "${root}/admin/account/register.tree";
 		 document.registerMemberForm.submit();
 		 alert("성공!!!");
 	}	

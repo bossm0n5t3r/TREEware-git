@@ -15,7 +15,7 @@
 <body>
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp" %>
-		<%@ include file="/assets/common/admin/home/side.jsp" %>
+		<%@ include file="/assets/common/admin/account/side.jsp" %>
 		<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid">
@@ -103,7 +103,7 @@
 																<input name="empname" id="empname" type="text" class="mainbox" placeholder="이름" required>
 															</div>
 															<div style="width:25%" class="box-group">
-																<input name="cell" id="cell" type="text" class="mainbox" placeholder="휴대폰번호" onkeyup="inputCellPhone(this)" maxlength="13" required>
+																<input name="cell" id="cell" type="text" class="mainbox" placeholder="휴대폰번호" maxlength="13" required>
 															</div>
 															<div style="width:25%" class="box-group">
 																<input name="birth" id="birth" type="text" class="mainbox" placeholder="생년월일 8자리" onkeyup="" required>

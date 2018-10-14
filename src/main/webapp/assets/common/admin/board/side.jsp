@@ -19,8 +19,7 @@
 				<div class="clearfix"></div>
 				<div class="collapse in" id="collapseMenu" aria-expanded="true" style="">
 					<ul class="nav">
-					<li><a href="${root}/member/home/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-home">&nbsp;&nbsp;관리자메인</i></span></a></li>
-					<li><a href="${root}/admin/home/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-home">&nbsp;&nbsp;관리자메인</i></span></a></li>
+						<li><a href="${root}/admin/home/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-home">&nbsp;&nbsp;관리자메인</i></span></a></li>
 						<li><a href="${root}/admin/account/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-user">&nbsp;&nbsp;계정관리</i></span></a></li>
 						<li><a href="${root}/admin/group/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-sitemap">&nbsp;&nbsp;조직도관리</i></span></a></li>
 						<li><a href="${root}/admin/board/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-edit">&nbsp;&nbsp;게시판관리</i></span></a></li>
@@ -34,22 +33,22 @@
 		</div>
 		<ul class="nav">
 			<li class="nav-item active">
-				<a href="${root}/adminmenu/board/main.jsp">
+				<a href="${root}/admin/board/main.tree">
 					<p>게시판목록</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/adminmenu/board/register.jsp">
+				<a href="${root}/admin/board/register.tree">
 					<p>게시판등록</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/adminmenu/board/view.jsp">
+				<a href="${root}/admin/board/view.tree">
 					<p>공지사항 등록</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/adminmenu/board/edit.jsp">
+				<a href="${root}/admin/board/edit.tree">
 					<p>게시판 수정</p>
 				</a>
 			</li>

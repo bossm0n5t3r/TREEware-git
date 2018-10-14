@@ -36,7 +36,7 @@
 								</div>
 								<div class="col-md-9" style="padding:0 20px ">
 								<!-- 주소록 콘텐츠 페이지  -->
-								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="signlist.jsp"></IFRAME>
+								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/admin/sign/signlist.jsp"></IFRAME>
 								<!-- 주소록 콘텐츠 끝 -->
 								<br><br><br><hr><br>
 									<div class="clear"></div>

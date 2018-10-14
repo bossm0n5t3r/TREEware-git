@@ -21,7 +21,7 @@
 <body>
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp" %>
-		<%@ include file="/assets/common/admin/home/side.jsp" %>
+		<%@ include file="/assets/common/admin/board/side.jsp" %>
 		<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid">

@@ -17,7 +17,7 @@ function modify(){
 	} else if(document.getElementById("pw").value < 4){
 		alert("PW를 4자리이상 입력하세요");
 	} else {
-		document.modifyForm.action = "${root}/member";
+		document.modifyForm.action = "${root}/member/account/idsetup.tree";
 		document.modifyForm.submit();
 	}
 }
@@ -27,15 +27,14 @@ function check_id(check){
             async: true,
             type : 'GET',
             data : {
-            	act: 'idcheck',
             	id: $(check).val()
             },
-            url : "${root}/member",
+            url : "${root}/admin/account/idcheck.tree",
             dataType : "json",
             contentType: "application/json; charset=UTF-8",
             success : function(data) {
-            	console.log(data)
-                if (data != 0) {
+            	console.log(data.cnt)
+                if (data.cnt != 0) {
                     $("#id_check").text("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
 					$("#id_check").css("color", "red")                    

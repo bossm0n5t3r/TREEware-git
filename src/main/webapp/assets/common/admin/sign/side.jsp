@@ -33,12 +33,12 @@
 		</div>
 		<ul class="nav">
 			<li class="nav-item active">
-				<a href="${root}/adminmenu/sign/main.jsp">
+				<a href="${root}/admin/sign/main.tree">
 					<p>결재관리</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/adminmenu/sign/register.jsp">
+				<a href="${root}/admin/sign/register.tree">
 					<p>양식관리</p>
 				</a>
 			</li>

@@ -19,7 +19,6 @@
 				<div class="clearfix"></div>
 				<div class="collapse in" id="collapseMenu" aria-expanded="true" style="">
 					<ul class="nav">
-					<li><a href="${root}/member/home/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-home">&nbsp;&nbsp;관리자메인</i></span></a></li>
 						<li><a href="${root}/admin/home/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-home">&nbsp;&nbsp;관리자메인</i></span></a></li>
 						<li><a href="${root}/admin/account/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-user">&nbsp;&nbsp;계정관리</i></span></a></li>
 						<li><a href="${root}/admin/group/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-sitemap">&nbsp;&nbsp;조직도관리</i></span></a></li>
@@ -34,27 +33,27 @@
 		</div>
 		<ul class="nav">
 			<li id="menu1" class="nav-item">
-				<a href="${root}/adminmenu/chart/main.jsp">
+				<a href="${root}/admin/chart/main.tree">
 					<p>한눈에 보기</p>
 				</a>
 			</li>
 			<li id="menu2" class="nav-item">
-				<a href="${root}/adminmenu/chart/big/commute.jsp">
+				<a href="${root}/admin/chart/commute.tree">
 					<p>부서별 근태 현황</p>
 				</a>
 			</li>
 			<li id="menu3" class="nav-item">
-				<a href="${root}/adminmenu/chart/big/workinghours.jsp">
+				<a href="${root}/admin/chart/workinghours.tree">
 					<p>자율출퇴근 근무 현황</p>
 				</a>
 			</li>
 			<li id="menu4" class="nav-item">
-				<a href="${root}/adminmenu/chart/big/vacation.jsp">
+				<a href="${root}/admin/chart/vacation.tree">
 					<p>기간별 휴가인원 통계</p>
 				</a>
 			</li>
 			<li id="menu5" class="nav-item">
-				<a href="${root}/adminmenu/chart/big/member.jsp">
+				<a href="${root}/admin/chart/member.tree">
 					<p>보유인력 현황</p>
 				</a>
 			</li>

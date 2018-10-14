@@ -11,7 +11,7 @@
 <body>
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp" %>
-		<%@ include file="/assets/common/admin/home/side.jsp" %>
+		<%@ include file="/assets/common/admin/sign/side.jsp" %>
 		<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid" style="height:1000px">
@@ -37,7 +37,7 @@
 								</div>
 								<div class="col-md-9" style="padding:0 20px ">
 								<!-- 주소록 콘텐츠 페이지  -->
-								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="formlist.jsp"></IFRAME>
+								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/admin/sign/formlist.jsp"></IFRAME>
 								<!-- 주소록 콘텐츠 끝 -->
 								<br><br><br><hr><br>
 									<div class="clear"></div>

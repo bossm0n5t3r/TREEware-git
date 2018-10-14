@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="main-header">
 <div class="logo-header">
-	<a href="${root}/adminmenu/home/main.jsp" class="logo">
+	<a href="${root}/admin/home/main.tree" class="logo">
 		트리웨어 관리자
 	</a>
 	<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
 							</div>
 						</li>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${root}/menu/home/main.jsp"><i class="ti-user"></i>사원 페이지</a>
+						<a class="dropdown-item" href="${root}/member/home/main.tree"><i class="ti-user"></i>사원 페이지</a>
 						<a class="dropdown-item" href="#"></i>단축 메뉴2</a>
 						<a class="dropdown-item" href="#"><i class="ti-email"></i>단축 메뉴3</a>
 						<div class="dropdown-divider"></div>

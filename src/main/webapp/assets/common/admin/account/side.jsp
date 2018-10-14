@@ -42,22 +42,22 @@
 		</div>
 		<ul class="nav">
 			<li class="nav-item active">
-				<a href="${root}/adminmenu/account/main.jsp">
+				<a href="${root}/admin/account/main.tree">
 					<p>사원목록</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/adminmember?act=mvregister">
+				<a href="${root}/admin/account/register.tree">
 					<p>사원등록</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/adminmenu/account/view.jsp">
+				<a href="${root}/admin/account/view.tree">
 					<p>상세페이지1)사원정보확인</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/adminmenu/account/edit.jsp">
+				<a href="${root}/admin/account/edit.tree">
 					<p>상세페이지2)사원정보수정</p>
 				</a>
 			</li>
