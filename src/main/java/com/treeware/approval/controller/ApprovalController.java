@@ -14,4 +14,19 @@ public class ApprovalController {
 		mav.setViewName("member/sign/main");
 		return mav;
 	}
+	
+	@RequestMapping("/dept.tree")
+	public ModelAndView dept() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/sign/dept");
+		return mav;
+	}
+	
+	@RequestMapping("/write.tree")
+	public ModelAndView write() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/sign/write");
+		return mav;
+	}
+	
 }

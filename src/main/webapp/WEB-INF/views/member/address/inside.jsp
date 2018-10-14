@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="/assets/common/import.jsp" %>
+<%@ include file="/assets/common/member/address/import.jsp" %>
 <script type="text/javascript" src="${root}/assets/js/plugin/jquery-ztree/dept_ztree.js"></script>
 <script>
 $(document).ready(function(){
@@ -43,7 +44,7 @@ $(document).ready(function(){
 								</div>
 								<div class="col-md-9" style="padding:0 40px 0px 20px ">
 								<!-- 주소록 콘텐츠 페이지  -->
-								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="import/list.jsp"></IFRAME>
+								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/member/address/list.jsp"></IFRAME>
 								<!-- 주소록 콘텐츠 끝 -->
 								<br><br><br>
 									<div class="clear"></div>

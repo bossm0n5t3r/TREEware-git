@@ -47,7 +47,7 @@
 				<div class="clearfix"></div>
 				<div class="collapse in" id="collapseMenu" aria-expanded="true" style="">
 					<ul class="nav">
-					<li><a href="${root}/member/home/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-home">&nbsp;&nbsp;홈</i></span></a></li>
+						<li><a href="${root}/member/home/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-home">&nbsp;&nbsp;홈</i></span></a></li>
 						<li><a href="${root}/member/mail/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-envelope">&nbsp;&nbsp;메일</i></span></a></li>
 						<li><a href="${root}/member/address/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-sitemap">&nbsp;&nbsp;주소록</i></span></a></li>
 						<li><a href="${root}/member/calendar/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-calendar">&nbsp;&nbsp;일정</i></span></a></li>
@@ -60,7 +60,7 @@
 		</div>
 		<ul class="nav">
 			<li id="menu1" class="nav-item active">
-				<a href="${root}/menu/calendar/main.jsp">
+				<a href="${root}/member/calendar/main.tree">
 					<p>전체일정</p>
 				</a>
 			</li>
@@ -70,7 +70,7 @@
 <!-- 				</a> -->
 <!-- 			</li> -->
 			<li id="menu2" class="nav-item">
-				<a href="${root}/menu/calendar/todo.jsp">
+				<a href="${root}/member/calendar/todo.tree">
 					<p>TO DO</p>
 				</a>
 			</li>

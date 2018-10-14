@@ -26,7 +26,7 @@
 		</div>
 		
 		<div style="margin:20px 0 10px 0" align="center">
-		<a href="${root}/menu/board/m_write.jsp"><button class="btn btn-outline-primary" style="width:220px;">
+		<a href="${root}/member/board/write.tree"><button class="btn btn-outline-primary" style="width:220px;">
 		<i class="la la-edit"></i> &nbsp;글쓰기</button></a></div>
 		
 <!-- 		<div class="user" id="menucate"> -->
@@ -94,17 +94,17 @@
 <!-- 		</div> -->
 		<ul class="nav">
 			<li id="menu1" class="nav-item active">
-				<a href="${root}/menu/board/main.jsp">
+				<a href="${root}/member/board/main.tree">
 					<p>오피스소식</p>
 				</a>
 			</li>
 			<li id="menu2" class="nav-item">
-				<a href="${root}/menu/board/freeboard.jsp">
+				<a href="${root}/member/board/freeboard.tree">
 					<p>자유게시판</p>
 				</a>
 			</li>
 			<li id="menu3" class="nav-item">
-				<a href="${root}/menu/board/bookmark.jsp">
+				<a href="${root}/member/board/bookmark.tree">
 					<p>북마크함</p>
 				</a>
 			</li>

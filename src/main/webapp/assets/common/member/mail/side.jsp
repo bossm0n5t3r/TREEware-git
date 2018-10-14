@@ -34,32 +34,32 @@
 		</div>
 		<ul class="nav">
 		<div style="margin-left:30px">
-		<a href="${root}/menu/mail/write.jsp"><button class="btn btn-outline-info" style="width:200px;">
+		<a href="${root}/member/mail/write.tree"><button class="btn btn-outline-info" style="width:200px;">
 		<i class="la la-edit"></i> &nbsp;메일쓰기</button></a></div><br>
 			
 			<li class="nav-item">
-				<a href="${root}/menu/mail/receivemailbox.jsp">
+				<a href="${root}/member/mail/receivemailbox.tree">
 					<p><i class="la la-mail-reply"></i>받은메일함</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/menu/mail/sendmailbox.jsp">
+				<a href="${root}/member/mail/sendmailbox.tree">
 					<p><i class="la la-mail-forward"></i>보낸메일함</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/menu/mail/newmailbox.jsp">
+				<a href="${root}/member/mail/newmailbox.tree">
 					<p><i class="la la-folder"></i>새메일함1</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/menu/mail/newmailbox.jsp">
+				<a href="${root}/member/mail/newmailbox.tree">
 					<p><i class="la la-folder"></i>새메일함2</p>
 				</a>
 			</li>
 			
 			<li class="nav-item">
-				<a href="${root}/menu/mail/trashmailbox.jsp">
+				<a href="${root}/member/mail/trashmailbox.tree">
 					<i class="la la-trash"></i>휴지통
 				</a>
 			</li>

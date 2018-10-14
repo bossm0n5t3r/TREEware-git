@@ -119,7 +119,6 @@
 		demoIframe.bind("load", loadReady);
 		var zTree = $.fn.zTree.getZTreeObj("tree");
 		zTree.selectNode(zTree.getNodeByParam("id", 101));
-	
 	});
 
 	function loadReady() {
@@ -130,5 +129,6 @@
 		if (h < 530) h = 530;
 		demoIframe.height(h);
 	}
+
   
 </script>

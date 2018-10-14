@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="main-header">
 <div class="logo-header">
-	<a href="${root}/menu/home/main.jsp" class="logo">
+	<a href="${root}/member/home/main.tree" class="logo">
 		TREE WARE
 	</a>
 	<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">

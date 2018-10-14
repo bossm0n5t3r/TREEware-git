@@ -26,27 +26,27 @@
 		</div>
 		<ul class="nav">
 			<li id="menu1" class="nav-item">
-				<a href="${root}/menu/address/main.jsp">
+				<a href="${root}/member/address/main.tree">
 					<p>사내조직도</p>
 				</a>
 			</li>
 			<li id="menu2" class="nav-item active">
-				<a href="${root}/menu/address/inside.jsp">
+				<a href="${root}/member/address/inside.tree">
 					<p>내부연락망</p>
 				</a>
 			</li>
 			<li id="menu3" class="nav-item">
-				<a href="${root}/menu/address/outside.jsp">
+				<a href="${root}/member/address/outside.tree">
 					<p>외부연락망</p>
 				</a>
 			</li>
 			<li id="menu4" class="nav-item">
-				<a href="${root}/menu/address/register.jsp">
+				<a href="${root}/member/address/register.tree">
 					<p>등록하기</p>
 				</a>
 			</li>
 			<li id="menu5" class="nav-item">
-				<a href="${root}/menu/address/bookmark.jsp">
+				<a href="${root}/member/address/bookmark.tree">
 					<p>즐겨찾기</p>
 				</a>
 			</li>

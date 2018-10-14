@@ -1,5 +1,7 @@
 package com.treeware.admin.member.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.treeware.admin.member.model.MemberDto;
 import com.treeware.admin.member.service.AdminMemberService;
 
 @Controller
@@ -24,7 +27,10 @@ public class AdminMemberController {
 	@RequestMapping("/main.tree")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
+//		List<MemberDto> list=new ArrayList<MemberDto>();
+//		list = adminMemberService.getMemberList();
 		mav.setViewName("admin/account/main");
+//		mav.addObject("memberInfo", list);
 		return mav;
 	}
 	
@@ -36,8 +42,9 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
-	public ModelAndView register() {
+	public ModelAndView register(@RequestParam MemberDto memberDto) {
 		ModelAndView mav = new ModelAndView();
+		int cnt = adminMemberService.register(memberDto);
 		mav.setViewName("admin/account/register");
 		return mav;
 	}

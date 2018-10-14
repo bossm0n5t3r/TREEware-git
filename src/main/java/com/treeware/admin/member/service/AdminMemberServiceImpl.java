@@ -1,5 +1,6 @@
 package com.treeware.admin.member.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	
 	@Override
 	public int register(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return adminMemberDao.register(memberDto);
 	}
 
 	@Override
@@ -31,9 +31,8 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	}
 
 	@Override
-	public MemberDto getMemberList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MemberDto> getMemberList() {
+		return adminMemberDao.getMemberList();
 	}
 
 	@Override
