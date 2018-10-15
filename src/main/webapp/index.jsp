@@ -19,14 +19,21 @@
 		</c:if>
 	</c:forEach>
 	<script>
+	$(document).ready(function(){
+		$("#loginBtn").click(function() {
+			login();
+		});
+		
+		$("#pw").keydown(function(e) {
+			if(e.keyCode == 13) {
+				login();
+			}
+		})
+	});
+	
 	function login(){
-		document.loginForm.action = "${root}/member";
-		document.loginForm.submit();
-	}
-	function enterkey() {
-        if (window.event.keyCode == 13) {
-             login();
-        }
+		$("#loginForm").attr("action", "${root}/member/home/login.tree");
+		$("#loginForm").submit();
 	}
 	</script>
 </head>
@@ -34,10 +41,9 @@
 	<div align="center" style="padding:100px">
 	<div class="col-lg-4">
 			<h4>TREE WARE</h4><br>
-			<form class="login" name="loginForm" method="POST" action="">
-				<input type="hidden" name="act" value="login">
+			<form class="login" name="loginForm" id="loginForm" method="POST" action="">
 				<div class="mainform"><input id="id" name="id" class="mainbox" type="text" value="${id}" placeholder="사원번호"></div>
-				<div class="mainform"><input id="pw" name="pw" class="mainbox" type="password" placeholder="비밀번호" onkeyup="enterkey()"></div>
+				<div class="mainform"><input id="pw" name="pw" class="mainbox" type="password" placeholder="비밀번호"></div>
 				<div class="mainform">
 					<label class="form-check-label">
 						<input class="form-check-input" name="autoLogin" value="loginOk" type="checkbox" value="" checked="${loginCk}">
@@ -45,10 +51,10 @@
 					</label>
 				</div>
 			</form>
-				<div class="mainform"><button class="btn btn-success" style="width:100%;height:60px" onclick="javascript:login()">로그인</button></div>
+				<div class="mainform"><button class="btn btn-success" id="loginBtn" style="width:100%;height:60px">로그인</button></div>
 				<div class="mainform">
 					<span class="txt1">비밀번호를 잊으셨나요?</span>
-					<a href="${root}/member/home/main.tree" class="txt2">관리자에게 문의해주세요</a>
+					<a href="${root}/member/home/askform.tree" class="txt2">관리자에게 문의해주세요</a>
 				</div>
 		</div>
 	</div>
