@@ -1,5 +1,7 @@
 package com.treeware.admin.member.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -53,7 +55,10 @@ public class AdminMemberController {
 	@RequestMapping("/view.tree")
 	public ModelAndView view() {
 		ModelAndView mav = new ModelAndView();
+		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
+		list = adminMemberService.getMemberList();
 		mav.setViewName("admin/account/view");
+		mav.addObject("employeeInfo", list);
 		return mav;
 	}
 	

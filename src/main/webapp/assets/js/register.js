@@ -114,6 +114,8 @@ function register_check(){
 		$('#emp_tel1').val($('#tel').val().split("-")[0]);
 		$('#emp_tel2').val($('#tel').val().split("-")[1]);
 		$('#emp_tel3').val($('#tel').val().split("-")[2]);
+		$('#emp_ml_id').val($('#email').val().split("@")[0]);
+		$('#emp_ml_addr').val($('#email').val().split("@")[1]);
 		 document.registerMemberForm.action = "register.tree";
 		 document.registerMemberForm.submit();
 	}	
