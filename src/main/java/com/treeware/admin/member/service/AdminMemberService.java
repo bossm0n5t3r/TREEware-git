@@ -13,5 +13,6 @@ public interface AdminMemberService {
 	public EmployeeDto memberSearch(Map<String, String> map);
 	public int deleteMember(String id);
 	public int idSetup(Map<String, String> map);
+	// 아이디 중복 검사
 	public int idCheck(String id);
 }

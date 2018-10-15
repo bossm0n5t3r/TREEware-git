@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,10 +55,10 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return 0;
 	}
 
+	// 아이디 중복 검사
 	@Override
 	public int idCheck(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.getMapper(AdminMemberDao.class).idCheck(id);
 	}
 
 }

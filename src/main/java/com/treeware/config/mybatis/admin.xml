@@ -5,10 +5,11 @@
 
 <mapper namespace="com.treeware.admin.member.dao.AdminMemberDao">
 
-	<select id="getMemberList" resultType="memberDto">
-		select emp_sq, pms_sq, dpt_sq, rnk_sq,
-		m.joindate, d.zipcode, d.addr1, d.addr2, d.tel1, d.tel2, d.tel3
-		from emp
+	<select id="idCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
+		FROM EMP
+		WHERE
+		EMP_ID=#{id}
 	</select>
 
 </mapper>

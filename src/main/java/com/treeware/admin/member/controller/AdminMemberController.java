@@ -65,9 +65,11 @@ public class AdminMemberController {
 		return mav;
 	}
 	
+	
+	// 아이디 중복 검사
 	@RequestMapping("/idcheck.tree")
-	public @ResponseBody String checkId(@RequestParam Map<String, String> map) {
-		int cnt = adminMemberService.idSetup(map);
+	public @ResponseBody String checkId(@RequestParam String id) {
+		int cnt = adminMemberService.idCheck(id);
 		JSONObject json = new JSONObject();
 		json.put("cnt", cnt);
 		return json.toString();

@@ -194,7 +194,7 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#"><i class="ti-settings"></i>정보 수정</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${root}/member?act=logout"><i class="fa fa-power-off"></i>로그아웃</a>
+						<a class="dropdown-item" href="${root}/member/home/logout.tree"><i class="fa fa-power-off"></i>로그아웃</a>
 					</ul>
 					<!-- /.dropdown-user -->
 				</li>

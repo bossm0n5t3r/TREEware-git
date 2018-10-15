@@ -7,6 +7,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%@ include file="/assets/common/import.jsp" %>
 <script>
+$(document).ready(function(){
+	$("#id").keyup(function() {
+		var sid = $("#id").val();
+		if (sid.length < 4 || sid.length > 16) {
+			$("#id_check").css("color", "gray").text("아이디는 4자이상 16자이하입니다.");
+		} else {
+			$.ajax({
+				type : "GET"
+				,url : "${root}/admin/account/idcheck.tree"
+				,dataType : "json"
+				,data : {
+					"id" : sid
+				}
+				,success : function(data) {
+					var cnt = parseInt(data.count);
+					if (cnt == 0) {
+						$("#idresult").css("color", "blue").text(sid + "는 사용가능합니다.");
+					} else {
+						$("#idresult").css("color", "red").text(sid + "는 사용불가능합니다.");
+					}
+				}
+				,error : function(e) {
+					
+				}
+			})
+		}
+	})
+	
+})
+
+
 function modify(){
 	if(document.getElementById("id").value == ''){
 		alert("아이디를 입력하세요");
@@ -63,8 +94,7 @@ function check_id(check){
 			다시 로그인 해주세요.
 			</p>
 			<form class="login" name="modifyForm" method="POST" action="">
-				<input type="hidden" name="act" value="modify">
-				<div class="mainform"><input id="id" name="id" class="mainbox" type="text" onkeyup="check_id(this)" placeholder="사용하실 아이디"></div>
+				<div class="mainform"><input id="id" name="id" class="mainbox" type="text" placeholder="사용하실 아이디"></div>
 				<div class="mainform" align="left"><span id="id_check"></span></div>
 				<div class="mainform"><input id="pw" name="pw" class="mainbox" type="password" placeholder="사용하실 비밀번호"></div>
 			</form>
