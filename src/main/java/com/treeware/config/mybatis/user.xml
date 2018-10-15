@@ -3,33 +3,33 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.kitri.member.dao.MemberDao">
+<mapper namespace="com.treeware.admin.member.dao.AdminMemberDao">
 
-	<select id="idCheck" parameterType="String" resultType="int">
-	select count(*)
-	from member
-	where id = #{id}
-	</select>
+<!-- 	<select id="idCheck" parameterType="String" resultType="int"> -->
+<!-- 	select count(*) -->
+<!-- 	from member -->
+<!-- 	where id = #{id} -->
+<!-- 	</select> -->
 	
-	<select id="zipSearch" parameterType="String" resultType="zipDto">
-	select zipcode, sido, gugun, nvl(ubmyun, ' ') ubmyun, doro
-	from zipcode
-	where doro like '%'||#{doro}||'%'
-	</select>
+<!-- 	<select id="zipSearch" parameterType="String" resultType="zipDto"> -->
+<!-- 	select zipcode, sido, gugun, nvl(ubmyun, ' ') ubmyun, doro -->
+<!-- 	from zipcode -->
+<!-- 	where doro like '%'||#{doro}||'%' -->
+<!-- 	</select> -->
 	
-	<insert id="register" parameterType="memberDetailDto">
-	insert all 
-	into member (id,name,pass,email1,email2,joindate)
-	values (#{id},#{name},#{pass},#{email1},#{email2},sysdate)
-	into member_detail (id,tel1,tel2,tel3,zipcode,addr1,addr2)
-	values (#{id},#{tel1},#{tel2},#{tel3},#{zipcode},#{addr1},#{addr2})
-	select * from dual
+	<insert id="register" parameterType="EmployeeDto">
+	INSERT INTO EMP (EMP_SQ, PMS_SQ, DPT_SQ, RNK_SQ, PST_SQ, EMP_NM, EMP_ID, EMP_PW, EMP_SEX, EMP_BDATE
+				 , EMP_TEL1, EMP_TEL2, EMP_TEL3, EMP_ZIP, EMP_ADDR, EMP_ADDR_DT
+				 , EMP_BS_TEL1,EMP_BS_TEL2, EMP_BS_TEL3, EMP_CRT, EMP_REG, EMP_EXIT, EMP_FNL_MOD)
+	VALUES (#{emp_sq}, #{pms_sq}, #{dpt_sq}, #{rnk_sq}, #{pst_sq}, #{emp_nm}, #{emp_id}, #{emp_pw}
+		, #{emp_sex}, #{emp_bdate}, #{emp_tel1}, #{emp_tel2}, #{emp_tel3}, #{emp_zip}, #{emp_addr}, #{emp_addr_dt}
+		, #{emp_bs_tel1}, #{emp_bs_tel2}, #{emp_bs_tel3}, #{emp_crt}, sysdate, '', sysdate)
 	</insert>
 	
-	<select id="login" parameterType="java.util.Map"  resultType="memberDto">
-	select name, id, email1, email2
-	from member
-	where id=#{id} and pass=#{pass}
-	</select>
+<!-- 	<select id="login" parameterType="java.util.Map"  resultType="memberDto"> -->
+<!-- 	select name, id, email1, email2 -->
+<!-- 	from member -->
+<!-- 	where id=#{id} and pass=#{pass} -->
+<!-- 	</select> -->
 
 </mapper>

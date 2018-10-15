@@ -40,7 +40,7 @@
 								<div class="card-body">
 									<!-- 사원등록1 -->
 									<br>
-									<form class="form" method="POST" id="registerMemberForm" name="registerMemberForm" action="">
+									<form class="form" method="POST" id="registerMemberForm" name="registerMemberForm">
 									<input type="hidden" name="act" value="register">
 										<div class="row">
 											<div class="col-md-2" style="padding:0 20px 0 0">

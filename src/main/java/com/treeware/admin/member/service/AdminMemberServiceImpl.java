@@ -3,23 +3,27 @@ package com.treeware.admin.member.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.treeware.admin.member.dao.AdminMemberDao;
-import com.treeware.admin.member.model.MemberDto;
+import com.treeware.admin.member.model.EmployeeDto;
 
+@Service
 public class AdminMemberServiceImpl implements AdminMemberService {
 
 	@Autowired
-	private AdminMemberDao adminMemberDao;
+	private SqlSession sqlSession;
 	
 	@Override
-	public int register(MemberDto memberDto) {
-		return adminMemberDao.register(memberDto);
+	public int register(EmployeeDto employeeDto) {
+		return sqlSession.getMapper(AdminMemberDao.class).register(employeeDto);
 	}
 
 	@Override
-	public int modify(MemberDto memberDto) {
+	public int modify(EmployeeDto employeeDto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -31,12 +35,12 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	}
 
 	@Override
-	public List<MemberDto> getMemberList() {
-		return adminMemberDao.getMemberList();
+	public List<EmployeeDto> getMemberList() {
+		return sqlSession.getMapper(AdminMemberDao.class).getMemberList();
 	}
 
 	@Override
-	public MemberDto memberSearch(Map<String, String> map) {
+	public EmployeeDto memberSearch(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return null;
 	}

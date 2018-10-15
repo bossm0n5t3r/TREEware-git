@@ -1,20 +1,14 @@
 package com.treeware.admin.member.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.treeware.admin.member.model.MemberDto;
+import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.admin.member.service.AdminMemberService;
 
 @Controller
@@ -42,9 +36,9 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
-	public ModelAndView register(@RequestParam MemberDto memberDto) {
+	public ModelAndView register(EmployeeDto employeeDto) {
 		ModelAndView mav = new ModelAndView();
-		int cnt = adminMemberService.register(memberDto);
+		int cnt = adminMemberService.register(employeeDto);
 		mav.setViewName("admin/account/register");
 		return mav;
 	}

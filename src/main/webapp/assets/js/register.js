@@ -111,9 +111,8 @@ function register_check(){
 	} else if(email == '' || !re.test(email)){
 		alert("올바른 이메일 주소를 입력하세요")
 	} else {
-		 document.registerMemberForm.action = "${root}/admin/account/register.tree";
+		 document.registerMemberForm.action = "register.tree";
 		 document.registerMemberForm.submit();
-		 alert("성공!!!");
 	}	
 }
 
