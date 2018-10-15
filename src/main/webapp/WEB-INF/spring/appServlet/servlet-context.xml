@@ -10,8 +10,6 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
-<!-- 	<beans:bean class="com.treeware.admin.member.controller.AdminMemberController"/> -->
-	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>

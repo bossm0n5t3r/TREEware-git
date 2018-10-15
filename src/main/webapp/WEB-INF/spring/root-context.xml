@@ -7,9 +7,9 @@
 
 	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@183.101.196.136:1521:orcl" />
-		<property name="username" value="kitri" />
-		<property name="password" value="kitri" />
+		<property name="url" value="jdbc:oracle:thin:@183.101.196.136:1521:xe" />
+		<property name="username" value="fooding" />
+		<property name="password" value="fooding" />
 	</bean>
 
 	<bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -18,7 +18,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/treeware/config/mybatis/user.xml</value>
-<!-- 				<value>classpath:com/treeware/config/mybatis/admin.xml</value> -->
+				<!-- <value>classpath:com/treeware/config/mybatis/admin.xml</value> -->
 			</list>
 		</property>
 	</bean>
@@ -26,6 +26,5 @@
 	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="ssfb" />
 	</bean>
-
 
 </beans>
