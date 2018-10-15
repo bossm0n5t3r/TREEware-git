@@ -108,6 +108,20 @@ private int	ml_stt_sq;
 private String	ml_stt_nm;
 
 
+MailDto
+
+private int	ml_sq;
+private int	ml_grp_sq;
+private	int	ml_stt_sq;
+private int	ml_ipt_sq;
+private String	ml_snd_add;
+private String	ml_rcv_add;
+private String	ml_ttl;
+private String	ml_ctt;
+private String	ml_fl_nm;
+private String	ml_fl_rt;
+
+
 BoardDivideDto
 
 private int	brd_div_sq;
