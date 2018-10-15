@@ -7,9 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%@ include file="/assets/common/import.jsp" %>
 	<script>
-	function submit(){
-		 $("#successMsg").modal();
-	}
+	$(document).ready(function(){
+		$("#submitBtn").click(function() {
+			$("#successMsg").modal();
+		})
+	})
+
 	function goback(){
 		location.href="${root}/member";
 	}
@@ -36,8 +39,8 @@
 				<input type="text" id="email" placeholder="답변받으실 이메일주소" class="mainbox"></div>
 				<div class="form-group"><input type="file" class="form-control-file" id="exampleFormControlFile1"></div>
 				<div class="card-action" style="text-align:center">
-					<button class="btn btn-success" onclick="javascript:submit()" style="width:120px;padding:10px;margin:5px">전송하기</button>
-					<button class="btn btn-danger" onclick="javascript:goback()" style="width:120px;padding:10px;margin:5px">작성취소</button>
+					<button class="btn btn-success" id="submitBtn" style="width:120px;padding:10px;margin:5px">전송하기</button>
+					<button class="btn btn-danger" id="cancelBtn" style="width:120px;padding:10px;margin:5px">작성취소</button>
 				</div>
 			</div>	
 		</div>

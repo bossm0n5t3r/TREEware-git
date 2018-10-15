@@ -3,8 +3,17 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.treeware.admin.member.dao.AdminMemberDao">
+<mapper namespace="com.treeware.member.dao.MemberDao">
 
+	<select id="login" parameterType="java.util.Map" resultType="EmployeeDto">
+		SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
+       		  ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
+       		  ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
+		FROM EMP
+		WHERE
+		EMP_ID=#{id} and EMP_PW=#{pw}
+	</select>
+	
 <!-- 	<select id="idCheck" parameterType="String" resultType="int"> -->
 <!-- 	select count(*) -->
 <!-- 	from member -->
