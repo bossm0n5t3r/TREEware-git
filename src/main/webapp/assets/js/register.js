@@ -11,9 +11,9 @@ $(document).ready(function (){
 		var year = dt.getFullYear();
 		var empsq;
 		empsq = "TREE"+year;
-		document.getElementById("empnum").value = empsq;
-		document.getElementById("id").value = empsq;
-		document.getElementById("pw").value = "1234";
+		document.getElementById("emp_sq").value = empsq;
+		document.getElementById("emp_id").value = empsq;
+		document.getElementById("emp_pw").value = "1234";
 		
 		var upload = document.getElementById('photo'),
 	    	photoimg = document.getElementById('photoimg');
@@ -80,13 +80,13 @@ function unhypen(str) {
 //값 입력시 콤마찍기
 
 $(document).ready(function (){
-	$('#empname').keyup(function(){
+	$('#emp_nm').keyup(function(){
 		this.value = this.value.replace(/[0-9]|[A-Za-z]|[`~!@#$%^&*|\\\'\";:\/?()-_+={}]/g, "");
 	})
 	$('#phone').keyup(function(){
 		this.value = this.value.replace(/[^0-9]/g, "");
 	})
-	$('#cell').keyup(function (){
+	$('#tel').keyup(function (){
 			this.value = hypen(unhypen(this.value));
 	});
 })
@@ -95,8 +95,8 @@ function search_zip(){
 	new daum.Postcode({
 	    oncomplete: function(data) {
 	    	console.log(data)
-	    	document.getElementById("address1").value = data.postcode;
-	    	document.getElementById("address2").value = data.address;
+	    	document.getElementById("emp_zip").value = data.postcode;
+	    	document.getElementById("emp_addr").value = data.address;
 	    }
 	}).open();
 }
@@ -104,13 +104,16 @@ function search_zip(){
 function register_check(){
 	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	var email = document.getElementById('email').value;
-	if(document.getElementById("dptcode").value == ''){
+	if(document.getElementById("dpt_sq").value == ''){
 		alert("부서명을 입력하세요");
-	} else if(document.getElementById("empname").value == ''){
+	} else if(document.getElementById("emp_nm").value == ''){
 		alert("이름을 입력하세요")
 	} else if(email == '' || !re.test(email)){
 		alert("올바른 이메일 주소를 입력하세요")
 	} else {
+		$('#emp_tel1').val($('#tel').val().split("-")[0]);
+		$('#emp_tel2').val($('#tel').val().split("-")[1]);
+		$('#emp_tel3').val($('#tel').val().split("-")[2]);
 		 document.registerMemberForm.action = "register.tree";
 		 document.registerMemberForm.submit();
 	}	

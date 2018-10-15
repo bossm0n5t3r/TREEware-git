@@ -47,7 +47,7 @@
 <script type="text/javascript">
 function click_zip(zipname){
     var td = $(zipname).children();
-	document.getElementById("address1").value = td.eq(0).text();
-	document.getElementById("address2").value = td.eq(1).text();
+	document.getElementById("emp_zip").value = td.eq(0).text();
+	document.getElementById("emp_addr").value = td.eq(1).text();
 }
 </script>
