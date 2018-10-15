@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.kitri.member.dao.MemberDao">
+
+	<select id="idCheck" parameterType="String" resultType="int">
+	select count(*)
+	from member
+	where id = #{id}
+	</select>
+	
+	<select id="zipSearch" parameterType="String" resultType="zipDto">
+	select zipcode, sido, gugun, nvl(ubmyun, ' ') ubmyun, doro
+	from zipcode
+	where doro like '%'||#{doro}||'%'
+	</select>
+	
+	<insert id="register" parameterType="memberDetailDto">
+	insert all 
+	into member (id,name,pass,email1,email2,joindate)
+	values (#{id},#{name},#{pass},#{email1},#{email2},sysdate)
+	into member_detail (id,tel1,tel2,tel3,zipcode,addr1,addr2)
+	values (#{id},#{tel1},#{tel2},#{tel3},#{zipcode},#{addr1},#{addr2})
+	select * from dual
+	</insert>
+	
+	<select id="login" parameterType="java.util.Map"  resultType="memberDto">
+	select name, id, email1, email2
+	from member
+	where id=#{id} and pass=#{pass}
+	</select>
+
+</mapper>
