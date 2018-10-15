@@ -1,0 +1,201 @@
+﻿PermissionDto
+
+private int 	pms_sq;
+private String 	pms_nm;
+
+
+DepartmentDto
+
+private int 	dpt_sq;
+private String 	dpt_nm;
+
+
+PositionDto
+
+private int 	pst_sq;
+private String 	pst_nm;
+
+
+RankDto
+
+private int 	rnk_sq;
+private String 	rnk_nm;
+
+
+EmployeeDto
+
+private String	emp_sq;
+private int	pms_sq;
+private int	dpt_sq;
+private int	rnk_sq;
+private int	pst_sq;
+private String	emp_nm;
+private String	emp_id;
+private String	emp_pw;
+private String	emp_sex;
+private String	emp_bdate;
+private String	emp_ml_id;
+private String	emp_ml_addr;
+private String	emp_tel1;
+private String	emp_tel2;
+private String	emp_tel3;
+private String	emp_zip;
+private String	emp_addr;
+private String	emp_addr_dt;
+private String	emp_bs_tel1;
+private String	emp_bs_tel2;
+private String	emp_bs_tel3;
+private String	emp_crt;
+private String	emp_reg;
+private String	emp_exit;
+private String	emp_fnl_mod;
+
+
+EmployeePicDto
+
+private String	emp_sq;
+private String	emp_pic_dt;
+private String	emp_pic_rt;
+private String	emp_pic_onm;
+private String	emp_pic_mnm;
+
+
+ScheduleDto
+
+private int	scd_sq;
+private String	emp_sq;
+private int	dpt_sq;
+private String	scd_nm;
+private String	scd_pst;
+private String	scd_rpt;
+private String	scd_sday;
+private String	scd_stime;
+private String	scd_eday;
+private String	scd_etime;
+private String	scd_smr;
+private String	scd_dct;
+
+
+CommuteDto
+
+private int	cmt_sq;
+private String	emp_sq;
+private String	cmt_ip;
+private String	cmt_str_tm;
+private String	cmt_end_tm;
+private String	cmt_wout_tm;
+private String	cmt_gout_tm;
+private String	cmt_cb_tm;
+private String	cmt_msg;
+
+
+MailGroupDto
+
+private int	ml_grp_sq;
+private String	emp_sq;
+private String	ml_grp_nm;
+
+
+MailImportantDto
+
+private int	ml_ipt_sq;
+private String	ml_ipt_nm;
+
+
+MailStatusDto
+
+private int	ml_stt_sq;
+private String	ml_stt_nm;
+
+
+BoardDivideDto
+
+private int	brd_div_sq;
+private String	brd_div_nm;
+
+
+BoardDto
+
+private int	brd_sq;
+private int	brd_div_sq;
+private String	brd_ttl;
+private String	eml_sq;
+private String	brd_ctt;
+private String	brd_dt;
+private int	brd_hits;
+private String	brd_fl_onm;
+private String	brd_fl_mnm;
+private String	brd_fl_rt;
+
+
+ReplyDto
+
+private int	rpl_sq;
+private int	brd_sq;
+private String	emp_sq;
+private String	rpl_ctt;
+private String	rpl_rdt;
+private String	rpl_ldt;
+
+
+AddressGroupDto
+
+private int	addr_grp_sq;
+private String	emp_sq;
+private String	addr_grp_nm;
+
+
+AddressDto
+
+private int	addr_sq;
+private int	addr_grp_sq;
+private String	addr_nm;
+private String	addr_cpn;
+private String	addr_dpt;
+private String	addr_rnk;
+private String	addr_tel1;
+private String	addr_tel2;
+private String	addr_tel3;
+private String	addr_eml_id;
+private String	addr_eml_addr;
+private String	addr_cpn_tel1;
+private String	addr_cpn_tel2;
+private String	addr_cpn_tel3;
+private String	addr_cpn_addr;
+private String	addr_mm;
+
+
+ApproveOkDto
+
+private int	apv_ok_sq;
+private String	apv_ok_nm;
+
+
+ApproveFormDivideDto
+
+private int	apv_form_div_sq;
+private String	apv_form_div_nm;
+
+
+ApproveFormDto
+
+private int	apv_form_sq;
+private int	apv_form_div_sq;
+private String	apv_form_nm;
+private String	apv_form_ctt;
+
+
+ApproveDto
+
+private int	apv_sq;
+private int	apv_form_sq;
+private int	apv_ok_sq;
+private String	emp_sq;
+private int	apv_save;
+private String	apv_ctt;
+private String	apv_fl_rt;
+private String	apv_fl_nm;
+private String	apv_1st_sq;
+private String	apv_2nd_sq;
+private String	apv_fnl_sq;
+private String	apv_no;
