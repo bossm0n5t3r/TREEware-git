@@ -169,11 +169,11 @@ $(document).ready(function(){
 	console.log(totalData);
 	console.log(dataPerPage);
 	console.log(totalPage);
-	$('#paging').append('<li class="page-item"><a class="page-link" href="#"	aria-label="Previous">');
+	$('#paging').append('<li class="page-item"><a class="page-link" href="#"	aria-label="Previous"><span aria-hidden="true">&laquo;</span>');
 	for(var i=1;i<=totalPage;i++){
 		$('#paging').append('<li class="page-item"><a class="page-link" href="#">'+i+'</a></li>');
 	}
-	$('#paging').append('<li class="page-item"><a class="page-link" href="#" aria-label="Next">');
+	$('#paging').append('<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span>');
 });
 </script>
 </body>
