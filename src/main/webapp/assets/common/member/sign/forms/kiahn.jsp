@@ -99,9 +99,10 @@ span{
 			</tr>
 			<tr>
 				<td width="20%" class="info_title">기 안 일</td>
-				<td width="30%"><a id="doctate1" href="">[달력보기]</a></td>
+<!-- 				<td width="30%"><a id="doctate1" href="">[달력보기]</a></td> -->
+				<td width="30%"><input type="date" id="date1"></td>
 				<td width="20%" class="info_title">시행일자</td>
-				<td width="30%"><a id="doctate2" href="">[달력보기]</a></td>
+				<td width="30%"><input type="date" id="date2"></td>
 			</tr>
 			<tr>
 				<td class="info_title" colspan="4">상 세 내 용</td>

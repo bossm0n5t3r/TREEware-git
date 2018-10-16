@@ -102,13 +102,15 @@ span{
 	<table id="third" class="formtable" style="width:100%">
 		<tr>
 			<td width="20%" class="info_title">휴가종류</td>
-			<td width="80%" colspan="3"><span id="text21">연차</span></td>
+			<td width="30%" ><span id="text21">연차</span></td>
+			<td width="20%" class="info_title">잔 여 일</td>
+			<td width="30%"><span id="text22">15</span></td>
 		</tr> 
 		<tr>
-			<td width="20%" class="info_title">휴가기간</td>
-			<td width="40%"><span id="text22"><a href="">[달력보기]</a></span></td>
-			<td width="20%" class="info_title">잔 여 일</td>
-			<td width="20%"><span id="text23">15</span></td>
+			<td width="20%" class="info_title">휴가시작</td>
+			<td width="30%"><span id="text23"><input type="date" id="date1"></span></td>
+			<td width="20%" class="info_title">휴가종료</td>
+			<td width="30%"><span id="text24"><input type="date" id="date1"></span></td>
 		</tr>
 		<tr>
 			<td width="20%" class="info_title">휴가사유</td>

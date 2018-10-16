@@ -31,10 +31,10 @@ var zTree;
 
 	var zNodes = [
 		
-		{id:999, pId:0, name:"전체보기", file:"/treeware/assets/common/member/sign/list"},
+//		{id:999, pId:0, name:"전체보기", file:"/treeware/assets/common/member/sign/list"},
 		{id:1, pId:0, name:"즐겨찾기", open:true},
-		{id:101, pId:1, name:"시행문", file:"/treeware/assets/common/member/sign/forms/sihaeng"},
-		{id:102, pId:1, name:"기안문", file:"/treeware/assets/common/member/sign/forms/kiahn"},
+		{id:999, pId:1, name:"기안문", file:"/treeware/assets/common/member/sign/forms/kiahn"},
+		{id:102, pId:1, name:"시행문", file:"/treeware/assets/common/member/sign/forms/sihaeng"},
 		{id:103, pId:1, name:"휴가원", file:"/treeware/assets/common/member/sign/forms/huega"},
 		{id:104, pId:1, name:"경력증명서", file:"/treeware/assets/common/member/sign/forms/gyungryuck"},
 
