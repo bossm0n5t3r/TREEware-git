@@ -23,8 +23,15 @@ $(document).ready(function() {
 		$("#comeBackBtn").attr("class", "nav-link active");
 	});
 	$("#punchOutBtn").click(function() {
-		punchOut();
-		$("#punchOutBtn").attr("class", "nav-link active");
+		var exitTime = $("#ofw").val();
+		if (exitTime == "-") {
+			if (confirm("리얼 퇴근?")) {
+				punchOut();
+				$("#punchOutBtn").attr("class", "nav-link active");
+			}
+		} else {
+			alert("이미 퇴근!");
+		}
 	});
 })
 
@@ -49,6 +56,7 @@ function status() {
 		,url : "${root}/member/commute/today.tree"
 		,dataType : "json"
 		,success : function(data) {
+			$("#today_kor").text(data.TODAY_KOR);
 			$("#gtw").text(data.CMT_SRT_TM);
 			$("#osw").text(data.CMT_WOUT_TM);
 			$("#cbw").text(data.CMT_CB_TM);
@@ -148,8 +156,7 @@ function punchOut() {
 	<div id="clockstatus" style="width: 80%">
 		<table class="table" style="width: 100%; text-align: center">
 			<tr>
-				<th colspan="2" width="100%" style="text-align: center">2018년
-					10월 07일 일요일</th>
+				<th colspan="2" width="100%" style="text-align: center" id="today_kor"></th>
 			</tr>
 			<tr>
 				<td width="30%">출근</td>
