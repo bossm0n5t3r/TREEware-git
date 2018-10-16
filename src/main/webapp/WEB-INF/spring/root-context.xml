@@ -19,6 +19,7 @@
 			<list>
 				<value>classpath:com/treeware/config/mybatis/member.xml</value>
 				<value>classpath:com/treeware/config/mybatis/admin.xml</value>
+				<value>classpath:com/treeware/config/mybatis/commute.xml</value>
 			</list>
 		</property>
 	</bean>

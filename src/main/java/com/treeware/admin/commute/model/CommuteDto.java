@@ -1,15 +1,15 @@
 package com.treeware.admin.commute.model;
 
 public class CommuteDto {
-	private int 	cmt_sq;
-	private String 	emp_sq;
-	private String 	cmt_ip;
-	private String 	cmt_str_tm;
-	private String 	cmt_end_tm;
-	private String 	cmt_wout_tm;
-	private String 	cmt_gout_tm;
-	private String 	cmt_cb_tm;
-	private String 	cmt_msg;
+	private int cmt_sq;
+	private String emp_sq;
+	private String cmt_ip;
+	private String cmt_date;
+	private String cmt_str_tm;
+	private String cmt_end_tm;
+	private String cmt_wout_tm;
+	private String cmt_gout_tm;
+	private String cmt_cb_tm;
 
 	public int getCmt_sq() {
 		return cmt_sq;
@@ -33,6 +33,14 @@ public class CommuteDto {
 
 	public void setCmt_ip(String cmt_ip) {
 		this.cmt_ip = cmt_ip;
+	}
+
+	public String getCmt_date() {
+		return cmt_date;
+	}
+
+	public void setCmt_date(String cmt_date) {
+		this.cmt_date = cmt_date;
 	}
 
 	public String getCmt_str_tm() {
@@ -73,14 +81,6 @@ public class CommuteDto {
 
 	public void setCmt_cb_tm(String cmt_cb_tm) {
 		this.cmt_cb_tm = cmt_cb_tm;
-	}
-
-	public String getCmt_msg() {
-		return cmt_msg;
-	}
-
-	public void setCmt_msg(String cmt_msg) {
-		this.cmt_msg = cmt_msg;
 	}
 
 }

@@ -6,6 +6,7 @@
 
 	<typeAliases>
 		<typeAlias alias="EmployeeDto" type="com.treeware.admin.member.model.EmployeeDto"/>
+		<typeAlias alias="CommuteDto" type="com.treeware.admin.commute.model.CommuteDto"/>
 	</typeAliases>
 	
 </configuration>

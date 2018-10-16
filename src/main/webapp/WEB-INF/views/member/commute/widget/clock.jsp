@@ -8,24 +8,69 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
+	livetime();	
+	status();
+	$("#punchInBtn").click(function() {
+		alert("출근하기");
+	});
+	$("#workOutBtn").click(function() {
+		alert("외근가기");
+	});
+	$("#comeBackBtn").click(function() {
+		alert("복귀하기");
+	});
+	$("#punchOutBtn").click(function() {
+		alert("퇴근하기");
+	});
+})
+
+function livetime() {
 	$.ajax({
-		async: true
-		,type: 'GET'
-		,data: { act : 'getCommute'}
-		,url: '${root}/commute'
-		,success: function (rdata) {
-			var data = $.parseJSON(rdata);
+		type : "GET"
+		,url : "${root}/member/commute/livetime.tree"
+		,dataType : "json"
+		,success : function(data) {
+			$("#liveclock").html(data.time);
+			setTimeout("livetime()", 1000);
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function status() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/today.tree"
+		,dataType : "json"
+		,success : function(data) {
 			$("#gtw").text(data.CMT_SRT_TM);
 			$("#osw").text(data.CMT_WOUT_TM);
 			$("#cbw").text(data.CMT_CB_TM);
 			$("#ofw").text(data.CMT_END_TM);
 		}
+		,error : function(e) {
+			
+		}
 	})
-})
+}
 
 function punchIn() {
-	document.location.href="${root}/commute?act=punchIn";
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/punchIn.tree"
+		,dataType : "json"
+		,success : function(data) {
+// 			<c:set var="punchIn" value="active"/>
+			status();
+		}
+		,error : function(e) {
+			
+		}
+	})
 }
+
 </script>
 <div class="card" align="center">
 	<div class="card-header">
@@ -33,13 +78,19 @@ function punchIn() {
 	</div>
 	<div id="clockbtn" style="width: 80%; margin: 10px 0">
 		<ul class="nav nav-pills nav-justified">
-			<li class="nav-item"><a class="nav-link" href="javascript:punchIn();">출근하기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">외근가기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">복귀하기</a></li>
-			<li class="nav-item"><a class="nav-link active" href="#">퇴근하기</a>
+			<li class="nav-item"><a class="nav-link" id="punchInBtn">출근</a></li>
+			<li class="nav-item"><a class="nav-link ${workOut}" id="workOutBtn">외근</a></li>
+			<li class="nav-item"><a class="nav-link ${comeBack}" id="comeBackBtn">복귀</a></li>
+			<li class="nav-item"><a class="nav-link ${punchOut}" id="punchOutBtn">퇴근</a>
 			</li>
 		</ul>
 	</div>
+<!-- 	<div class="btn-group" style="width: 80%; margin: 10px 0"> -->
+<%-- 		<button class="btn-default nav-link ${punchIn}" id="punchInBtn">출근하기</button> --%>
+<%-- 		<button class="nav-link ${workOut}" id="workOutBtn">외근가기</button> --%>
+<%-- 		<button class="nav-link ${comeBack}" id="comeBackBtn">복귀하기</button> --%>
+<%-- 		<button class="nav-link ${punchOut}" id="punchOutBtn">퇴근하기</button> --%>
+<!-- 	</div> -->
 	<!-- 시계 -->
 	<span id="liveclock"></span>
 	<!-- 시계끝 -->
@@ -70,5 +121,5 @@ function punchIn() {
 		</table>
 	</div>
 	<!-- JavaScript Includes -->
-	<script src="${root}/assets/js/plugin/clock/clock.js"></script>
+<%-- 	<script src="${root}/assets/js/plugin/clock/clock.js"></script> --%>
 </div>
