@@ -53,14 +53,14 @@
 			</li>
 			<li class="nav-item">
 				<a href="${root}/admin/account/view.tree">
-					<p>상세페이지1)사원정보확인</p>
+					<p>사원정보수정</p>
 				</a>
 			</li>
-			<li class="nav-item">
-				<a href="${root}/admin/account/edit.tree">
-					<p>상세페이지2)사원정보수정</p>
-				</a>
-			</li>
+<!-- 			<li class="nav-item"> -->
+<%-- 				<a href="${root}/admin/account/edit.tree"> --%>
+<!-- 					<p>상세페이지2)사원정보수정</p> -->
+<!-- 				</a> -->
+<!-- 			</li> -->
 		</ul>
 	</div>
 </div>

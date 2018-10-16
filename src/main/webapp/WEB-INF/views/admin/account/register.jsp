@@ -46,7 +46,7 @@
 												<label class="form-check-label">
 													<input class="form-check-input" type="checkbox" value="">
 													<span class="form-check-sign">
-														사원번호<input id="emp_sq" name="emp_sq" type="text" readonly="readonly" value="" style="width:140px;margin:0 10px">
+														사원번호<input id="emp_sq" name="emp_sq" type="text" readonly="readonly" style="width:140px;margin:0 10px">
 													</span>
 												</label>
 												
@@ -155,10 +155,11 @@
 										</form>
 									<hr>
 								</div>
+							<div id="startregister"></div>
 							</div>
 							<!-- card end -->
 							<div class="card-action" style="text-align:center">
-								<button class="btn btn-default" onclick="" style="width:120px;padding:10px;margin:5px">입력추가</button>
+								<button class="btn btn-default" id="addclick" style="width:120px;padding:10px;margin:5px">입력추가</button>
 								<button class="btn btn-default" onclick="" style="width:120px;padding:10px;margin:5px">선택삭제</button>
 								<button class="btn btn-success" onclick="javascript:submit()" style="width:120px;padding:10px;margin:5px">등록하기</button>
 								<button class="btn btn-danger" onclick="javascript:goback()" style="width:120px;padding:10px;margin:5px">작성취소</button>
@@ -171,7 +172,7 @@
 				</div>
 			</div>
 		<%@ include file="/assets/common/footer.jsp" %>
-		</div>1
+		</div>
 	</div>
 <script>
 $(document).ready(function (){
