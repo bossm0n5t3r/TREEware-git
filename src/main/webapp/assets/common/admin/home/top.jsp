@@ -3,7 +3,7 @@
 <div class="main-header">
 <div class="logo-header">
 	<a href="${root}/admin/home/main.tree" class="logo">
-		트리웨어 관리자
+		<img src="/treeware/assets/img/treeware_logo_admin.png" width="220px">
 	</a>
 	<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
