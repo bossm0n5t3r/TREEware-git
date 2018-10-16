@@ -1,8 +1,6 @@
 package com.treeware.admin.member.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.treeware.admin.member.model.EmployeeDto;
+import com.treeware.admin.member.model.*;
 import com.treeware.admin.member.service.AdminMemberService;
 
 @Controller
@@ -23,17 +21,28 @@ public class AdminMemberController {
 	@RequestMapping("/main.tree")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
-//		List<MemberDto> list=new ArrayList<MemberDto>();
-//		list = adminMemberService.getMemberList();
+		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
+		List<DepartmentDto> list2 = new ArrayList<DepartmentDto>();
+		List<PositionDto> list3 = new ArrayList<PositionDto>();
+		List<RankDto> list4 = new ArrayList<RankDto>();
+		list = adminMemberService.getMemberList();
+		list2 = adminMemberService.getDepartmentList();
+		list3 = adminMemberService.getPositionList();
+		list4 = adminMemberService.getRankList();
+		mav.addObject("employeeInfo", list);
+		mav.addObject("departmentInfo", list2);
+		mav.addObject("positionInfo", list3);
+		mav.addObject("rankInfo", list4);
 		mav.setViewName("admin/account/main");
-//		mav.addObject("memberInfo", list);
 		return mav;
 	}
 	
 	@RequestMapping(value="/register.tree", method=RequestMethod.GET)
 	public ModelAndView mvRegister() {
 		ModelAndView mav = new ModelAndView();
+		int cnt = adminMemberService.getMemberCount();
 		mav.setViewName("admin/account/register");
+		mav.addObject("cnt", cnt);
 		return mav;
 	}
 	
@@ -56,9 +65,18 @@ public class AdminMemberController {
 	public ModelAndView view() {
 		ModelAndView mav = new ModelAndView();
 		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
+		List<DepartmentDto> list2 = new ArrayList<DepartmentDto>();
+		List<PositionDto> list3 = new ArrayList<PositionDto>();
+		List<RankDto> list4 = new ArrayList<RankDto>();
 		list = adminMemberService.getMemberList();
-		mav.setViewName("admin/account/view");
+		list2 = adminMemberService.getDepartmentList();
+		list3 = adminMemberService.getPositionList();
+		list4 = adminMemberService.getRankList();
 		mav.addObject("employeeInfo", list);
+		mav.addObject("departmentInfo", list2);
+		mav.addObject("positionInfo", list3);
+		mav.addObject("rankInfo", list4);
+		mav.setViewName("admin/account/view");
 		return mav;
 	}
 	

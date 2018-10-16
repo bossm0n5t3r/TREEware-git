@@ -173,5 +173,38 @@
 		<%@ include file="/assets/common/footer.jsp" %>
 		</div>1
 	</div>
+<script>
+$(document).ready(function (){
+		var dt = new Date();
+		var year = dt.getFullYear();
+		var empsq;
+		var cnt = parseInt('${cnt}') + 1;
+		empsq = "TREE"+year + cnt;
+		document.getElementById("emp_sq").value = empsq;
+		document.getElementById("emp_id").value = empsq;
+		document.getElementById("emp_pw").value = "1234";
+		
+		var upload = document.getElementById('photo'),
+	    	photoimg = document.getElementById('photoimg');
+
+		photoimg.src = "/treeware/assets/img/photo.jpg";
+	 
+		upload.onchange = function (e) {
+		  e.preventDefault();
+		  var file = upload.files[0],
+		      reader = new FileReader();
+		  reader.onload = function (event) {  
+			var img = new Image(); 
+		    img.src = event.target.result;
+		    if (img.width > 560) {
+		      img.width = 560;
+		    }
+		    photoimg.src = img.src;
+		  };
+		  reader.readAsDataURL(file);
+	  return false;
+	};
+});
+</script>
 </body>
 </html>

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.treeware.admin.member.dao.AdminMemberDao;
-import com.treeware.admin.member.model.EmployeeDto;
+import com.treeware.admin.member.model.*;
 
 @Service
 public class AdminMemberServiceImpl implements AdminMemberService {
@@ -59,6 +59,26 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	@Override
 	public int idCheck(String id) {
 		return sqlSession.getMapper(AdminMemberDao.class).idCheck(id);
+	}
+
+	@Override
+	public List<DepartmentDto> getDepartmentList() {
+		return sqlSession.getMapper(AdminMemberDao.class).getDepartmentList();
+	}
+
+	@Override
+	public List<PositionDto> getPositionList() {
+		return sqlSession.getMapper(AdminMemberDao.class).getPositionList();
+	}
+
+	@Override
+	public List<RankDto> getRankList() {
+		return sqlSession.getMapper(AdminMemberDao.class).getRankList();
+	}
+
+	@Override
+	public int getMemberCount() {
+		return sqlSession.getMapper(AdminMemberDao.class).getMemberCount();
 	}
 
 }

@@ -20,5 +20,28 @@
 	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
 	FROM EMP
 	</select>
-
+	
+	<select id="getDepartmentList" resultType="DepartmentDto">
+	SELECT DPT.DPT_SQ, DPT_NM
+	FROM DPT, EMP
+	WHERE DPT.DPT_SQ = EMP.DPT_SQ
+	</select>
+	
+	<select id="getPositionList" resultType="PositionDto">
+	SELECT PST.PST_SQ, PST_NM
+	FROM PST, EMP
+	WHERE PST.PST_SQ = EMP.PST_SQ
+	</select>
+	
+	<select id="getRankList" resultType="RankDto">
+	SELECT RNK.RNK_SQ, RNK_NM
+	FROM RNK, EMP
+	WHERE RNK.RNK_SQ = EMP.RNK_SQ
+	</select>
+		
+	<select id="getMemberCount" resultType="int">
+	SELECT count(*)
+	FROM EMP
+	</select>
+	
 </mapper>

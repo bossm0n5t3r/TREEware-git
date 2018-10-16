@@ -103,12 +103,12 @@
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach var="list" items="${employeeInfo}">
+										<c:forEach var="list" items="${employeeInfo}" varStatus="status">
 											<tr>
 												<td>${list.emp_nm}</td>
-												<td>영업개발팀</td>
-												<td>부장</td>
-												<td>팀장</td>
+												<td>${departmentInfo[status.index].dpt_nm}</td>
+												<td>${rankInfo[status.index].rnk_nm}</td>
+												<td>${positionInfo[status.index].pst_nm}</td>
 												<td>${list.emp_bs_tel1}-${list.emp_bs_tel2}-${list.emp_bs_tel3}</td>
 												<td>${list.emp_tel1}-${list.emp_tel2}-${list.emp_tel3}</td>
 												<td>휴직</td>
