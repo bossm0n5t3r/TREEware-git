@@ -31,31 +31,31 @@ var zTree;
 
 	var zNodes = [
 		
-		{id:999, pId:0, name:"전체보기", file:"list"},
-		
+		{id:999, pId:0, name:"전체보기", file:"/treeware/assets/common/member/sign/list"},
 		{id:1, pId:0, name:"즐겨찾기", open:true},
-		{id:101, pId:1, name:"출장확인서", file:"iframe/forms/goomae"},
-		{id:102, pId:1, name:"경력증명서", file:"iframe/forms/goomae"},
-		{id:103, pId:1, name:"결재파일3", file:"iframe/forms/goomae"},
-		{id:104, pId:1, name:"결재파일4", file:"iframe/forms/goomae"},
-		{id:105, pId:1, name:"결재파일5", file:"iframe/forms/chooljang1"},
+		{id:101, pId:1, name:"시행문", file:"/treeware/assets/common/member/sign/forms/sihaeng"},
+		{id:102, pId:1, name:"기안문", file:"/treeware/assets/common/member/sign/forms/kiahn"},
+		{id:103, pId:1, name:"휴가원", file:"/treeware/assets/common/member/sign/forms/huega"},
+		{id:104, pId:1, name:"경력증명서", file:"/treeware/assets/common/member/sign/forms/gyungryuck"},
 
-		{id:2, pId:0, name:"점심뭐먹지", open:false},
-		{id:201, pId:2, name:"연차신청1", file:"excheck/checkbox"},
-		{id:202, pId:2, name:"연차신청2", file:"excheck/checkbox"},
-		{id:203, pId:2, name:"연차신청3", file:"excheck/checkbox"},
-		{id:204, pId:2, name:"연차신청4", file:"excheck/checkbox"},
+		{id:2, pId:0, name:"출장 및 휴가", open:false},
+		{id:201, pId:2, name:"출장보고서", file:"excheck/checkbox"},
+		{id:202, pId:2, name:"휴일근무", file:"excheck/checkbox"},
+		{id:203, pId:2, name:"복직원", file:"excheck/checkbox"},
+		{id:204, pId:2, name:"휴직원", file:"excheck/checkbox"},
+		{id:205, pId:2, name:"휴가원", file:"excheck/checkbox"},
 
-		{id:3, pId:0, name:"따끈한국물", open:false},
-		{id:301, pId:3, name:"설렁탕", file:"exedit/drag"},
-		{id:301, pId:3, name:"순대국", file:"exedit/drag"},
-		{id:301, pId:3, name:"쌀국수", file:"exedit/drag"},
-		{id:301, pId:3, name:"멸치국수", file:"exedit/drag"},
+		{id:3, pId:0, name:"지출결의서", open:false},
+		{id:301, pId:3, name:"지출결의서", file:"exedit/drag"},
+		{id:302, pId:3, name:"법인카드", file:"exedit/drag"},
+		{id:303, pId:3, name:"시내교통비", file:"exedit/drag"},
+		{id:304, pId:3, name:"유류대실비", file:"exedit/drag"},
 
-		{id:4, pId:0, name:"내일은토요일", open:false},
-		{id:401, pId:4, name:"신난다", file:"bigdata/common"},
-		{id:402, pId:4, name:"즐거운", file:"bigdata/diy_async"},
-		{id:403, pId:4, name:"토요일", file:"bigdata/page"},
+		{id:4, pId:0, name:"보고", open:false},
+		{id:401, pId:4, name:"계약직평가표", file:"bigdata/common"},
+		{id:402, pId:4, name:"개선검토", file:"bigdata/diy_async"},
+		{id:403, pId:4, name:"소비자클레임", file:"bigdata/page"},
+		{id:404, pId:4, name:"불만발생", file:"bigdata/page"},
 
 	];
 
