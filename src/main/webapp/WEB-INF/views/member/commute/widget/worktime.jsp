@@ -84,7 +84,7 @@ function makeList(data) {
 				if (i == commutes[j].DATE) {
 					var tr = $("<tr></tr>").append($("<td></td>").text(commutes[j].DATE))
 								 		   .append($("<td></td>").text(commutes[j].DAY))
-								  		   .append($("<td></td>").text(commutes[j].CMT_SRT_TM))
+								  		   .append($("<td></td>").text(commutes[j].CMT_STR_TM))
 								  		   .append($("<td></td>").text(commutes[j].CMT_END_TM))
 								  		   .append($("<td></td>").text(commutes[j].CMT_WOUT_TM))
 								  		   // 출장, 연차, 휴가, 비고
