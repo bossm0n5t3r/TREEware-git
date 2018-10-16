@@ -23,16 +23,14 @@ public class AdminMemberController {
 		ModelAndView mav = new ModelAndView();
 		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
 		List<DepartmentDto> list2 = new ArrayList<DepartmentDto>();
-		List<PositionDto> list3 = new ArrayList<PositionDto>();
-		List<RankDto> list4 = new ArrayList<RankDto>();
+		List<RankDto> list3 = new ArrayList<RankDto>();
 		list = adminMemberService.getMemberList();
 		list2 = adminMemberService.getDepartmentList();
-		list3 = adminMemberService.getPositionList();
-		list4 = adminMemberService.getRankList();
+		list3 = adminMemberService.getRankList();
 		mav.addObject("employeeInfo", list);
 		mav.addObject("departmentInfo", list2);
-		mav.addObject("positionInfo", list3);
-		mav.addObject("rankInfo", list4);
+		mav.addObject("rankInfo", list3);
+		mav.addObject("page", list.size());
 		mav.setViewName("admin/account/main");
 		return mav;
 	}

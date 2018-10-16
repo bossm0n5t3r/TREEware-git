@@ -25,7 +25,7 @@ public class CommuteController {
 	@Autowired
 	private CommuteService commuteService;
 
-	// 근태관리 메인 페이지
+	// 근태관리 메인 페이지 이동
 	@RequestMapping("/main.tree")
 	public String main() {
 		return "member/commute/main";
@@ -52,11 +52,14 @@ public class CommuteController {
 		map.put("today", today);
 		int cnt = commuteService.checkToday(map);
 		JSONObject object = new JSONObject();
+		
+		// 만약 근태를 체크하지 않았다면
 		if (cnt == 0) {
 			object.put("CMT_SRT_TM", "-");
 			object.put("CMT_WOUT_TM", "-");
 			object.put("CMT_CB_TM", "-");
 			object.put("CMT_END_TM", "-");
+		// 만약 근태를 체크한 결과가 있다면
 		} else {
 			int cmt_sq = commuteService.getCommuteSq(map);
 			CommuteDto commuteDto = commuteService.today(cmt_sq);
@@ -65,8 +68,50 @@ public class CommuteController {
 			object.put("CMT_CB_TM", commuteDto.getCmt_cb_tm() == null ? "-" : commuteDto.getCmt_cb_tm());
 			object.put("CMT_END_TM", commuteDto.getCmt_end_tm() == null ? "-" : commuteDto.getCmt_end_tm());
 		}
+		
+		// 요일 구하기
+		int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+		String dayKor = "";
+		switch (dayOfWeek) {
+		case 1:
+			dayKor = "일요일";
+			break;
+		case 2:
+			dayKor = "월요일";
+			break;
+		case 3:
+			dayKor = "화요일";
+			break;
+		case 4:
+			dayKor = "수요일";
+			break;
+		case 5:
+			dayKor = "목요일";
+			break;
+		case 6:
+			dayKor = "금요일";
+			break;
+		case 7:
+			dayKor = "토요일";
+			break;
+		}
+		object.put("TODAY_KOR", TreewareConstance.TODAY_KOR + dayKor);
 		return object.toString();
 	}
+	
+	// 당일 년, 월 가져오기
+	@RequestMapping("/workStatus.tree")
+	public @ResponseBody String getMonth() {
+		JSONObject object = new JSONObject();
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+		int maxDate = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
+		object.put("YEAR", year);
+		object.put("MONTH", month);
+		object.put("MAX_DATE", maxDate);
+		return object.toString();
+	}
+	
 
 	// 출근하기
 	@RequestMapping("/punchIn.tree")
