@@ -143,12 +143,12 @@
 													</div>
 													<div style="width:50%" class="box-group"><input type="text" name="emp_addr_dt" id="emp_addr_dt" class="mainbox" placeholder="상세주소를 입력하세요"></div>
 													<div style="width:50%" class="box-group"><input type="text" name="email" id="email" class="mainbox" placeholder="이메일"></div>
-													<div style="width:50%" class="box-group"><input type="hidden" name="emp_ml_id" id="emp_ml_id" class="mainbox" placeholder="이메일"></div>
-													<div style="width:50%" class="box-group"><input type="hidden" name="emp_ml_addr" id="emp_ml_addr" class="mainbox" placeholder="이메일"></div>
+													<input type="hidden" name="emp_ml_id" id="emp_ml_id" class="mainbox" placeholder="이메일">
+													<input type="hidden" name="emp_ml_addr" id="emp_ml_addr" class="mainbox" placeholder="이메일">
 													<div style="width:50%" class="box-group"><input type="text" name="phone" id="phone" class="mainbox" placeholder="내선번호" required></div>
-													<div style="width:50%" class="box-group"><input type="hidden" name="emp_bs_tel1" id="emp_bs_tel1" class="mainbox" placeholder="내선번호" required></div>
-													<div style="width:50%" class="box-group"><input type="hidden" name="emp_bs_tel2" id="emp_bs_tel2" class="mainbox" placeholder="내선번호" required></div>
-													<div style="width:50%" class="box-group"><input type="hidden" name="emp_bs_tel3" id="emp_bs_tel3" class="mainbox" placeholder="내선번호" required></div>
+													<input type="hidden" name="emp_bs_tel1" id="emp_bs_tel1" class="mainbox" placeholder="내선번호" required>
+													<input type="hidden" name="emp_bs_tel2" id="emp_bs_tel2" class="mainbox" placeholder="내선번호" required>
+													<input type="hidden" name="emp_bs_tel3" id="emp_bs_tel3" class="mainbox" placeholder="내선번호" required>
 													<div id="idAlert" class="spanalert" style="color:#ffd001;margin: 0 0 20px 0;width:100%"></div></div>
 												</div>
 											</div>
@@ -173,5 +173,38 @@
 		<%@ include file="/assets/common/footer.jsp" %>
 		</div>1
 	</div>
+<script>
+$(document).ready(function (){
+		var dt = new Date();
+		var year = dt.getFullYear();
+		var empsq;
+		var cnt = parseInt('${cnt}') + 1;
+		empsq = "TREE"+year + cnt;
+		document.getElementById("emp_sq").value = empsq;
+		document.getElementById("emp_id").value = empsq;
+		document.getElementById("emp_pw").value = "1234";
+		
+		var upload = document.getElementById('photo'),
+	    	photoimg = document.getElementById('photoimg');
+
+		photoimg.src = "/treeware/assets/img/photo.jpg";
+	 
+		upload.onchange = function (e) {
+		  e.preventDefault();
+		  var file = upload.files[0],
+		      reader = new FileReader();
+		  reader.onload = function (event) {  
+			var img = new Image(); 
+		    img.src = event.target.result;
+		    if (img.width > 560) {
+		      img.width = 560;
+		    }
+		    photoimg.src = img.src;
+		  };
+		  reader.readAsDataURL(file);
+	  return false;
+	};
+});
+</script>
 </body>
 </html>

@@ -26,13 +26,13 @@
 			<th width="17%">회사전화</th>
 			<th width="20%">이메일</th>
 			<th width="10%">부서</th>
-			<th width="10%">직책</th>
+			<th width="10%">직위</th>
 			<th width="15%">휴대전화</th>
 			<th width="3%">수정</th>
 		</tr>
 	</thead>
 	<tbody>
-		<% for(int i=0; i<10 ; i++){ %>
+		<c:forEach var="list" items="${employeeInfo}" varStatus="status">
 		<tr>
 			<td>
 				<div class="form-check">
@@ -42,12 +42,12 @@
 					</label>
 				</div>
 			</td>
-			<td>김하늘</td>
-			<td>010-0000-0000</td>
-			<td>skykim@gmail.com</td>
-			<td>영업1팀</td>
-			<td>사원</td>
-			<td>070-000-0000</td>
+			<td>${list.emp_nm}</td>
+			<td>${list.emp_bs_tel1}-${list.emp_bs_tel2}-${list.emp_bs_tel3}</td>
+			<td>${list.emp_ml_id}${list.emp_ml_addr}</td>
+			<td>${departmentInfo[status.index].dpt_nm}</td>
+			<td>${rankInfo[status.index].rnk_nm}</td>
+			<td>${list.emp_tel1}-${list.emp_tel2}-${list.emp_tel3}</td>
 			<td class="td-actions text-left">
 				<div class="form-button-action">
 					<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary">
@@ -59,6 +59,6 @@
 				</div>
 			</td>
 		</tr>
-		<%} %>
+		</c:forEach>
 	</tbody>
 </table>

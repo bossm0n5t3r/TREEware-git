@@ -5,37 +5,6 @@ function submit(){
 function goback(){
 		location.href="${root}/admin/account/main.tree";
 	}
-	
-$(document).ready(function (){
-		var dt = new Date();
-		var year = dt.getFullYear();
-		var empsq;
-		empsq = "TREE"+year;
-		document.getElementById("emp_sq").value = empsq;
-		document.getElementById("emp_id").value = empsq;
-		document.getElementById("emp_pw").value = "1234";
-		
-		var upload = document.getElementById('photo'),
-	    	photoimg = document.getElementById('photoimg');
-
-		photoimg.src = "/treeware/assets/img/photo.jpg";
-	 
-		upload.onchange = function (e) {
-		  e.preventDefault();
-		  var file = upload.files[0],
-		      reader = new FileReader();
-		  reader.onload = function (event) {  
-			var img = new Image(); 
-		    img.src = event.target.result;
-		    if (img.width > 560) {
-		      img.width = 560;
-		    }
-		    photoimg.src = img.src;
-		  };
-		  reader.readAsDataURL(file);
-	  return false;
-	};
-});
 
 function hypen(str) {
 	var x = str.replace(/[^0-9\-]/g, "");
@@ -114,6 +83,8 @@ function register_check(){
 		$('#emp_tel1').val($('#tel').val().split("-")[0]);
 		$('#emp_tel2').val($('#tel').val().split("-")[1]);
 		$('#emp_tel3').val($('#tel').val().split("-")[2]);
+		$('#emp_ml_id').val($('#email').val().split("@")[0]);
+		$('#emp_ml_addr').val($('#email').val().split("@")[1]);
 		 document.registerMemberForm.action = "register.tree";
 		 document.registerMemberForm.submit();
 	}	
