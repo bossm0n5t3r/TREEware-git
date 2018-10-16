@@ -41,7 +41,7 @@ public class MemberController {
 				Cookie [] cookies = request.getCookies();
 				if (cookies != null) {
 					for (Cookie cookie : cookies) {
-						if ("LOGIN_ID".equals(cookie.getName())) {
+						if ("TREEWARE_ID".equals(cookie.getName())) {
 							cookie.setMaxAge(0);
 							response.addCookie(cookie);
 							break;

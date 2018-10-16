@@ -11,16 +11,20 @@ $(document).ready(function() {
 	livetime();	
 	status();
 	$("#punchInBtn").click(function() {
-		alert("출근하기");
+		punchIn();
+		$("#punchInBtn").attr("class", "nav-link active");
 	});
 	$("#workOutBtn").click(function() {
-		alert("외근가기");
+		workOut();
+		$("#workOutBtn").attr("class", "nav-link active");
 	});
 	$("#comeBackBtn").click(function() {
-		alert("복귀하기");
+		comeBack();
+		$("#comeBackBtn").attr("class", "nav-link active");
 	});
 	$("#punchOutBtn").click(function() {
-		alert("퇴근하기");
+		punchOut();
+		$("#punchOutBtn").attr("class", "nav-link active");
 	});
 })
 
@@ -49,6 +53,18 @@ function status() {
 			$("#osw").text(data.CMT_WOUT_TM);
 			$("#cbw").text(data.CMT_CB_TM);
 			$("#ofw").text(data.CMT_END_TM);
+			if (data.CMT_SRT_TM != "-") {
+				$("#punchInBtn").attr("class", "nav-link active");
+			}
+			if (data.CMT_WOUT_TM != "-") {
+				$("#workOutBtn").attr("class", "nav-link active");
+			}
+			if (data.CMT_CB_TM != "-") {
+				$("#comeBackBtn").attr("class", "nav-link active");
+			}
+			if (data.CMT_END_TM != "-") {
+				$("#punchOutBtn").attr("class", "nav-link active");
+			}
 		}
 		,error : function(e) {
 			
@@ -62,7 +78,6 @@ function punchIn() {
 		,url : "${root}/member/commute/punchIn.tree"
 		,dataType : "json"
 		,success : function(data) {
-// 			<c:set var="punchIn" value="active"/>
 			status();
 		}
 		,error : function(e) {
@@ -71,6 +86,47 @@ function punchIn() {
 	})
 }
 
+function workOut() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/workOut.tree"
+		,dataType : "json"
+		,success : function(data) {
+			status();
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function comeBack() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/comeBack.tree"
+		,dataType : "json"
+		,success : function(data) {
+			status();
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function punchOut() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/punchOut.tree"
+		,dataType : "json"
+		,success : function(data) {
+			status();
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
 </script>
 <div class="card" align="center">
 	<div class="card-header">
@@ -79,18 +135,12 @@ function punchIn() {
 	<div id="clockbtn" style="width: 80%; margin: 10px 0">
 		<ul class="nav nav-pills nav-justified">
 			<li class="nav-item"><a class="nav-link" id="punchInBtn">출근</a></li>
-			<li class="nav-item"><a class="nav-link ${workOut}" id="workOutBtn">외근</a></li>
-			<li class="nav-item"><a class="nav-link ${comeBack}" id="comeBackBtn">복귀</a></li>
-			<li class="nav-item"><a class="nav-link ${punchOut}" id="punchOutBtn">퇴근</a>
+			<li class="nav-item"><a class="nav-link" id="workOutBtn">외근</a></li>
+			<li class="nav-item"><a class="nav-link" id="comeBackBtn">복귀</a></li>
+			<li class="nav-item"><a class="nav-link" id="punchOutBtn">퇴근</a>
 			</li>
 		</ul>
 	</div>
-<!-- 	<div class="btn-group" style="width: 80%; margin: 10px 0"> -->
-<%-- 		<button class="btn-default nav-link ${punchIn}" id="punchInBtn">출근하기</button> --%>
-<%-- 		<button class="nav-link ${workOut}" id="workOutBtn">외근가기</button> --%>
-<%-- 		<button class="nav-link ${comeBack}" id="comeBackBtn">복귀하기</button> --%>
-<%-- 		<button class="nav-link ${punchOut}" id="punchOutBtn">퇴근하기</button> --%>
-<!-- 	</div> -->
 	<!-- 시계 -->
 	<span id="liveclock"></span>
 	<!-- 시계끝 -->
@@ -121,5 +171,5 @@ function punchIn() {
 		</table>
 	</div>
 	<!-- JavaScript Includes -->
-<%-- 	<script src="${root}/assets/js/plugin/clock/clock.js"></script> --%>
+	<%-- <script src="${root}/assets/js/plugin/clock/clock.js"></script> --%>
 </div>
