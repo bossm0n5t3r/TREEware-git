@@ -29,7 +29,7 @@ public class CommuteServiceImpl implements CommuteService {
 	public int getNextCommuteSq(Map<String, String> map) {
 		return sqlSession.getMapper(CommuteDao.class).getNextCommuteSq(map);
 	}
-	
+
 	@Override
 	public CommuteDto today(int cmt_sq) {
 		return sqlSession.getMapper(CommuteDao.class).today(cmt_sq);
@@ -41,10 +41,18 @@ public class CommuteServiceImpl implements CommuteService {
 	}
 
 	@Override
-	public int punchOut(CommuteDto commuteDto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int workOut(CommuteDto commuteDto) {
+		return sqlSession.getMapper(CommuteDao.class).workOut(commuteDto);
 	}
 
+	@Override
+	public int comeBack(CommuteDto commuteDto) {
+		return sqlSession.getMapper(CommuteDao.class).comeBack(commuteDto);
+	}
+
+	@Override
+	public int punchOut(CommuteDto commuteDto) {
+		return sqlSession.getMapper(CommuteDao.class).punchOut(commuteDto);
+	}
 
 }

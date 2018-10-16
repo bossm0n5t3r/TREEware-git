@@ -10,5 +10,7 @@ public interface CommuteService {
 	public int getNextCommuteSq(Map<String, String> map);
 	public CommuteDto today(int cmt_sq);
 	public int punchIn(CommuteDto commuteDto);
+	public int workOut(CommuteDto commuteDto);
+	public int comeBack(CommuteDto commuteDto);
 	public int punchOut(CommuteDto commuteDto);
 }
