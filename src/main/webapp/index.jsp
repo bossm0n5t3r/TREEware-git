@@ -11,9 +11,9 @@
 	<c:set var="loop_flag" value="false"/>
 	<c:forEach var="cookie" items="${pageContext.request.cookies}">
 		<c:if test="${not loop_flag}">
-			<c:if test="${'LOGIN_ID' == cookie.name}">
-				<c:set var="id" value="${cookie.value}"/>
-				<c:set var="loginCk" value="checked"/>
+			<c:if test="${'TREEWARE_ID' == cookie.TREEWARE_ID.name}">
+				<c:set var="id" value="${cookie.TREEWARE_ID.value}"/>
+				<c:set var="loginCk" value="checked='checked'"/>
 				<c:set var="loop_flag" value="true"/>
 			</c:if>
 		</c:if>
@@ -46,7 +46,7 @@
 				<div class="mainform"><input id="pw" name="pw" class="mainbox" type="password" placeholder="비밀번호"></div>
 				<div class="mainform">
 					<label class="form-check-label">
-						<input class="form-check-input" name="autoLogin" value="loginOk" type="checkbox" value="" checked="${loginCk}">
+						<input class="form-check-input" name="autoLogin" value="loginOk" type="checkbox" value="" ${loginCk}>
 						<span class="form-check-sign">현재 PC에서 아이디저장</span>
 					</label>
 				</div>

@@ -8,23 +8,132 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
+	livetime();	
+	status();
+	$("#punchInBtn").click(function() {
+		punchIn();
+		$("#punchInBtn").attr("class", "nav-link active");
+	});
+	$("#workOutBtn").click(function() {
+		workOut();
+		$("#workOutBtn").attr("class", "nav-link active");
+	});
+	$("#comeBackBtn").click(function() {
+		comeBack();
+		$("#comeBackBtn").attr("class", "nav-link active");
+	});
+	$("#punchOutBtn").click(function() {
+		var exitTime = $("#ofw").val();
+		if (exitTime == "-") {
+			if (confirm("리얼 퇴근?")) {
+				punchOut();
+				$("#punchOutBtn").attr("class", "nav-link active");
+			}
+		} else {
+			alert("이미 퇴근!");
+		}
+	});
+})
+
+function livetime() {
 	$.ajax({
-		async: true
-		,type: 'GET'
-		,data: { act : 'getCommute'}
-		,url: '${root}/commute'
-		,success: function (rdata) {
-			var data = $.parseJSON(rdata);
+		type : "GET"
+		,url : "${root}/member/commute/livetime.tree"
+		,dataType : "json"
+		,success : function(data) {
+			$("#liveclock").html(data.time);
+			setTimeout("livetime()", 1000);
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function status() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/today.tree"
+		,dataType : "json"
+		,success : function(data) {
+			$("#today_kor").text(data.TODAY_KOR);
 			$("#gtw").text(data.CMT_SRT_TM);
 			$("#osw").text(data.CMT_WOUT_TM);
 			$("#cbw").text(data.CMT_CB_TM);
 			$("#ofw").text(data.CMT_END_TM);
+			if (data.CMT_SRT_TM != "-") {
+				$("#punchInBtn").attr("class", "nav-link active");
+			}
+			if (data.CMT_WOUT_TM != "-") {
+				$("#workOutBtn").attr("class", "nav-link active");
+			}
+			if (data.CMT_CB_TM != "-") {
+				$("#comeBackBtn").attr("class", "nav-link active");
+			}
+			if (data.CMT_END_TM != "-") {
+				$("#punchOutBtn").attr("class", "nav-link active");
+			}
+		}
+		,error : function(e) {
+			
 		}
 	})
-})
+}
 
 function punchIn() {
-	document.location.href="${root}/commute?act=punchIn";
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/punchIn.tree"
+		,dataType : "json"
+		,success : function(data) {
+			status();
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function workOut() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/workOut.tree"
+		,dataType : "json"
+		,success : function(data) {
+			status();
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function comeBack() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/comeBack.tree"
+		,dataType : "json"
+		,success : function(data) {
+			status();
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function punchOut() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/punchOut.tree"
+		,dataType : "json"
+		,success : function(data) {
+			status();
+		}
+		,error : function(e) {
+			
+		}
+	})
 }
 </script>
 <div class="card" align="center">
@@ -33,10 +142,10 @@ function punchIn() {
 	</div>
 	<div id="clockbtn" style="width: 80%; margin: 10px 0">
 		<ul class="nav nav-pills nav-justified">
-			<li class="nav-item"><a class="nav-link" href="javascript:punchIn();">출근하기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">외근가기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">복귀하기</a></li>
-			<li class="nav-item"><a class="nav-link active" href="#">퇴근하기</a>
+			<li class="nav-item"><a class="nav-link" id="punchInBtn">출근</a></li>
+			<li class="nav-item"><a class="nav-link" id="workOutBtn">외근</a></li>
+			<li class="nav-item"><a class="nav-link" id="comeBackBtn">복귀</a></li>
+			<li class="nav-item"><a class="nav-link" id="punchOutBtn">퇴근</a>
 			</li>
 		</ul>
 	</div>
@@ -47,8 +156,7 @@ function punchIn() {
 	<div id="clockstatus" style="width: 80%">
 		<table class="table" style="width: 100%; text-align: center">
 			<tr>
-				<th colspan="2" width="100%" style="text-align: center">2018년
-					10월 07일 일요일</th>
+				<th colspan="2" width="100%" style="text-align: center" id="today_kor"></th>
 			</tr>
 			<tr>
 				<td width="30%">출근</td>
@@ -70,5 +178,5 @@ function punchIn() {
 		</table>
 	</div>
 	<!-- JavaScript Includes -->
-	<script src="${root}/assets/js/plugin/clock/clock.js"></script>
+	<%-- <script src="${root}/assets/js/plugin/clock/clock.js"></script> --%>
 </div>

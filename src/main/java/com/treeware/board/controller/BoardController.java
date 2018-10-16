@@ -9,11 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/member/board")
 public class BoardController {
 
+	
+	// 게시판 메인 페이지
 	@RequestMapping("/main.tree")
-	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/board/main");
-		return mav;
+	public String main() {
+		return "member/board/main";
 	}
 	
 	@RequestMapping("/bookmark.tree")

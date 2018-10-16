@@ -9,11 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/member/mail")
 public class EmailController {
 
+	// 이메일 메인 페이지
 	@RequestMapping("/main.tree")
-	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/mail/main");
-		return mav;
+	public String main() {
+		return "member/mail/main";
 	}
 	
 	@RequestMapping("/newmailbox.tree")
