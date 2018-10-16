@@ -1,11 +1,13 @@
 package com.treeware.commute.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import com.treeware.admin.commute.model.CommuteDto;
 import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.commute.service.CommuteService;
+import com.treeware.util.NumberCheck;
 import com.treeware.util.TreewareConstance;
 
 @Controller
@@ -71,44 +74,80 @@ public class CommuteController {
 		
 		// 요일 구하기
 		int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-		String dayKor = "";
-		switch (dayOfWeek) {
-		case 1:
-			dayKor = "일요일";
-			break;
-		case 2:
-			dayKor = "월요일";
-			break;
-		case 3:
-			dayKor = "화요일";
-			break;
-		case 4:
-			dayKor = "수요일";
-			break;
-		case 5:
-			dayKor = "목요일";
-			break;
-		case 6:
-			dayKor = "금요일";
-			break;
-		case 7:
-			dayKor = "토요일";
-			break;
-		}
+		String dayKor = TreewareConstance.DayOfWeek[dayOfWeek - 1];
 		object.put("TODAY_KOR", TreewareConstance.TODAY_KOR + dayKor);
 		return object.toString();
 	}
 	
-	// 당일 년, 월 가져오기
+	// 근무현황 가져오기
 	@RequestMapping("/workStatus.tree")
-	public @ResponseBody String getMonth() {
+	public @ResponseBody String getMonth(@RequestParam Map<String, String> data, HttpSession session) throws ParseException {
 		JSONObject object = new JSONObject();
+		
+		// 년, 월, 해당 월의 일 수 가져오기!
 		int year = Calendar.getInstance().get(Calendar.YEAR);
-		int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-		int maxDate = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
 		object.put("YEAR", year);
+		int month = Calendar.getInstance().get(Calendar.MONTH) + 1;			
+		if ("before".equals(data.get("type"))){
+			if (NumberCheck.nullToOne(data.get("month")) != 1) {
+				month = NumberCheck.nullToOne(data.get("month")) - 1;
+			} else {
+				month = 1;
+			}
+		} else if ("after".equals(data.get("type"))) {
+			if (NumberCheck.nullToOne(data.get("month")) != 12) {
+				month = NumberCheck.nullToOne(data.get("month")) + 1;
+			} else {
+				month = 12;
+			}
+		}
 		object.put("MONTH", month);
+		// 윤년이 아닌 경우
+		int maxDate = TreewareConstance.DateOfMonth[month - 1];
+		//윤년인 경우
+		if (month == 2 && (year & 3) == 0 && ((year % 25) != 0 || (year & 15) == 0))
+		{
+		    /* leap year */
+			maxDate++;
+		}
 		object.put("MAX_DATE", maxDate);
+		
+		// 근무현황 list 가져오기
+		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
+		String emp_sq = employeeDto.getEmp_sq();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("year", year + "");
+		map.put("month", String.format("%02d", month));
+		map.put("emp_sq", emp_sq);
+		List<CommuteDto> list = commuteService.getCommuteDtoList(map);
+		JSONArray array = new JSONArray();
+		if (list.size() != 0) {
+//			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+			for (CommuteDto dto : list) {
+				JSONObject cmtDto = new JSONObject();
+				// 날짜
+				String date = dto.getCmt_date().split("/")[2];
+				cmtDto.put("DATE", date);
+				
+				// 요일
+//				Calendar.getInstance().setTime(new Date(formatter.parse(dto.getCmt_date()).getTime() + (1000*60*60*24*+1)));
+				int dayOfWeek = getDateDay(dto.getCmt_date());
+				String dayKor = TreewareConstance.DayOfWeek[dayOfWeek];
+				cmtDto.put("DAY", dayKor);
+				
+				// 출근시간
+				cmtDto.put("CMT_SRT_TM", dto.getCmt_str_tm());
+				
+				// 퇴근시간
+				cmtDto.put("CMT_END_TM", dto.getCmt_end_tm());
+				
+				// 외근시간
+				cmtDto.put("CMT_WOUT_TM", dto.getCmt_wout_tm());
+				
+				array.put(cmtDto);
+			}
+		}
+		object.put("commuteList", array);
 		return object.toString();
 	}
 	
@@ -220,5 +259,13 @@ public class CommuteController {
 			}
 		}
 		return object.toString();
+	}
+	
+	public int getDateDay(String cmt_date) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+		Date date = formatter.parse(cmt_date);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(Calendar.DAY_OF_WEEK) - 1;
 	}
 }

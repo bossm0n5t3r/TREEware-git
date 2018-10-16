@@ -65,4 +65,12 @@
 		CMT_SQ=#{cmt_sq}
 	</update>
 
+	<select id="getCommuteDtoList" parameterType="java.util.Map" resultType="CommuteDto">
+		SELECT CMT_SQ,EMP_SQ,CMT_IP,CMT_DATE
+       		  ,CMT_STR_TM,CMT_END_TM,CMT_WOUT_TM,CMT_GOUT_TM,CMT_CB_TM
+		FROM CMT
+		WHERE CMT_DATE like '%'||#{year}||'/'||#{month}||'%'
+		AND EMP_SQ = #{emp_sq}
+	</select>
+
 </mapper>
