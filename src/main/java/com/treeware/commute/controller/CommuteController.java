@@ -58,7 +58,7 @@ public class CommuteController {
 		
 		// 만약 근태를 체크하지 않았다면
 		if (cnt == 0) {
-			object.put("CMT_SRT_TM", "-");
+			object.put("CMT_STR_TM", "-");
 			object.put("CMT_WOUT_TM", "-");
 			object.put("CMT_CB_TM", "-");
 			object.put("CMT_END_TM", "-");
@@ -66,7 +66,7 @@ public class CommuteController {
 		} else {
 			int cmt_sq = commuteService.getCommuteSq(map);
 			CommuteDto commuteDto = commuteService.today(cmt_sq);
-			object.put("CMT_SRT_TM", commuteDto.getCmt_str_tm() == null ? "-" : commuteDto.getCmt_str_tm());
+			object.put("CMT_STR_TM", commuteDto.getCmt_str_tm() == null ? "-" : commuteDto.getCmt_str_tm());
 			object.put("CMT_WOUT_TM", commuteDto.getCmt_wout_tm() == null ? "-" : commuteDto.getCmt_wout_tm());
 			object.put("CMT_CB_TM", commuteDto.getCmt_cb_tm() == null ? "-" : commuteDto.getCmt_cb_tm());
 			object.put("CMT_END_TM", commuteDto.getCmt_end_tm() == null ? "-" : commuteDto.getCmt_end_tm());
@@ -136,7 +136,7 @@ public class CommuteController {
 				cmtDto.put("DAY", dayKor);
 				
 				// 출근시간
-				cmtDto.put("CMT_SRT_TM", dto.getCmt_str_tm());
+				cmtDto.put("CMT_STR_TM", dto.getCmt_str_tm());
 				
 				// 퇴근시간
 				cmtDto.put("CMT_END_TM", dto.getCmt_end_tm());
@@ -166,7 +166,7 @@ public class CommuteController {
 		if (cnt != 0) {
 			int cmt_sq = commuteService.getCommuteSq(map);
 			CommuteDto commuteDto = commuteService.today(cmt_sq);
-			object.put("CMT_SRT_TM", commuteDto.getCmt_str_tm());
+			object.put("CMT_STR_TM", commuteDto.getCmt_str_tm());
 		} else {
 			int cmt_sq = commuteService.getNextCommuteSq(map);
 			CommuteDto commuteDto = new CommuteDto();
@@ -177,7 +177,7 @@ public class CommuteController {
 			commuteDto.setCmt_str_tm(time);
 			int check = commuteService.punchIn(commuteDto);
 			if (check != 0) {
-				object.put("CMT_SRT_TM", commuteDto.getCmt_str_tm());
+				object.put("CMT_STR_TM", commuteDto.getCmt_str_tm());
 			}
 		}
 		return object.toString();
