@@ -33,7 +33,7 @@ public class MemberController {
 		
 		if (employeeDto != null) {
 			if ("loginOk".equals(loginOk)) {
-				Cookie cookie = new Cookie("LOGIN_ID", id);
+				Cookie cookie = new Cookie("TREEWARE_ID", id);
 				cookie.setPath(request.getContextPath());
 				cookie.setMaxAge(60*60*24);
 				response.addCookie(cookie);
