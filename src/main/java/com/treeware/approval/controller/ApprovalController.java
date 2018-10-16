@@ -8,11 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/member/sign")
 public class ApprovalController {
 
+	
+	// 결제관리 메인 페이지
 	@RequestMapping("/main.tree")
-	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/sign/main");
-		return mav;
+	public String main() {
+		return "member/sign/main";
 	}
 	
 	@RequestMapping("/dept.tree")

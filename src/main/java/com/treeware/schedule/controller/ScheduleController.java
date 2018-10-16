@@ -8,11 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/member/calendar")
 public class ScheduleController {
 
+	
+	// 일정관리 메인 페이지
 	@RequestMapping("/main.tree")
-	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/calendar/main");
-		return mav;
+	public String main() {
+		return "member/calendar/main";
 	}
 	
 	@RequestMapping("/todo.tree")
