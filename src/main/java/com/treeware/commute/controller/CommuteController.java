@@ -261,6 +261,21 @@ public class CommuteController {
 		return object.toString();
 	}
 	
+	// 출근, 퇴근 통계
+	@RequestMapping("/statics.tree")
+	public @ResponseBody String statics(HttpSession session) {
+		JSONObject object = new JSONObject();
+		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
+		String emp_sq = employeeDto.getEmp_sq();
+		String avgStartTime = commuteService.getAvgStartTime(emp_sq);
+		String avgEndTime = commuteService.getAvgEndTime(emp_sq);
+		object.put("avgStartTime", avgStartTime);
+		object.put("avgEndTime", avgEndTime);
+		return object.toString();
+	}
+	
+	
+	// 특정날짜 요일 가져오기
 	public int getDateDay(String cmt_date) throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = formatter.parse(cmt_date);
@@ -268,4 +283,5 @@ public class CommuteController {
 		cal.setTime(date);
 		return cal.get(Calendar.DAY_OF_WEEK) - 1;
 	}
+		
 }
