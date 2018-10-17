@@ -196,14 +196,18 @@ public class CommuteController {
 		if (cnt != 0) {
 			int cmt_sq = commuteService.getCommuteSq(map);
 			CommuteDto commuteDto = commuteService.today(cmt_sq);
-			if (commuteDto.getCmt_wout_tm() == null) {
-				commuteDto.setCmt_wout_tm(time);
-				int check = commuteService.workOut(commuteDto);
-				if (check != 0) {
+			if (commuteDto.getCmt_end_tm() == null) {
+				if (commuteDto.getCmt_wout_tm() == null) {
+					commuteDto.setCmt_wout_tm(time);
+					int check = commuteService.workOut(commuteDto);
+					if (check != 0) {
+						object.put("CMT_WOUT_TM", commuteDto.getCmt_wout_tm());
+					}
+				} else {
 					object.put("CMT_WOUT_TM", commuteDto.getCmt_wout_tm());
-				}
+				}				
 			} else {
-				object.put("CMT_WOUT_TM", commuteDto.getCmt_wout_tm());
+				object.put("CMT_WOUT_TM", "-");
 			}
 		}
 		return object.toString();
@@ -222,14 +226,18 @@ public class CommuteController {
 		if (cnt != 0) {
 			int cmt_sq = commuteService.getCommuteSq(map);
 			CommuteDto commuteDto = commuteService.today(cmt_sq);
-			if (commuteDto.getCmt_cb_tm() == null) {
-				commuteDto.setCmt_cb_tm(time);
-				int check = commuteService.comeBack(commuteDto);
-				if (check != 0) {
+			if (commuteDto.getCmt_end_tm() == null) {
+				if (commuteDto.getCmt_cb_tm() == null) {
+					commuteDto.setCmt_cb_tm(time);
+					int check = commuteService.comeBack(commuteDto);
+					if (check != 0) {
+						object.put("CMT_CB_TM", commuteDto.getCmt_cb_tm());
+					}
+				} else {
 					object.put("CMT_CB_TM", commuteDto.getCmt_cb_tm());
 				}
 			} else {
-				object.put("CMT_CB_TM", commuteDto.getCmt_cb_tm());
+				object.put("CMT_CB_TM", "-");
 			}
 		}
 		return object.toString();

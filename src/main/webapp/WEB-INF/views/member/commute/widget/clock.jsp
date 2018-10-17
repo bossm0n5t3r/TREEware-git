@@ -13,24 +13,23 @@ $(document).ready(function() {
 	$("#punchInBtn").click(function() {
 		punchIn();
 		$("#punchInBtn").attr("class", "nav-link active");
+		location.reload();
 	});
 	$("#workOutBtn").click(function() {
 		workOut();
 		$("#workOutBtn").attr("class", "nav-link active");
+		location.reload();
 	});
 	$("#comeBackBtn").click(function() {
 		comeBack();
 		$("#comeBackBtn").attr("class", "nav-link active");
+		location.reload();
 	});
 	$("#punchOutBtn").click(function() {
-		var exitTime = $("#ofw").val();
-		if (exitTime == "-") {
-			if (confirm("리얼 퇴근?")) {
-				punchOut();
-				$("#punchOutBtn").attr("class", "nav-link active");
-			}
-		} else {
-			alert("이미 퇴근!");
+		if (confirm("정말 퇴근하시겠습니까?")) {
+			punchOut();
+			$("#punchOutBtn").attr("class", "nav-link active");
+			location.reload();			
 		}
 	});
 })

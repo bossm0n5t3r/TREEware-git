@@ -10,3 +10,4 @@
 - [ ] MyBatis의 Configuration.xml 파일 위치
 - [ ] 예외처리
 - [ ] context:component-scan 을 service 에도 적용
+- [ ] commute reload 문제 해결
