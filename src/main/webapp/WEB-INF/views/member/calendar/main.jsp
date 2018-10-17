@@ -8,7 +8,7 @@
 <script>
 $(document).ready(function(){
 	document.getElementById("menu1").setAttribute("class", "nav-item active");
-	document.getElementById("menu2").setAttribute("class", "nav-item);
+	document.getElementById("menu2").setAttribute("class", "nav-item");
 });
 </script>
 </head>
