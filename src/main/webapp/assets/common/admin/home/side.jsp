@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="sidebar">
 <div class="scrollbar-inner sidebar-wrapper">
-	<%@ include file="/assets/common/user.jsp" %>
+	<%@ include file="/assets/common/admin/home/user.jsp" %>
 	<ul class="nav">
 		<li class="nav-item active">
 			<a href="${root}/admin/account/main.tree">

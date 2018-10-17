@@ -61,4 +61,14 @@ public class CommuteServiceImpl implements CommuteService {
 		return sqlSession.getMapper(CommuteDao.class).getCommuteDtoList(map);
 	}
 
+	@Override
+	public String getAvgStartTime(String emp_sq) {
+		return sqlSession.getMapper(CommuteDao.class).getAvgStartTime(emp_sq);
+	}
+
+	@Override
+	public String getAvgEndTime(String emp_sq) {
+		return sqlSession.getMapper(CommuteDao.class).getAvgEndTime(emp_sq);
+	}
+
 }

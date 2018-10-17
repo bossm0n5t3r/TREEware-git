@@ -85,4 +85,15 @@ public class MemberController {
 		return "member/home/main";
 	}
 	
+	// 회원 나의정보 페이지
+	@RequestMapping("/myinfo.tree")
+	public String myinfo() {
+		return "member/home/myinfo";
+	}
+	
+	// 회원 회사정보 페이지
+	@RequestMapping("/treeinfo.tree")
+	public String treeinfo() {
+		return "member/home/treeinfo";
+	}
 }

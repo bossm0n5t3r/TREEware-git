@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
-		<%@ include file="/assets/common/user.jsp" %>
+	<%@ include file="/assets/common/admin/home/user.jsp" %>
 		<!-- 
 		<style>
 		#menucate:hover{
@@ -41,19 +41,19 @@
 			</div>
 		</div>
 		<ul class="nav">
-			<li class="nav-item active">
+			<li id="menu1" class="nav-item">
 				<a href="${root}/admin/account/main.tree">
 					<p>사원목록</p>
 				</a>
 			</li>
-			<li class="nav-item">
+			<li id="menu2" class="nav-item">
 				<a href="${root}/admin/account/register.tree">
 					<p>사원등록</p>
 				</a>
 			</li>
-			<li class="nav-item">
+			<li id="menu3" class="nav-item">
 				<a href="${root}/admin/account/view.tree">
-					<p>사원정보수정</p>
+					<p>정보수정</p>
 				</a>
 			</li>
 <!-- 			<li class="nav-item"> -->

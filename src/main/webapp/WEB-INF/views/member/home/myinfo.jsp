@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="kor">
+<html>
 <head>
-	<title>트리웨어 관리자</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%@ include file="/assets/common/import.jsp" %>
-	<style>
+<%@ include file="/assets/common/import.jsp" %>
+<style>
 	.inputfile {
 		width: 0.1px;
 		height: 0.1px;
@@ -35,20 +33,13 @@
 	.inputfile + label {
 		cursor: pointer; /* "hand" cursor */
 	}
-	</style>
+</style>
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/assets/common/admin/home/top.jsp" %>
-		<%@ include file="/assets/common/admin/account/side.jsp" %>
-		<script type="text/javascript">
-		$(document).ready(function(){
-			document.getElementById("menu1").setAttribute("class", "nav-item");
-			document.getElementById("menu2").setAttribute("class", "nav-item");
-			document.getElementById("menu3").setAttribute("class", "nav-item active");
-		});
-		</script>
-		<div class="main-panel" >
+		<%@ include file="/assets/common/top.jsp" %>
+		<%@ include file="/assets/common/side.jsp" %>
+			<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid">
 					<div align="center" style="padding:10px">
@@ -56,7 +47,7 @@
 							<!-- card -->
 							<div class="card" style="width:100%;padding:30px 30px 60px 30px;text-align:left">
 								<div class="card-header">
-									<div class="card-title">정보수정</div>
+									<div class="card-title">나의 정보</div>
 								</div>
 								<div class="card-body">
 									<!-- 사원등록1 -->
@@ -64,9 +55,9 @@
 									<form class="form" method="POST" name="registerMemberForm" action="">
 									<input type="hidden" name="act" value="registerMember">
 										<div class="row" style="width:100%;padding:20px 20px 10px 20px;border-radius:8px;border:1px #ccc solid">
-											<div class="col-md-2" style="padding:0 20px 0 0">									
-														&emsp;사원번호
-														<input id="emp_sq" name="emp_sq"type="text" readonly="readonly" style="width:140px;margin:0 10px">					
+											<div class="col-md-2" style="padding:0 20px 0 0">
+												사원번호
+												<input id="empnum" name="empnum"type="text" readonly="readonly" value="TREE20222" style="width:100%">
 												<img src="${root}/assets/img/photo.jpg" width="100%" style="margin:5px 0px 10px 0px;padding:5px">
 												<input type="file" name="file" id="file" class="inputfile" />
 												<label for="file" style="width:100%"><i class="la la-upload"></i>&nbsp;사진추가하기</label>
@@ -74,49 +65,49 @@
 											<div class="col-md-10">
 													<div id="info" class="row">
 														<div style="width:50%" class="box-group">
-															<input type="text" name="dpt_nm" id="dpt_nm" class="mainbox" style="border:0"  readonly="readonly">
+															<input type="text" name="name" id="name" class="mainbox" style="border:0" placeholder="SW개발부 응용소프트웨어개발팀" readonly="readonly">
 														</div>
 														<div style="width:25%" class="box-group">
-															<input name="rnk_nm" id="rnk_nm" type="text" class="mainbox">
+															<input name="birth" id="birth" type="text" class="mainbox" placeholder="부장" readonly="readonly">
 														</div>
 														<div style="width:25%" class="box-group">
-															<input name="pst_nm" id="pst_nm" type="text" class="mainbox">
+															<input name="birth" id="birth" type="text" class="mainbox" placeholder="팀장" readonly="readonly">
 														</div>
 														<div style="width:35%" class="box-group">
-															<input name="emp_nm" id="emp_nm" type="text" class="mainbox" readonly="readonly">
+															<input name="name" id="name" type="text" class="mainbox" placeholder="김고은" readonly="readonly">
 														</div>
 														<div style="width:35%" class="box-group">
-															<input name="emp_bdate" id="emp_bdate" type="birth" class="mainbox"  readonly="readonly">
+															<input name="name" id="birth" type="birth" class="mainbox" placeholder="1990.08.25" readonly="readonly">
 														</div>
 														<div style="width:15%" class="box-group">
-															<input name="emp_sex" id="emp_sex" type="gender" class="mainbox"  readonly="readonly">
+															<input name="name" id="gender" type="gender" class="mainbox" placeholder="여성" readonly="readonly">
 														</div>
 														<div style="width:15%" class="box-group">
-															<input name="pms_nm" id="pms_nm" type="power" class="mainbox" placeholder="관리자" readonly="readonly">
+															<input name="name" id="power" type="power" class="mainbox" placeholder="관리자" readonly="readonly">
 														</div>
 														<div style="width:25%" class="box-group">
-															<input type="text" name="emp_reg" id="emp_reg" class="mainbox" placeholder="입사일" readonly="readonly">
+															<input type="text" name="joindate" id="joindate" class="mainbox" placeholder="입사일" readonly="readonly">
 														</div>
 														<div style="width:25%" class="box-group">
-															<input type="text" name="emp_exit" id="emp_exit" class="mainbox" placeholder="퇴사일" readonly="readonly">
+															<input type="text" name="resigndate" id="resigndate" class="mainbox" placeholder="퇴사일" readonly="readonly">
 														</div>
 														<div style="width:50%" class="box-group">
 															<input name="status" id="status" type="text" class="mainbox" placeholder="근무중" readonly="readonly">
 														</div>
 														<div style="width:50%" class="box-group">
-															<input name="email" id="email" type="text" class="mainbox" readonly="readonly">
+															<input name="email" id="email" type="text" class="mainbox" placeholder="eunbining@kitree.com" readonly="readonly">
 														</div>
 														<div style="width:50%" class="box-group">
-															<input name="bes_tel" id="bes_tel" type="text" class="mainbox" readonly="readonly">
+															<input name="email" id="email" type="text" class="mainbox" placeholder="070-000-0000" readonly="readonly">
 														</div>
 														<div style="width:50%" class="box-group">
-															<input type="text" name="address" id="address" class="mainbox" required>
+															<input type="text" name="address" id="address" class="mainbox" placeholder="서울특별시 관악구 난곡로" required>
 														</div>
 														<div style="width:50%" class="box-group">
-															<input type="text" name="tel" id="tel" class="mainbox" required>
+															<input type="text" name="cell" id="cell" class="mainbox" placeholder="cellphone" required>
 														</div>
 														<div style="width:100%" class="box-group">
-															<input class="simplebtn1" type="button" value="정보수정하기" id="modify" style="width:100%;padding:15px;background-color:#f2f3f8">
+															<input class="simplebtn1" type="button" value="정보수정하기" style="width:100%;padding:15px;background-color:#f2f3f8">
 														</div>
 													</div>
 												</div>
@@ -125,7 +116,7 @@
 										<br>
 								</div>
 								<div class="card-footer">
-									<div class="card-title">사원목록</div>
+									<div class="card-title">정보수정내역</div>
 									<hr>
 									<table class="table-hover" id="listtable" style="width:100%;font-size:100%">
 										<thead>
@@ -142,7 +133,7 @@
 										</thead>
 										<tbody>
 										<c:forEach var="list" items="${employeeInfo}" varStatus="status">
-											<tr class="emp" id="${list.emp_sq}">
+											<tr>
 												<td>${list.emp_nm}</td>
 												<td>${departmentInfo[status.index].dpt_nm}</td>
 												<td>${rankInfo[status.index].rnk_nm}</td>
@@ -173,63 +164,5 @@
 		<%@ include file="/assets/common/footer.jsp" %>
 		</div>
 	</div>
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	$('#modify').click(function(){
-		document.registerMemberForm.action = "/admin/account/modify.tree";
-		document.registerMemberForm.submit();
-	});
-	
-	$('tr.emp').click(function(){
-		var emp_sq=$(this).attr("id");
-		$.ajax({
-			type : "GET"
-			,url : "${root}/admin/account/getmember.tree"
-			,dataType : "json"
-			,data : {
-				"emp_sq" : emp_sq
-			}
-			,success : function(data) {
-				var emp_sq = data.emp_sq;
-				var emp_nm = data.emp_nm;
-				var emp_bdate = data.emp_bdate;
-				var emp_sex = data.emp_sex;
-				var emp_reg = data.emp_reg;
-				var emp_exit = data.emp_exit;
-				var emp_tel1 = data.emp_tel1;
-				var emp_tel2 = data.emp_tel2;
-				var emp_tel3 = data.emp_tel3;
-				var emp_bs_tel1 = data.emp_bs_tel1;
-				var emp_bs_tel2 = data.emp_bs_tel2;
-				var emp_bs_tel3 = data.emp_bs_tel3;
-				var emp_ml_id = data.emp_ml_id;
-				var emp_ml_addr = data.emp_ml_addr;
-				var emp_addr = data.emp_addr;
-				var emp_addr_dt = data.emp_addr_dt;
-				var dpt_nm = data.dpt_nm;
-				var pst_nm = data.pst_nm;
-				var rnk_nm = data.rnk_nm;
-				$('#emp_sq').val(emp_sq);
-				$('#emp_nm').val(emp_nm);
-				$('#emp_bdate').val(emp_bdate);
-				$('#emp_sex').val(emp_sex);
-				$('#emp_reg').val(emp_reg);
-				$('#emp_exit').val(emp_exit);
-				$('#tel').val(emp_tel1+'-'+emp_tel2+'-'+emp_tel3);
-				$('#bes_tel').val(emp_bs_tel1+'-'+emp_bs_tel2+'-'+emp_bs_tel3);
-				$('#email').val(emp_ml_id+emp_ml_addr);
-				$('#address').val(emp_addr+' '+emp_addr_dt);
-				$('#dpt_nm').val(dpt_nm);
-				$('#pst_nm').val(pst_nm);
-				$('#rnk_nm').val(rnk_nm);
-			}
-			,error : function(e) {
-				alert("에러");
-			}
-		})
-	})
-});
-</script>
 </body>
 </html>

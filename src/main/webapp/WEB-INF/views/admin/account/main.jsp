@@ -10,6 +10,13 @@
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp"%>
 		<%@ include file="/assets/common/admin/account/side.jsp"%>
+		<script>
+		$(document).ready(function(){
+			document.getElementById("menu1").setAttribute("class", "nav-item active");
+			document.getElementById("menu2").setAttribute("class", "nav-item");
+			document.getElementById("menu3").setAttribute("class", "nav-item");
+		});
+		</script>
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid" style="height: 1100px">
@@ -21,34 +28,25 @@
 							</div>
 							<div class="card-body">
 								<div class="row">
-<!-- 									<div class="col-md-3"> -->
-<!-- 										<div class="card-sub"> -->
-<!-- 											<div style="width: 170px"> -->
-<!-- 												<table style="width: 100%"> -->
-<!-- 													<tr> -->
-<!-- 														<td><input type="text" style="width: 130px" -->
-<!-- 															placeholder="검색어입력"></td> -->
-<!-- 														<td><input type="button" value="검색" -->
-<!-- 															style="font-size: 70%; padding: 4px 10px"></td> -->
-<!-- 													</tr> -->
-<!-- 												</table> -->
-<!-- 												<hr> -->
-<!-- 												<ul id="tree" class="ztree" -->
-<!-- 													style="width: 100%; overflow: auto;"></ul> -->
-<!-- 											</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
 									<div class="col-md-12" style="padding: 0 20px">
 										<!-- 주소록 콘텐츠 페이지  -->
 										<%-- 								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/admin/account/list.jsp"></IFRAME> --%>
 										<div class="buttonmenu" align="center"
 											style="margin: 20px 0 20px 0">
 											<div class="row" style="width: 100%">
-												<div style="width: 60%; text-align: left; padding: 5px">
-													<h6>전체 ${page}명</h6>
+												<div style="width: 60%; text-align: left">
+													<table style="width:100%">
+														<tr>
+															<td>
+															<p style="color:#007bff"><span id="dptname"></span> 전체목록 [${page}명]</p>
+															<input type="hidden" id="dpt_sq" name="dpt_sq">
+															</td>
+														</tr>
+													</table>
 												</div>
 												<div style="width: 40%; text-align: right">
-													<button class="simplebtn1">선택수정</button>
+													<button id="btnEdit" class="simplebtn1">선택수정</button>
+													<button id="btnDept" class="simplebtn1" data-toggle="modal" data-target="#departments" >부서목록</button>
 												</div>
 											</div>
 										</div>
@@ -58,7 +56,7 @@
 												<tr style="border-bottom: 1px #ddd solid">
 													<th width="5%">
 														<div class="form-check">
-															<label class="form-check-label"> <input
+															<label class="form-check-label" style="height:10px"> <input
 																class="form-check-input  select-all-checkbox"
 																type="checkbox" data-select="checkbox"
 																data-target=".task-select"> <span
@@ -67,12 +65,12 @@
 														</div>
 													</th>
 													<th width="10%">이름</th>
-													<th width="17%">회사전화</th>
+													<th width="15%">회사전화</th>
 													<th width="20%">이메일</th>
 													<th width="10%">부서</th>
 													<th width="10%">직위</th>
 													<th width="15%">휴대전화</th>
-													<th width="3%">수정</th>
+													<th width="5%">수정</th>
 												</tr>
 											</thead>
 											<tbody id="view">
@@ -116,32 +114,27 @@
 										<br>
 										<div class="clear"></div>
 										<div align="center">
-											<table style="width: 230px">
-												<tr>
-													<td colspan="2">
-														<ul class="pagination pg-default pg-small" id="paging">
-<!-- 															<li class="page-item"><a class="page-link" href="#"	aria-label="Previous"> <span aria-hidden="true">&laquo;</span> -->
-<!-- 																	<span class="sr-only">Previous</span> -->
-<!-- 															</a></li> -->
-<!-- 															<li class="page-item active"><a class="page-link" href="#">1</a></li> -->
-<!-- 															<li class="page-item"><a class="page-link" href="#">2</a></li> -->
-<!-- 															<li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!-- 															<li class="page-item"><a class="page-link" href="#">4</a></li> -->
-<!-- 															<li class="page-item"><a class="page-link" href="#">5</a></li> -->
-															
-<!-- 															<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> -->
-<!-- 																	<span class="sr-only">Next</span> -->
-<!-- 															</a></li> -->
-														</ul>
+											<table>
+												<tr align="center">
+													<td>
+														<ul class="pagination pg-default pg-small" id="paging" style="align:center"></ul>
 													</td>
 												</tr>
+											</table>
+											<table>
 												<tr>
-													<td colspan="2"></td>
-												</tr>
-												<tr>
-													<td><input type="text" style="width: 100%"></td>
-													<td><input type="button" value="검색"
-														style="font-size: 70%; padding: 5px 10px"></td>
+													<td>
+														<form class="navbar-left navbar-form nav-search mr-md-3" action="" style="width:230px">
+															<div class="input-group" style="opacity:0.6">
+																<input type="text" placeholder="Search ..." class="form-control">
+																<div class="input-group-append">
+																	<span class="input-group-text">
+																		<i class="la la-search search-icon"></i>
+																	</span>
+																</div>
+															</div>
+														</form>
+													</td>
 												</tr>
 											</table>
 										</div>
@@ -155,10 +148,10 @@
 					</div>
 				</div>
 			</div>
+			<%@ include file="/assets/common/modal/departments.jsp" %>
 			<%@ include file="/assets/common/footer.jsp"%>
 		</div>
 	</div>
-
 <script type="text/javascript">
 var totalData = '${page}';
 var dataPerPage = 10;
@@ -180,6 +173,10 @@ var emp_tel2 = new Array();
 var emp_tel3 = new Array();
 
 $(document).ready(function(){
+	
+	$("#btnEdit").click(function() {
+		alert("수정페이지로");
+	});
 	'<c:forEach items="${employeeInfo}" var="item">'
 	emp_nm.push('${item.emp_nm}');
 	emp_bs_tel1.push('${item.emp_bs_tel1}');
@@ -202,13 +199,14 @@ $(document).ready(function(){
 		$('#view').empty();
 		for(var i=(first-1);i<dataPerPage;i++){
 			$('#view').append('<tr>');
-			$('#view').append('<td><div class="form-check"><label class="form-check-label"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
+			$('#view').append('<td><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
 			$('#view').append('<td>'+emp_nm[i]+'</td>');
 			$('#view').append('<td>'+emp_bs_tel1[i]+'-'+emp_bs_tel2[i]+'-'+emp_bs_tel3[i]+'</td>');
 			$('#view').append('<td>'+emp_ml_id[i]+emp_ml_addr[i]+'</td>');
 			$('#view').append('<td>'+dpt_nm[i]+'</td>');
 			$('#view').append('<td>'+rnk_nm[i]+'</td>');
 			$('#view').append('<td>'+emp_tel1[i]+'-'+emp_tel2[i]+'-'+emp_tel3[i]+'</td>');
+			$('#view').append('<td><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
 			$('#view').append('</tr>');
 		}
 	}

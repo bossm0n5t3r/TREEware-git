@@ -19,6 +19,13 @@
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp" %>
 		<%@ include file="/assets/common/admin/account/side.jsp" %>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			document.getElementById("menu1").setAttribute("class", "nav-item");
+			document.getElementById("menu2").setAttribute("class", "nav-item");
+			document.getElementById("menu3").setAttribute("class", "nav-item active");
+		});
+		</script>
 		<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid">

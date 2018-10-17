@@ -6,16 +6,53 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%@ include file="/assets/common/import.jsp" %>
+		<style>
+	.inputfile {
+		width: 0.1px;
+		height: 0.1px;
+		opacity: 0;
+		overflow: hidden;
+		position: absolute;
+		z-index: -1;
+	}
+	.inputfile + label {
+	    font-size: 85% !important;
+	    font-weight:700;
+	    display: inline-block;
+	    text-align:center;
+	    color:#777 !important;
+	    border: 1px solid #eee;
+	    border-radius: 3px;
+	    height:25px;
+	    padding:4px;
+	}
+	.inputfile:focus + label,
+	.inputfile + label:hover {
+		border: 1px solid #ccc;
+	    color:#555 !important;
+	}
+	.simplebtn1:hover,
+	.inputfile + label {
+		cursor: pointer; /* "hand" cursor */
+	}
+	</style>
 <script src="${root}/assets/js/register.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
+<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 </head>
 <body>
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp" %>
 		<%@ include file="/assets/common/admin/account/side.jsp" %>
+		<script>
+		$(document).ready(function(){
+			document.getElementById("menu1").setAttribute("class", "nav-item");
+			document.getElementById("menu2").setAttribute("class", "nav-item  active");
+			document.getElementById("menu3").setAttribute("class", "nav-item");
+		});
+		</script>
 		<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid">
@@ -42,16 +79,17 @@
 									<br>
 									<form class="form" method="POST" id="registerMemberForm" name="registerMemberForm">
 										<div class="row">
-											<div class="col-md-2" style="padding:0 20px 0 0">
+											<div class="col-md-2" style="padding:10px 20px 0 0">
 												<label class="form-check-label">
-													<input class="form-check-input" type="checkbox" value="">
+													<input class="form-check-input" type="checkbox" value="" style="height:10px">
 													<span class="form-check-sign">
-														사원번호<input id="emp_sq" name="emp_sq" type="text" readonly="readonly" style="width:140px;margin:0 10px">
+													사원번호
+													<input id="empnum" name="empnum"type="text" readonly="readonly" value="TREE20222" style="width:100%">
 													</span>
 												</label>
-												
-												<img id="photoimg" height="300px" width="100%" style="margin:5px 0px 10px 0px;padding:5px">
-												<input name="photo" id="photo" type="file">
+												<img src="${root}/assets/img/photo.jpg" width="100%" style="margin:5px 0px 10px 0px;padding:5px">
+												<input type="file" name="file" id="file" class="inputfile" />
+												<label for="file" style="width:100%"><i class="la la-upload"></i>&nbsp;사진추가하기</label>
 											</div>
 											<div id="info" class="col-md-10">
 												<div class="row">
