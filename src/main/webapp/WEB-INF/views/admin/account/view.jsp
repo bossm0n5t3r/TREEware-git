@@ -74,13 +74,16 @@
 											<div class="col-md-10">
 													<div id="info" class="row">
 														<div style="width:50%" class="box-group">
-															<input type="text" name="dpt_nm" id="dpt_nm" class="mainbox" style="border:0"  readonly="readonly">
+															<input type="text" name="dpt_nm" id="dpt_nm" class="mainbox">
+															<input type="hidden" name="dpt_sq" id="dpt_sq">															
 														</div>
 														<div style="width:25%" class="box-group">
 															<input name="rnk_nm" id="rnk_nm" type="text" class="mainbox">
+															<input type="hidden" name="rnk_sq" id="rnk_sq">
 														</div>
 														<div style="width:25%" class="box-group">
 															<input name="pst_nm" id="pst_nm" type="text" class="mainbox">
+															<input type="hidden" name="pst_sq" id="pst_sq">
 														</div>
 														<div style="width:35%" class="box-group">
 															<input name="emp_nm" id="emp_nm" type="text" class="mainbox" readonly="readonly">
@@ -98,7 +101,7 @@
 															<input type="text" name="emp_reg" id="emp_reg" class="mainbox" placeholder="입사일" readonly="readonly">
 														</div>
 														<div style="width:25%" class="box-group">
-															<input type="text" name="emp_exit" id="emp_exit" class="mainbox" placeholder="퇴사일" readonly="readonly">
+															<input type="text" name="emp_exit" id="emp_exit" class="mainbox" placeholder="퇴사일">
 														</div>
 														<div style="width:50%" class="box-group">
 															<input name="status" id="status" type="text" class="mainbox" placeholder="근무중" readonly="readonly">
@@ -107,13 +110,16 @@
 															<input name="email" id="email" type="text" class="mainbox" readonly="readonly">
 														</div>
 														<div style="width:50%" class="box-group">
-															<input name="bes_tel" id="bes_tel" type="text" class="mainbox" readonly="readonly">
+															<input name="bes_tel" id="bes_tel" type="text" class="mainbox">
+															<input name="emp_bs_tel1" id="emp_bs_tel1" type="hidden">
+															<input name="emp_bs_tel2" id="emp_bs_tel2" type="hidden">
+															<input name="emp_bs_tel3" id="emp_bs_tel3" type="hidden">
 														</div>
 														<div style="width:50%" class="box-group">
-															<input type="text" name="address" id="address" class="mainbox" required>
+															<input type="text" name="address" id="address" class="mainbox" readonly="readonly" required>
 														</div>
 														<div style="width:50%" class="box-group">
-															<input type="text" name="tel" id="tel" class="mainbox" required>
+															<input type="text" name="tel" id="tel" class="mainbox" readonly="readonly" required>
 														</div>
 														<div style="width:100%" class="box-group">
 															<input class="simplebtn1" type="button" value="정보수정하기" id="modify" style="width:100%;padding:15px;background-color:#f2f3f8">
@@ -176,8 +182,56 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	//정보수정클릭
 	$('#modify').click(function(){
-		document.registerMemberForm.action = "/admin/account/modify.tree";
+		if($('#dpt_nm').val()==='퇴사'){
+			$('#dpt_sq').val(0);
+		} else if($('#dpt_nm').val()==='관리부'){
+			$('#dpt_sq').val(1);
+		} else if($('#dpt_nm').val()==='인사과'){
+			$('#dpt_sq').val(2);
+		} else if($('#dpt_nm').val()==='무역부'){
+			$('#dpt_sq').val(3);
+		} else if($('#dpt_nm').val()==='영업부'){
+			$('#dpt_sq').val(4);
+		} else if($('#dpt_nm').val()==='판매부'){
+			$('#dpt_sq').val(5);
+		}
+		if($('#rnk_nm').val()==='퇴사'){
+			$('#rnk_sq').val(0);
+		} else if($('#rnk_nm').val()==='사원'){
+			$('#rnk_sq').val(1);
+		} else if($('#rnk_nm').val()==='대리'){
+			$('#rnk_sq').val(2);
+		} else if($('#rnk_nm').val()==='과장'){
+			$('#rnk_sq').val(3);
+		} else if($('#rnk_nm').val()==='차장'){
+			$('#rnk_sq').val(4);
+		} else if($('#rnk_nm').val()==='부장'){
+			$('#rnk_sq').val(5);
+		} else if($('#rnk_nm').val()==='사장'){
+			$('#rnk_sq').val(6);
+		}
+		if($('#pst_nm').val()==='퇴사'){
+			$('#pst_sq').val(0);
+		} else if($('#pst_nm').val()==='팀원'){
+			$('#pst_sq').val(1);
+		} else if($('#pst_nm').val()==='파트장'){
+			$('#pst_sq').val(2);
+		} else if($('#pst_nm').val()==='팀장'){
+			$('#pst_sq').val(3);
+		} else if($('#pst_nm').val()==='실장'){
+			$('#pst_sq').val(4);
+		} else if($('#pst_nm').val()==='본부장'){
+			$('#pst_sq').val(5);
+		} else if($('#pst_nm').val()==='사업부장'){
+			$('#pst_sq').val(6);
+		}
+		$('#emp_bs_tel1').val($('#bes_tel').val().split('-')[0]);
+		$('#emp_bs_tel2').val($('#bes_tel').val().split('-')[1]);
+		$('#emp_bs_tel3').val($('#bes_tel').val().split('-')[2]);
+		
+		document.registerMemberForm.action = "${root}/member/account/modify.tree";
 		document.registerMemberForm.submit();
 	});
 	

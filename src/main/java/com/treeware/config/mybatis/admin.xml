@@ -14,6 +14,18 @@
 		, #{emp_bs_tel1}, #{emp_bs_tel2}, #{emp_bs_tel3}, #{emp_crt}, sysdate, '', sysdate)
 	</insert>
 	
+	<update id="modify" parameterType="EmployeeDto">
+	UPDATE EMP
+	SET DPT_SQ = #{dpt_sq},
+		RNK_SQ = #{rnk_sq},
+		PST_SQ = #{pst_sq},
+		EMP_BS_TEL1 = #{emp_bs_tel1},
+		EMP_BS_TEL2 = #{emp_bs_tel2},
+		EMP_BS_TEL3 = #{emp_bs_tel3},
+		EMP_FNL_MOD = #{EMP_FNL_MOD}
+	WHERE EMP_SQ = #{emp_sq}
+	</update>
+	
 	<select id="getMemberList" resultType="EmployeeDto">
 	SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
 	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT

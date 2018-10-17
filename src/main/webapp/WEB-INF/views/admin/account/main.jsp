@@ -74,36 +74,7 @@
 												</tr>
 											</thead>
 											<tbody id="view">
-<%-- 												<c:forEach var="list" items="${employeeInfo}" varStatus="status"> --%>
-<!-- 													<tr> -->
-<!-- 														<td> -->
-<!-- 															<div class="form-check"> -->
-<!-- 																<label class="form-check-label"> <input -->
-<!-- 																	class="form-check-input task-select" type="checkbox"> -->
-<!-- 																	<span class="form-check-sign"></span> -->
-<!-- 																</label> -->
-<!-- 															</div> -->
-<!-- 														</td> -->
-<%-- 														<td>${list.emp_nm}</td> --%>
-<%-- 														<td>${list.emp_bs_tel1}-${list.emp_bs_tel2}-${list.emp_bs_tel3}</td> --%>
-<%-- 														<td>${list.emp_ml_id}${list.emp_ml_addr}</td> --%>
-<%-- 														<td>${departmentInfo[status.index].dpt_nm}</td> --%>
-<%-- 														<td>${rankInfo[status.index].rnk_nm}</td> --%>
-<%-- 														<td>${list.emp_tel1}-${list.emp_tel2}-${list.emp_tel3}</td> --%>
-<!-- 														<td class="td-actions text-left"> -->
-<!-- 															<div class="form-button-action"> -->
-<!-- 																<button type="button" data-toggle="tooltip" -->
-<!-- 																	title="Edit Task" -->
-<!-- 																	class="btn btn-link btn-simple-primary"> -->
-<!-- 																	<i class="la la-edit"></i> -->
-<!-- 																</button> -->
-<!-- 																					<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger"> -->
-<!-- 																						<i class="la la-times"></i> -->
-<!-- 																					</button> -->
-<!-- 															</div> -->
-<!-- 														</td> -->
-<!-- 													</tr> -->
-<%-- 												</c:forEach> --%>
+
 											</tbody>
 										</table>
 										<!-- 주소록 콘텐츠 끝 -->
@@ -153,6 +124,7 @@
 		</div>
 	</div>
 <script type="text/javascript">
+//목록객체생성
 var totalData = '${page}';
 var dataPerPage = 10;
 var first = 1;
@@ -172,8 +144,8 @@ var emp_tel1 = new Array();
 var emp_tel2 = new Array();
 var emp_tel3 = new Array();
 
-$(document).ready(function(){
-	
+//목록입력
+$(document).ready(function(){	
 	$("#btnEdit").click(function() {
 		alert("수정페이지로");
 	});
@@ -194,10 +166,10 @@ $(document).ready(function(){
 	'<c:forEach items="${rankInfo}" var="item">'
 	rnk_nm.push('${item.rnk_nm}');
 	'</c:forEach>'
-
+	//목록출력
 	function viewlist(){
 		$('#view').empty();
-		for(var i=(first-1);i<dataPerPage;i++){
+		for(var i=((currentPage-1)*10);i<Math.min(pageCount,totalData);i++){
 			$('#view').append('<tr>');
 			$('#view').append('<td><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
 			$('#view').append('<td>'+emp_nm[i]+'</td>');
@@ -214,36 +186,66 @@ $(document).ready(function(){
 	function viewpaging(){
 		last = Math.min(pageCount,totalPage);
 		$('#paging').empty();
-		$('#paging').append('<li class="page-item"><a id="pre" class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span>');
+		$('#paging').append('<li class="page-item"><a id="pre" class="page-link" href="javascript:pre_click();" aria-label="Previous"><span aria-hidden="true">&laquo;</span>');
 		for(var i=first;i<=last;i++){
-			$('#paging').append('<li class="page-item"><a class="page-link" href="#">'+i+'</a></li>');
+			$('#paging').append('<li class="page-item"><a class="page-link" href="javascript:number_click('+i+')">'+i+'</a></li>');
 		}
-		$('#paging').append('<li class="page-item"><a id="next" class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span>');
+		$('#paging').append('<li class="page-item"><a id="next" class="page-link" href="javascript:next_click();" aria-label="Next"><span aria-hidden="true">&raquo;</span>');
 	}
 	viewpaging();
-
-		$('#pre').click(function(){
-			console.log("클릭");
-			if(first>10){
-			first = first - 10;
-			pageCount = pageCount - 10;
-			currentPage = last;
-			viewpaging();
-			}
-		});
-	
-	
-		$('#next').click(function(){
-			console.log("클릭");
-			if(last<totalPage){
-			first = first + 10;
-			pageCount = pageCount + 10;
-			currentPage = first;
-			viewpaging();
-			}
-		});
-	
 });
+//목록출력
+function viewlist(){
+	$('#view').empty();
+	for(var i=((currentPage-1)*10);i<Math.min(pageCount,totalData);i++){
+		$('#view').append('<tr>');
+		$('#view').append('<td><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
+		$('#view').append('<td>'+emp_nm[i]+'</td>');
+		$('#view').append('<td>'+emp_bs_tel1[i]+'-'+emp_bs_tel2[i]+'-'+emp_bs_tel3[i]+'</td>');
+		$('#view').append('<td>'+emp_ml_id[i]+emp_ml_addr[i]+'</td>');
+		$('#view').append('<td>'+dpt_nm[i]+'</td>');
+		$('#view').append('<td>'+rnk_nm[i]+'</td>');
+		$('#view').append('<td>'+emp_tel1[i]+'-'+emp_tel2[i]+'-'+emp_tel3[i]+'</td>');
+		$('#view').append('<td><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
+		$('#view').append('</tr>');
+	}
+}
+//페이지번호출력
+function viewpaging(){
+	last = Math.min(pageCount,totalPage);
+	$('#paging').empty();
+	$('#paging').append('<li class="page-item"><a class="page-link" href="javascript:pre_click();" aria-label="Previous"><span aria-hidden="true">&laquo;</span>');
+	for(var i=first;i<=last;i++){
+		$('#paging').append('<li class="page-item"><a class="page-link" href="javascript:number_click('+i+')">'+i+'</a></li>');
+	}
+	$('#paging').append('<li class="page-item"><a class="page-link" href="javascript:next_click();" aria-label="Next"><span aria-hidden="true">&raquo;</span>');
+}
+//이전클릭이벤트
+function pre_click(){
+	console.log("클릭");
+	if(first>10){
+	first = first - 10;
+	pageCount = pageCount - 10;
+	currentPage = last;
+	viewpaging();
+	}
+};
+//다음클릭이벤트
+function next_click(){
+	console.log("클릭");
+	if(last<totalPage){
+	first = first + 10;
+	pageCount = pageCount + 10;
+	currentPage = first;
+	viewpaging();
+	}
+};
+//번호클릭이벤트
+function number_click(data){
+	currentPage = data;
+	pageCount = dataPerPage * data;
+	viewlist();
+}
 </script>
 </body>
 </html>

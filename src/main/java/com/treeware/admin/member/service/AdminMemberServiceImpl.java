@@ -23,8 +23,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	@Override
 	public int modify(EmployeeDto employeeDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.getMapper(AdminMemberDao.class).modify(employeeDto);
 	}
 
 	@Override

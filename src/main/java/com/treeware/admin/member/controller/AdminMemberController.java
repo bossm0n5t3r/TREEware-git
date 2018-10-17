@@ -18,6 +18,7 @@ public class AdminMemberController {
 	@Autowired
 	private AdminMemberService adminMemberService;
 	
+	// 계정관리 메인페이지
 	@RequestMapping("/main.tree")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
@@ -59,6 +60,7 @@ public class AdminMemberController {
 		return mav;
 	}
 	
+	// 수정페이지 사원목록출력
 	@RequestMapping("/view.tree")
 	public ModelAndView view() {
 		ModelAndView mav = new ModelAndView();
@@ -96,7 +98,14 @@ public class AdminMemberController {
 		return json.toString();
 	}
 	
-	// 아이디 중복 검사
+	// 사원정보 수정
+	@RequestMapping(value="/modify.tree", method=RequestMethod.POST)
+	public @ResponseBody String modify(EmployeeDto employeeDto) {
+		int cnt = adminMemberService.modify(employeeDto);
+		return "admin/account/view";
+	}
+	
+	// 사원정보 얻기
 	@RequestMapping("/getmember.tree")
 	public @ResponseBody String getMember(@RequestParam String emp_sq) {
 		EmployeeDto employeeDto = new EmployeeDto();
