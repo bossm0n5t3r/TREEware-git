@@ -15,4 +15,6 @@ public interface CommuteService {
 	public int comeBack(CommuteDto commuteDto);
 	public int punchOut(CommuteDto commuteDto);
 	public List<CommuteDto> getCommuteDtoList(Map<String, String> map);
+	public String getAvgStartTime(String emp_sq);
+	public String getAvgEndTime(String emp_sq);
 }

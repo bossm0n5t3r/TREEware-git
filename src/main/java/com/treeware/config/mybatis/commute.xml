@@ -73,4 +73,25 @@
 		AND EMP_SQ = #{emp_sq}
 	</select>
 
+	<select id="getAvgStartTime" parameterType="String" resultType="String">
+		SELECT LPAD(TRUNC(AVG(SUBSTR(CMT_STR_TM, 1, 2) * 3600 + SUBSTR(CMT_STR_TM, 4, 2) * 60 + SUBSTR(CMT_STR_TM, 7, 2))/3600),2,'0')
+		       || ':' ||
+		       LPAD(TRUNC(MOD(AVG(SUBSTR(CMT_STR_TM, 1, 2) * 3600 + SUBSTR(CMT_STR_TM, 4, 2) * 60 + SUBSTR(CMT_STR_TM, 7, 2)),3600)/60),2,'0')
+		       || ':' ||
+		       LPAD(TRUNC(MOD(AVG(SUBSTR(CMT_STR_TM, 1, 2) * 3600 + SUBSTR(CMT_STR_TM, 4, 2) * 60 + SUBSTR(CMT_STR_TM, 7, 2)),60)),2,'0') CMT_STR_TM
+		FROM CMT
+		WHERE EMP_SQ = #{emp_sq}
+	</select>
+
+	<select id="getAvgEndTime" parameterType="String" resultType="String">
+		SELECT LPAD(TRUNC(AVG(SUBSTR(CMT_END_TM, 1, 2) * 3600 + SUBSTR(CMT_END_TM, 4, 2) * 60 + SUBSTR(CMT_END_TM, 7, 2))/3600),2,'0')
+		       || ':' ||
+		       LPAD(TRUNC(MOD(AVG(SUBSTR(CMT_END_TM, 1, 2) * 3600 + SUBSTR(CMT_END_TM, 4, 2) * 60 + SUBSTR(CMT_END_TM, 7, 2)),3600)/60),2,'0')
+		       || ':' ||
+		       LPAD(TRUNC(MOD(AVG(SUBSTR(CMT_END_TM, 1, 2) * 3600 + SUBSTR(CMT_END_TM, 4, 2) * 60 + SUBSTR(CMT_END_TM, 7, 2)),60)),2,'0') CMT_END_TM
+		FROM CMT
+		WHERE EMP_SQ = #{emp_sq}
+	</select>	
+
+
 </mapper>
