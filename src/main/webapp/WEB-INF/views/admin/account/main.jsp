@@ -152,11 +152,6 @@
 			<%@ include file="/assets/common/footer.jsp"%>
 		</div>
 	</div>
-
-<%-- <c:forEach items="${employeeInfo}" var="item"> --%>
-<%-- list.push('${item.emp_nm}'); --%>
-<%-- </c:forEach> --%>
-
 <script type="text/javascript">
 var totalData = '${page}';
 var dataPerPage = 10;
@@ -218,6 +213,7 @@ $(document).ready(function(){
 	viewlist();
 	function viewpaging(){
 		last = Math.min(pageCount,totalPage);
+		$('#paging').empty();
 		$('#paging').append('<li class="page-item"><a id="pre" class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span>');
 		for(var i=first;i<=last;i++){
 			$('#paging').append('<li class="page-item"><a class="page-link" href="#">'+i+'</a></li>');
@@ -225,22 +221,28 @@ $(document).ready(function(){
 		$('#paging').append('<li class="page-item"><a id="next" class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span>');
 	}
 	viewpaging();
-	if(currentPage>10){
+
 		$('#pre').click(function(){
+			console.log("클릭");
+			if(first>10){
 			first = first - 10;
 			pageCount = pageCount - 10;
 			currentPage = last;
 			viewpaging();
+			}
 		});
-	}
-	if(last<totalPage){
+	
+	
 		$('#next').click(function(){
+			console.log("클릭");
+			if(last<totalPage){
 			first = first + 10;
 			pageCount = pageCount + 10;
 			currentPage = first;
 			viewpaging();
+			}
 		});
-	}
+	
 });
 </script>
 </body>

@@ -196,14 +196,18 @@ public class CommuteController {
 		if (cnt != 0) {
 			int cmt_sq = commuteService.getCommuteSq(map);
 			CommuteDto commuteDto = commuteService.today(cmt_sq);
-			if (commuteDto.getCmt_wout_tm() == null) {
-				commuteDto.setCmt_wout_tm(time);
-				int check = commuteService.workOut(commuteDto);
-				if (check != 0) {
+			if (commuteDto.getCmt_end_tm() == null) {
+				if (commuteDto.getCmt_wout_tm() == null) {
+					commuteDto.setCmt_wout_tm(time);
+					int check = commuteService.workOut(commuteDto);
+					if (check != 0) {
+						object.put("CMT_WOUT_TM", commuteDto.getCmt_wout_tm());
+					}
+				} else {
 					object.put("CMT_WOUT_TM", commuteDto.getCmt_wout_tm());
-				}
+				}				
 			} else {
-				object.put("CMT_WOUT_TM", commuteDto.getCmt_wout_tm());
+				object.put("CMT_WOUT_TM", "-");
 			}
 		}
 		return object.toString();
@@ -222,14 +226,18 @@ public class CommuteController {
 		if (cnt != 0) {
 			int cmt_sq = commuteService.getCommuteSq(map);
 			CommuteDto commuteDto = commuteService.today(cmt_sq);
-			if (commuteDto.getCmt_cb_tm() == null) {
-				commuteDto.setCmt_cb_tm(time);
-				int check = commuteService.comeBack(commuteDto);
-				if (check != 0) {
+			if (commuteDto.getCmt_end_tm() == null) {
+				if (commuteDto.getCmt_cb_tm() == null) {
+					commuteDto.setCmt_cb_tm(time);
+					int check = commuteService.comeBack(commuteDto);
+					if (check != 0) {
+						object.put("CMT_CB_TM", commuteDto.getCmt_cb_tm());
+					}
+				} else {
 					object.put("CMT_CB_TM", commuteDto.getCmt_cb_tm());
 				}
 			} else {
-				object.put("CMT_CB_TM", commuteDto.getCmt_cb_tm());
+				object.put("CMT_CB_TM", "-");
 			}
 		}
 		return object.toString();
@@ -261,6 +269,21 @@ public class CommuteController {
 		return object.toString();
 	}
 	
+	// 출근, 퇴근 통계
+	@RequestMapping("/statics.tree")
+	public @ResponseBody String statics(HttpSession session) {
+		JSONObject object = new JSONObject();
+		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
+		String emp_sq = employeeDto.getEmp_sq();
+		String avgStartTime = commuteService.getAvgStartTime(emp_sq);
+		String avgEndTime = commuteService.getAvgEndTime(emp_sq);
+		object.put("avgStartTime", avgStartTime);
+		object.put("avgEndTime", avgEndTime);
+		return object.toString();
+	}
+	
+	
+	// 특정날짜 요일 가져오기
 	public int getDateDay(String cmt_date) throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = formatter.parse(cmt_date);
@@ -268,4 +291,5 @@ public class CommuteController {
 		cal.setTime(date);
 		return cal.get(Calendar.DAY_OF_WEEK) - 1;
 	}
+		
 }

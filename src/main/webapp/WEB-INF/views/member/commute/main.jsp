@@ -19,7 +19,7 @@
 								<%@ include file="widget/clock.jsp" %>
 							</div>
 							<div>
-								<%@ include file="widget/stats.jsp" %>
+								<%@ include file="widget/statics.jsp" %>
 							</div>
 						</div>
 						<div class="col-md-7">
