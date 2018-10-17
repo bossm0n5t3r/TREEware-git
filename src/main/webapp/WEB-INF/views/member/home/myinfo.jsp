@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="kor">
+<html>
 <head>
-	<title>트리웨어 관리자</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%@ include file="/assets/common/import.jsp" %>
-	<style>
+<%@ include file="/assets/common/import.jsp" %>
+<style>
 	.inputfile {
 		width: 0.1px;
 		height: 0.1px;
@@ -35,20 +33,13 @@
 	.inputfile + label {
 		cursor: pointer; /* "hand" cursor */
 	}
-	</style>
+</style>
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/assets/common/admin/home/top.jsp" %>
-		<%@ include file="/assets/common/admin/account/side.jsp" %>
-		<script type="text/javascript">
-		$(document).ready(function(){
-			document.getElementById("menu1").setAttribute("class", "nav-item");
-			document.getElementById("menu2").setAttribute("class", "nav-item");
-			document.getElementById("menu3").setAttribute("class", "nav-item active");
-		});
-		</script>
-		<div class="main-panel" >
+		<%@ include file="/assets/common/top.jsp" %>
+		<%@ include file="/assets/common/side.jsp" %>
+			<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid">
 					<div align="center" style="padding:10px">
@@ -56,7 +47,7 @@
 							<!-- card -->
 							<div class="card" style="width:100%;padding:30px 30px 60px 30px;text-align:left">
 								<div class="card-header">
-									<div class="card-title">정보수정</div>
+									<div class="card-title">나의 정보</div>
 								</div>
 								<div class="card-body">
 									<!-- 사원등록1 -->
