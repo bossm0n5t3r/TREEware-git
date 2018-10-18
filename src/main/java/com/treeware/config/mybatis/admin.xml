@@ -10,8 +10,8 @@
 	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
 	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
 	FROM EMP
-	<if test="${word} != null and ${word} != ''">
-	WHERE #{key} like '%'||#{word}||'%'
+	<if test="word != null and word != ''">
+	WHERE ${key} like '%'||#{word}||'%'
 	</if>
 	</select>
 
@@ -32,7 +32,7 @@
 		EMP_BS_TEL1 = #{emp_bs_tel1},
 		EMP_BS_TEL2 = #{emp_bs_tel2},
 		EMP_BS_TEL3 = #{emp_bs_tel3},
-		EMP_FNL_MOD = nvl(#{emp_fnl_mod}, '5000-10-10')
+		EMP_EXIT = nvl(#{emp_exit}, '5000-10-10')
 	WHERE EMP_SQ = #{emp_sq}
 	</update>
 	

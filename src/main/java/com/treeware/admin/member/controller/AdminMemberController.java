@@ -2,6 +2,7 @@ package com.treeware.admin.member.controller;
 
 import java.util.*;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -141,19 +142,34 @@ public class AdminMemberController {
 	
 	//사원검색
 	@RequestMapping("/membersearch.tree")
-	public ModelAndView memberSearch() {
-		ModelAndView mav = new ModelAndView();
+	public @ResponseBody String memberSearch(@RequestParam Map<String, String> map) {
+		JSONObject json = new JSONObject();
+		JSONArray jarray = new JSONArray();
 		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
-		List<DepartmentDto> list2 = new ArrayList<DepartmentDto>();
-		List<RankDto> list3 = new ArrayList<RankDto>();
-		list = adminMemberService.getMemberList();
-		list2 = adminMemberService.getDepartmentList();
-		list3 = adminMemberService.getRankList();
-		mav.addObject("employeeInfo", list);
-		mav.addObject("departmentInfo", list2);
-		mav.addObject("rankInfo", list3);
-		mav.addObject("page", list.size());
-		mav.setViewName("admin/account/main");
-		return mav;
+		list = adminMemberService.memberSearch(map);
+		for(EmployeeDto employeeDto : list) {
+			JSONObject member = new JSONObject();
+			member.put("emp_sq", employeeDto.getEmp_sq());
+			member.put("dpt_sq", employeeDto.getDpt_sq());
+			member.put("rnk_sq", employeeDto.getRnk_sq());
+			member.put("emp_nm", employeeDto.getEmp_nm());
+			member.put("emp_bdate", employeeDto.getEmp_bdate());
+			member.put("emp_sex", employeeDto.getEmp_sex());
+			member.put("emp_reg", employeeDto.getEmp_reg());
+			member.put("emp_exit", employeeDto.getEmp_exit());
+			member.put("emp_tel1", employeeDto.getEmp_tel1());
+			member.put("emp_tel2", employeeDto.getEmp_tel2());
+			member.put("emp_tel3", employeeDto.getEmp_tel3());
+			member.put("emp_bs_tel1", employeeDto.getEmp_bs_tel1());
+			member.put("emp_bs_tel2", employeeDto.getEmp_bs_tel2());
+			member.put("emp_bs_tel3", employeeDto.getEmp_bs_tel3());
+			member.put("emp_ml_id", employeeDto.getEmp_ml_id());
+			member.put("emp_ml_addr", employeeDto.getEmp_ml_addr());
+			member.put("emp_addr", employeeDto.getEmp_addr());
+			member.put("emp_addr_dt", employeeDto.getEmp_addr_dt());
+			jarray.put(member);
+		}
+		json.put("employee", jarray);
+		return json.toString();
 	}
 }
