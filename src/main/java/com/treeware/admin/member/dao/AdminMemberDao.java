@@ -8,8 +8,11 @@ import com.treeware.admin.member.model.*;
 public interface AdminMemberDao {
 	public int register(EmployeeDto employeeDto);
 	public int modify(EmployeeDto employeeDto);
-	public int getMember(String id);
 	public int getMemberCount();
+	public EmployeeDto getEmployee(String emp_sq);
+	public DepartmentDto getDepartment(int dpt_sq);
+	public PositionDto getPosition(int pst_sq);
+	public RankDto getRank(int rnk_sq);
 	public List<EmployeeDto> getMemberList();
 	public List<DepartmentDto> getDepartmentList();
 	public List<PositionDto> getPositionList();

@@ -23,14 +23,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	@Override
 	public int modify(EmployeeDto employeeDto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getMember(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.getMapper(AdminMemberDao.class).modify(employeeDto);
 	}
 
 	@Override
@@ -79,6 +72,26 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	@Override
 	public int getMemberCount() {
 		return sqlSession.getMapper(AdminMemberDao.class).getMemberCount();
+	}
+
+	@Override
+	public EmployeeDto getEmployee(String emp_sq) {
+		return sqlSession.getMapper(AdminMemberDao.class).getEmployee(emp_sq);
+	}
+
+	@Override
+	public DepartmentDto getDepartment(int dpt_sq) {
+		return sqlSession.getMapper(AdminMemberDao.class).getDepartment(dpt_sq);
+	}
+
+	@Override
+	public PositionDto getPosition(int pst_sq) {
+		return sqlSession.getMapper(AdminMemberDao.class).getPosition(pst_sq);
+	}
+
+	@Override
+	public RankDto getRank(int rnk_sq) {
+		return sqlSession.getMapper(AdminMemberDao.class).getRank(rnk_sq);
 	}
 
 }

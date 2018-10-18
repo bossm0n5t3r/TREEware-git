@@ -14,11 +14,31 @@
 		, #{emp_bs_tel1}, #{emp_bs_tel2}, #{emp_bs_tel3}, #{emp_crt}, sysdate, '', sysdate)
 	</insert>
 	
+	<update id="modify" parameterType="EmployeeDto">
+	UPDATE EMP
+	SET DPT_SQ = #{dpt_sq},
+		RNK_SQ = #{rnk_sq},
+		PST_SQ = #{pst_sq},
+		EMP_BS_TEL1 = #{emp_bs_tel1},
+		EMP_BS_TEL2 = #{emp_bs_tel2},
+		EMP_BS_TEL3 = #{emp_bs_tel3},
+		EMP_FNL_MOD = #{EMP_FNL_MOD}
+	WHERE EMP_SQ = #{emp_sq}
+	</update>
+	
 	<select id="getMemberList" resultType="EmployeeDto">
 	SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
 	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
 	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
 	FROM EMP
+	</select>
+	
+	<select id="getEmployee" parameterType="String" resultType="EmployeeDto">
+	SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
+	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
+	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
+	FROM EMP
+	WHERE EMP_SQ = #{emp_sq}
 	</select>
 	
 	<select id="getDepartmentList" resultType="DepartmentDto">
@@ -27,16 +47,37 @@
 	WHERE DPT.DPT_SQ = EMP.DPT_SQ
 	</select>
 	
+	<select id="getDepartment" parameterType="int" resultType="DepartmentDto">
+	SELECT DISTINCT DPT.DPT_SQ, DPT_NM
+	FROM DPT, EMP
+	WHERE DPT.DPT_SQ = EMP.DPT_SQ
+	AND EMP.DPT_SQ = #{dpt_sq}
+	</select>
+	
 	<select id="getPositionList" resultType="PositionDto">
 	SELECT PST.PST_SQ, PST_NM
 	FROM PST, EMP
 	WHERE PST.PST_SQ = EMP.PST_SQ
 	</select>
 	
+	<select id="getPosition" parameterType="int" resultType="PositionDto">
+	SELECT DISTINCT PST.PST_SQ, PST_NM
+	FROM PST, EMP
+	WHERE PST.PST_SQ = EMP.PST_SQ
+	AND EMP.PST_SQ = #{pst_sq}
+	</select>
+	
 	<select id="getRankList" resultType="RankDto">
 	SELECT RNK.RNK_SQ, RNK_NM
 	FROM RNK, EMP
 	WHERE RNK.RNK_SQ = EMP.RNK_SQ
+	</select>
+	
+	<select id="getRank" parameterType="int" resultType="RankDto">
+	SELECT DISTINCT RNK.RNK_SQ, RNK_NM
+	FROM RNK, EMP
+	WHERE RNK.RNK_SQ = EMP.RNK_SQ
+	AND EMP.RNK_SQ = #{rnk_sq}
 	</select>
 		
 	<select id="getMemberCount" resultType="int">

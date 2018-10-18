@@ -84,7 +84,7 @@
 													<input class="form-check-input" type="checkbox" value="" style="height:10px">
 													<span class="form-check-sign">
 													사원번호
-													<input id="empnum" name="empnum"type="text" readonly="readonly" value="TREE20222" style="width:100%">
+													<input id="emp_sq" name="emp_sq"type="text" readonly="readonly" style="width:100%">
 													</span>
 												</label>
 												<img src="${root}/assets/img/photo.jpg" width="100%" style="margin:5px 0px 10px 0px;padding:5px">
@@ -218,7 +218,7 @@ $(document).ready(function (){
 		var year = dt.getFullYear();
 		var empsq;
 		var cnt = parseInt('${cnt}') + 1;
-		empsq = "TREE"+year + cnt;
+		empsq = "TREE"+ year + cnt;
 		document.getElementById("emp_sq").value = empsq;
 		document.getElementById("emp_id").value = empsq;
 		document.getElementById("emp_pw").value = "1234";

@@ -18,6 +18,7 @@ public class AdminMemberController {
 	@Autowired
 	private AdminMemberService adminMemberService;
 	
+	// 계정관리 메인페이지
 	@RequestMapping("/main.tree")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
@@ -59,6 +60,7 @@ public class AdminMemberController {
 		return mav;
 	}
 	
+	// 수정페이지 사원목록출력
 	@RequestMapping("/view.tree")
 	public ModelAndView view() {
 		ModelAndView mav = new ModelAndView();
@@ -93,6 +95,47 @@ public class AdminMemberController {
 		int cnt = adminMemberService.idCheck(id);
 		JSONObject json = new JSONObject();
 		json.put("cnt", cnt);
+		return json.toString();
+	}
+	
+	// 사원정보 수정
+	@RequestMapping(value="/modify.tree", method=RequestMethod.POST)
+	public @ResponseBody String modify(EmployeeDto employeeDto) {
+		int cnt = adminMemberService.modify(employeeDto);
+		return "admin/account/view";
+	}
+	
+	// 사원정보 얻기
+	@RequestMapping("/getmember.tree")
+	public @ResponseBody String getMember(@RequestParam String emp_sq) {
+		EmployeeDto employeeDto = new EmployeeDto();
+		DepartmentDto departmentDto = new DepartmentDto();
+		PositionDto positionDto = new PositionDto();
+		RankDto rankDto = new RankDto();
+		employeeDto = adminMemberService.getEmployee(emp_sq);
+		departmentDto = adminMemberService.getDepartment(employeeDto.getDpt_sq());
+		positionDto = adminMemberService.getPosition(employeeDto.getPst_sq());
+		rankDto = adminMemberService.getRank(employeeDto.getRnk_sq());
+		JSONObject json = new JSONObject();
+		json.put("emp_sq", employeeDto.getEmp_sq());
+		json.put("emp_nm", employeeDto.getEmp_nm());
+		json.put("emp_bdate", employeeDto.getEmp_bdate());
+		json.put("emp_sex", employeeDto.getEmp_sex());
+		json.put("emp_reg", employeeDto.getEmp_reg());
+		json.put("emp_exit", employeeDto.getEmp_exit());
+		json.put("emp_tel1", employeeDto.getEmp_tel1());
+		json.put("emp_tel2", employeeDto.getEmp_tel2());
+		json.put("emp_tel3", employeeDto.getEmp_tel3());
+		json.put("emp_bs_tel1", employeeDto.getEmp_bs_tel1());
+		json.put("emp_bs_tel2", employeeDto.getEmp_bs_tel2());
+		json.put("emp_bs_tel3", employeeDto.getEmp_bs_tel3());
+		json.put("emp_ml_id", employeeDto.getEmp_ml_id());
+		json.put("emp_ml_addr", employeeDto.getEmp_ml_addr());
+		json.put("emp_addr", employeeDto.getEmp_addr());
+		json.put("emp_addr_dt", employeeDto.getEmp_addr_dt());
+		json.put("dpt_nm", departmentDto.getDpt_nm());
+		json.put("pst_nm", positionDto.getPst_nm());
+		json.put("rnk_nm", rankDto.getRnk_nm());
 		return json.toString();
 	}
 }
