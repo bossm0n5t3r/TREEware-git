@@ -61,7 +61,7 @@
 								<div class="card-body">
 									<!-- 사원등록1 -->
 									<br>
-									<form class="form" method="POST" name="registerMemberForm" action="">
+									<form class="form" method="POST" name="registerMemberForm" id="registerMemberForm" action="">
 									<input type="hidden" name="act" value="registerMember">
 										<div class="row" style="width:100%;padding:20px 20px 10px 20px;border-radius:8px;border:1px #ccc solid">
 											<div class="col-md-2" style="padding:0 20px 0 0">									
@@ -101,7 +101,7 @@
 															<input type="text" name="emp_reg" id="emp_reg" class="mainbox" placeholder="입사일" readonly="readonly">
 														</div>
 														<div style="width:25%" class="box-group">
-															<input type="text" name="emp_exit" id="emp_exit" class="mainbox" placeholder="퇴사일">
+															<input type="text" name="emp_fnl_mod" id="emp_fnl_mod" class="mainbox" placeholder="퇴사일">
 														</div>
 														<div style="width:50%" class="box-group">
 															<input name="status" id="status" type="text" class="mainbox" placeholder="근무중" readonly="readonly">
@@ -231,8 +231,7 @@ $(document).ready(function(){
 		$('#emp_bs_tel2').val($('#bes_tel').val().split('-')[1]);
 		$('#emp_bs_tel3').val($('#bes_tel').val().split('-')[2]);
 		
-		document.registerMemberForm.action = "${root}/member/account/modify.tree";
-		document.registerMemberForm.submit();
+		$('#registerMemberForm').attr("action", "${root}/admin/account/modify.tree").submit();
 	});
 	
 	$('tr.emp').click(function(){
