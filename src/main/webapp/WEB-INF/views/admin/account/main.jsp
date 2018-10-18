@@ -27,12 +27,12 @@
 								<div class="card-title">사원목록</div>
 							</div>
 							<div class="card-body">
-								<div class="row">
-									<div class="col-md-12" style="padding: 0 20px">
+								<div class="row" align="center">
+									<div class="col-md-1"></div>
+									<div class="col-md-10">
 										<!-- 주소록 콘텐츠 페이지  -->
 										<%-- 								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/admin/account/list.jsp"></IFRAME> --%>
-										<div class="buttonmenu" align="center"
-											style="margin: 20px 0 20px 0">
+										<div class="buttonmenu" align="center" style="margin: 20px 0 20px 0">
 											<div class="row" style="width: 100%">
 												<div style="width: 60%; text-align: left">
 													<table style="width:100%">
@@ -95,15 +95,29 @@
 											<table>
 												<tr>
 													<td>
-														<form class="navbar-left navbar-form nav-search mr-md-3" action="" style="width:230px">
-															<div class="input-group" style="opacity:0.6">
-																<input type="text" placeholder="Search ..." class="form-control">
-																<div class="input-group-append">
-																	<span class="input-group-text">
-																		<i class="la la-search search-icon"></i>
-																	</span>
-																</div>
-															</div>
+														<form class="navbar-left navbar-form nav-search mr-md-3" action="" style="width:300px;padding:10px">
+															<table style="width:100%">
+																<tr>
+																	<td style="width:30%">
+																	<select id="key" name="key" class="form-control" style="font-size:100%">
+																			<option value='0'>사원명</option>
+																			<option value='1'>부서</option>
+																			<option value='2'>직위</option>
+																			<option value='3'>입사일</option>
+																	</select>
+																	</td>
+																	<td style="width:70%">
+																		<div class="input-group" style="opacity:0.6">
+																		<input id="word" name="word" type="text" placeholder="Search ..." class="form-control">
+																		<div class="input-group-append">
+																			<span class="input-group-text">
+																				<i class="la la-search search-icon"></i>
+																			</span>
+																		</div>
+																	</div>
+																	</td>
+																</tr>
+															</table>
 														</form>
 													</td>
 												</tr>
@@ -113,6 +127,7 @@
 										<br>
 										<br>
 									</div>
+									<div class="col-md-1"></div>
 								</div>
 							</div>
 						</div>

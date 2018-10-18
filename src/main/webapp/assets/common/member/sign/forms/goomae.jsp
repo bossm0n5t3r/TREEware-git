@@ -84,8 +84,8 @@ table {
 							<td class="info_text">기안자</td>
 						</tr>
 						<tr>
-							<td class="info_img">서명</td>
-							<td class="info_img">서명</td>
+							<td class="info_img"><img src="/treeware/assets/img/signsm.png" height="50px"></td>
+							<td class="info_img"><img src="/treeware/assets/img/signym.png" height="50px"></td>
 						</tr>
 					</table>
 				</td>
