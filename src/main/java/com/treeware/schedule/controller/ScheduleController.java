@@ -41,6 +41,9 @@ public class ScheduleController {
 		String emp_sq = employeeDto.getEmp_sq();
 		scheduleDto.setEmp_sq(emp_sq);
 		int cnt = scheduleService.registerSchedule(scheduleDto);
+		if (cnt != 0) {
+			System.out.println("들어갔으니까 확인해봐");
+		}
 		return mav;
 	}
 }

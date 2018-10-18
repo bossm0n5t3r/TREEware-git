@@ -5,8 +5,29 @@
 
 <mapper namespace="com.treeware.schedule.dao.ScheduleDao">
 
+	<select id="getNextScheduleSq" resultType="int">
+		SELECT SCD_SQ.nextval
+		FROM dual
+	</select>
+
 	<insert id="registerSchedule" parameterType="ScheduleDto">
-		
+		INSERT INTO SCD (scd_sq, emp_sq, scd_nm, scd_pst
+						 , scd_sday, scd_stime, scd_eday, scd_etime, scd_dct)
+		values (#{scd_sq}, #{emp_sq}, #{scd_nm}, #{scd_pst}
+				, #{scd_sday}, #{scd_stime}, #{scd_eday}, #{scd_etime}, #{scd_dct});
 	</insert>
+	
+	<update id="modifySchedule" parameterType="ScheduleDto">
+		UPDATE SCD
+		SET scd_nm = #{scd_nm}, scd_pst = #{scd_pst}, scd_sday = #{scd_sday}
+			, scd_stime = #{scd_stime}, scd_eday = #{scd_eday}, scd_etime = #{scd_etime}
+			, scd_dct = #{scd_dct}
+		WHERE scd_sq = #{scd_sq}
+	</update>
+	
+	<delete id="deleteSchedule" parameterType="int">
+		DELETE FROM SCD
+		WHERE scd_sq = #{scd_sq}
+	</delete>
 	
 </mapper>

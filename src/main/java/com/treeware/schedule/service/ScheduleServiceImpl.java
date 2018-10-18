@@ -15,6 +15,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 	
 	@Override
 	public int registerSchedule(ScheduleDto scheduleDto) {
+		int scd_sq = sqlSession.getMapper(ScheduleDao.class).getNextScheduleSq();
+		scheduleDto.setScd_sq(scd_sq);
 		return sqlSession.getMapper(ScheduleDao.class).registerSchedule(scheduleDto);
 	}
 
