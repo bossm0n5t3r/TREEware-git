@@ -1,5 +1,7 @@
 package com.treeware.schedule.service;
 
-public interface ScheduleService {
+import com.treeware.admin.schedule.model.ScheduleDto;
 
+public interface ScheduleService {
+	public int registerSchedule(ScheduleDto scheduleDto);
 }

@@ -22,12 +22,12 @@ $(document).ready(function(){
 						<div class="row">
 							<div class="col-md-12">
 									<div id="calendar"></div>
-									<!-- 일정 추가 Modal -->
-									<%@ include file="/assets/common/modal/schedule.jsp" %>
 							</div>
 						</div>
 					</div>
 				</div>
+		<!-- 일정 추가 Modal -->
+		<%@ include file="/assets/common/modal/schedule.jsp" %>
 		<%@ include file="/assets/common/footer.jsp" %>
 		</div>
 	</div>

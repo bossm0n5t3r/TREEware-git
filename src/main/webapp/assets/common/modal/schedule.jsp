@@ -17,10 +17,26 @@
 						</tr>
 						<tr>
 							<td style="padding:5px 10px">
+							 	시작날짜:
+							</td>
+							<td style="padding:5px 10px">
+								<input type="date" name="scd_sday" id="scd_sday" class="start" style="width:100%">
+							</td>
+						</tr>
+						<tr>
+							<td style="padding:5px 10px">
 							 	시작시간:
 							</td>
 							<td style="padding:5px 10px">
-								<input type="datetime-local" name="start" id="start" class="start" style="width:100%">
+								<input type="time" name="scd_stime" id="scd_stime" class="start" style="width:100%">
+							</td>
+						</tr>
+						<tr>
+							<td style="padding:5px 10px">
+							 	종료날짜:
+							</td>
+							<td style="padding:5px 10px">
+								<input type="date" name="scd_eday" id="scd_eday" class="end" style="width:100%">
 							</td>
 						</tr>
 						<tr>
@@ -28,7 +44,7 @@
 							 	종료시간:
 							</td>
 							<td style="padding:5px 10px">
-								<input type="datetime-local" name="end" id="end" class="end" style="width:100%">
+								<input type="time" name="scd_etime" id="scd_etime" class="end" style="width:100%">
 							</td>
 						</tr>
 						<tr>
@@ -46,9 +62,8 @@
 				</form>
 			</div>
 			<div class="modal-footer" align="center">
-				<button class="btn btn-success" id="registerBtn" style="width:100px">등록</button>
-				<button class="btn btn-danger" id="returnBtn" style="width:100px">취소</button>
-				<!-- data-dismiss="modal" -->
+				<button class="btn btn-success" id="registerBtn" data-dismiss="modal" style="width:100px">등록</button>
+				<button class="btn btn-danger" id="returnBtn" data-dismiss="modal" style="width:100px">취소</button>
 			</div>
 		</div>
 	</div>

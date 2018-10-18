@@ -25,8 +25,13 @@
             , editable : true
             , eventLimit : true
             , dayClick: function(date) {
-            	alert("Date : " + date.format());
-                $("#schedule #start").html(date.format());
+            	$("#schedule #scd_nm").val('');
+                $("#schedule #scd_sday").val(date.format());
+                $("#schedule #scd_stime").val('');
+                $("#schedule #scd_eday").val('');
+                $("#schedule #scd_etime").val('');
+                $("#schedule #scd_pst").val('');
+                $("#schedule #scd_dct").val('');
                 $("#schedule").modal('show');
             }
 //             , select: function(start, end) {
@@ -60,7 +65,20 @@
         });
         
         $("#schedule #registerBtn").click(function() {
-    		$("#schedule #scheduleForm").addr("method", "POST").addr("action", "${root}/member/calendar/register.tree").submit();
+        	if ($("#schedule #scd_nm").val() == '') {
+        		alert('제목없어');
+        		return;
+        	} else if ($("#schedule #scd_sday").val() == '') {
+        		alert('시작날짜없어');
+        		return;
+        	} else if ($("#schedule #scd_eday").val() == '') {
+        		alert('종료날짜없어');
+        		return;
+        	} else {
+	    		$("#schedule #scheduleForm").attr("method", "POST")
+	    									.attr("action", "${root}/member/calendar/register.tree")
+	    									.submit();    		
+        	}
     	});
     });
 </script>

@@ -4,17 +4,21 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.admin.schedule.model.ScheduleDto;
+import com.treeware.schedule.service.ScheduleService;
 
 @Controller
 @RequestMapping("/member/calendar")
 public class ScheduleController {
 
+	@Autowired
+	private ScheduleService scheduleService;
 	
 	// 일정관리 메인 페이지
 	@RequestMapping("/main.tree")
@@ -35,6 +39,8 @@ public class ScheduleController {
 		mav.setViewName("member/calendar/main");
 		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
 		String emp_sq = employeeDto.getEmp_sq();
+		scheduleDto.setEmp_sq(emp_sq);
+		int cnt = scheduleService.registerSchedule(scheduleDto);
 		return mav;
 	}
 }
