@@ -7,6 +7,8 @@
 <link href="${root}/assets/css/fullcalendar.min.css" rel="stylesheet" />
 <script type="text/javascript">
 	$(document).ready(function() {
+		var clickDate = '';
+		
         $("#calendar").fullCalendar({
         	
               defaultDate : new Date()
@@ -22,8 +24,10 @@
 	          }
             , editable : true
             , eventLimit : true
-            , dayClick: function() {
-                $("#myModal").modal();
+            , dayClick: function(date) {
+            	alert("Date : " + date.format());
+                $("#schedule #start").html(date.format());
+                $("#schedule").modal('show');
             }
 //             , select: function(start, end) {
 //                 $("#mySchedule .modal-title").html('일정을 입력하세요!');
@@ -54,5 +58,9 @@
                 }
             ]
         });
+        
+        $("#schedule #registerBtn").click(function() {
+    		$("#schedule #scheduleForm").addr("method", "POST").addr("action", "${root}/member/calendar/register.tree").submit();
+    	});
     });
 </script>

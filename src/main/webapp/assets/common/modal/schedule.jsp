@@ -8,11 +8,11 @@
 				<button id="modalclose"type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
 			</div>
 			<div class="modal-body text-center" align="center">
-				<form>
+				<form id="scheduleForm">
 					<table style="width:100%">
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">
-								<input type="text" name="title" id="title" class="mainbox" placeholder="일정제목" style="padding:10px" required>
+								<input type="text" name="scd_nm" id="scd_nm" class="mainbox" placeholder="일정제목" style="padding:10px" required>
 							</td>
 						</tr>
 						<tr>
@@ -20,7 +20,7 @@
 							 	시작시간:
 							</td>
 							<td style="padding:5px 10px">
-								<input type="datetime-local" id="start" class="start" style="width:100%">
+								<input type="datetime-local" name="start" id="start" class="start" style="width:100%">
 							</td>
 						</tr>
 						<tr>
@@ -28,17 +28,17 @@
 							 	종료시간:
 							</td>
 							<td style="padding:5px 10px">
-								<input type="datetime-local" id="end" class="end" style="width:100%">
+								<input type="datetime-local" name="end" id="end" class="end" style="width:100%">
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">
-								<input type="text" name="place" id="place" class="mainbox" placeholder="장소입력" style="padding:10px">
+								<input type="text" name="scd_pst" id="scd_pst" class="mainbox" placeholder="장소입력" style="padding:10px">
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">
-								<textarea class="form-control" id="comment" rows="5"></textarea>
+								<textarea class="form-control" name="scd_dct" id="scd_dct" rows="5"></textarea>
 							</td>
 						</tr>
 					</table>
@@ -46,8 +46,9 @@
 				</form>
 			</div>
 			<div class="modal-footer" align="center">
-				<button class="btn btn-success" data-dismiss="modal" style="width:100px">등록</button>
-				<button class="btn btn-danger" data-dismiss="modal" style="width:100px">취소</button>
+				<button class="btn btn-success" id="registerBtn" style="width:100px">등록</button>
+				<button class="btn btn-danger" id="returnBtn" style="width:100px">취소</button>
+				<!-- data-dismiss="modal" -->
 			</div>
 		</div>
 	</div>
