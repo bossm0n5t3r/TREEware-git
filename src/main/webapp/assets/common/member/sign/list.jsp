@@ -42,7 +42,13 @@
 					</label>
 				</div>
 			</td>
-			<td id="ontitle">  <a href="/treeware/assets/common/member/sign/forms/kiahn.jsp">9월 회식비용 영수증</a></td>
+			<td id="ontitle">
+				<a href="/treeware/assets/common/member/sign/forms/kiahn.jsp">
+				9월 회식비용 영수증
+				&nbsp;<img src="/treeware/assets/img/icon_ruby.png" width="10px" style="padding:0 0 5px 0">
+				<!-- &nbsp;<img src="/treeware/assets/img/icon_ruby.png" width="15px" style="padding:0 0 5px 0"> -->
+				</a>
+			</td>
 			<td>손예진</td>
 			<td>18.10.02</td>
 			<td>처리보류</td>
