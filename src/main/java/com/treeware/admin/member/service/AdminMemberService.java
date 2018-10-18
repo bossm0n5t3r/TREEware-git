@@ -17,7 +17,7 @@ public interface AdminMemberService {
 	public List<DepartmentDto> getDepartmentList();
 	public List<PositionDto> getPositionList();	
 	public List<RankDto> getRankList();	
-	public EmployeeDto memberSearch(Map<String, String> map);
+	public List<EmployeeDto> memberSearch(Map<String, String> map);
 	public int deleteMember(String id);
 	public int idSetup(Map<String, String> map);
 	// 아이디 중복 검사

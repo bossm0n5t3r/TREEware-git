@@ -44,7 +44,25 @@ span{
 	color:#444;
 }
 </style>
+<script>
 
+$(document).ready(function() {
+	
+	$("#writeBtn").click(function() {
+		if($("#doctitle").val() == '') {
+			alert("제목 입력!!!");
+			return;
+		} else if($("#docdate1").val() == '') {
+			alert("내용 입력!!!");
+			return;
+		} else {
+			$("#writeForm").attr("action", "${root}/reboard/write.kitri").submit();
+		}
+	});
+	
+});
+
+</script>
 <div class="row" style="border:1px solid #777;padding:20px;border-radius:1px;">
 	<div id="title" align="center">
 		<h2 style="text-decoration: underline;">기 안 문</h2>
@@ -69,14 +87,14 @@ span{
 							<td class="info_title" width="80px">결재3</td>
 						</tr>
 						<tr>
-							<td class="info_text">결재자</td>
-							<td class="info_text">결재자</td>
-							<td class="info_text">결재자</td>
+							<td class="info_text">김지훈</td>
+							<td class="info_text">강혜인</td>
+							<td class="info_text">김고은</td>
 						</tr>
 						<tr>
-							<td class="info_img">서명</td>
-							<td class="info_img">서명</td>
-							<td class="info_img">서명</td>
+							<td class="info_img"><img src="/treeware/assets/img/signjh.png" height="50px"></td>
+							<td class="info_img"><img src="/treeware/assets/img/signhi.png" height="50px"></td>
+							<td class="info_img"><img src="/treeware/assets/img/signge.png" height="50px"></td>
 						</tr>
 					</table>
 				</td>
@@ -111,8 +129,8 @@ span{
 	<br>
 	<textarea id=doctext rows="30" style="width:100%"></textarea>
 	<p style="text-align:center;margin:30px 0 30px 0 ">
-	<button type="button" id="btn-add-nodes" class="signbtn">등록하기</button>
-	<button type="button" id="btn-delete-nodes" class="signbtn">등록취소</button>
+	<button type="button" id="writeBtn" style="padding:5px 15px">등록하기</button>
+	<button type="button" id="cancelBtn" style="padding:5px 15px">등록취소</button>
 	</p>
 </form>
 </div>

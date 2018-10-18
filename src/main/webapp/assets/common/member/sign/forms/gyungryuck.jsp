@@ -67,10 +67,10 @@ span{
 							<td class="info_title" width="80px">결재1</td>
 						</tr>
 						<tr>
-							<td class="info_text">결재자</td>
+							<td class="info_text">김고은</td>
 						</tr>
 						<tr>
-							<td class="info_img">서명</td>
+							<td class="info_img"><img src="/treeware/assets/img/signge.png" height="50px"></td>
 						</tr>
 					</table>
 				</td>

@@ -101,7 +101,7 @@
 															<input type="text" name="emp_reg" id="emp_reg" class="mainbox" placeholder="입사일" readonly="readonly">
 														</div>
 														<div style="width:25%" class="box-group">
-															<input type="text" name="emp_fnl_mod" id="emp_fnl_mod" class="mainbox" placeholder="퇴사일">
+															<input type="text" name="emp_exit" id="emp_exit" class="mainbox" placeholder="퇴사일">
 														</div>
 														<div style="width:50%" class="box-group">
 															<input name="status" id="status" type="text" class="mainbox" placeholder="근무중" readonly="readonly">

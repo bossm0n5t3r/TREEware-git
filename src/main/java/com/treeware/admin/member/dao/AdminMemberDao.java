@@ -17,7 +17,7 @@ public interface AdminMemberDao {
 	public List<DepartmentDto> getDepartmentList();
 	public List<PositionDto> getPositionList();
 	public List<RankDto> getRankList();	
-	public EmployeeDto memberSearch(Map<String, String> map);
+	public List<EmployeeDto> memberSearch(Map<String, String> map);
 	public int deleteMember(String id);
 	public int idSetup(Map<String, String> map);
 	public int idCheck(String id);

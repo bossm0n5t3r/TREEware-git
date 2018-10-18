@@ -27,18 +27,18 @@
 								<div class="card-title">사원목록</div>
 							</div>
 							<div class="card-body">
-								<div class="row">
-									<div class="col-md-12" style="padding: 0 20px">
+								<div class="row" align="center">
+									<div class="col-md-1"></div>
+									<div class="col-md-10">
 										<!-- 주소록 콘텐츠 페이지  -->
 										<%-- 								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/admin/account/list.jsp"></IFRAME> --%>
-										<div class="buttonmenu" align="center"
-											style="margin: 20px 0 20px 0">
+										<div class="buttonmenu" align="center" style="margin: 20px 0 20px 0">
 											<div class="row" style="width: 100%">
 												<div style="width: 60%; text-align: left">
 													<table style="width:100%">
 														<tr>
 															<td>
-															<p style="color:#007bff"><span id="dptname"></span> 전체목록 [${page}명]</p>
+															<p style="color:#007bff"><span id="dptname"></span> 전체목록 [<span id="pageNumber"></span>명]</p>
 															<input type="hidden" id="dpt_sq" name="dpt_sq">
 															</td>
 														</tr>
@@ -95,15 +95,30 @@
 											<table>
 												<tr>
 													<td>
-														<form class="navbar-left navbar-form nav-search mr-md-3" action="" style="width:230px">
-															<div class="input-group" style="opacity:0.6">
-																<input type="text" placeholder="Search ..." class="form-control">
-																<div class="input-group-append">
-																	<span class="input-group-text">
-																		<i class="la la-search search-icon"></i>
-																	</span>
-																</div>
-															</div>
+														<form class="navbar-left navbar-form nav-search mr-md-3" action="" style="width:300px;padding:10px">
+															<table style="width:100%">
+																<tr>
+																	<td style="width:30%">
+																	<select id="key" name="key" class="form-control" style="font-size:100%">
+																			<option value='emp_nm'>사원명</option>
+																			<option value='dpt_sq'>부서</option>
+																			<option value='rnk_sq'>직위</option>
+																			<option value='emp_reg'>입사일</option>
+																	</select>
+																	</td>
+																	<td style="width:70%">
+																		<div class="input-group" style="opacity:0.6">
+																		<input id="search_word" name="search_word" type="text" placeholder="Search ..." class="form-control">
+																		<input type="hidden" id="word" name="word">
+																		<div class="input-group-append">
+																			<span class="input-group-text">
+																				<i id="searchBtn" class="la la-search search-icon"></i>
+																			</span>
+																		</div>
+																	</div>
+																	</td>
+																</tr>
+															</table>
 														</form>
 													</td>
 												</tr>
@@ -113,6 +128,7 @@
 										<br>
 										<br>
 									</div>
+									<div class="col-md-1"></div>
 								</div>
 							</div>
 						</div>
@@ -145,7 +161,111 @@ var emp_tel2 = new Array();
 var emp_tel3 = new Array();
 
 //목록입력
-$(document).ready(function(){	
+$(document).ready(function(){
+	$('#pageNumber').text('${page}');
+	$("#word").keyup(function(e){
+		if($('#search_word').val()==='퇴사'){
+			$('#word').val(0);
+		} else if($('#search_word').val()==='관리부'){
+			$('#word').val(1);
+		} else if($('#search_word').val()==='인사과'){
+			$('#word').val(2);
+		} else if($('#search_word').val()==='무역부'){
+			$('#word').val(3);
+		} else if($('#search_word').val()==='영업부'){
+			$('#word').val(4);
+		} else if($('#search_word').val()==='판매부'){
+			$('#word').val(5);
+		}
+		if($('#search_word').val()==='퇴사'){
+			$('#word').val(0);
+		} else if($('#search_word').val()==='사원'){
+			$('#word').val(1);
+		} else if($('#search_word').val()==='대리'){
+			$('#word').val(2);
+		} else if($('#search_word').val()==='과장'){
+			$('#word').val(3);
+		} else if($('#search_word').val()==='차장'){
+			$('#word').val(4);
+		} else if($('#search_word').val()==='부장'){
+			$('#word').val(5);
+		} else if($('#search_word').val()==='사장'){
+			$('#word').val(6);
+		}
+		if($('#word').val() === ''){
+			$('#word').val($('#search_word').val());
+		}
+		console.log("키업")
+		if(e.keyCode == 13){
+			console.log("enter")
+			$.ajax({
+				type : "GET"
+				,url : "${root}/admin/account/membersearch.tree"
+				,dataType : "json"
+				,data : {
+					"key" : $("#key").val(),
+					"word" : $("#word").val()
+				}
+				,success : function(data) {
+					totalData = '${page}';
+					viewlist();
+					viewpaging();
+				}
+				,error : function(e) {
+					alert("에러");
+				}
+		});
+		}
+	});
+	$("#searchBtn").click(function(){
+		if($('#search_word').val()==='퇴사'){
+			$('#word').val(0);
+		} else if($('#search_word').val()==='관리부'){
+			$('#word').val(1);
+		} else if($('#search_word').val()==='인사과'){
+			$('#word').val(2);
+		} else if($('#search_word').val()==='무역부'){
+			$('#word').val(3);
+		} else if($('#search_word').val()==='영업부'){
+			$('#word').val(4);
+		} else if($('#search_word').val()==='판매부'){
+			$('#word').val(5);
+		}
+		if($('#search_word').val()==='퇴사'){
+			$('#word').val(0);
+		} else if($('#search_word').val()==='사원'){
+			$('#word').val(1);
+		} else if($('#search_word').val()==='대리'){
+			$('#word').val(2);
+		} else if($('#search_word').val()==='과장'){
+			$('#word').val(3);
+		} else if($('#search_word').val()==='차장'){
+			$('#word').val(4);
+		} else if($('#search_word').val()==='부장'){
+			$('#word').val(5);
+		} else if($('#search_word').val()==='사장'){
+			$('#word').val(6);
+		}
+		if($('#word').val() === ''){
+			$('#word').val($('#search_word').val());
+		}
+		$.ajax({
+			type : "GET"
+			,url : "${root}/admin/account/membersearch.tree"
+			,dataType : "json"
+			,data : {
+				"key" : $("#key").val(),
+				"word" : $("#word").val()
+			}
+			,success : function(data) {
+				memberSearch(data);
+			}
+			,error : function(e) {
+				alert("에러");
+			}
+	});
+	});
+	
 	$("#btnEdit").click(function() {
 		alert("수정페이지로");
 	});
@@ -245,6 +365,61 @@ function number_click(data){
 	currentPage = data;
 	pageCount = dataPerPage * data;
 	viewlist();
+}
+
+//사원검색
+function memberSearch(data){
+	var employee = data.employee;
+	$('#view').empty();
+	for(var i=0;i<employee.length;i++){
+		$('#view').append('<tr>');
+		$('#view').append('<td><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
+		$('#view').append('<td>'+employee[i].emp_nm+'</td>');
+		$('#view').append('<td>'+employee[i].emp_bs_tel1+'-'+employee[i].emp_bs_tel2+'-'+employee[i].emp_bs_tel3+'</td>');
+		$('#view').append('<td>'+employee[i].emp_ml_id+employee[i].emp_ml_addr+'</td>');
+		$('#view').append('<td>'+change_dpt(employee[i].dpt_sq)+'</td>');
+		$('#view').append('<td>'+change_rnk(employee[i].rnk_sq)+'</td>');
+		$('#view').append('<td>'+employee[i].emp_tel1+'-'+employee[i].emp_tel2+'-'+employee[i].emp_tel3+'</td>');
+		$('#view').append('<td><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
+		$('#view').append('</tr>');
+	}
+	totalData=employee.length;
+	currentPage = 1;
+	totalPage = Math.ceil((totalData-1)/dataPerPage);
+	$('#pageNumber').text(employee.length);
+	viewpaging();
+}
+function change_dpt(data){
+	if(data ===0){
+		return '퇴사';
+	} else if(data ===1){
+		return '관리부';
+	} else if(data ===2){
+		return '인사과';
+	} else if(data ===3){
+		return '무역부';
+	} else if(data ===4){
+		return '영업부';
+	} else if(data ===5){
+		return '판매부';
+	}
+}
+function change_rnk(data){
+	if(data ===0){
+		return '퇴사';
+	} else if(data ===1){
+		return '사원';
+	} else if(data ===2){
+		return '대리';
+	} else if(data ===3){
+		return '과장';
+	} else if(data ===4){
+		return '차장';
+	} else if(data ===5){
+		return '부장';
+	} else if(data ===6){
+		return '사장';
+	}
 }
 </script>
 </body>
