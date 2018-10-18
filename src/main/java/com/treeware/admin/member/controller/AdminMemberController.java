@@ -100,7 +100,7 @@ public class AdminMemberController {
 	
 	// 사원정보 수정
 	@RequestMapping(value="/modify.tree", method=RequestMethod.POST)
-	public @ResponseBody String modify(EmployeeDto employeeDto) {
+	public String modify(EmployeeDto employeeDto) {
 		int cnt = adminMemberService.modify(employeeDto);
 		return "admin/account/view";
 	}

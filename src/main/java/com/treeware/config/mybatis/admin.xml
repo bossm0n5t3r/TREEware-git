@@ -22,7 +22,7 @@
 		EMP_BS_TEL1 = #{emp_bs_tel1},
 		EMP_BS_TEL2 = #{emp_bs_tel2},
 		EMP_BS_TEL3 = #{emp_bs_tel3},
-		EMP_FNL_MOD = #{EMP_FNL_MOD}
+		EMP_FNL_MOD = nvl(#{emp_fnl_mod}, '5000-10-10')
 	WHERE EMP_SQ = #{emp_sq}
 	</update>
 	
