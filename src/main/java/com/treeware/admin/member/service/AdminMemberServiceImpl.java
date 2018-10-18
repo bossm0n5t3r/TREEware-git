@@ -33,8 +33,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	@Override
 	public EmployeeDto memberSearch(Map<String, String> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.getMapper(AdminMemberDao.class).memberSearch(map);
 	}
 
 	@Override

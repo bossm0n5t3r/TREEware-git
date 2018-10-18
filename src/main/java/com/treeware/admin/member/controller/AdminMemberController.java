@@ -138,4 +138,22 @@ public class AdminMemberController {
 		json.put("rnk_nm", rankDto.getRnk_nm());
 		return json.toString();
 	}
+	
+	//사원검색
+	@RequestMapping("/membersearch.tree")
+	public ModelAndView memberSearch() {
+		ModelAndView mav = new ModelAndView();
+		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
+		List<DepartmentDto> list2 = new ArrayList<DepartmentDto>();
+		List<RankDto> list3 = new ArrayList<RankDto>();
+		list = adminMemberService.getMemberList();
+		list2 = adminMemberService.getDepartmentList();
+		list3 = adminMemberService.getRankList();
+		mav.addObject("employeeInfo", list);
+		mav.addObject("departmentInfo", list2);
+		mav.addObject("rankInfo", list3);
+		mav.addObject("page", list.size());
+		mav.setViewName("admin/account/main");
+		return mav;
+	}
 }
