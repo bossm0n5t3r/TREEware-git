@@ -1,50 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<style>
-table {
-    border-collapse: collapse;
-}
-.formtable{
-	margin:20px 0 0 0;
-}
-.formtable th, .formtable td{
-    border: 1px solid #777;
-    padding: 5px;
-}
-.signform td{
-	font-size:80%;
-}
-.signform .info_title{
-	background-color:#eee;
-	text-align:center;
-	padding:7px 0px;
-	width:100px;
-}
-.signform .info_text{
-	text-align:center;
-	padding:3px 0px;
-	width:100px;
-}
-.signform .info_img{
-	text-align:center;
-	width:100px;
-	height:50px;
-}
-.signform input[type=text]{
-	width:140px;
-	height:25px;
-}
-#title h2{
-	color:rgba(50, 50, 50, 0.9);
-	margin:20px 0px 20px 0;
-}
-.signbtn{
-	padding:5px 20px;
-}
-span{
-	color:#444;
-}
-</style>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/treeware/assets/css/form.css">
 <div class="row" style="border:1px solid #777;padding:20px;border-radius:1px;">
 	<div id="title" align="center">
 		<h2 style="text-decoration: underline;">휴 가 원</h2>
