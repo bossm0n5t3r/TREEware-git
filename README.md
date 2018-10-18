@@ -12,3 +12,4 @@
 - [ ] context:component-scan 을 service 에도 적용
 - [ ] commute reload 문제 해결
 - [ ] mail - summernote 적용 문제 해결
+- [ ] root-context.xml 에서 불필요한 DB url 삭제
