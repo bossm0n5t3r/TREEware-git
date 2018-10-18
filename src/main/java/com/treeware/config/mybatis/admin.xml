@@ -5,6 +5,16 @@
 
 <mapper namespace="com.treeware.admin.member.dao.AdminMemberDao">
 
+	<select id="memberSearch" parameterType="map" resultType="EmployeeDto">
+	SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
+	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
+	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
+	FROM EMP
+	<if test="${word} != null and ${word} != ''">
+	WHERE #{key} like '%'||#{word}||'%'
+	</if>
+	</select>
+
 	<insert id="register" parameterType="EmployeeDto">
 	INSERT INTO EMP (EMP_SQ, PMS_SQ, DPT_SQ, RNK_SQ, PST_SQ, EMP_NM, EMP_ID, EMP_PW, EMP_SEX, EMP_BDATE
 				 , EMP_ML_ID, EMP_ML_ADDR, EMP_TEL1, EMP_TEL2, EMP_TEL3, EMP_ZIP, EMP_ADDR, EMP_ADDR_DT
