@@ -147,6 +147,7 @@ public class AdminMemberController {
 		JSONArray jarray = new JSONArray();
 		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
 		list = adminMemberService.memberSearch(map);
+		System.out.println(map);
 		for(EmployeeDto employeeDto : list) {
 			JSONObject member = new JSONObject();
 			member.put("emp_sq", employeeDto.getEmp_sq());

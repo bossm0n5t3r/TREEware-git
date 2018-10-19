@@ -163,107 +163,13 @@ var emp_tel3 = new Array();
 //목록입력
 $(document).ready(function(){
 	$('#pageNumber').text('${page}');
-	$("#word").keyup(function(e){
-		if($('#search_word').val()==='퇴사'){
-			$('#word').val(0);
-		} else if($('#search_word').val()==='관리부'){
-			$('#word').val(1);
-		} else if($('#search_word').val()==='인사과'){
-			$('#word').val(2);
-		} else if($('#search_word').val()==='무역부'){
-			$('#word').val(3);
-		} else if($('#search_word').val()==='영업부'){
-			$('#word').val(4);
-		} else if($('#search_word').val()==='판매부'){
-			$('#word').val(5);
+	
+	$("#search_word").keyup(function(){
+		dpt_nm_to_sq();
+		rnk_nm_to_sq();
+		if($("#key").val()==='emp_nm'){
+			empajax();
 		}
-		if($('#search_word').val()==='퇴사'){
-			$('#word').val(0);
-		} else if($('#search_word').val()==='사원'){
-			$('#word').val(1);
-		} else if($('#search_word').val()==='대리'){
-			$('#word').val(2);
-		} else if($('#search_word').val()==='과장'){
-			$('#word').val(3);
-		} else if($('#search_word').val()==='차장'){
-			$('#word').val(4);
-		} else if($('#search_word').val()==='부장'){
-			$('#word').val(5);
-		} else if($('#search_word').val()==='사장'){
-			$('#word').val(6);
-		}
-		if($('#word').val() === ''){
-			$('#word').val($('#search_word').val());
-		}
-		console.log("키업")
-		if(e.keyCode == 13){
-			console.log("enter")
-			$.ajax({
-				type : "GET"
-				,url : "${root}/admin/account/membersearch.tree"
-				,dataType : "json"
-				,data : {
-					"key" : $("#key").val(),
-					"word" : $("#word").val()
-				}
-				,success : function(data) {
-					totalData = '${page}';
-					viewlist();
-					viewpaging();
-				}
-				,error : function(e) {
-					alert("에러");
-				}
-		});
-		}
-	});
-	$("#searchBtn").click(function(){
-		if($('#search_word').val()==='퇴사'){
-			$('#word').val(0);
-		} else if($('#search_word').val()==='관리부'){
-			$('#word').val(1);
-		} else if($('#search_word').val()==='인사과'){
-			$('#word').val(2);
-		} else if($('#search_word').val()==='무역부'){
-			$('#word').val(3);
-		} else if($('#search_word').val()==='영업부'){
-			$('#word').val(4);
-		} else if($('#search_word').val()==='판매부'){
-			$('#word').val(5);
-		}
-		if($('#search_word').val()==='퇴사'){
-			$('#word').val(0);
-		} else if($('#search_word').val()==='사원'){
-			$('#word').val(1);
-		} else if($('#search_word').val()==='대리'){
-			$('#word').val(2);
-		} else if($('#search_word').val()==='과장'){
-			$('#word').val(3);
-		} else if($('#search_word').val()==='차장'){
-			$('#word').val(4);
-		} else if($('#search_word').val()==='부장'){
-			$('#word').val(5);
-		} else if($('#search_word').val()==='사장'){
-			$('#word').val(6);
-		}
-		if($('#word').val() === ''){
-			$('#word').val($('#search_word').val());
-		}
-		$.ajax({
-			type : "GET"
-			,url : "${root}/admin/account/membersearch.tree"
-			,dataType : "json"
-			,data : {
-				"key" : $("#key").val(),
-				"word" : $("#word").val()
-			}
-			,success : function(data) {
-				memberSearch(data);
-			}
-			,error : function(e) {
-				alert("에러");
-			}
-	});
 	});
 	
 	$("#btnEdit").click(function() {
@@ -420,6 +326,85 @@ function change_rnk(data){
 	} else if(data ===6){
 		return '사장';
 	}
+}
+function dpt_nm_to_sq(){
+	if($('#search_word').val()==='퇴사'){
+		$('#word').val(0);
+		searchajax();
+	} else if($('#search_word').val()==='관리부'){
+		$('#word').val(1);
+		searchajax();
+	} else if($('#search_word').val()==='인사과'){
+		$('#word').val(2);
+		searchajax();
+	} else if($('#search_word').val()==='무역부'){
+		$('#word').val(3);
+		searchajax();
+	} else if($('#search_word').val()==='영업부'){
+		$('#word').val(4);
+		searchajax();
+	} else if($('#search_word').val()==='판매부'){
+		$('#word').val(5);
+		searchajax();
+	}
+}
+function rnk_nm_to_sq(){
+	if($('#search_word').val()==='퇴사'){
+		$('#word').val(0);
+		searchajax();
+	} else if($('#search_word').val()==='사원'){
+		$('#word').val(1);
+		searchajax();
+	} else if($('#search_word').val()==='대리'){
+		$('#word').val(2);
+		searchajax();
+	} else if($('#search_word').val()==='과장'){
+		$('#word').val(3);
+		searchajax();
+	} else if($('#search_word').val()==='차장'){
+		$('#word').val(4);
+		searchajax();
+	} else if($('#search_word').val()==='부장'){
+		$('#word').val(5);
+		searchajax();
+	} else if($('#search_word').val()==='사장'){
+		$('#word').val(6);
+		searchajax();
+	}
+}
+function empajax(){
+	$.ajax({
+		type : "GET"
+		,url : "${root}/admin/account/membersearch.tree"
+		,dataType : "json"
+		,data : {
+			"key" : $("#key").val(),
+			"word" : $("#search_word").val()
+		}
+		,success : function(data) {
+			memberSearch(data);
+		}
+		,error : function(e) {
+			alert("에러");
+		}
+});
+}
+function searchajax(){
+	$.ajax({
+		type : "GET"
+		,url : "${root}/admin/account/membersearch.tree"
+		,dataType : "json"
+		,data : {
+			"key" : $("#key").val(),
+			"word" : $("#word").val()
+		}
+		,success : function(data) {
+			memberSearch(data);
+		}
+		,error : function(e) {
+			alert("에러");
+		}
+});
 }
 </script>
 </body>
