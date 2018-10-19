@@ -93,7 +93,7 @@ function getList() {
 		,url : "${root}/member/calendar/getList.tree"
 		,dataType : "json"
 		,success : function(data) {
-			
+			makeList(data);
 		}
 		,error : function(e) {
 			
@@ -102,6 +102,9 @@ function getList() {
 }
 
 function makeList(data) {
+	var slist = data.scheduleList;
+	scheduleList = slist;
+	
 	
 }
 
