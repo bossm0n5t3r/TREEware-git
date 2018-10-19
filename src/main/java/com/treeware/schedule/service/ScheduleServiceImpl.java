@@ -35,7 +35,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Override
 	public List<ScheduleDto> getListSchedule(EmployeeDto employeeDto) {
-		return sqlSession.getMapper(ScheduleDao.class).getListSchedule(employeeDto);
+		return sqlSession.getMapper(ScheduleDao.class).getListSchedule(employeeDto.getEmp_sq());
 	}
 
 }

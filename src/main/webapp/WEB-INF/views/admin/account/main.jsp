@@ -159,6 +159,7 @@ var rnk_nm = new Array();
 var emp_tel1 = new Array();
 var emp_tel2 = new Array();
 var emp_tel3 = new Array();
+var employee;
 
 //목록입력
 $(document).ready(function(){
@@ -248,7 +249,6 @@ function viewpaging(){
 }
 //이전클릭이벤트
 function pre_click(){
-	console.log("클릭");
 	if(first>10){
 	first = first - 10;
 	pageCount = pageCount - 10;
@@ -258,7 +258,6 @@ function pre_click(){
 };
 //다음클릭이벤트
 function next_click(){
-	console.log("클릭");
 	if(last<totalPage){
 	first = first + 10;
 	pageCount = pageCount + 10;
@@ -274,10 +273,13 @@ function number_click(data){
 }
 
 //사원검색
-function memberSearch(data){
-	var employee = data.employee;
+function memberSearch(){
+	totalData=employee.length;
+	currentPage = 1;
+	totalPage = Math.ceil((totalData-1)/dataPerPage);
+	$('#pageNumber').text(employee.length);
 	$('#view').empty();
-	for(var i=0;i<employee.length;i++){
+	for(var i=((currentPage-1)*10);i<Math.min(pageCount,totalData);i++){
 		$('#view').append('<tr>');
 		$('#view').append('<td><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
 		$('#view').append('<td>'+employee[i].emp_nm+'</td>');
@@ -289,10 +291,6 @@ function memberSearch(data){
 		$('#view').append('<td><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
 		$('#view').append('</tr>');
 	}
-	totalData=employee.length;
-	currentPage = 1;
-	totalPage = Math.ceil((totalData-1)/dataPerPage);
-	$('#pageNumber').text(employee.length);
 	viewpaging();
 }
 function change_dpt(data){
@@ -382,7 +380,8 @@ function empajax(){
 			"word" : $("#search_word").val()
 		}
 		,success : function(data) {
-			memberSearch(data);
+			employee = data.employee
+			memberSearch();
 		}
 		,error : function(e) {
 			alert("에러");
@@ -399,12 +398,22 @@ function searchajax(){
 			"word" : $("#word").val()
 		}
 		,success : function(data) {
-			memberSearch(data);
+			employee = data.employee
+			memberSearch();
 		}
 		,error : function(e) {
 			alert("에러");
 		}
 });
+}
+function searchPaging(){
+	last = Math.min(pageCount,totalPage);
+	$('#paging').empty();
+	$('#paging').append('<li class="page-item"><a class="page-link" href="javascript:pre_click();" aria-label="Previous"><span aria-hidden="true">&laquo;</span>');
+	for(var i=first;i<=last;i++){
+		$('#paging').append('<li class="page-item"><a class="page-link" href="javascript:number_click('+i+')">'+i+'</a></li>');
+	}
+	$('#paging').append('<li class="page-item"><a class="page-link" href="javascript:next_click();" aria-label="Next"><span aria-hidden="true">&raquo;</span>');
 }
 </script>
 </body>
