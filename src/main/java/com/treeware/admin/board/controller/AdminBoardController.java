@@ -1,8 +1,7 @@
 package com.treeware.admin.board.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -18,6 +17,13 @@ public class AdminBoardController {
 	
 	@RequestMapping(value="/register.tree", method=RequestMethod.GET)
 	public ModelAndView register() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/board/register");
+		return mav;
+	}
+	//게시판생성
+	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
+	public ModelAndView register(@RequestParam ) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/board/register");
 		return mav;

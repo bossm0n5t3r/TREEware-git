@@ -8,7 +8,8 @@
 	<%@ include file="/assets/common/import.jsp" %>
 	<script>
 	function submit(){
-		 $("#successMsg").modal();
+		 $('#registerMemberForm').attr("action", "register.tree");
+		 $('#registerMemberForm').submit();
 	}
 	function goback(){
 		location.href="${root}/index.jsp";
@@ -32,7 +33,7 @@
 								<div class="card-body">
 									<!-- 사원등록1 -->
 									<br>
-									<form class="form" method="POST" name="registerMemberForm" action="">
+									<form class="form" method="POST" id="registerMemberForm" name="registerMemberForm" action="">
 										<input type="hidden" name="act" value="registerMember">
 										<div class="row" style="padding:0 20px">
 											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">

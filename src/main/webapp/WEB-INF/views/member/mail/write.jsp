@@ -10,13 +10,36 @@
 <script src="${root}/assets/js/plugin/summernote/summernote.js"></script>
 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.js"></script> -->
 <script type="text/javascript">
+
 $(document).ready(function() {
-    $('#summernote').summernote({
+    $('#content').summernote({
             height: 300,                 // set editor height
             minHeight: null,             // set minimum height of editor
             maxHeight: null,             // set maximum height of editor
             focus: true                  // set focus to editable area after initializing summernote
     });
+});
+
+$(document).ready(function() {
+	
+    $(".mailwritebtn").click(function(){
+		if($("#receiver").val().trim().length==0){
+			alert("받는 사람을 입력하세요!!!");
+			return;
+		}
+		else if($("#title").val().trim().length==0){
+			alert("제목을 입력하세요!!!");
+			return;
+		}
+		else if($("#content").val().trim().length==0){
+			alert("내용을 입력하세요!!!");
+			return;
+		}
+		else{
+			$("#mailwriteform").attr("action","${root}/member/mail/write.tree");
+    		$("#mailwriteform").submit();
+		}
+	});
 });
 </script>
 </head>
@@ -28,14 +51,14 @@ $(document).ready(function() {
          <div class="content">
             <div class="card">
 				<div class="card-header">
-            <form name="mailwriteform" action="" method="post">
+            <form id="mailwriteform" name="mailwriteform" action="" method="post">
+            <input type="hidden" name="emp_sq" value="${userInfo.emp_sq}">
                <div class="form-group">
-                  <input name="act" type="hidden" value="mailwrite">
-                 <div class="card-title" style="margin-left: 15px">
+                 <div id="mailwritebtn" class="card-title" style="margin-left: 15px">
 						메일쓰기 &nbsp;			
 								</div>
                   <div class="btn-group">
-                  <button class="btn btn-info btn-sm">보내기</button>&nbsp;
+                  <button id="" class="mailwritebtn btn btn-info btn-sm">보내기</button>&nbsp;
                   <button class="btn btn-default btn-sm">미리보기</button>&nbsp;
                   <button class="btn btn-default btn-sm">다시쓰기</button>&nbsp;
                   </div>
@@ -49,11 +72,11 @@ $(document).ready(function() {
                                  </label>
                                  </div>
                      </td>
-                     <td><input name="title" type="text" class="form-control" id="title" placeholder="이메일을 입력하세요" style="width:100%"></td>   
+                     <td><input id="receiver" name="receiver" type="text" class="form-control"  placeholder="이메일을 입력하세요" style="width:100%"></td>   
                   </tr>
                      <tr>
                      <td colspan="2">제목</td>
-                     <td><input name="title" type="text" class="form-control" id="title" placeholder="제목을 입력하세요" style="width:100%"></td>   
+                     <td><input id="title" name="title" type="text" class="form-control" placeholder="제목을 입력하세요" style="width:100%"></td>   
                   </tr>
               
                      <tr>
@@ -65,9 +88,9 @@ $(document).ready(function() {
                   </table>
                <br>                                        
    
-                  <textarea name="contents" id="summernote" rows="20" style="width:100%"></textarea>
+                  <textarea name="content" id="content" rows="20" style="width:100%"></textarea>
                 <br>
-                <button class="btn btn-info btn-sm" onclick="">보내기</button>
+                <button id="" class="mailwritebtn btn btn-info btn-sm" onclick="">보내기</button>
                 
                 </div>              
             </form>

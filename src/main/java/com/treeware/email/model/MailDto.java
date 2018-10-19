@@ -1,16 +1,17 @@
 package com.treeware.email.model;
 
 public class MailDto {
-	private int 	ml_sq;
-	private int 	ml_grp_sq;
-	private int 	ml_stt_sq;
-	private int 	ml_ipt_sq;
-	private String 	ml_snd_add;
-	private String 	ml_rcv_add;
-	private String 	ml_ttl;
-	private String 	ml_ctt;
-	private String 	ml_fl_nm;
-	private String 	ml_fl_rt;
+	private int ml_sq;
+	private int ml_grp_sq;
+	private int ml_stt_sq;
+	private int ml_ipt_sq;
+	private String emp_sq;
+	private String ml_snd_add;
+	private String ml_rcv_add;
+	private String ml_ttl;
+	private String ml_ctt;
+	private String ml_fl_nm;
+	private String ml_fl_rt;
 
 	public int getMl_sq() {
 		return ml_sq;
@@ -42,6 +43,14 @@ public class MailDto {
 
 	public void setMl_ipt_sq(int ml_ipt_sq) {
 		this.ml_ipt_sq = ml_ipt_sq;
+	}
+
+	public String getEmp_sq() {
+		return emp_sq;
+	}
+
+	public void setEmp_sq(String emp_sq) {
+		this.emp_sq = emp_sq;
 	}
 
 	public String getMl_snd_add() {
