@@ -9,6 +9,7 @@ td{
 }
 </style>
 <script>
+var data ;
 $(document).ready(function(){
 	$("#search_word").keyup(function(){
 		if($("#search_word").val()!=''){
@@ -16,7 +17,6 @@ $(document).ready(function(){
 		}
 	});
 });
-
 function empajax(){
 	var key="emp_nm"
 	$.ajax({
@@ -35,20 +35,16 @@ function empajax(){
 		}
 });
 }
-
-//목록출력
 function memberSearch(result){
 	$('.list').empty();
-	var data =result.employee;
-	console.log(data.length)
+	data = result.employee;
 	if(data.length==0){
 		$('.list').append('<tr><td colspan="4"><b>검색결과가 없습니다.</b></td></tr>');
 	}else{
 		for(var i=0; i<data.length; i++){
-// 			$('.list').append('<tr id="member" onclick="signmember()">');
 			$('.list').append('<tr id="member">');
-			$('.list').append('<td>'+data[i].dpt_sq+'</td>');
-			$('.list').append('<td>'+data[i].rnk_sq+'</td>');
+			$('.list').append('<td><a href="javascript:memberSelect('+i+')">'+change_dpt(data[i].dpt_sq)+'</a></td>');
+			$('.list').append('<td>'+change_rnk(data[i].rnk_sq)+'</td>');
 			$('.list').append('<td>'+data[i].emp_nm+'</td>');
 			$('.list').append('<td>'+data[i].emp_tel1+'-'+data[i].emp_tel2+'-'+data[i].emp_tel3+'</td>');
 			$('.list').append('</tr>');
@@ -57,10 +53,13 @@ function memberSearch(result){
 	}
 }
 
-
-function signmember(member){
-	$('#search_word').empty();
-	modal:close();
+function memberSelect(a){
+	if(members.length==3){
+		alert("최대 3명 선택할 수 있습니다. 확인 후 다시 시도해주세요");
+	}else{
+		members.push('data[a]');
+	}
+	$(".close-modal").click();
 }
 </script>
 <!-- 제이쿼리 모달창 -->

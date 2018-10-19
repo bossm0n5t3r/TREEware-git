@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<script src="/treeware/assets/js/common.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="/treeware/assets/css/form.css">
 <%@ include file="/assets/common/modal/member.jsp" %>
@@ -23,18 +24,27 @@ $(document).ready(function() {
 			$("#signform").attr("action", "${root}/reboard/write.kitri").submit();
 		}
 	});
+	var a = ${userInfo.dpt_sq};
+	var b = change_dpt(a);
+	$("#dpt_name").text(b);
+	
 });
-</script>
 
+var members = [];
+console.log(members.length);
+
+</script>
 <div class="row" style="border:1px solid #777;padding:20px;border-radius:1px;">
 	<div id="title" align="center">
 		<h2 style="text-decoration: underline;">기 안 문</h2>
+		<span id="putnum"></span>
 	</div>
 	<form class="signform" method="POST" name="signform" action="">
 	<input type="hidden" name="formName" value="kiahn">
 	<input type="hidden" name="member1" value="">
 	<input type="hidden" name="member2" value="">
 	<input type="hidden" name="member3" value="">
+	<input type="hidden" id="members_num" value="">
 	<div id="info" class="row">
 		<table style="width:100%">
 			<tr>
@@ -52,7 +62,7 @@ $(document).ready(function() {
 							<td>
 								<span style="line-height:160%">
 								: ${userInfo.emp_nm}<br>
-								: ${userInfo.dpt_sq}<br>
+								: <span id="dpt_name"></span><br>
 								: ${userInfo.emp_tel1}-${userInfo.emp_tel2}-${userInfo.emp_tel3}<br>
 								: ${userInfo.emp_ml_id}${userInfo.emp_ml_addr}<br>
 								</span>
