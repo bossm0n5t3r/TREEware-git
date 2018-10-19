@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="/treeware/assets/css/form.css">
+<%@ include file="/assets/common/modal/member.jsp" %>
 <div class="row" style="border:1px solid #777;padding:20px;border-radius:1px">
 	<div id="title" align="center">
 		<h2 style="text-decoration: underline;">시 행 문</h2>
@@ -21,15 +24,15 @@
 		
 		<table id="second" class="formtable" style="width:100%">
 			<tr>
-				<td width="20%" class="info_title">문서번호</td>
-				<td width="80%"><span id="docnum">트리웨어기안문-2018-0123</span></td>
+				<td width="20%" class="info_title" style="background-color:#eee;text-align:center">문서번호</td>
+				<td width="80%" ><span id="docnum">트리웨어기안문-2018-0123</span></td>
 			</tr> 
 			<tr>
-				<td width="20%" class="info_title">수 신 처</td>
+				<td width="20%" class="info_title" style="background-color:#eee;text-align:center">수 신 처</td>
 				<td width="80%"><span id="docto"><a href="">추가하기</a></span></td>
 			</tr>
 			<tr>
-				<td width="20%" class="info_title">제 목</td>
+				<td width="20%" class="info_title" style="background-color:#eee;text-align:center">제 목</td>
 				<td width="80%"><input id="doctitle" type="text" value="" style="width:100%"></td>
 			</tr>
 		</table>

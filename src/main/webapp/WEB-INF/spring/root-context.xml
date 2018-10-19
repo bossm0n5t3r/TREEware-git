@@ -18,19 +18,38 @@
 
 	<bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
-		<property name="configLocation" value="classpath:com/treeware/config/mybatis/Configuration.xml" />
+		<property name="configLocation"
+			value="classpath:com/treeware/config/mybatis/Configuration.xml" />
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/treeware/config/mybatis/member.xml</value>
-				<value>classpath:com/treeware/config/mybatis/admin.xml</value>
 				<value>classpath:com/treeware/config/mybatis/commute.xml</value>
+				<value>classpath:com/treeware/config/mybatis/mail.xml</value>
 				<value>classpath:com/treeware/config/mybatis/schedule.xml</value>
+				<value>classpath:com/treeware/config/mybatis/AdminMember.xml</value>
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="ssfb" />
 	</bean>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="khyein7@gmail.com" />
+		<property name="password" value="hyein7419" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+
+	</bean>
+
 
 </beans>

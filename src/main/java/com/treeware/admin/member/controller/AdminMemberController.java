@@ -143,6 +143,7 @@ public class AdminMemberController {
 	//사원검색
 	@RequestMapping("/membersearch.tree")
 	public @ResponseBody String memberSearch(@RequestParam Map<String, String> map) {
+		System.out.println(map);
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		List<EmployeeDto> list = new ArrayList<EmployeeDto>();

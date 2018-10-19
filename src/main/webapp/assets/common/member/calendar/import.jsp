@@ -9,6 +9,7 @@
 <link href="${root}/assets/css/fullcalendar.min.css" rel="stylesheet" />
 <script type="text/javascript">
 var scheduleList;
+var scheduleDivideList;
 
 $(document).ready(function() {
 	
@@ -93,7 +94,7 @@ function getList() {
 		,url : "${root}/member/calendar/getList.tree"
 		,dataType : "json"
 		,success : function(data) {
-			
+			makeList(data);
 		}
 		,error : function(e) {
 			
@@ -102,6 +103,29 @@ function getList() {
 }
 
 function makeList(data) {
+	var slist = data.scheduleList;
+	scheduleList = slist;
+	
+	
+}
+
+function getScdDivList() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/admin/calendar/getScdDivList.tree"
+		,dataType : "json"
+		,success : function(data) {
+			makeDivList(data);
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function makeDivList(data) {
+	var sdivlist = data.scheduleDivList;
+	scheduleDivideList = sdivlist;
 	
 }
 
