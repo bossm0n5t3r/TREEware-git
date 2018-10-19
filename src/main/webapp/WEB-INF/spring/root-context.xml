@@ -22,9 +22,9 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/treeware/config/mybatis/member.xml</value>
-				<value>classpath:com/treeware/config/mybatis/admin.xml</value>
 				<value>classpath:com/treeware/config/mybatis/commute.xml</value>
 				<value>classpath:com/treeware/config/mybatis/schedule.xml</value>
+				<value>classpath:com/treeware/config/mybatis/AdminMember.xml</value>
 			</list>
 		</property>
 	</bean>
