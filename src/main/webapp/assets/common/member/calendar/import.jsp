@@ -8,6 +8,8 @@
 	src="${root}/assets/js/fullcalendar/gcal.js"></script>
 <link href="${root}/assets/css/fullcalendar.min.css" rel="stylesheet" />
 <script type="text/javascript">
+var scheduleList;
+
 $(document).ready(function() {
 	
 	$("#calendar").fullCalendar({
@@ -70,13 +72,13 @@ $(document).ready(function() {
 
 $(document).on("click", "#registerBtn", function() {
 	if ($("#register .scd_nm").val() == '') {
-		alert('제목없어');
+		alert('제목이 없습니다');
 		return;
 	} else if ($("#register .scd_sday").val() == '') {
-		alert('시작날짜없어');
+		alert('시작날짜가 완전하지 않습니다.');
 		return;
 	} else if ($("#register .scd_eday").val() == '') {
-		alert('종료날짜없어');
+		alert('종료날짜가 완전하지 않습니다.');
 		return;
 	} else {
 		$("#register #registerForm").attr("method", "POST")
@@ -84,6 +86,24 @@ $(document).on("click", "#registerBtn", function() {
 									.submit();    		
 	}
 });
+
+function getList() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/calendar/getList.tree"
+		,dataType : "json"
+		,success : function(data) {
+			
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function makeList(data) {
+	
+}
 
 function cleanSchedule() {
 	$("#register .scd_nm").val('');
