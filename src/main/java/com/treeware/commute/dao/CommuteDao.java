@@ -1,5 +1,6 @@
 package com.treeware.commute.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.treeware.admin.commute.model.CommuteDto;
@@ -13,4 +14,7 @@ public interface CommuteDao {
 	public int workOut(CommuteDto commuteDto);
 	public int comeBack(CommuteDto commuteDto);
 	public int punchOut(CommuteDto commuteDto);
+	public List<CommuteDto> getCommuteDtoList(Map<String, String> map);
+	public String getAvgStartTime(String emp_sq);
+	public String getAvgEndTime(String emp_sq);
 }

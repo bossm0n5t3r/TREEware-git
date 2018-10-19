@@ -5,12 +5,13 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<bean id="ds"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url"
-			value="jdbc:oracle:thin:@183.101.196.136:1521:xe" />
+	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<!-- KITRI SETTING -->
+		<property name="url" value="jdbc:oracle:thin:@183.101.196.136:1521:xe" />
+		
+		<!-- HOME SETTING for ghoon -->
+		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.35.41:1521:xe" /> -->
 		<property name="username" value="fooding" />
 		<property name="password" value="fooding" />
 	</bean>
@@ -25,7 +26,7 @@
 				<value>classpath:com/treeware/config/mybatis/admin.xml</value>
 				<value>classpath:com/treeware/config/mybatis/commute.xml</value>
 				<value>classpath:com/treeware/config/mybatis/mail.xml</value>
-				
+				<value>classpath:com/treeware/config/mybatis/schedule.xml</value>
 			</list>
 		</property>
 	</bean>

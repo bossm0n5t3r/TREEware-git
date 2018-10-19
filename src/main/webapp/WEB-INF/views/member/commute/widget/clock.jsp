@@ -13,18 +13,24 @@ $(document).ready(function() {
 	$("#punchInBtn").click(function() {
 		punchIn();
 		$("#punchInBtn").attr("class", "nav-link active");
+		location.reload();
 	});
 	$("#workOutBtn").click(function() {
 		workOut();
 		$("#workOutBtn").attr("class", "nav-link active");
+		location.reload();
 	});
 	$("#comeBackBtn").click(function() {
 		comeBack();
 		$("#comeBackBtn").attr("class", "nav-link active");
+		location.reload();
 	});
 	$("#punchOutBtn").click(function() {
-		punchOut();
-		$("#punchOutBtn").attr("class", "nav-link active");
+		if (confirm("정말 퇴근하시겠습니까?")) {
+			punchOut();
+			$("#punchOutBtn").attr("class", "nav-link active");
+			location.reload();			
+		}
 	});
 })
 
@@ -49,11 +55,12 @@ function status() {
 		,url : "${root}/member/commute/today.tree"
 		,dataType : "json"
 		,success : function(data) {
-			$("#gtw").text(data.CMT_SRT_TM);
+			$("#today_kor").text(data.TODAY_KOR);
+			$("#gtw").text(data.CMT_STR_TM);
 			$("#osw").text(data.CMT_WOUT_TM);
 			$("#cbw").text(data.CMT_CB_TM);
 			$("#ofw").text(data.CMT_END_TM);
-			if (data.CMT_SRT_TM != "-") {
+			if (data.CMT_STR_TM != "-") {
 				$("#punchInBtn").attr("class", "nav-link active");
 			}
 			if (data.CMT_WOUT_TM != "-") {
@@ -148,8 +155,7 @@ function punchOut() {
 	<div id="clockstatus" style="width: 80%">
 		<table class="table" style="width: 100%; text-align: center">
 			<tr>
-				<th colspan="2" width="100%" style="text-align: center">2018년
-					10월 07일 일요일</th>
+				<th colspan="2" width="100%" style="text-align: center" id="today_kor"></th>
 			</tr>
 			<tr>
 				<td width="30%">출근</td>

@@ -61,7 +61,11 @@ $(document).ready(function(){
 										<table id="cardtitle" width="100%">
 											<tr>
 												<td style="width:50%"><h6>오늘의업무</h6></td>
-												<td style="width:50%;text-align:right"><button class="simplebtn1">추가하기</button></td>
+												<td style="width:50%;text-align:right">
+<!-- 											<button class="simplebtn1">추가하기</button> -->
+												<input name="todo" id="todo" data-toggle="modal" data-target="#schedule" class="btn btn-default btn-sm" type="button" value="추가하기">
+												<%@ include file="/assets/common/modal/schedule/register.jsp" %>
+												</td>
 											</tr>
 										</table>
 									</div>

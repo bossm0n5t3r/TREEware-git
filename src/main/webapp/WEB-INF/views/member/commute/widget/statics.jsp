@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/commute/statics.tree"
+		,dataType : "json"
+		,success : function(data) {
+			$("#avgStartTime").text(data.avgStartTime);
+			$("#avgEndTime").text(data.avgEndTime);
+		}
+		,error : function(e) {
+			
+		}
+	})
+})
+</script>
 <div class="card" align="center">
 	<div class="card-header">
 		<div class="card-title" align="left">근무통계</div>
@@ -16,11 +32,11 @@
 			</tr>
 			<tr>
 				<td>평균출근시간</td>
-				<td>08:44</td>
+				<td id="avgStartTime"></td>
 			</tr>
 			<tr>
 				<td>평균퇴근시간</td>
-				<td>18:30</td>
+				<td id="avgEndTime"></td>
 			</tr>
 			<tr>
 				<td>올해사용연차</td>

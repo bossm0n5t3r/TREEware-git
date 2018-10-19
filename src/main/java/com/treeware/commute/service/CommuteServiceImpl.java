@@ -1,5 +1,6 @@
 package com.treeware.commute.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -53,6 +54,21 @@ public class CommuteServiceImpl implements CommuteService {
 	@Override
 	public int punchOut(CommuteDto commuteDto) {
 		return sqlSession.getMapper(CommuteDao.class).punchOut(commuteDto);
+	}
+
+	@Override
+	public List<CommuteDto> getCommuteDtoList(Map<String, String> map) {
+		return sqlSession.getMapper(CommuteDao.class).getCommuteDtoList(map);
+	}
+
+	@Override
+	public String getAvgStartTime(String emp_sq) {
+		return sqlSession.getMapper(CommuteDao.class).getAvgStartTime(emp_sq);
+	}
+
+	@Override
+	public String getAvgEndTime(String emp_sq) {
+		return sqlSession.getMapper(CommuteDao.class).getAvgEndTime(emp_sq);
 	}
 
 }

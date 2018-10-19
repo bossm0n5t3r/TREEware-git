@@ -91,142 +91,17 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">2018년 10월 01일</h4>
-										<p class="card-category">출근: 08:45</p>
-										<p class="card-category">외근: 13:50</p>
-										<p class="card-category">복귀: 16:50</p>
-									</div>
-									<div class="card-body">
-										<div id="task-complete" class="chart-circle mt-4 mb-3"></div>
-									</div>
-									<div class="card-footer">
-										<div class="legend" style="padding:5px"><button type="button" class="btn btn-outline-primary">출근하기</button></div>
-										<div class="legend" style="padding:5px"><button type="button" class="btn btn-outline-primary">외근하기</button></div>
-										<div class="legend" style="padding:5px"><button type="button" class="btn btn-outline-primary">복귀하기</button></div>
-										<div class="legend" style="padding:5px"><button type="button" class="btn btn-outline-primary">퇴근하기</button></div>
-										<!-- <div class="legend"><i class="la la-circle text-primary"></i>출근하기</div> -->
-									</div>
-								</div>
+							<div class="col-md-5">
+								<%@ include file="/assets/common/member/home/clock.jsp" %>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-7">
 								<div class="card card-tasks">
 									<div class="card-header ">
 										<h4 class="card-title">대기중인 결재서류</h4>
 										<p class="card-category"></p>
 									</div>
-									<div class="card-body ">
-										<div class="table-full-width">
-											<table class="table">
-												<thead>
-													<tr>
-														<th>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</th>
-														<th>서류제목</th>
-														<th>제출인</th>
-														<th>처리상황</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input task-select" type="checkbox">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</td>
-														<td>9월 회식비용 영수증</td>
-														<td>머신러닝팀 김지훈 이사</td>
-														<td class="td-actions text-right">
-															<div class="form-button-action">
-																<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-																	<i class="la la-edit"></i>
-																</button>
-																<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-																	<i class="la la-times"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input task-select" type="checkbox">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</td>
-														<td>사내체육대회 장소입찰 결재</td>
-														<td>경영지원팀 강수민 이사</td>
-														<td class="td-actions text-right">
-															<div class="form-button-action">
-																<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-																	<i class="la la-edit"></i>
-																</button>
-																<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-																	<i class="la la-times"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input task-select" type="checkbox">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</td>
-														<td>후이즈 도메인 입찰서류</td>
-														<td>서버개발팀 박윤민 이사</td>
-														<td class="td-actions text-right">
-															<div class="form-button-action">
-																<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-																	<i class="la la-edit"></i>
-																</button>
-																<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-																	<i class="la la-times"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input task-select" type="checkbox">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</td>
-														<td>사원 개인 노트북지원 예상견적서</td>
-														<td>프론트엔드팀 강혜인 이사</td>
-														<td class="td-actions text-right">
-															<div class="form-button-action">
-																<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-																	<i class="la la-edit"></i>
-																</button>
-																<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-																	<i class="la la-times"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
+									<div class="card-body">
+										<%@ include file="/assets/common/member/home/list.jsp" %>
 									</div>
 									<div class="card-footer ">
 										<div class="stats">

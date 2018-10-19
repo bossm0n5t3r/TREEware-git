@@ -63,5 +63,6 @@ function click_dpt(dptname){
     var td = $(dptname).children();
 	document.getElementById("dpt_sq").value = td.eq(0).text();
 	document.getElementById("dptname").value = td.eq(1).text();
+	document.getElementById("dptname").innerHTML = td.eq(1).text();
 }
 </script>

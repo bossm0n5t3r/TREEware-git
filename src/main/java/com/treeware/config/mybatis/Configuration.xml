@@ -6,12 +6,12 @@
 
 	<typeAliases>
 		<typeAlias alias="EmployeeDto" type="com.treeware.admin.member.model.EmployeeDto"/>
-		<typeAlias alias="CommuteDto" type="com.treeware.admin.commute.model.CommuteDto"/>
 		<typeAlias alias="DepartmentDto" type="com.treeware.admin.member.model.DepartmentDto"/>
 		<typeAlias alias="PositionDto" type="com.treeware.admin.member.model.PositionDto"/>
 		<typeAlias alias="RankDto" type="com.treeware.admin.member.model.RankDto"/>
 		<typeAlias alias="MailDto" type="com.treeware.email.model.MailDto"/>
-		
+		<typeAlias alias="CommuteDto" type="com.treeware.admin.commute.model.CommuteDto"/>
+		<typeAlias alias="ScheduleDto" type="com.treeware.admin.schedule.model.ScheduleDto"/>
 	</typeAliases>
 	
 </configuration>

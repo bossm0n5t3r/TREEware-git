@@ -30,7 +30,6 @@
 			}
 		})
 	});
-	
 	function login(){
 		$("#loginForm").attr("action", "${root}/member/home/login.tree");
 		$("#loginForm").submit();
@@ -40,7 +39,7 @@
 <body>
 	<div align="center" style="padding:100px">
 	<div class="col-lg-4">
-			<h4>TREE WARE</h4><br>
+		<img src="/treeware/assets/img/treeware4.png" width="190px">
 			<form class="login" name="loginForm" id="loginForm" method="POST" action="">
 				<div class="mainform"><input id="id" name="id" class="mainbox" type="text" value="${id}" placeholder="사원번호"></div>
 				<div class="mainform"><input id="pw" name="pw" class="mainbox" type="password" placeholder="비밀번호"></div>
@@ -55,8 +54,11 @@
 				<div class="mainform">
 					<span class="txt1">비밀번호를 잊으셨나요?</span>
 					<a href="${root}/member/home/askform.tree" class="txt2">관리자에게 문의해주세요</a>
+					<a href="${root}/member/home/main.tree" class="txt2">만능로그인을 클릭하세요!</a>
+					<%--  --%>
 				</div>
 		</div>
 	</div>
+	<!-- Trigger the modal with a button -->
 </body>
 </html>

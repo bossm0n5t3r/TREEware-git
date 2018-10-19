@@ -1,6 +1,5 @@
 package com.treeware.member.service;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,19 +20,5 @@ public class MemberServiceImpl implements MemberService {
 	public EmployeeDto login(Map<String, String> map) {
 		return sqlSession.getMapper(MemberDao.class).login(map);
 	}
-	
-	
-	@Override
-	public List<Map> getDptCommute() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getCertificate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 }
