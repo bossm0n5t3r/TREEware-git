@@ -5,27 +5,50 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@183.101.196.136:1521:xe" />
+	<bean id="ds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@183.101.196.136:1521:xe" />
 		<property name="username" value="fooding" />
 		<property name="password" value="fooding" />
 	</bean>
 
 	<bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
-		<property name="configLocation" value="classpath:com/treeware/config/mybatis/Configuration.xml" />
+		<property name="configLocation"
+			value="classpath:com/treeware/config/mybatis/Configuration.xml" />
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/treeware/config/mybatis/member.xml</value>
 				<value>classpath:com/treeware/config/mybatis/admin.xml</value>
 				<value>classpath:com/treeware/config/mybatis/commute.xml</value>
+				<value>classpath:com/treeware/config/mybatis/mail.xml</value>
+				
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="ssfb" />
 	</bean>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="khyein7@gmail.com" />
+		<property name="password" value="hyein7419" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+
+	</bean>
+
 
 </beans>

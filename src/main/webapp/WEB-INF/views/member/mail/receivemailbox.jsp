@@ -7,34 +7,26 @@
 <link rel="stylesheet" href="${root}/assets/css/search.css">
 
 <script type="text/javascript">
-	$(function() {
-		$('#bookmark')
-				.click(
-						function() {
-							var src = ($(this).attr('class') == 'la la-heart-o') ? 'la la-heart'
-									: 'la la-heart-o';
-							$(this).attr('class', src);
+$(document).ready(function(){
+	$("#bookmark").click(function(){
+		var src = ($(this).attr('class') == 'la la-heart-o') ? 'la la-heart'
+				: 'la la-heart-o';
+		$(this).attr('class', src);
+	});
+	
+	$("#readdrop li a").click(function(){
 
-						});
+		$("#readbtn:first-child").text($(this).text());
+		$("#readbtn:first-child").val($(this).text());
+
+	});	
+	
+	$("#delete").click(function() {
+		$("#deletemodal").modal({
+			remote : '${root}/menu/mail/deleteok.jsp'
+		});		
 	});
 
-	$(function() {
-		$("#readdrop li a").click(function() {
-
-			$("#readbtn:first-child").text($(this).text());
-			$("#readbtn:first-child").val($(this).text());
-
-		});
-
-	});
-
-	$(function() {
-		$("#delete").click(function() {
-			$("#deletemodal").modal({
-				remote : '${root}/menu/mail/deleteok.jsp'
-			});
-		});
-	});
 </script>
 
 </head>

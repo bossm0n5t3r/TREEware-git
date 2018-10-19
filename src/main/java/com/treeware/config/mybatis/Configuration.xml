@@ -10,6 +10,8 @@
 		<typeAlias alias="DepartmentDto" type="com.treeware.admin.member.model.DepartmentDto"/>
 		<typeAlias alias="PositionDto" type="com.treeware.admin.member.model.PositionDto"/>
 		<typeAlias alias="RankDto" type="com.treeware.admin.member.model.RankDto"/>
+		<typeAlias alias="MailDto" type="com.treeware.email.model.MailDto"/>
+		
 	</typeAliases>
 	
 </configuration>
