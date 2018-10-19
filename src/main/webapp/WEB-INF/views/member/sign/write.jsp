@@ -46,7 +46,6 @@ $(document).ready(function(){
 								<!-- 주소록 콘텐츠 페이지  -->
 								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/member/sign/forms/kiahn.jsp"></IFRAME>
 								<!-- 주소록 콘텐츠 끝 -->
-								<%@ include file="/assets/common/modal/member.jsp" %>
 								<br><br><br>
 							</div>
 						</div>

@@ -30,7 +30,6 @@
 			}
 		})
 	});
-	
 	function login(){
 		$("#loginForm").attr("action", "${root}/member/home/login.tree");
 		$("#loginForm").submit();
@@ -56,6 +55,7 @@
 					<span class="txt1">비밀번호를 잊으셨나요?</span>
 					<a href="${root}/member/home/askform.tree" class="txt2">관리자에게 문의해주세요</a>
 					<a href="${root}/member/home/main.tree" class="txt2">만능로그인을 클릭하세요!</a>
+					<%--  --%>
 				</div>
 		</div>
 	</div>
