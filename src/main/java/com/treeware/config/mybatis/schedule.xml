@@ -11,21 +11,21 @@
 	</select>
 	
 	<select id="getListSchedule" parameterType="String" resultType="ScheduleDto">
-		SELECT scd_sq, emp_sq, scd_nm, scd_pst, scd_sday, scd_stime, scd_eday, scd_etime, scd_dct
+		SELECT scd_sq, scd_div_sq, emp_sq, scd_nm, scd_pst, scd_sday, scd_stime, scd_eday, scd_etime, scd_dct
 		FROM SCD
 		WHERE emp_sq = #{emp_sq}
 	</select>
 
 	<insert id="registerSchedule" parameterType="ScheduleDto">
-		INSERT INTO SCD (scd_sq, emp_sq, scd_nm, scd_pst
+		INSERT INTO SCD (scd_sq, scd_div_sq, emp_sq, scd_nm, scd_pst
 						 , scd_sday, scd_stime, scd_eday, scd_etime, scd_dct)
-		values (#{scd_sq}, #{emp_sq}, #{scd_nm}, #{scd_pst}
+		values (#{scd_sq}, #{scd_div_sq}, #{emp_sq}, #{scd_nm}, #{scd_pst}
 				, #{scd_sday}, #{scd_stime}, #{scd_eday}, #{scd_etime}, #{scd_dct})
 	</insert>
 	
 	<update id="modifySchedule" parameterType="ScheduleDto">
 		UPDATE SCD
-		SET scd_nm = #{scd_nm}, scd_pst = #{scd_pst}, scd_sday = #{scd_sday}
+		SET scd_div_sq = #{scd_div_sq}, scd_nm = #{scd_nm}, scd_pst = #{scd_pst}, scd_sday = #{scd_sday}
 			, scd_stime = #{scd_stime}, scd_eday = #{scd_eday}, scd_etime = #{scd_etime}
 			, scd_dct = #{scd_dct}
 		WHERE scd_sq = #{scd_sq}
