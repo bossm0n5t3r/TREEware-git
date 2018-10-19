@@ -15,19 +15,19 @@ public class AdminBoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/register.tree", method=RequestMethod.GET)
-	public ModelAndView register() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/board/register");
-		return mav;
-	}
-	//게시판생성
-	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
-	public ModelAndView register(@RequestParam ) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/board/register");
-		return mav;
-	}
+//	@RequestMapping(value="/register.tree", method=RequestMethod.GET)
+//	public ModelAndView register() {
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("admin/board/register");
+//		return mav;
+//	}
+//	//게시판생성
+//	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
+//	public ModelAndView register(@RequestParam ) {
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("admin/board/register");
+//		return mav;
+//	}
 	
 	@RequestMapping("/view.tree")
 	public ModelAndView view() {
