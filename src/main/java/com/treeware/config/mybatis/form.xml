@@ -21,7 +21,7 @@
 					APV_DATE, 
 					APV_WRITE_DATE, 
 					APV_TITLE) 
-	values(	#{}, 
+	values(	#{apv_sq}, 
 			#{apv_form_sq}, 
 			0, 
 			#{emp_sq}, 

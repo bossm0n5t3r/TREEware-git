@@ -31,7 +31,6 @@ function empajax(){
 			memberSearch(data);
 		}
 		,error : function(e) {
-			alert("올바른 입력이 아닙니다");
 		}
 });
 }

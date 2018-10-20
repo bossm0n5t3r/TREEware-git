@@ -25,15 +25,19 @@ public class FormController {
 	
 	@Autowired
 	private AdminMemberService adminMemberService;
+	
+	@Autowired
 	private FormService formService;
 	
 	//결재등록
 	@RequestMapping(value="/write.tree", method=RequestMethod.POST)
 	public ModelAndView write(FormDto formDto) {
+		System.out.println("ddd");
 		ModelAndView mav = new ModelAndView();
 		int cnt = formService.write(formDto);
 		mav.setViewName("admin/account/register");
 		mav.addObject("cnt", cnt);
+		System.out.println("//////////////");
 		return mav;
 	}
 	

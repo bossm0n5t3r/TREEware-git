@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.treeware.admin.member.dao.AdminMemberDao;
 import com.treeware.admin.member.model.DepartmentDto;
@@ -13,6 +14,7 @@ import com.treeware.admin.member.model.RankDto;
 import com.treeware.form.dao.FormDao;
 import com.treeware.form.model.FormDto;
 
+@Service
 public class FormServiceImpl implements FormService {
 
 	@Autowired
