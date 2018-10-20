@@ -52,13 +52,30 @@ function memberSearch(result){
 		}
 	}
 }
-
 function memberSelect(a){
-	if(members.length==3){
-		alert("최대 3명 선택할 수 있습니다. 확인 후 다시 시도해주세요");
+	memberCnt++;
+	if(cnt[0]==0){
+		temp = 0;
+		cnt[0] = 1;
+	}else if(cnt[1]==0){
+		temp = 1;
+		cnt[1] = 1;
+	}else if(cnt[2]==0){
+		temp = 2;
+		cnt[2] = 1;
 	}else{
-		members.push('data[a]');
+		alert("최대 3명 선택할 수 있습니다. 확인 후 다시 시도해주세요");
+		return;
 	}
+	var name = data[a].emp_nm;
+	var id = data[a].emp_sq;
+	var point1 = "#memberName"+temp;
+	var point2 = "#memberEmpnm"+temp;
+	var point3 = "#memberSign"+temp;
+	$(point1).text(name).css('background-color','#fff');
+	$(point2).val(id);
+	$(point3).html('<a href="javascript:memberDelete'+temp+'()">삭제하기</a>').css('background-color','#fff');
+	memberList();
 	$(".close-modal").click();
 }
 </script>
@@ -84,5 +101,4 @@ function memberSelect(a){
 			</table>
 		</div>
 	</form>
-<!-- <p><a href="#" rel="modal:close">Close</a></p> -->
 </div>
