@@ -9,6 +9,7 @@ td{
 }
 </style>
 <script>
+var data ;
 $(document).ready(function(){
 	$("#search_word").keyup(function(){
 		if($("#search_word").val()!=''){
@@ -16,7 +17,6 @@ $(document).ready(function(){
 		}
 	});
 });
-
 function empajax(){
 	var key="emp_nm"
 	$.ajax({
@@ -35,20 +35,16 @@ function empajax(){
 		}
 });
 }
-
-//목록출력
 function memberSearch(result){
 	$('.list').empty();
-	var data =result.employee;
-	console.log(data.length)
+	data = result.employee;
 	if(data.length==0){
 		$('.list').append('<tr><td colspan="4"><b>검색결과가 없습니다.</b></td></tr>');
 	}else{
 		for(var i=0; i<data.length; i++){
-// 			$('.list').append('<tr id="member" onclick="signmember()">');
 			$('.list').append('<tr id="member">');
-			$('.list').append('<td>'+data[i].dpt_sq+'</td>');
-			$('.list').append('<td>'+data[i].rnk_sq+'</td>');
+			$('.list').append('<td><a href="javascript:memberSelect('+i+')">'+change_dpt(data[i].dpt_sq)+'</a></td>');
+			$('.list').append('<td>'+change_rnk(data[i].rnk_sq)+'</td>');
 			$('.list').append('<td>'+data[i].emp_nm+'</td>');
 			$('.list').append('<td>'+data[i].emp_tel1+'-'+data[i].emp_tel2+'-'+data[i].emp_tel3+'</td>');
 			$('.list').append('</tr>');
@@ -56,11 +52,31 @@ function memberSearch(result){
 		}
 	}
 }
-
-
-function signmember(member){
-	$('#search_word').empty();
-	modal:close();
+function memberSelect(a){
+	memberCnt++;
+	if(cnt[0]==0){
+		temp = 0;
+		cnt[0] = 1;
+	}else if(cnt[1]==0){
+		temp = 1;
+		cnt[1] = 1;
+	}else if(cnt[2]==0){
+		temp = 2;
+		cnt[2] = 1;
+	}else{
+		alert("최대 3명 선택할 수 있습니다. 확인 후 다시 시도해주세요");
+		return;
+	}
+	var name = data[a].emp_nm;
+	var id = data[a].emp_sq;
+	var point1 = "#memberName"+temp;
+	var point2 = "#memberEmpnm"+temp;
+	var point3 = "#memberSign"+temp;
+	$(point1).text(name).css('background-color','#fff');
+	$(point2).val(id);
+	$(point3).html('<a href="javascript:memberDelete'+temp+'()">삭제하기</a>').css('background-color','#fff');
+	memberList();
+	$(".close-modal").click();
 }
 </script>
 <!-- 제이쿼리 모달창 -->
@@ -85,5 +101,4 @@ function signmember(member){
 			</table>
 		</div>
 	</form>
-<!-- <p><a href="#" rel="modal:close">Close</a></p> -->
 </div>
