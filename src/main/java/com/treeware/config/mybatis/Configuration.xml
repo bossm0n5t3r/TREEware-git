@@ -12,6 +12,10 @@
 		<typeAlias alias="MailDto" type="com.treeware.email.model.MailDto"/>
 		<typeAlias alias="CommuteDto" type="com.treeware.admin.commute.model.CommuteDto"/>
 		<typeAlias alias="ScheduleDto" type="com.treeware.admin.schedule.model.ScheduleDto"/>
+		<typeAlias alias="BoardDto" type="com.treeware.admin.board.model.BoardDto"/>
+		<typeAlias alias="BoardListDto" type="com.treeware.admin.board.model.BoardListDto"/>
+		<typeAlias alias="CategoryDto" type="com.treeware.admin.board.model.CategoryDto"/>
+		
 	</typeAliases>
 	
 </configuration>

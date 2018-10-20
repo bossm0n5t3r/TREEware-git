@@ -29,7 +29,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% for(int i=0; i<10 ; i++){ %>
+	
 		<tr>
 			<td>
 				<div class="form-check">
@@ -39,10 +39,10 @@
 					</label>
 				</div>
 			</td>
-			<td>김하늘</td>
-			<td>010-0000-0000</td>
-			<td>skykim@gmail.com</td>
-			<td>영업1팀</td>
+<%-- 			<td>${brd_ttl}</td> --%>
+<%-- 			<td>${brd_ttl}</td> --%>
+<%-- 			<td>${emp_nm}</td> --%>
+<%-- 			<td>${brd_dt}</td> --%>
 			<td class="td-actions text-left">
 				<div class="form-button-action">
 					<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary">
@@ -54,6 +54,6 @@
 				</div>
 			</td>
 		</tr>
-		<%} %>
+		
 	</tbody>
 </table>

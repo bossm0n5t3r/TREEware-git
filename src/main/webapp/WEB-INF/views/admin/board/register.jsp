@@ -6,11 +6,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%@ include file="/assets/common/import.jsp" %>
-	<script>
-	function submit(){
+<script>
+$(document).ready(function(){
+	$('#registerBtn').click(function(){
 		 $('#registerMemberForm').attr("action", "register.tree");
 		 $('#registerMemberForm').submit();
-	}
+	})
+});
 	function goback(){
 		location.href="${root}/index.jsp";
 	}
@@ -34,13 +36,27 @@
 									<!-- 사원등록1 -->
 									<br>
 									<form class="form" method="POST" id="registerMemberForm" name="registerMemberForm" action="">
-										<input type="hidden" name="act" value="registerMember">
 										<div class="row" style="padding:0 20px">
 											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
 												게시판 제목
 											</div>
 											<div style="width:85%" class="box-group">
-												<input id="pw" name="pw" type="password" class="mainbox">
+												<input id="bname" name="bname" type="text" class="mainbox">
+											</div>
+										</div>
+										<div class="row" style="padding:0 20px">
+											<div style="width:15%;padding:10px;" class="box-group">
+												카테고리
+											</div>
+											<div style="width:85%" class="box-group">
+												<select id="ccode" name="ccode" class="form-control" style="font-size:100%">
+													<option value='0'>전체부서</option>
+													<option value='1'>관리부</option>
+													<option value='2'>인사부</option>
+													<option value='3'>무역부</option>
+													<option value='4'>영업부</option>
+													<option value='5'>판매부</option>
+												</select>
 											</div>
 										</div>
 										<div class="row" style="padding:0 20px">
@@ -48,12 +64,13 @@
 												게시판 종류
 											</div>
 											<div style="width:85%" class="box-group">
-												<select id="jw" name="jw" class="form-control" style="font-size:100%">
+												<select id="btype" name="btype" class="form-control" style="font-size:100%">
 													<option value='0' disabled>게시판선택</option>
 													<option value='1'>일반게시판</option>
 													<option value='2'>앨범게시판</option>
 													<option value='3'>자료실</option>
 												</select>
+												<input type="hidden" id="bname" name="bname">
 											</div>
 										</div>
 										<div class="row" style="padding:0 20px">
@@ -117,7 +134,7 @@
 									</form>
 								</div>
 							<div class="card-footer" align="center">
-								<button class="btn btn-success" onclick="javascript:submit()" style="width:120px;padding:10px;margin:5px">등록하기</button>
+								<button class="btn btn-success" id="registerBtn" style="width:120px;padding:10px;margin:5px">등록하기</button>
 								<button class="btn btn-danger" onclick="javascript:goback()" style="width:120px;padding:10px;margin:5px">등록취소</button>
 							</div>
 							</div>
