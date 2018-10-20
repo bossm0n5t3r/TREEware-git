@@ -5,7 +5,7 @@
 
 <mapper namespace="com.treeware.form.dao.FormDao">
 
-	<insert id="write" parameterType="formDto" >
+	<insert id="write" parameterType="FormDto" >
 	insert into APV(APV_SQ, 
 					APV_FORM_SQ, 
 					APV_OK_SQ, 

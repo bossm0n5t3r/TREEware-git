@@ -21,7 +21,7 @@ function empajax(){
 	var key="emp_nm"
 	$.ajax({
 		type : "GET"
-		,url : "/treeware/member/form/membersearch.tree"
+		,url : "/treeware/member/sign/membersearch.tree"
 		,dataType : "json"
 		,data : {
 			"key" : key,

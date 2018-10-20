@@ -20,7 +20,7 @@ import com.treeware.form.model.FormDto;
 import com.treeware.form.service.FormService;
 
 @Controller
-@RequestMapping("/member/form")
+@RequestMapping("/member/sign")
 public class FormController {
 	
 	@Autowired
@@ -29,15 +29,27 @@ public class FormController {
 	@Autowired
 	private FormService formService;
 	
-	//결재등록
+	//결재메뉴 리스트화면(메인)
+	@RequestMapping("/main.tree")
+	public String main() {
+		return "member/sign/main";
+	}
+	
+	//결재메뉴 글쓰기화면
+	@RequestMapping("/write.tree")
+	public ModelAndView gotowrite() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/sign/write");
+		return mav;
+	}
+	
 	@RequestMapping(value="/write.tree", method=RequestMethod.POST)
 	public ModelAndView write(FormDto formDto) {
 		System.out.println("ddd");
 		ModelAndView mav = new ModelAndView();
 		int cnt = formService.write(formDto);
-		mav.setViewName("admin/account/register");
 		mav.addObject("cnt", cnt);
-		System.out.println("//////////////");
+		mav.setViewName("member/sign/main");
 		return mav;
 	}
 	

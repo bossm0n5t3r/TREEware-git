@@ -21,8 +21,9 @@ $(document).ready(function() {
 			alert("내용을 입력해주세요");
 			return;
 		}else {
-// 			$("#signform").attr("action","${root}/member/form/write.tree").submit();
-			$("#signform").attr("action","http://www.naver.com").submit();
+// 			이페이지가 iframe이라서 ${root}로는 안넘어가는건지?
+// 			$("#signform").attr("action","${root}/member/sign/write.tree").submit();
+			$("#signform").attr("action","/treeware/member/sign/write.tree").submit();
 		}
 	});
 	var a = ${userInfo.dpt_sq};
