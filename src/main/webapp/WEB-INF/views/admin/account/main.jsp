@@ -34,7 +34,7 @@
 										<%-- 								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/admin/account/list.jsp"></IFRAME> --%>
 										<div class="buttonmenu" align="center" style="margin: 20px 0 20px 0">
 											<div class="row" style="width: 100%">
-												<div style="width: 60%; text-align: left">
+												<div style="width: 70%; text-align: left">
 													<table style="width:100%">
 														<tr>
 															<td>
@@ -44,9 +44,31 @@
 														</tr>
 													</table>
 												</div>
-												<div style="width: 40%; text-align: right">
-													<button id="btnEdit" class="simplebtn1">선택수정</button>
-													<button id="btnDept" class="simplebtn1" data-toggle="modal" data-target="#departments" >부서목록</button>
+												<div style="width: 30%; text-align: right">
+													<form class="navbar-left navbar-form nav-search mr-md-3" action="">
+															<table style="width:100%">
+																<tr>
+																	<td style="width:30%">
+																	<select id="key" name="key" class="form-control" style="font-size:100%">
+																			<option value='emp_nm'>사원명</option>
+																			<option value='dpt_sq'>부서</option>
+																			<option value='rnk_sq'>직위</option>
+																	</select>
+																	</td>
+																	<td style="width:70%">
+																		<div class="input-group" style="opacity:0.6">
+																		<input id="search_word" name="search_word" type="text" placeholder="Search ..." class="form-control">
+																		<input type="hidden" id="word" name="word">
+																		<div class="input-group-append">
+																			<span class="input-group-text">
+																				<i id="searchBtn" class="la la-search search-icon"></i>
+																			</span>
+																		</div>
+																	</div>
+																	</td>
+																</tr>
+															</table>
+														</form>
 												</div>
 											</div>
 										</div>
@@ -95,31 +117,6 @@
 											<table>
 												<tr>
 													<td>
-														<form class="navbar-left navbar-form nav-search mr-md-3" action="" style="width:300px;padding:10px">
-															<table style="width:100%">
-																<tr>
-																	<td style="width:30%">
-																	<select id="key" name="key" class="form-control" style="font-size:100%">
-																			<option value='emp_nm'>사원명</option>
-																			<option value='dpt_sq'>부서</option>
-																			<option value='rnk_sq'>직위</option>
-																			<option value='emp_reg'>입사일</option>
-																	</select>
-																	</td>
-																	<td style="width:70%">
-																		<div class="input-group" style="opacity:0.6">
-																		<input id="search_word" name="search_word" type="text" placeholder="Search ..." class="form-control">
-																		<input type="hidden" id="word" name="word">
-																		<div class="input-group-append">
-																			<span class="input-group-text">
-																				<i id="searchBtn" class="la la-search search-icon"></i>
-																			</span>
-																		</div>
-																	</div>
-																	</td>
-																</tr>
-															</table>
-														</form>
 													</td>
 												</tr>
 											</table>

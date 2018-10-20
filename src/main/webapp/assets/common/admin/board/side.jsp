@@ -42,11 +42,6 @@
 					<p>게시판등록</p>
 				</a>
 			</li>
-			<li class="nav-item">
-				<a href="${root}/admin/board/edit.tree">
-					<p>게시판 수정</p>
-				</a>
-			</li>
 		</ul>
 	</div>
 </div>

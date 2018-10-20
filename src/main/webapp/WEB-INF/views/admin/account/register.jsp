@@ -77,7 +77,7 @@
 								<div class="card-body">
 									<!-- 사원등록1 -->
 									<br>
-									<form class="form" method="POST" id="registerMemberForm" name="registerMemberForm">
+									<form class="form" method="POST" id="registerMemberForm" name="registerMemberForm" enctype="multipart/form-data">
 										<div class="row">
 											<div class="col-md-2" style="padding:10px 20px 0 0">
 												<label class="form-check-label">

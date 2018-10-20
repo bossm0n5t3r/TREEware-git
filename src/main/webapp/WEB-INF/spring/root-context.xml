@@ -27,6 +27,7 @@
 				<value>classpath:com/treeware/config/mybatis/mail.xml</value>
 				<value>classpath:com/treeware/config/mybatis/schedule.xml</value>
 				<value>classpath:com/treeware/config/mybatis/AdminMember.xml</value>
+				<value>classpath:com/treeware/config/mybatis/board.xml</value>
 			</list>
 		</property>
 	</bean>
