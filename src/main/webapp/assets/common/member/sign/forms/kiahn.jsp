@@ -27,11 +27,40 @@ $(document).ready(function() {
 	var a = ${userInfo.dpt_sq};
 	var b = change_dpt(a);
 	$("#dpt_name").text(b);
-	
 });
 
-var members = [];
-console.log(members.length);
+var memberlist = "";
+var memberCnt = 0;
+var cnt = [0,0,0];
+
+function memberDelete0(a){
+	$("#memberName0").html('').css('background-color','#eee');
+	$("#memberSign0").html('').css('background-color','#eee');
+	$("#memberEmpnm0").val('');
+	memberList();
+	memberCnt--;
+	cnt[0] = 0;
+}
+function memberDelete1(a){
+	$("#memberName1").html('').css('background-color','#eee');
+	$("#memberSign1").html('').css('background-color','#eee');
+	$("#memberEmpnm1").val('');
+	memberList();
+	memberCnt--;
+	cnt[1] = 0;
+}
+function memberDelete2(a){
+	$("#memberName2").html('').css('background-color','#eee');
+	$("#memberSign2").html('').css('background-color','#eee');
+	$("#memberEmpnm2").val('');
+	memberList();
+	memberCnt--;
+	cnt[2] = 0;
+}
+function memberList(){
+	var memberlist = $("#memberName0").html() + "&nbsp;" + $("#memberName1").html() +"&nbsp;" + $("#memberName2").html();
+	$("#memberTo").html(memberlist);
+}
 
 </script>
 <div class="row" style="border:1px solid #777;padding:20px;border-radius:1px;">
@@ -41,10 +70,11 @@ console.log(members.length);
 	</div>
 	<form class="signform" method="POST" name="signform" action="">
 	<input type="hidden" name="formName" value="kiahn">
-	<input type="hidden" name="member1" value="">
-	<input type="hidden" name="member2" value="">
-	<input type="hidden" name="member3" value="">
-	<input type="hidden" id="members_num" value="">
+	<input type="hidden" id="userName" value="">
+	<input type="hidden" id="userEmpnm" value="">
+	<input type="hidden" id="memberEmpnm0" value="">
+	<input type="hidden" id="memberEmpnm1" value="">
+	<input type="hidden" id="memberEmpnm2" value="">
 	<div id="info" class="row">
 		<table style="width:100%">
 			<tr>
@@ -78,14 +108,14 @@ console.log(members.length);
 							<td class="info_title" width="80px" style="background-color:#eee;text-align:center">결재자</td>
 						</tr>
 						<tr>
-							<td class="info_text" id="memberName1" style="text-align:center">김지훈</td>
-							<td class="info_text" id="memberName2" style="text-align:center">강혜인</td>
-							<td class="info_text" id="memberName3" style="text-align:center">김고은</td>
+							<td class="info_text" id="memberName0" style="background-color:#eee;text-align:center"></td>
+							<td class="info_text" id="memberName1" style="background-color:#eee;text-align:center"></td>
+							<td class="info_text" id="memberName2" style="background-color:#eee;text-align:center"></td>
 						</tr>
 						<tr>
-							<td class="info_img" id="memberSign1"><img src="/treeware/assets/img/signjh.png" height="50px"></td>
-							<td class="info_img" id="memberSign2"><img src="/treeware/assets/img/signhi.png" height="50px"></td>
-							<td class="info_img" id="memberSign3"><img src="/treeware/assets/img/signge.png" height="50px"></td>
+							<td class="info_img" id="memberSign0" style="background-color:#eee"></td>
+							<td class="info_img" id="memberSign1" style="background-color:#eee"></td>
+							<td class="info_img" id="memberSign2" style="background-color:#eee"></td>
 						</tr>
 					</table>
 				</td>
@@ -93,37 +123,40 @@ console.log(members.length);
 		</table>
 	</div>
 	<table id="second" class="formtable" style="width:100%">
-			<tr>
-				<td width="20%" class="info_title" style="background-color:#eee;text-align:center">문서번호</td>
-				<td width="80%" colspan="3">트리웨어기안문-2018-0123</td>
-			</tr> 
-			<tr>
-				<td width="20%" class="info_title" style="background-color:#eee;text-align:center">수 신 처</td>
-				<td width="80%" colspan="3">
-					<span id="members"></span>
-					<a href="#member" rel="modal:open">
-						<input type="button" value="찾아보기">
-					</a>
-				</td>
-			</tr>
-			<tr>
-				<td width="20%" class="info_title" style="background-color:#eee;text-align:center">제 목</td>
-				<td width="80%" colspan="3"><input id="title" name="title" type="text" value="" style="width:100%"></td>
-			</tr>
-			<tr>
-				<td width="20%" class="info_title" style="background-color:#eee;text-align:center">기 안 일</td>
-				<td width="30%"><input type="date" id="date1" name="date1"></td>
-				<td width="20%" class="info_title" style="background-color:#eee;text-align:center">시행일자</td>
-				<td width="30%"><input type="date" id="date2" name="date2"></td>
-			</tr>
-			<tr>
-				<td class="info_title" colspan="4" style="background-color:#eee;text-align:center">상 세 내 용</td>
-			</tr>
+		<tr>
+			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">문서번호</td>
+			<td width="80%" colspan="3">트리웨어기안문-2018-0123</td>
+		</tr> 
+		<tr>
+			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">수 신 처</td>
+			<td width="80%" colspan="3">
+				<span id="memberTo"></span>
+				<a href="#member" rel="modal:open">
+					<input type="button" value="찾아보기">
+				</a>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">제 목</td>
+			<td width="80%" colspan="3">
+				<input id="title" name="title" type="text" value="" style="width:100%">
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">기 안 일</td>
+			<td width="30%"><input id="date1" name="date1" type="date"></td>
+			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">시행일자</td>
+			<td width="30%"><input id="date2" name="date2" type="date"></td>
+		</tr>
+		<tr>
+			<td class="info_title" colspan="4" style="background-color:#eee;text-align:center">상 세 내 용</td>
+		</tr>
 	</table>
 	<br>
-	<textarea id="content" name="content" rows="30" style="width:100%"></textarea>
+		<textarea id="content" name="content" rows="30" style="width:100%"></textarea>
 	<p style="text-align:center;margin:30px 0 30px 0 ">
-	<button type="button" id="writeBtn" style="padding:5px 15px">등록하기</button>
-	<button type="button" id="cancelBtn" style="padding:5px 15px">등록취소</button>
+		<button type="button" id="writeBtn" style="padding:5px 15px">등록하기</button>
+		<button type="button" id="cancelBtn" style="padding:5px 15px">등록취소</button>
+	<p>
 </form>
 </div>
