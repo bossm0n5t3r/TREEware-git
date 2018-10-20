@@ -9,11 +9,15 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.admin.member.service.AdminMemberService;
+import com.treeware.form.model.FormDto;
+import com.treeware.form.service.FormService;
 
 @Controller
 @RequestMapping("/member/form")
@@ -21,6 +25,17 @@ public class FormController {
 	
 	@Autowired
 	private AdminMemberService adminMemberService;
+	private FormService formService;
+	
+	//결재등록
+	@RequestMapping(value="/write.tree", method=RequestMethod.POST)
+	public ModelAndView write(FormDto formDto) {
+		ModelAndView mav = new ModelAndView();
+		int cnt = formService.write(formDto);
+		mav.setViewName("admin/account/register");
+		mav.addObject("cnt", cnt);
+		return mav;
+	}
 	
 	//사원검색
 	@RequestMapping("/membersearch.tree")
