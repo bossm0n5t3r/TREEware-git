@@ -92,7 +92,7 @@ function register_check(){
 
 $(document).ready(function() {
 	  $(function() {
-		    $("#birth").datepicker({
+		    $("#emp_bdate").datepicker({
 		      changeMonth: true,
 		      changeYear: true,
 		      dateFormat: "yymmdd",
@@ -104,7 +104,6 @@ $(document).ready(function() {
 	          dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
 	          dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 	          showMonthAfterYear: true,
-
 		    });
 	});
 });

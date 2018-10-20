@@ -16,6 +16,7 @@
 		<typeAlias alias="BoardListDto" type="com.treeware.admin.board.model.BoardListDto"/>
 		<typeAlias alias="CategoryDto" type="com.treeware.admin.board.model.CategoryDto"/>
 		<typeAlias alias="FormDto" type="com.treeware.form.model.FormDto"/>
+		<typeAlias alias="EmployeePicDto" type="com.treeware.admin.member.model.EmployeePicDto"/>
 	</typeAliases>
 	
 </configuration>
