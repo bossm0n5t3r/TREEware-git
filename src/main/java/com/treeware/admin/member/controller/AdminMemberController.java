@@ -1,12 +1,19 @@
 package com.treeware.admin.member.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
+import javax.servlet.ServletContext;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.treeware.admin.member.model.*;
@@ -18,6 +25,9 @@ public class AdminMemberController {
 	
 	@Autowired
 	private AdminMemberService adminMemberService;
+	
+	@Autowired
+	private ServletContext servletContext;
 	
 	// 계정관리 메인페이지
 	@RequestMapping("/main.tree")
@@ -47,9 +57,37 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
-	public ModelAndView register(EmployeeDto employeeDto) {
+	public ModelAndView register(EmployeeDto employeeDto, @RequestParam("file") MultipartFile multipartFile) {
 		ModelAndView mav = new ModelAndView();
 		int cnt = adminMemberService.register(employeeDto);
+		if (multipartFile != null && !multipartFile.isEmpty()) {
+	        String ofile = multipartFile.getOriginalFilename();
+	        
+	        String realPath = servletContext.getRealPath("/upload/album");
+	        
+	        DateFormat df = new SimpleDateFormat("yyMMdd");
+	        String saveFolder = df.format(new Date());
+	        String realSaveFolder = realPath + File.separator + saveFolder;
+	        System.out.println(realSaveFolder);
+	        File dir = new File(realSaveFolder);
+	        if (!dir.exists()) {
+	          dir.mkdirs();
+	        }
+	        
+	        String sfile = UUID.randomUUID().toString() + ofile.substring(ofile.lastIndexOf("."));
+	        
+	        File file = new File(realSaveFolder, sfile);
+	        
+	        try {
+	          multipartFile.transferTo(file);
+	        } catch (IllegalStateException e) {
+	          // TODO Auto-generated catch block
+	          e.printStackTrace();
+	        } catch (IOException e) {
+	          // TODO Auto-generated catch block
+	          e.printStackTrace();
+	        }
+		}
 		mav.setViewName("admin/account/register");
 		return mav;
 	}
