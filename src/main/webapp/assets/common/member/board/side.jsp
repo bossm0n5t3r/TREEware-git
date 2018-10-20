@@ -2,7 +2,24 @@
     pageEncoding="UTF-8"%>
 <script>
 $(document).ready(function(){
-	
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/board/boardlist.tree"
+		,dataType : "json"
+		,success : function(data) {
+			boardList = data.boardList
+			for(var i=0;i<boardList.length;i++){
+				$('#list').append('<li id="menu'+i+'" class="nav-item">');
+				$('#list').append('	<a href="${root}/member/board/boardsortlist.tree">');
+				$('#list').append('		<p>'+boardList[i].bname+'</p>');
+				$('#list').append('	</a>');
+				$('#list').append('</li>');
+			}
+		}
+		,error : function(e) {
+			alert("에러");
+		}
+	});
 })
 </script>
 <div class="sidebar">
@@ -34,21 +51,21 @@ $(document).ready(function(){
 		<a href="${root}/member/board/write.tree"><button class="btn btn-outline-primary" style="width:220px;">
 		<i class="la la-edit"></i> &nbsp;글쓰기</button></a></div>
 		<ul class="nav" id="list">
-			<li id="menu1" class="nav-item active">
-				<a href="${root}/member/board/main.tree">
-					<p>오피스소식</p>
-				</a>
-			</li>
-			<li id="menu2" class="nav-item">
-				<a href="${root}/member/board/freeboard.tree">
-					<p>자유게시판</p>
-				</a>
-			</li>
-			<li id="menu3" class="nav-item">
-				<a href="${root}/member/board/bookmark.tree">
-					<p>북마크함</p>
-				</a>
-			</li>
+<!-- 			<li id="menu1" class="nav-item active"> -->
+<%-- 				<a href="${root}/member/board/main.tree"> --%>
+<!-- 					<p>오피스소식</p> -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			<li id="menu2" class="nav-item"> -->
+<%-- 				<a href="${root}/member/board/freeboard.tree"> --%>
+<!-- 					<p>자유게시판</p> -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			<li id="menu3" class="nav-item"> -->
+<%-- 				<a href="${root}/member/board/bookmark.tree"> --%>
+<!-- 					<p>북마크함</p> -->
+<!-- 				</a> -->
+<!-- 			</li> -->
 		</ul>
 	</div>
 </div>

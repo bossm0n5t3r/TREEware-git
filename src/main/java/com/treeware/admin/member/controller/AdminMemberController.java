@@ -57,13 +57,11 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
-	public ModelAndView register(EmployeeDto employeeDto, @RequestParam("file") MultipartFile multipartFile) {
-		ModelAndView mav = new ModelAndView();
-		int cnt = adminMemberService.register(employeeDto);
+	public String register(EmployeePicDto employeePicDto, @RequestParam("file") MultipartFile multipartFile) {
 		if (multipartFile != null && !multipartFile.isEmpty()) {
 	        String ofile = multipartFile.getOriginalFilename();
 	        
-	        String realPath = servletContext.getRealPath("/upload/album");
+	        String realPath = servletContext.getRealPath("/assets/img/member");
 	        
 	        DateFormat df = new SimpleDateFormat("yyMMdd");
 	        String saveFolder = df.format(new Date());
@@ -77,19 +75,21 @@ public class AdminMemberController {
 	        String sfile = UUID.randomUUID().toString() + ofile.substring(ofile.lastIndexOf("."));
 	        
 	        File file = new File(realSaveFolder, sfile);
-	        
+	        employeePicDto.setEmp_pic_onm(ofile);
+	        employeePicDto.setEmp_pic_mnm(sfile);
+	        employeePicDto.setEmp_pic_rt(saveFolder);
+	        employeePicDto.setEmp_pic_dt(saveFolder);
 	        try {
 	          multipartFile.transferTo(file);
 	        } catch (IllegalStateException e) {
-	          // TODO Auto-generated catch block
 	          e.printStackTrace();
 	        } catch (IOException e) {
-	          // TODO Auto-generated catch block
 	          e.printStackTrace();
 	        }
 		}
-		mav.setViewName("admin/account/register");
-		return mav;
+
+		int cnt = adminMemberService.register(employeePicDto);
+		return "admin/account/register";
 	}
 	
 	@RequestMapping("/edit.tree")

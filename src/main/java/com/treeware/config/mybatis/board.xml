@@ -21,4 +21,15 @@
 	FROM BOARD_LIST
 	</select>
 	
+	<select id="getBoardList" resultType="BoardListDto">
+	SELECT BCODE, BNAME, BTYPE, CCODE
+	FROM BOARD_LIST
+	</select>
+	
+	<select id="getBoardInfo" parameterType="String" resultType="BoardDto">
+	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
+	FROM BRD
+	WHERE BCODE = ${bcode}
+	</select>
+	
 </mapper>

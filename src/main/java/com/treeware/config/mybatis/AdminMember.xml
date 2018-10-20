@@ -15,13 +15,17 @@
 	</if>
 	</select>
 
-	<insert id="register" parameterType="EmployeeDto">
-	INSERT INTO EMP (EMP_SQ, PMS_SQ, DPT_SQ, RNK_SQ, PST_SQ, EMP_NM, EMP_ID, EMP_PW, EMP_SEX, EMP_BDATE
+	<insert id="register" parameterType="EmployeePicDto">
+	INSERT ALL
+	INTO EMP (EMP_SQ, PMS_SQ, DPT_SQ, RNK_SQ, PST_SQ, EMP_NM, EMP_ID, EMP_PW, EMP_SEX, EMP_BDATE
 				 , EMP_ML_ID, EMP_ML_ADDR, EMP_TEL1, EMP_TEL2, EMP_TEL3, EMP_ZIP, EMP_ADDR, EMP_ADDR_DT
 				 , EMP_BS_TEL1,EMP_BS_TEL2, EMP_BS_TEL3, EMP_CRT, EMP_REG, EMP_EXIT, EMP_FNL_MOD)
 	VALUES (#{emp_sq}, #{pms_sq}, #{dpt_sq}, #{rnk_sq}, #{pst_sq}, #{emp_nm}, #{emp_id}, #{emp_pw}
 		, #{emp_sex}, #{emp_bdate}, #{emp_ml_id}, #{emp_ml_addr}, #{emp_tel1}, #{emp_tel2}, #{emp_tel3}, #{emp_zip}, #{emp_addr}, #{emp_addr_dt}
 		, #{emp_bs_tel1}, #{emp_bs_tel2}, #{emp_bs_tel3}, #{emp_crt}, sysdate, '', sysdate)
+	INTO EMP_PIC (EMP_SQ, EMP_PIC_DT, EMP_PIC_RT, EMP_PIC_ONM, EMP_PIC_MNM)
+	VALUES (#{emp_sq}, sysdate, #{emp_pic_dt}, #{emp_pic_rt}, #{emp_pic_onm}, #{emp_pic_mnm})
+	SELECT * FROM DUAL
 	</insert>
 	
 	<update id="modify" parameterType="EmployeeDto">

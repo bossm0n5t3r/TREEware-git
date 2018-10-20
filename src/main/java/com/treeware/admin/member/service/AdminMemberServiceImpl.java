@@ -17,8 +17,8 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int register(EmployeeDto employeeDto) {
-		return sqlSession.getMapper(AdminMemberDao.class).register(employeeDto);
+	public int register(EmployeePicDto employeePicDto) {
+		return sqlSession.getMapper(AdminMemberDao.class).register(employeePicDto);
 	}
 
 	@Override

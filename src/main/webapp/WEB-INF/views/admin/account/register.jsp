@@ -87,7 +87,7 @@
 													<input id="emp_sq" name="emp_sq"type="text" readonly="readonly" style="width:100%">
 													</span>
 												</label>
-												<img src="${root}/assets/img/photo.jpg" width="100%" style="margin:5px 0px 10px 0px;padding:5px">
+												<img id="photoimg" width="100%" style="margin:5px 0px 10px 0px;padding:5px">
 												<input type="file" name="file" id="file" class="inputfile" />
 												<label for="file" style="width:100%"><i class="la la-upload"></i>&nbsp;사진추가하기</label>
 											</div>
@@ -146,7 +146,7 @@
 																<input type="hidden" id="emp_tel3" name="emp_tel3">
 															</div>
 															<div style="width:25%" class="box-group">
-																<input name="emp_bdate" id="emp_bdate" type="text" class="mainbox" placeholder="생년월일 8자리" onkeyup="" required>
+																<input name="emp_bdate" id="emp_bdate" type="text" class="mainbox" placeholder="생년월일 8자리" required>
 															</div>
 															<div style="width:15%" class="box-group">
 																<select id="emp_sex" name="emp_sex" class="form-control" style="font-size:100%" style="border:#007fff 1px solid;">
@@ -213,17 +213,22 @@
 		</div>
 	</div>
 <script>
+function pad(n, width) {
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+	}
 $(document).ready(function (){
 		var dt = new Date();
 		var year = dt.getFullYear();
 		var empsq;
 		var cnt = parseInt('${cnt}') + 1;
+		cnt = pad(cnt, 3);
 		empsq = "TREE"+ year + cnt;
 		document.getElementById("emp_sq").value = empsq;
 		document.getElementById("emp_id").value = empsq;
 		document.getElementById("emp_pw").value = "1234";
 		
-		var upload = document.getElementById('photo'),
+		var upload = document.getElementById('file'),
 	    	photoimg = document.getElementById('photoimg');
 
 		photoimg.src = "/treeware/assets/img/photo.jpg";
