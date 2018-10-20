@@ -33,4 +33,21 @@
 		</div>
 	</div>
 </body>
+<script src="${root}/assets/js/member/commute/commute.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	setRoot('${root}');
+	livetime();	
+	status();
+	getStatics();
+	punchInClick();
+	workOutClick();
+	comeBackClick();
+	punchOutClick();
+	
+	workStatus();
+	beforeClick();
+	afterClick();
+})
+</script>
 </html>
