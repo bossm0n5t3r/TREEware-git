@@ -21,18 +21,36 @@ $(document).ready(function() {
 			alert("내용을 입력해주세요");
 			return;
 		}else {
-			$("#signform").attr("action", "${root}/reboard/write.kitri").submit();
+			$("#signform").attr("action", "/treeware/member/form/write.kitri").submit();
 		}
 	});
 	var a = ${userInfo.dpt_sq};
 	var b = change_dpt(a);
 	$("#dpt_name").text(b);
+	livetime();
 });
 
+//결재서류에 보여지는 현재시간
+function livetime() {
+	$.ajax({
+		type : "GET"
+		,url : "/treeware/member/commute/livetime.tree"
+		,dataType : "json"
+		,success : function(data) {
+			$("#temp_date").html(data.date);
+			$("#temp_time").html(data.time);
+			setTimeout("livetime()", 1000);
+		}
+		,error : function(e) {
+			alert("error 발생");
+		}
+	})
+}
+
+//모달 member에서 선택한 결재자목록
 var memberlist = "";
 var memberCnt = 0;
 var cnt = [0,0,0];
-
 function memberDelete0(a){
 	$("#memberName0").html('').css('background-color','#eee');
 	$("#memberSign0").html('').css('background-color','#eee');
@@ -69,12 +87,11 @@ function memberList(){
 		<span id="putnum"></span>
 	</div>
 	<form class="signform" method="POST" name="signform" action="">
-	<input type="hidden" name="formName" value="kiahn">
-	<input type="hidden" id="userName" value="">
-	<input type="hidden" id="userEmpnm" value="">
-	<input type="hidden" id="memberEmpnm0" value="">
-	<input type="hidden" id="memberEmpnm1" value="">
-	<input type="hidden" id="memberEmpnm2" value="">
+	<input type="hidden" id="formName" name="APV_FORM_SQ" value="100">
+	<input type="hidden" id="userEmpnm" name="EMP_SQ" value="">
+	<input type="hidden" id="memberEmpnm0" name="EMP_1ST_SQ" value="">
+	<input type="hidden" id="memberEmpnm1" name="EMP_2ND_SQ" value="">
+	<input type="hidden" id="memberEmpnm2" name="EMP_FNL_SQ" value="">
 	<div id="info" class="row">
 		<table style="width:100%">
 			<tr>
@@ -87,6 +104,7 @@ function memberList(){
 									| 부서<br>
 									| 전화<br>
 									| 이메일<br>
+									| 작성일<br>
 								</b>
 							</td>
 							<td>
@@ -95,6 +113,7 @@ function memberList(){
 								: <span id="dpt_name"></span><br>
 								: ${userInfo.emp_tel1}-${userInfo.emp_tel2}-${userInfo.emp_tel3}<br>
 								: ${userInfo.emp_ml_id}${userInfo.emp_ml_addr}<br>
+								: <span id="temp_date"></span>,&nbsp;<span id="temp_time"></span><br>
 								</span>
 							</td>
 						</tr> 
@@ -103,9 +122,9 @@ function memberList(){
 				<td width="50%">
 					<table id="sign" class="formtable" align="right">
 						<tr>
-							<td class="info_title" width="80px" style="background-color:#eee;text-align:center">결재자</td>
-							<td class="info_title" width="80px" style="background-color:#eee;text-align:center">결재자</td>
-							<td class="info_title" width="80px" style="background-color:#eee;text-align:center">결재자</td>
+							<td class="info_title" width="80px" style="background-color:#eee;text-align:center">1차결재</td>
+							<td class="info_title" width="80px" style="background-color:#eee;text-align:center">2차결재</td>
+							<td class="info_title" width="80px" style="background-color:#eee;text-align:center">최종결재</td>
 						</tr>
 						<tr>
 							<td class="info_text" id="memberName0" style="background-color:#eee;text-align:center"></td>
@@ -125,7 +144,9 @@ function memberList(){
 	<table id="second" class="formtable" style="width:100%">
 		<tr>
 			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">문서번호</td>
-			<td width="80%" colspan="3">트리웨어기안문-2018-0123</td>
+			<td width="80%" colspan="3" style="background-color:#eee">
+			<input type="text" name="APV_SQ" readonly="readonly" style="border:0px;background-color:#eee" >
+			</td>
 		</tr> 
 		<tr>
 			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">수 신 처</td>
@@ -139,21 +160,21 @@ function memberList(){
 		<tr>
 			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">제 목</td>
 			<td width="80%" colspan="3">
-				<input id="title" name="title" type="text" value="" style="width:100%">
+				<input id="title" name="APV_TITLE" type="text" style="width:100%">
 			</td>
 		</tr>
 		<tr>
-			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">기 안 일</td>
-			<td width="30%"><input id="date1" name="date1" type="date"></td>
 			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">시행일자</td>
-			<td width="30%"><input id="date2" name="date2" type="date"></td>
+			<td width="80%">
+				<input id="date" name="APV_DATE" type="date" style="width:100%">
+			</td>
 		</tr>
 		<tr>
 			<td class="info_title" colspan="4" style="background-color:#eee;text-align:center">상 세 내 용</td>
 		</tr>
 	</table>
 	<br>
-		<textarea id="content" name="content" rows="30" style="width:100%"></textarea>
+		<textarea id="content" name="APV_CTT" rows="30" style="width:100%"></textarea>
 	<p style="text-align:center;margin:30px 0 30px 0 ">
 		<button type="button" id="writeBtn" style="padding:5px 15px">등록하기</button>
 		<button type="button" id="cancelBtn" style="padding:5px 15px">등록취소</button>

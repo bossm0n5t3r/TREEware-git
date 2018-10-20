@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.treeware.admin.board.dao.AdminBoardDao">
+
+
+	<insert id="addBoard" parameterType="BoardListDto">
+	INSERT INTO BRD_LIST (bcode, bname, btype, ccode)
+	VALUES(#{bcode}, #{bname}, #{btype}, #{ccode})
+	</insert>
+	
+	<insert id="addCategory" parameterType="CategoryDto">
+	INSERT INTO CATEGORY
+	VALUES(#{ccode},#{cname})
+	</insert>
+	
+	<select id="getBoardCount" resultType="int">
+	SELECT COUNT(*)
+	FROM BOARD_LIST
+	</select>
+	
+	<select id="getBoardList" resultType="BoardListDto">
+	SELECT BCODE, BNAME, BTYPE, CCODE
+	FROM BOARD_LIST
+	</select>
+	
+	<select id="getBoardInfo" parameterType="String" resultType="BoardDto">
+	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
+	FROM BRD
+	WHERE BCODE = ${bcode}
+	</select>
+	
+</mapper>

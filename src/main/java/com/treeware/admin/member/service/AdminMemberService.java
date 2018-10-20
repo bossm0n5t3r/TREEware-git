@@ -6,7 +6,7 @@ import java.util.Map;
 import com.treeware.admin.member.model.*;
 
 public interface AdminMemberService {
-	public int register(EmployeeDto employeeDto);
+	public int register(EmployeePicDto employeePicDto);
 	public int modify(EmployeeDto employeeDto);
 	public int getMemberCount();
 	public EmployeeDto getEmployee(String emp_sq);

@@ -1,6 +1,6 @@
 package com.treeware.admin.member.model;
 
-public class EmployeePicDto {
+public class EmployeePicDto extends EmployeeDto {
 	private String 	emp_sq;
 	private String 	emp_pic_dt;
 	private String 	emp_pic_rt;

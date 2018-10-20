@@ -24,6 +24,7 @@ import com.treeware.util.TreewareConstance;
 public class CommuteController {
 
 	private String time;
+	private String date;
 
 	@Autowired
 	private CommuteService commuteService;
@@ -40,6 +41,8 @@ public class CommuteController {
 	public @ResponseBody String livetime() {
 		JSONObject object = new JSONObject();
 		time = new SimpleDateFormat("HH:mm:ss").format(new Date());
+		date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		object.put("date", date);
 		object.put("time", time);
 		return object.toString();
 	}

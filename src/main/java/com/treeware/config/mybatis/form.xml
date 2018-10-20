@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.treeware.form.dao.FormDao">
+
+	<insert id="write" parameterType="formDto" >
+	insert into APV(APV_SQ, 
+					APV_FORM_SQ, 
+					APV_OK_SQ, 
+					EMP_SQ, 
+					APV_SAVE, 
+					APV_CTT, 
+					APV_FL_RT, 
+					APV_FL_NM, 
+					EMP_1ST_SQ, 
+					EMP_2ND_SQ, 
+					EMP_FNL_SQ, 
+					APV_NO, 
+					APV_DATE, 
+					APV_WRITE_DATE, 
+					APV_TITLE) 
+	values(	#{}, 
+			#{apv_form_sq}, 
+			0, 
+			#{emp_sq}, 
+			1, 
+			#{apv_ctt}, 
+			"", 
+			"",
+			#{emp_1st_sq},
+			#{emp_2nd_sq},
+			#{emp_fnl_sq},
+			"",
+			#{apv_date},
+			sysdate,
+			#{apv_title})
+	</insert>
+</mapper>
+

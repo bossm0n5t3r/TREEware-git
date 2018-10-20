@@ -10,6 +10,8 @@ import com.treeware.admin.member.dao.AdminMemberDao;
 import com.treeware.admin.member.model.DepartmentDto;
 import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.admin.member.model.RankDto;
+import com.treeware.form.dao.FormDao;
+import com.treeware.form.model.FormDto;
 
 public class FormServiceImpl implements FormService {
 
@@ -39,6 +41,11 @@ public class FormServiceImpl implements FormService {
 	@Override
 	public List<RankDto> getRankList() {
 		return sqlSession.getMapper(AdminMemberDao.class).getRankList();
+	}
+	
+	@Override
+	public int write(FormDto formDto) {
+		return sqlSession.getMapper(FormDao.class).write(formDto);
 	}
 
 }
