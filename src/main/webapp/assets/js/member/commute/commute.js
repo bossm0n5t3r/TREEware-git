@@ -65,7 +65,9 @@ function punchInClick() {
 		if (punchOutTime == "-" || punchOutTime.trim().length == 1) {
 			punchIn();
 			$("#punchInBtn").attr("class", "nav-link active");
-// 			location.reload();			
+			status();
+			getStatics();
+			workStatus();
 		} else {
 			alert("이미 퇴근했습니다.");
 			return;
@@ -81,7 +83,9 @@ function workOutClick() {
 		} else if (punchOutTime == "-" || punchOutTime.trim().length == 1) {
 			workOut();
 			$("#workOutBtn").attr("class", "nav-link active");
-			location.reload();			
+			status();
+			getStatics();
+			workStatus();
 		} else {
 			alert("이미 퇴근했습니다.");
 			return;
@@ -100,7 +104,9 @@ function comeBackClick() {
 		} else if (punchOutTime == "-" || punchOutTime.trim().length == 1) {
 			comeBack();
 			$("#comeBackBtn").attr("class", "nav-link active");
-			location.reload();			
+			status();
+			getStatics();
+			workStatus();
 		} else {
 			alert("이미 퇴근했습니다.");
 			return;
@@ -117,10 +123,11 @@ function punchOutClick() {
 			} else if (punchOutTime == "-" || punchOutTime.trim().length == 1) {
 				punchOut();
 				$("#punchOutBtn").attr("class", "nav-link active");
-				location.reload();							
+				status();
+				getStatics();
+				workStatus();
 			} else {
 				alert("이미 퇴근했습니다.");
-				alert("punchOutTime : " + punchOutTime);
 				return;
 			}
 		}
@@ -134,7 +141,6 @@ function punchIn() {
 		,dataType : "json"
 		,success : function(data) {
 			savePunchInTime(data.CMT_STR_TM);
-			status();
 		}
 		,error : function(e) {
 			
@@ -149,7 +155,6 @@ function workOut() {
 		,dataType : "json"
 		,success : function(data) {
 			saveWorkOutData(data.CMT_WOUT_TM);
-			status();
 		}
 		,error : function(e) {
 			
@@ -164,7 +169,6 @@ function comeBack() {
 		,dataType : "json"
 		,success : function(data) {
 			saveComeBackData(data.CMT_CB_TM);
-			status();
 		}
 		,error : function(e) {
 			
@@ -179,7 +183,6 @@ function punchOut() {
 		,dataType : "json"
 		,success : function(data) {
 			savaPunchOutData(data.CMT_END_TM);
-			status();
 		}
 		,error : function(e) {
 			

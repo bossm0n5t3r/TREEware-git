@@ -204,9 +204,22 @@
 								</div>
 							</div>
 						</div>
-			<%@ include file="/assets/common/footer.jsp" %>
+				<%@ include file="/assets/common/footer.jsp" %>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
+<script src="${root}/assets/js/member/commute/commute.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	setRoot('${root}');
+	livetime();	
+	status();
+	punchInClick();
+	workOutClick();
+	comeBackClick();
+	punchOutClick();
+})
+</script>
 </html>
