@@ -7,11 +7,16 @@
 <%@ include file="/assets/common/member/board/import.jsp" %>
 <script>
 $(document).ready(function(){
-	document.getElementById("menu1").setAttribute("class", "nav-item");
-	document.getElementById("menu2").setAttribute("class", "nav-item active");
-	document.getElementById("menu3").setAttribute("class", "nav-item");
+// 	document.getElementById("menu1").setAttribute("class", "nav-item");
+// 	document.getElementById("menu2").setAttribute("class", "nav-item active");
+// 	document.getElementById("menu3").setAttribute("class", "nav-item");
+	$('#writeBtn').click(function(){
+		location.href = '${root}/member/board/write.tree';
+	})
 });
-
+function boardClick(data){
+	location.href = '${root}/member/board/boardview.tree?brd_sq='+$(data).attr('id');
+}
 </script>
 </head>
 <body>
@@ -34,7 +39,7 @@ $(document).ready(function(){
 											<div class="buttonmenu" align="center" style="margin:5px 0 5px 0">
 												<div class="row" style="width:100%">
 													<div style="width:50%;text-align:left;padding:10px">
-														<p style="color:#007bff">전체목록 [${boardCnt}]</p>
+														<p style="color:#007bff">전체목록 [${cnt}개]</p>
 													</div>
 													<div style="width:50%;text-align:right">
 														<div class="row" style="float:right">
@@ -53,8 +58,8 @@ $(document).ready(function(){
 																		<input type="text" style="width:100%;width:150px;height:30px">
 																	</td>
 																	<td>
-																		<button class="searchBtn" style="width:70px;height:30px">검색</button>
-																		<button class="writeBtn" style="width:70px;height:30px">글쓰기</button>
+																		<button class="simplebtn1" id="searchBtn" style="width:70px;height:30px">검색</button>
+																		<button class="simplebtn2" id="writeBtn" style="width:70px;height:30px">글쓰기</button>
 																	</td>
 																</tr>
 															</table>
@@ -92,8 +97,8 @@ $(document).ready(function(){
 																</label>
 															</div>
 														</td>
-														<td style="text-align:left">${board.brd_seq}</td>
-														<td style="text-align:left">${board.brd_ttl}<img src="${root}/assets/img/icon_new1.gif"></td>
+														<td style="text-align:center">${board.brd_sq}</td>
+														<td id="${board.brd_sq}" onclick="javascript:boardClick(this)" style="text-align:left">${board.brd_ttl}<img src="${root}/assets/img/icon_new1.gif"></td>
 														<td>${board.emp_sq}</td>
 														<td>${board.brd_dt}</td>
 														<td>${board.brd_hits}</td>

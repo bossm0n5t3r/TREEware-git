@@ -17,9 +17,9 @@
 						</tr>
 						<tr>
 							<td>
-								<div style="width:25%" class="box-group">
+								<div style="width:100%" class="box-group">
 									<select id="scd_div_sq" name="scd_div_sq" class="form-control" style="font-size:100%">
-<!-- 										<option value='0' disabled>직위선택</option> -->
+										<option value='0' disabled>직위선택</option>
 <!-- 										<option value='1'>사원</option> -->
 <!-- 										<option value='2'>대리</option> -->
 <!-- 										<option value='3'>과장</option> -->

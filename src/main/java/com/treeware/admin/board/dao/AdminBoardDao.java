@@ -5,7 +5,7 @@ import com.treeware.admin.board.model.BoardListDto;
 public interface AdminBoardDao {
 
 	public int addBoard(BoardListDto boardListDto);
-	public int getBoardCount();
+	public int getBoardCount(String bcode);
 	public int deleteBoard();
 	public int modifyBoard();
 	public int writePosts();
