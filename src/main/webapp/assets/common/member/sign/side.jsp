@@ -25,14 +25,19 @@
 			</div>
 		</div>
 		<ul class="nav">
-			<li id="menu2" class="nav-item active">
-				<a href="${root}/member/sign/main.tree">
-					<p>나의결재함</p>
-				</a>
-			</li>
 			<li id="menu1" class="nav-item">
 				<a href="${root}/member/sign/write.tree">
 					<p>새결재진행</p>
+				</a>
+			</li>
+			<li id="menu2" class="nav-item active">
+				<a href="${root}/member/sign/main.tree">
+					<p>받은결재함</p>
+				</a>
+			</li>
+			<li id="menu3" class="nav-item">
+				<a href="${root}/member/sign/sendbox.tree">
+					<p>보낸결재함</p>
 				</a>
 			</li>
 		</ul>

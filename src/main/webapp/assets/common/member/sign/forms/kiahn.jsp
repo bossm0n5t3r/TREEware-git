@@ -21,15 +21,23 @@ $(document).ready(function() {
 			alert("내용을 입력해주세요");
 			return;
 		}else {
-// 			이페이지가 iframe이라서 ${root}로는 안넘어가는건지?
-// 			$("#signform").attr("action","${root}/member/sign/write.tree").submit();
-			$("#signform").attr("action","/treeware/member/sign/write.tree").submit();
+			var con_test = confirm("작성한 서류를 전송하시겠습니까?");
+			if(con_test == true){
+//	 			이페이지가 iframe이라서 ${root}로는 안넘어가는건지?
+//	 			$("#signform").attr("action","${root}/member/sign/write.tree").submit();
+				$("#signform").attr("action","/treeware/member/sign/write.tree").submit();
+			}
+			else if(con_test == false){
+			  	return;
+			}
 		}
 	});
 	var a = ${userInfo.dpt_sq};
+	var c = ${userInfo.emp_sq};
 	var b = change_dpt(a);
 	$("#dpt_name").text(b);
 	livetime();
+	$("#userEmpnm").val(c);
 });
 
 //결재서류에 보여지는 현재시간
@@ -88,9 +96,8 @@ function memberList(){
 		<h2 style="text-decoration: underline;">기 안 문</h2>
 		<span id="putnum"></span>
 	</div>
-	<form class="signform" id="signform" method="POST" name="signform">
+	<form class="signform" id="signform" name="signform" method="POST" enctype="multipart/form-data">
 	<input type="hidden" id="formName" name="APV_FORM_SQ" value="100">
-	<input type="hidden" id="userEmpnm" name="EMP_SQ" value="">
 	<input type="hidden" id="userEmpnm" name="EMP_SQ" value="">
 	<input type="hidden" id="memberEmpnm0" name="EMP_1ST_SQ" value="">
 	<input type="hidden" id="memberEmpnm1" name="EMP_2ND_SQ" value="">

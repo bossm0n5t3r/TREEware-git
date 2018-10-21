@@ -17,7 +17,6 @@ public class FormDto {
 	private String APV_DATE;
 	private String APV_WRITE_DATE;
 	private String APV_TITLE;
-	
 	public int getAPV_SQ() {
 		return APV_SQ;
 	}
@@ -108,6 +107,5 @@ public class FormDto {
 	public void setAPV_TITLE(String aPV_TITLE) {
 		APV_TITLE = aPV_TITLE;
 	}
-	
 	
 }

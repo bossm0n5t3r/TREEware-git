@@ -21,21 +21,53 @@
 					APV_DATE, 
 					APV_WRITE_DATE, 
 					APV_TITLE) 
-	values(	#{apv_sq}, 
-			#{apv_form_sq}, 
-			0, 
-			#{emp_sq}, 
+	values(	#{APV_SQ}, 
 			1, 
-			#{apv_ctt}, 
-			"", 
-			"",
-			#{emp_1st_sq},
-			#{emp_2nd_sq},
-			#{emp_fnl_sq},
-			"",
-			#{apv_date},
+			1, 
+			#{EMP_SQ}, 
+			1, 
+			#{APV_CTT}, 
+			'0', 
+			'0',
+			#{EMP_1ST_SQ},
+			#{EMP_2ND_SQ},
+			#{EMP_FNL_SQ},
+			'no problem',
+			#{APV_DATE},
 			sysdate,
-			#{apv_title})
+			#{APV_TITLE})
 	</insert>
+<!-- 	<insert id="write" parameterType="FormDto" > -->
+<!-- 	insert into APV(APV_SQ,  -->
+<!-- 					APV_FORM_SQ,  -->
+<!-- 					APV_OK_SQ,  -->
+<!-- 					EMP_SQ,  -->
+<!-- 					APV_SAVE,  -->
+<!-- 					APV_CTT,  -->
+<!-- 					APV_FL_RT,  -->
+<!-- 					APV_FL_NM,  -->
+<!-- 					EMP_1ST_SQ,  -->
+<!-- 					EMP_2ND_SQ,  -->
+<!-- 					EMP_FNL_SQ,  -->
+<!-- 					APV_NO,  -->
+<!-- 					APV_DATE,  -->
+<!-- 					APV_WRITE_DATE,  -->
+<!-- 					APV_TITLE)  -->
+<!-- 	values(	1,  -->
+<!-- 			#{apv_form_sq},  -->
+<!-- 			0,  -->
+<!-- 			#{emp_sq},  -->
+<!-- 			1,  -->
+<!-- 			#{apv_ctt},  -->
+<!-- 			"",  -->
+<!-- 			"", -->
+<!-- 			#{emp_1st_sq}, -->
+<!-- 			#{emp_2nd_sq}, -->
+<!-- 			#{emp_fnl_sq}, -->
+<!-- 			"", -->
+<!-- 			#{apv_date}, -->
+<!-- 			sysdate, -->
+<!-- 			#{apv_title}) -->
+<!-- 	</insert> -->
 </mapper>
 
