@@ -9,6 +9,8 @@
 			</div>
 			<div class="modal-body text-center" align="center">
 				<form id="registerForm">
+				<input type="hidden" name="scd_stime">
+				<input type="hidden" name="scd_etime">
 					<table style="width:100%">
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">
@@ -25,7 +27,7 @@
 						</tr>
 						<tr>
 							<td style="padding:5px 10px">
-							 	시작날짜:
+							 	시작일:
 							</td>
 							<td style="padding:5px 10px">
 								<input type="date" name="scd_sday" class="start scd_sday" style="width:100%">
@@ -33,26 +35,10 @@
 						</tr>
 						<tr>
 							<td style="padding:5px 10px">
-							 	시작시간:
-							</td>
-							<td style="padding:5px 10px">
-								<input type="time" name="scd_stime" class="start scd_stime" style="width:100%">
-							</td>
-						</tr>
-						<tr>
-							<td style="padding:5px 10px">
-							 	종료날짜:
+							 	종료일:
 							</td>
 							<td style="padding:5px 10px">
 								<input type="date" name="scd_eday" class="end scd_eday" style="width:100%">
-							</td>
-						</tr>
-						<tr>
-							<td style="padding:5px 10px">
-							 	종료시간:
-							</td>
-							<td style="padding:5px 10px">
-								<input type="time" name="scd_etime" class="end scd_etime" style="width:100%">
 							</td>
 						</tr>
 						<tr>

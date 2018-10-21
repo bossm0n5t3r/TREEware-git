@@ -21,7 +21,7 @@
 	<insert id="registerSchedule" parameterType="ScheduleDto">
 		INSERT INTO SCD (scd_sq, scd_div_sq, emp_sq, scd_nm, scd_pst
 						 , scd_sday, scd_stime, scd_eday, scd_etime, scd_dct)
-		values (#{scd_sq}, #{scd_div_sq}, #{emp_sq}, #{scd_nm}, #{scd_pst}
+		VALUES (#{scd_sq}, #{scd_div_sq}, #{emp_sq}, #{scd_nm}, #{scd_pst}
 				, #{scd_sday}, #{scd_stime}, #{scd_eday}, #{scd_etime}, #{scd_dct})
 	</insert>
 	

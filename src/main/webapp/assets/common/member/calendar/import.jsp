@@ -38,18 +38,22 @@ $(document).ready(function() {
 			getScdDivList();
 	    	// 수정모달에 데이터 집어넣기
 	    	console.log("id : " + event.id);
-	    	console.log("sname : " + event.sname);
 	    	console.log("subject : " + event.subject);
+	    	console.log("div : " + event.div);
 	    	console.log("start : " + event.start);
-	    	console.log(new Date(event.start).toISOString());
+	    	console.log(new Date(event.start).toISOString().slice(0, 10));
 	    	console.log("end : " + event.end);
-	    	console.log(new Date(event.end).toISOString());
+	    	console.log(new Date(event.end).toISOString().slice(0, 10));
 	    	console.log("content : " + event.content);
 	    	$("#modify .scd_sq").val(event.id);
-	    	$("#modify .scd_div_sq").val(event.sname);
 	    	$("#modify .scd_nm").val(event.subject);
-	    	$("#modify .scd_sday").text(new Date(event.start).toISOString());
-	    	$("#modify .scd_eday").text(new Date(event.end).toISOString());
+	    	$("#modify .scd_div_sq option:eq("+ event.div +")").attr("selected", "selected");
+	    	$("#modify .scd_sday").val(new Date(event.start).toISOString().slice(0, 10));
+	    	if (event.end == null) {
+	    		$("#modify .scd_eday").val(new Date(event.start).toISOString().slice(0, 10));
+	    	} else {
+		    	$("#modify .scd_eday").val(new Date(event.end).toISOString().slice(0, 10));	    		
+	    	}
 	    	$("#modify .scd_dct").val(event.content);
 	    	$("#modify").modal({backdrop: 'static'});
 // 	    	$("#pid").val(event.id);
@@ -105,7 +109,7 @@ $(document).on("click", "#registerBtn", function() {
 	if ($("#register .scd_nm").val() == '') {
 		alert('제목이 없습니다');
 		return;
-	} else if ($("#register #scd_div_sq").val() == null) {
+	} else if ($("#register .scd_div_sq").val() == null) {
 		alert('일정 종류를 선택해주세요.');
 		return;
 	} else if ($("#register .scd_sday").val() == '' || $("#register .scd_eday").val() == '') {
@@ -116,7 +120,7 @@ $(document).on("click", "#registerBtn", function() {
 		var startTime = $("#register .scd_stime").val();
 		var endDate = $("#register .scd_eday").val();
 		var endTime = $("#register .scd_etime").val();
-		if(startDate+ " "+ startTime > endDate+ " "+ endTime) {
+		if(startDate > endDate) {
 			alert("종료일이 시작일 보다 빠를 수 없습니다.");
 			return;
 		}
@@ -163,11 +167,11 @@ function addList(data) {
         title: "["+data.scd_div_nm+"]"+data.scd_nm,
         start: data.scd_sday,
         end: data.scd_eday,
-        content: data.scd_dct,
-        sname: data.scd_div_nm, 
-        subject: data.scd_nm,
         color: scolor,
-        textColor: 'white'
+        textColor: 'white',
+        content: data.scd_dct,
+        div: data.scd_div_sq, 
+        subject: data.scd_nm
     }]);
 }
 
@@ -225,11 +229,11 @@ function makeList(data) {
 	        title: "["+scheduleList[i].scd_div_nm+"]"+scheduleList[i].scd_nm,
 	        start: scheduleList[i].scd_sday,
 	        end: scheduleList[i].scd_eday,
-	        content: scheduleList[i].scd_dct,
-	        sname: scheduleList[i].scd_div_nm, 
-	        subject: scheduleList[i].scd_nm,
 	        color: scolor,
-	        textColor: 'white'
+	        textColor: 'white',
+	        content: scheduleList[i].scd_dct,
+	        div: scheduleList[i].scd_div_sq, 
+	        subject: scheduleList[i].scd_nm
 	    }]);
 	}
 }
