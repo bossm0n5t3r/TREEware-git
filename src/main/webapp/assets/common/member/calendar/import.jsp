@@ -12,7 +12,6 @@ var scheduleList;
 var scheduleDivideList;
 
 $(document).ready(function() {
-	
 	$("#calendar").fullCalendar({
        	
 		defaultDate : new Date()
@@ -30,6 +29,7 @@ $(document).ready(function() {
 		, eventLimit : true
 		, dayClick : function(date) {
 			cleanSchedule();
+			getScdDivList();
 			$("#register .scd_sday").val(date.format());
 			$("#register").modal('show');
 		}
@@ -124,9 +124,15 @@ function getScdDivList() {
 }
 
 function makeDivList(data) {
+	$("#register #scd_div_sq").empty();
 	var sdivlist = data.scheduleDivList;
 	scheduleDivideList = sdivlist;
-	
+	$("#register #scd_div_sq").append("<option value='0' selected='selected' disabled>직위선택</option>");
+	for (var i = 0; i < scheduleDivideList.length; i++) {
+		var option = $("<option></option>").attr("value", scheduleDivideList[i].SCD_DIV_SQ)
+										   .text(scheduleDivideList[i].SCD_DIV_NM);
+		$("#register #scd_div_sq").append(option);
+	}
 }
 
 function cleanSchedule() {

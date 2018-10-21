@@ -46,7 +46,6 @@ public class ScheduleController {
 			JSONObject scheduleDto = new JSONObject();
 			scheduleDto.put("scd_sq", dto.getScd_sq());
 			scheduleDto.put("emp_sq", dto.getEmp_sq());
-			scheduleDto.put("dpt_sq", dto.getDpt_sq());
 			scheduleDto.put("scd_nm", dto.getScd_nm());
 			scheduleDto.put("scd_pst", dto.getScd_pst());
 			scheduleDto.put("scd_sday", dto.getScd_sday());
