@@ -34,6 +34,7 @@
 				<value>classpath:com/treeware/config/mybatis/AdminSchedule.xml</value>
 				<!-- 게시판 -->
 				<value>classpath:com/treeware/config/mybatis/board.xml</value>
+				<value>classpath:com/treeware/config/mybatis/adminboard.xml</value>
 			</list>
 		</property>
 	</bean>

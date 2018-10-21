@@ -5,28 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/member/sign")
+@RequestMapping("/member/approval")
 public class ApprovalController {
-
-	
-	// 결제관리 메인 페이지
-	@RequestMapping("/main.tree")
-	public String main() {
-		return "member/sign/main";
-	}
-	
-	@RequestMapping("/dept.tree")
-	public ModelAndView dept() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/sign/dept");
-		return mav;
-	}
-	
-	@RequestMapping("/write.tree")
-	public ModelAndView write() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/sign/write");
-		return mav;
-	}
-	
+	//결재관련한 컨트롤은 form.controller에서.
 }
