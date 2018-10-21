@@ -21,7 +21,9 @@ $(document).ready(function() {
 			alert("내용을 입력해주세요");
 			return;
 		}else {
-			$("#signform").attr("action", "/treeware/member/form/write.kitri").submit();
+// 			이페이지가 iframe이라서 ${root}로는 안넘어가는건지?
+// 			$("#signform").attr("action","${root}/member/sign/write.tree").submit();
+			$("#signform").attr("action","/treeware/member/sign/write.tree").submit();
 		}
 	});
 	var a = ${userInfo.dpt_sq};
@@ -82,12 +84,13 @@ function memberList(){
 
 </script>
 <div class="row" style="border:1px solid #777;padding:20px;border-radius:1px;">
-	<div id="title" align="center">
+	<div id="doc" align="center">
 		<h2 style="text-decoration: underline;">기 안 문</h2>
 		<span id="putnum"></span>
 	</div>
-	<form class="signform" method="POST" name="signform" action="">
+	<form class="signform" id="signform" method="POST" name="signform">
 	<input type="hidden" id="formName" name="APV_FORM_SQ" value="100">
+	<input type="hidden" id="userEmpnm" name="EMP_SQ" value="">
 	<input type="hidden" id="userEmpnm" name="EMP_SQ" value="">
 	<input type="hidden" id="memberEmpnm0" name="EMP_1ST_SQ" value="">
 	<input type="hidden" id="memberEmpnm1" name="EMP_2ND_SQ" value="">
@@ -145,7 +148,7 @@ function memberList(){
 		<tr>
 			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">문서번호</td>
 			<td width="80%" colspan="3" style="background-color:#eee">
-			<input type="text" name="APV_SQ" readonly="readonly" style="border:0px;background-color:#eee" >
+			<input type="text" name="APV_SQ" style="border:0px;background-color:#eee" >
 			</td>
 		</tr> 
 		<tr>
