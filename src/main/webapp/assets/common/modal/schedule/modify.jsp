@@ -49,7 +49,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">
-								<textarea class="form-control" name="scd_dct" class="scd_dct" rows="5"></textarea>
+								<textarea class="form-control scd_dct" name="scd_dct" rows="5"></textarea>
 							</td>
 						</tr>
 					</table>
@@ -58,6 +58,7 @@
 			</div>
 			<div class="modal-footer" align="center">
 				<button class="btn btn-success" id="modifyBtn" data-dismiss="modal" style="width:100px">수정</button>
+				<button class="btn btn-default" id="deleteBtn" data-dismiss="modal" style="width:100px">삭제</button>
 				<button class="btn btn-danger" data-dismiss="modal" style="width:100px">취소</button>
 			</div>
 		</div>

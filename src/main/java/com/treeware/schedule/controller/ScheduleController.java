@@ -46,5 +46,12 @@ public class ScheduleController {
 		scheduleService.modifySchedule(scheduleDto);
 		return "member/calendar/main";
 	}
+	
+	// 일정 삭제
+	@RequestMapping(value="/delete.tree", method=RequestMethod.GET)
+	public String delete(@RequestParam int scd_sq) {
+		scheduleService.deleteSchedule(scd_sq);
+		return "member/calendar/main";
+	}
 
 }

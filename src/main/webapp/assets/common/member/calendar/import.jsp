@@ -37,14 +37,6 @@ $(document).ready(function() {
 			cleanSchedule();
 			getScdDivList();
 	    	// 수정모달에 데이터 집어넣기
-	    	console.log("id : " + event.id);
-	    	console.log("subject : " + event.subject);
-	    	console.log("div : " + event.div);
-	    	console.log("start : " + event.start);
-	    	console.log(new Date(event.start).toISOString().slice(0, 10));
-	    	console.log("end : " + event.end);
-	    	console.log(new Date(event.end).toISOString().slice(0, 10));
-	    	console.log("content : " + event.content);
 	    	$("#modify .scd_sq").val(event.id);
 	    	$("#modify .scd_nm").val(event.subject);
 	    	$("#modify .scd_div_sq option:eq("+ event.div +")").attr("selected", "selected");
@@ -56,44 +48,12 @@ $(document).ready(function() {
 	    	}
 	    	$("#modify .scd_dct").val(event.content);
 	    	$("#modify").modal({backdrop: 'static'});
-// 	    	$("#pid").val(event.id);
-// 	    	$("#pselect").text(event.sname);
-//         	$("#psubject").text(event.subject);
-        	
-    		//alert(event.end);
-        	
-        	// Fri Aug 31 2018 09:00:00 GMT+0000 > 기본형
-        	// new Date(event.start).toISOString() > format 바꾸기
-        	// 2018-08-31T09:00:00.000Z > 바뀐 format
-//         	if($("#pselect").text()== "출장" ||$("#pselect").text()== "병가" || $("#pselect").text()== "연차"){
-//         		$("#pstart").text(new Date(event.start).toISOString().slice(0, 10));
-//         		$("#pend").text(new Date(event.end).toISOString().slice(0, 10));
-//         	} else {
-// 				$("#pstart").text(new Date(event.start).toISOString().slice(0, 10) + " "+ new Date(event.start).toISOString().slice(11, 19));
-	        	
-	        	//$("#pend").text(moment(event.end).format('YYYY-MM-DD hh:mm:ss'));
-// 	        	$("#pend").text(new Date(event.end).toISOString().slice(0, 10) + " "+ new Date(event.end).toISOString().slice(11, 19));
-//         	}
-        	
-//         	$("#pcontent").html(event.content);
-        	
-// 	    	$("#dayModal").modal();	
-	    	
-	    	/* fullcalendar date format 바꾸는법
-	    	alert("start date edit >> "+ (new Date(event.start).toISOString()));
-	    	alert("end date edit >> "+ (new Date(event.end).toISOString()));
-	    	*/
-	    	
-		    //event.title = "CLICKED!";
-		    //$('#calendar').fullCalendar('updateEvent', event);
 		}
-			
-			
 		// 구글 캘린더를 사용하기 위한 ApiKey - 지훈
 		// https://fullcalendar.io/docs/google-calendar
 		, googleCalendarApiKey: 'AIzaSyCoSzL9_Raphwupf46XPGJmHcNSJhRA1M0'
 		, eventSources: [
-		// 구글 공휴일 캘린더 소스 적용
+			// 구글 공휴일 캘린더 소스 적용
 			{
 				googleCalendarId: "ko.south_korea#holiday@group.v.calendar.google.com"
 				,className: "대한민국 공휴일"
@@ -104,7 +64,7 @@ $(document).ready(function() {
 	});
 });
 
-// 일정등록하기
+// 일정 등록하기
 $(document).on("click", "#registerBtn", function() {
 	if ($("#register .scd_nm").val() == '') {
 		alert('제목이 없습니다');
@@ -128,7 +88,7 @@ $(document).on("click", "#registerBtn", function() {
 	}
 });
 
-//일정수정하기
+// 일정 수정하기
 $(document).on("click", "#modifyBtn", function() {
 	if ($("#modify .scd_nm").val() == '') {
 		alert('제목이 없습니다');
@@ -146,9 +106,24 @@ $(document).on("click", "#modifyBtn", function() {
 			alert("종료일이 시작일 보다 빠를 수 없습니다.");
 			return;
 		}
-		$("#modify #modifyForm").attr("method", "POST")
-								.attr("action", "${root}/member/calendar/modify.tree")
-								.submit();
+		if (confirm("수정하시겠습니까?")) {
+			$("#modify #modifyForm").attr("method", "POST")
+									.attr("action", "${root}/member/calendar/modify.tree")
+									.submit();	
+		} else {
+			return;
+		}
+	}
+});
+
+// 일정 삭제하기
+$(document).on("click", "#deleteBtn", function() {
+	if (confirm("삭제하시겠습니까?")) {
+		$("#modify #modifyForm").attr("method", "GET")
+								.attr("action", "${root}/member/calendar/delete.tree")
+								.submit();	
+	} else {
+		return;
 	}
 });
 

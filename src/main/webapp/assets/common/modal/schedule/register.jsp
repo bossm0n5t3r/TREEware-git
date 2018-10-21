@@ -49,7 +49,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">
-								<textarea class="form-control" name="scd_dct" class="scd_dct" rows="5"></textarea>
+								<textarea class="form-control scd_dct" name="scd_dct" rows="5"></textarea>
 							</td>
 						</tr>
 					</table>
