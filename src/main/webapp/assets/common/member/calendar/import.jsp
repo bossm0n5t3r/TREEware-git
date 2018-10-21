@@ -33,20 +33,58 @@ $(document).ready(function() {
 			$("#register .scd_sday").val(date.format());
 			$("#register").modal({backdrop: 'static'});
 		}
-		, eventClick : function(event) {
-			if (event.url) {
-				alert("구글 url 감지한거임 ㅇㅇ");
-				return false;
-			}
-			alert(event.start);
+		, eventClick: function(event) {
+			cleanSchedule();
+			getScdDivList();
+	    	// 수정모달에 데이터 집어넣기
+	    	console.log("id : " + event.id);
+	    	console.log("sname : " + event.sname);
+	    	console.log("subject : " + event.subject);
+	    	console.log("start : " + event.start);
+	    	console.log(new Date(event.start).toISOString());
+	    	console.log("end : " + event.end);
+	    	console.log(new Date(event.end).toISOString());
+	    	console.log("content : " + event.content);
+	    	$("#modify .scd_sq").val(event.id);
+	    	$("#modify .scd_div_sq").val(event.sname);
+	    	$("#modify .scd_nm").val(event.subject);
+	    	$("#modify .scd_sday").text(new Date(event.start).toISOString());
+	    	$("#modify .scd_eday").text(new Date(event.end).toISOString());
+	    	$("#modify .scd_dct").val(event.content);
+	    	$("#modify").modal({backdrop: 'static'});
+// 	    	$("#pid").val(event.id);
+// 	    	$("#pselect").text(event.sname);
+//         	$("#psubject").text(event.subject);
+        	
+    		//alert(event.end);
+        	
+        	// Fri Aug 31 2018 09:00:00 GMT+0000 > 기본형
+        	// new Date(event.start).toISOString() > format 바꾸기
+        	// 2018-08-31T09:00:00.000Z > 바뀐 format
+//         	if($("#pselect").text()== "출장" ||$("#pselect").text()== "병가" || $("#pselect").text()== "연차"){
+//         		$("#pstart").text(new Date(event.start).toISOString().slice(0, 10));
+//         		$("#pend").text(new Date(event.end).toISOString().slice(0, 10));
+//         	} else {
+// 				$("#pstart").text(new Date(event.start).toISOString().slice(0, 10) + " "+ new Date(event.start).toISOString().slice(11, 19));
+	        	
+	        	//$("#pend").text(moment(event.end).format('YYYY-MM-DD hh:mm:ss'));
+// 	        	$("#pend").text(new Date(event.end).toISOString().slice(0, 10) + " "+ new Date(event.end).toISOString().slice(11, 19));
+//         	}
+        	
+//         	$("#pcontent").html(event.content);
+        	
+// 	    	$("#dayModal").modal();	
+	    	
+	    	/* fullcalendar date format 바꾸는법
+	    	alert("start date edit >> "+ (new Date(event.start).toISOString()));
+	    	alert("end date edit >> "+ (new Date(event.end).toISOString()));
+	    	*/
+	    	
+		    //event.title = "CLICKED!";
+		    //$('#calendar').fullCalendar('updateEvent', event);
 		}
-//             , select: function(start, end) {
-//                 $("#mySchedule .modal-title").html('일정을 입력하세요!');
-//                 $('#mySchedule').modal('show');
-               
-//                 dt_start = moment(start).format('YYYY-MM-DD hh:mm');
-//                 dt_end = moment(end).format('YYYY-MM-DD hh:mm');              //달력일자 선택시 작성화면 노출
-//                }
+			
+			
 		// 구글 캘린더를 사용하기 위한 ApiKey - 지훈
 		// https://fullcalendar.io/docs/google-calendar
 		, googleCalendarApiKey: 'AIzaSyCoSzL9_Raphwupf46XPGJmHcNSJhRA1M0'
@@ -213,14 +251,14 @@ function getScdDivList() {
 
 // 일정 분류를 등록하기 화면에서 보여주기
 function makeDivList(data) {
-	$("#register #scd_div_sq").empty();
+	$(".scd_div_sq").empty();
 	var sdivlist = data.scheduleDivList;
 	scheduleDivideList = sdivlist;
-	$("#register #scd_div_sq").append("<option value='0' selected='selected' disabled>일정분류선택</option>");
+	$(".scd_div_sq").append("<option value='0' selected='selected' disabled>일정분류선택</option>");
 	for (var i = 0; i < scheduleDivideList.length; i++) {
 		var option = $("<option></option>").attr("value", scheduleDivideList[i].SCD_DIV_SQ)
 										   .text(scheduleDivideList[i].SCD_DIV_NM);
-		$("#register #scd_div_sq").append(option);
+		$(".scd_div_sq").append(option);
 	}
 }
 

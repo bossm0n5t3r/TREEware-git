@@ -9,10 +9,19 @@
 			</div>
 			<div class="modal-body text-center" align="center">
 				<form id="modifyForm">
+				<input type="hidden" class="scd_sq">
 					<table style="width:100%">
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">
 								<input type="text" name="scd_nm" class="mainbox scd_nm" placeholder="일정제목" style="padding:10px" required>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div style="width:100%" class="box-group">
+									<select name="scd_div_sq" class="form-control scd_div_sq" style="font-size:100%">
+									</select>
+								</div>
 							</td>
 						</tr>
 						<tr>
