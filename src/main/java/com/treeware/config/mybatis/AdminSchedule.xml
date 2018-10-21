@@ -10,4 +10,12 @@
 		FROM SCD_DIV
 	</select>
 	
+	<select id="getListSchedule" parameterType="String" resultType="ScheduleDto">
+		SELECT s.scd_sq, s.scd_div_sq, d.scd_div_nm, s.emp_sq, s.scd_nm, s.scd_pst,
+			   s.scd_sday, s.scd_stime, s.scd_eday, s.scd_etime, s.scd_dct
+		FROM SCD s, SCD_DIV d
+		WHERE emp_sq = #{emp_sq}
+		AND s.scd_div_sq = d.scd_div_sq
+	</select>
+	
 </mapper>
