@@ -56,6 +56,7 @@ public class AdminMemberController {
 		return mav;
 	}
 	
+	//사원등록
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
 	public String register(EmployeePicDto employeePicDto, @RequestParam("file") MultipartFile multipartFile) {
 		if (multipartFile != null && !multipartFile.isEmpty()) {
@@ -89,7 +90,7 @@ public class AdminMemberController {
 		}
 
 		int cnt = adminMemberService.register(employeePicDto);
-		return "admin/account/register";
+		return "admin/account/main";
 	}
 	
 	@RequestMapping("/edit.tree")

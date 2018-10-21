@@ -1,6 +1,9 @@
 package com.treeware.board.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,26 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardDto> getBoardInfo(String bcode) {
 		return sqlSession.getMapper(BoardDao.class).getBoardInfo(bcode);
+	}
+
+	@Override
+	public int boardWrite(BoardDto boardDto) {
+		SimpleDateFormat date = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+		boardDto.setBrd_dt(date.format (new Date()));
+		boardDto.setBrd_fl_mnm("");
+		boardDto.setBrd_fl_onm("");
+		boardDto.setBrd_fl_rt("");
+		return sqlSession.getMapper(BoardDao.class).boardWrite(boardDto);
+	}
+
+	@Override
+	public int getNextSeq() {
+		return sqlSession.getMapper(BoardDao.class).getNextSeq();
+	}
+
+	@Override
+	public BoardDto boardView(int brd_sq) {
+		return sqlSession.getMapper(BoardDao.class).boardView(brd_sq);
 	}
 
 }

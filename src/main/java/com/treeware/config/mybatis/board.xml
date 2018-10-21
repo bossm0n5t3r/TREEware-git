@@ -3,33 +3,34 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.treeware.admin.board.dao.AdminBoardDao">
+<mapper namespace="com.treeware.board.dao.BoardDao">
 
-
-	<insert id="addBoard" parameterType="BoardListDto">
-	INSERT INTO BRD_LIST (bcode, bname, btype, ccode)
-	VALUES(#{bcode}, #{bname}, #{btype}, #{ccode})
-	</insert>
-	
-	<insert id="addCategory" parameterType="CategoryDto">
-	INSERT INTO CATEGORY
-	VALUES(#{ccode},#{cname})
-	</insert>
-	
-	<select id="getBoardCount" resultType="int">
-	SELECT COUNT(*)
-	FROM BOARD_LIST
-	</select>
 	
 	<select id="getBoardList" resultType="BoardListDto">
 	SELECT BCODE, BNAME, BTYPE, CCODE
-	FROM BOARD_LIST
+	FROM BRD_LIST
 	</select>
 	
 	<select id="getBoardInfo" parameterType="String" resultType="BoardDto">
 	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
 	FROM BRD
-	WHERE BCODE = ${bcode}
+	WHERE BCODE = #{bcode}
+	ORDER BY brd_sq DESC
 	</select>
 	
+	<insert id="boardWrite" parameterType="BoardDto">
+	INSERT INTO BRD (BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT)
+	VALUES (BRD_SQ.NEXTVAL, #{bcode}, #{brd_ttl}, #{emp_sq}, #{brd_ctt}, #{brd_dt}, #{brd_hits}, #{brd_fl_onm}, #{brd_fl_mnm}, #{brd_fl_rt})
+	</insert>
+
+	<select id="getNextSeq" resultType="int">
+	SELECT BRD_SQ
+	FROM BRD
+	</select>
+
+	<select id="boardView" parameterType="BoardDto" resultType="BoardDto">
+	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
+	FROM BRD
+	WHERE BRD_SQ = #{brd_sq}
+	</select>
 </mapper>

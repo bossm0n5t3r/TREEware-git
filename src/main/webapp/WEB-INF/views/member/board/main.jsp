@@ -7,9 +7,10 @@
 <%@ include file="/assets/common/member/board/import.jsp" %>
 <script>
 $(document).ready(function(){
-	document.getElementById("menu1").setAttribute("class", "nav-item active");
-	document.getElementById("menu2").setAttribute("class", "nav-item");
-	document.getElementById("menu3").setAttribute("class", "nav-item");
+	$('#menu0').attr("class", "nav-item active");
+// 	document.getElementById("menu0").setAttribute("class", "nav-item active");
+// 	document.getElementById("menu1").setAttribute("class", "nav-item");
+// 	document.getElementById("menu2").setAttribute("class", "nav-item");
 });
 
 </script>
@@ -81,7 +82,6 @@ $(document).ready(function(){
 													</tr>
 												</thead>
 												<tbody>
-													<% for(int i=0; i<10 ; i++){ %>
 													<tr>
 														<td>
 															<div class="form-check">
@@ -98,7 +98,6 @@ $(document).ready(function(){
 														<td>234</td>
 														<td><a href="#">추가</a></td>
 													</tr>
-													<%} %>
 												</tbody>
 											</table>
 											<div class="clear"></div>

@@ -24,7 +24,7 @@
 		, #{emp_sex}, #{emp_bdate}, #{emp_ml_id}, #{emp_ml_addr}, #{emp_tel1}, #{emp_tel2}, #{emp_tel3}, #{emp_zip}, #{emp_addr}, #{emp_addr_dt}
 		, #{emp_bs_tel1}, #{emp_bs_tel2}, #{emp_bs_tel3}, #{emp_crt}, sysdate, '', sysdate)
 	INTO EMP_PIC (EMP_SQ, EMP_PIC_DT, EMP_PIC_RT, EMP_PIC_ONM, EMP_PIC_MNM)
-	VALUES (#{emp_sq}, sysdate, #{emp_pic_dt}, #{emp_pic_rt}, #{emp_pic_onm}, #{emp_pic_mnm})
+	VALUES (#{emp_sq}, #{emp_pic_dt}, #{emp_pic_rt}, #{emp_pic_onm}, #{emp_pic_mnm})
 	SELECT * FROM DUAL
 	</insert>
 	

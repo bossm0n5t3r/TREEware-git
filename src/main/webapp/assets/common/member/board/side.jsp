@@ -7,20 +7,23 @@ $(document).ready(function(){
 		,url : "${root}/member/board/boardlist.tree"
 		,dataType : "json"
 		,success : function(data) {
-			boardList = data.boardList
-			for(var i=0;i<boardList.length;i++){
-				$('#list').append('<li id="menu'+i+'" class="nav-item">');
-				$('#list').append('	<a href="${root}/member/board/boardsortlist.tree">');
-				$('#list').append('		<p>'+boardList[i].bname+'</p>');
-				$('#list').append('	</a>');
-				$('#list').append('</li>');
-			}
+			boardList = data.boardList;
+			board_list(boardList);
 		}
 		,error : function(e) {
 			alert("에러");
 		}
 	});
 })
+function board_list(boardList){
+	for(var i=0;i<boardList.length;i++){
+		var bname = boardList[i].bname.replace(",", "");
+		var bcode = boardList[i].bcode;
+		var btype = boardList[i].btype;
+		$('#boardlist').append('<li id="menu'+i+'" class="nav-item"><a href="${root}/member/board/boardsortlist.tree?bcode='+bcode+'&bname='+bname+'&btype='+btype+'"><p>'+bname+'</p></a></li>');
+	}
+}
+
 </script>
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
@@ -48,9 +51,10 @@ $(document).ready(function(){
 		</div>
 		
 		<div style="margin:20px 0 10px 0" align="center">
-		<a href="${root}/member/board/write.tree"><button class="btn btn-outline-primary" style="width:220px;">
-		<i class="la la-edit"></i> &nbsp;글쓰기</button></a></div>
-		<ul class="nav" id="list">
+<%-- 		<a href="${root}/member/board/write.tree"><button class="btn btn-outline-primary" style="width:220px;"> --%>
+<!-- 		<i class="la la-edit"></i> &nbsp;글쓰기</button></a> -->
+		</div>
+		<ul class="nav" id="boardlist">
 <!-- 			<li id="menu1" class="nav-item active"> -->
 <%-- 				<a href="${root}/member/board/main.tree"> --%>
 <!-- 					<p>오피스소식</p> -->
