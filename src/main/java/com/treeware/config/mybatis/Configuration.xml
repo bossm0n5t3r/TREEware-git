@@ -5,18 +5,30 @@
 <configuration>
 
 	<typeAliases>
+		<!-- 사원 -->
 		<typeAlias alias="EmployeeDto" type="com.treeware.admin.member.model.EmployeeDto"/>
 		<typeAlias alias="DepartmentDto" type="com.treeware.admin.member.model.DepartmentDto"/>
 		<typeAlias alias="PositionDto" type="com.treeware.admin.member.model.PositionDto"/>
 		<typeAlias alias="RankDto" type="com.treeware.admin.member.model.RankDto"/>
+		<typeAlias alias="EmployeePicDto" type="com.treeware.admin.member.model.EmployeePicDto"/>
+		
+		<!-- 메일 -->
 		<typeAlias alias="MailDto" type="com.treeware.email.model.MailDto"/>
+		
+		<!-- 출퇴근 -->
 		<typeAlias alias="CommuteDto" type="com.treeware.admin.commute.model.CommuteDto"/>
+		
+		<!-- 일정 -->
 		<typeAlias alias="ScheduleDto" type="com.treeware.admin.schedule.model.ScheduleDto"/>
+		<typeAlias alias="ScheduleDivideDto" type="com.treeware.admin.schedule.model.ScheduleDivideDto"/>
+		
+		<!-- 게시판 -->
 		<typeAlias alias="BoardDto" type="com.treeware.admin.board.model.BoardDto"/>
 		<typeAlias alias="BoardListDto" type="com.treeware.admin.board.model.BoardListDto"/>
 		<typeAlias alias="CategoryDto" type="com.treeware.admin.board.model.CategoryDto"/>
+		
+		<!-- 결재 -->
 		<typeAlias alias="FormDto" type="com.treeware.form.model.FormDto"/>
-		<typeAlias alias="EmployeePicDto" type="com.treeware.admin.member.model.EmployeePicDto"/>
 	</typeAliases>
 	
 </configuration>
