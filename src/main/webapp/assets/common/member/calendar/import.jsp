@@ -117,9 +117,7 @@ $(document).on("click", "#registerBtn", function() {
 		return;
 	} else {
 		var startDate = $("#register .scd_sday").val();
-		var startTime = $("#register .scd_stime").val();
 		var endDate = $("#register .scd_eday").val();
-		var endTime = $("#register .scd_etime").val();
 		if(startDate > endDate) {
 			alert("종료일이 시작일 보다 빠를 수 없습니다.");
 			return;
@@ -127,6 +125,30 @@ $(document).on("click", "#registerBtn", function() {
 		$("#register #registerForm").attr("method", "POST")
 									.attr("action", "${root}/member/calendar/register.tree")
 									.submit();
+	}
+});
+
+//일정수정하기
+$(document).on("click", "#modifyBtn", function() {
+	if ($("#modify .scd_nm").val() == '') {
+		alert('제목이 없습니다');
+		return;
+	} else if ($("#modify .scd_div_sq").val() == null) {
+		alert('일정 종류를 선택해주세요.');
+		return;
+	} else if ($("#modify .scd_sday").val() == '' || $("#modify .scd_eday").val() == '') {
+		alert('날짜가 완전하지 않습니다.');
+		return;
+	} else {
+		var startDate = $("#modify .scd_sday").val();
+		var endDate = $("#modify .scd_eday").val();
+		if(startDate > endDate) {
+			alert("종료일이 시작일 보다 빠를 수 없습니다.");
+			return;
+		}
+		$("#modify #modifyForm").attr("method", "POST")
+								.attr("action", "${root}/member/calendar/modify.tree")
+								.submit();
 	}
 });
 

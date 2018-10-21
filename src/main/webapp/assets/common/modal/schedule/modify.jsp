@@ -9,7 +9,9 @@
 			</div>
 			<div class="modal-body text-center" align="center">
 				<form id="modifyForm">
-				<input type="hidden" class="scd_sq">
+				<input type="hidden" name="scd_sq" class="scd_sq">
+				<input type="hidden" name="scd_stime">
+				<input type="hidden" name="scd_etime">
 					<table style="width:100%">
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">

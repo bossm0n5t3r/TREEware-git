@@ -9,6 +9,7 @@
 			</div>
 			<div class="modal-body text-center" align="center">
 				<form id="registerForm">
+				<input type="hidden" name="scd_sq" class="scd_sq">
 				<input type="hidden" name="scd_stime">
 				<input type="hidden" name="scd_etime">
 					<table style="width:100%">

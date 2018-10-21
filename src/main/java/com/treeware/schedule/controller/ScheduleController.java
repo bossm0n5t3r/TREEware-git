@@ -37,5 +37,14 @@ public class ScheduleController {
 		scheduleService.registerSchedule(scheduleDto);
 		return "member/calendar/main";
 	}
+	
+	// 일정 수정
+	@RequestMapping(value="/modify.tree", method=RequestMethod.POST)
+	public String modify(ScheduleDto scheduleDto, HttpSession session) {
+		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
+		scheduleDto.setEmp_sq(employeeDto.getEmp_sq());
+		scheduleService.modifySchedule(scheduleDto);
+		return "member/calendar/main";
+	}
 
 }
