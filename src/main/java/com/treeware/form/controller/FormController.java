@@ -29,7 +29,7 @@ public class FormController {
 	@Autowired
 	private FormService formService;
 	
-	//결재메뉴 리스트화면(메인)
+	//결재메뉴 받은편지함(메인)
 	@RequestMapping("/main.tree")
 	public String main() {
 		return "member/sign/main";
@@ -43,13 +43,19 @@ public class FormController {
 		return mav;
 	}
 	
+	//결재메뉴 보낸편지함
+	@RequestMapping("/sendbox.tree")
+	public ModelAndView sendbox() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/sign/sendbox");
+		return mav;
+	}
+	
 	@RequestMapping(value="/write.tree", method=RequestMethod.POST)
 	public ModelAndView write(FormDto formDto) {
-		System.out.println("ddd");
 		ModelAndView mav = new ModelAndView();
 		int cnt = formService.write(formDto);
-		mav.addObject("cnt", cnt);
-		mav.setViewName("member/sign/main");
+		mav.setViewName("member/sign/writeok");
 		return mav;
 	}
 	

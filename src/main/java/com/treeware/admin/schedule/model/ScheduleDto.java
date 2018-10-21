@@ -1,17 +1,15 @@
 package com.treeware.admin.schedule.model;
 
-public class ScheduleDto {
-	private int 	scd_sq;
-	private int 	scd_div_sq;
-	private String 	emp_sq;
-	private int 	dpt_sq;
-	private String 	scd_nm;
-	private String 	scd_pst;
-	private String 	scd_sday;
-	private String 	scd_stime;
-	private String 	scd_eday;
-	private String 	scd_etime;
-	private String 	scd_dct;
+public class ScheduleDto extends ScheduleDivideDto {
+	private int scd_sq;
+	private String emp_sq;
+	private String scd_nm;
+	private String scd_pst;
+	private String scd_sday;
+	private String scd_stime;
+	private String scd_eday;
+	private String scd_etime;
+	private String scd_dct;
 
 	public int getScd_sq() {
 		return scd_sq;
@@ -21,28 +19,12 @@ public class ScheduleDto {
 		this.scd_sq = scd_sq;
 	}
 
-	public int getScd_div_sq() {
-		return scd_div_sq;
-	}
-
-	public void setScd_div_sq(int scd_div_sq) {
-		this.scd_div_sq = scd_div_sq;
-	}
-
 	public String getEmp_sq() {
 		return emp_sq;
 	}
 
 	public void setEmp_sq(String emp_sq) {
 		this.emp_sq = emp_sq;
-	}
-
-	public int getDpt_sq() {
-		return dpt_sq;
-	}
-
-	public void setDpt_sq(int dpt_sq) {
-		this.dpt_sq = dpt_sq;
 	}
 
 	public String getScd_nm() {

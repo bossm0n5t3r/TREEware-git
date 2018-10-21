@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.treeware.admin.schedule.dao.AdminScheduleDao;
 import com.treeware.admin.schedule.model.ScheduleDivideDto;
+import com.treeware.admin.schedule.model.ScheduleDto;
 
 @Service
 public class AdminScheduleServiceImpl implements AdminScheduleService {
@@ -18,6 +19,11 @@ public class AdminScheduleServiceImpl implements AdminScheduleService {
 	@Override
 	public List<ScheduleDivideDto> getScdDivList() {
 		return sqlSession.getMapper(AdminScheduleDao.class).getScdDivList();
+	}
+
+	@Override
+	public List<ScheduleDto> getListSchedule(String emp_sq) {
+		return sqlSession.getMapper(AdminScheduleDao.class).getListSchedule(emp_sq);
 	}
 
 }

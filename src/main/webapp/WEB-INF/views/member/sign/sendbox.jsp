@@ -7,8 +7,8 @@
 <script>
 $(document).ready(function(){
 	document.getElementById("menu1").setAttribute("class", "nav-item");
-	document.getElementById("menu2").setAttribute("class", "nav-item active");
-	document.getElementById("menu3").setAttribute("class", "nav-item");
+	document.getElementById("menu2").setAttribute("class", "nav-item");
+	document.getElementById("menu3").setAttribute("class", "nav-item active");
 });
 </script>
 </head>
@@ -22,7 +22,7 @@ $(document).ready(function(){
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
-								<div class="card-title">받은결재함</div>
+								<div class="card-title">보낸결재함</div>
 							</div>
 							<div class="card-body">
 								<div class="row" align="center">
