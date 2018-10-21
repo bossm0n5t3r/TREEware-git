@@ -403,6 +403,7 @@ function searchajax(){
 		}
 });
 }
+//사원검색 페이지
 function searchPaging(){
 	last = Math.min(pageCount,totalPage);
 	$('#paging').empty();
