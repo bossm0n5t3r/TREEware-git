@@ -6,14 +6,25 @@
 <mapper namespace="com.treeware.email.dao.EmailDao">
 
 	<insert id="sendMail" parameterType="MailDto" >
-	insert into ML(ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_TTL, ML_CTT) 
-	values(#{ml_sq}, 2, 2, #{emp_sq}, #{ml_snd_add}, #{ml_rcv_add}, #{ml_ttl}, #{ml_ctt})
+	insert into ML(ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_TTL, ML_CTT, ML_SEND_DATE) 
+	values(#{ml_sq}, 2, 2, #{emp_sq}, #{ml_snd_add}, #{ml_rcv_add}, #{ml_ttl}, #{ml_ctt}, sysdate)
 	</insert>
 	
 	<select id="getNextSeq" resultType="int">
 	select ML_SQ.nextval
 	from dual
 	</select>
+	
+	<select id="listMail" resultType="MailDto">
+	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_TTL, ML_SEND_DATE, ML_FL_NM, ML_FL_RT
+	from ML 
+	where ML_GRP_SQ = #{ml_grp_sq}
+	order by ML_SQ desc</select>
+	
+	<select id="viewMail" parameterType="int" resultType="MailDto">
+	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_TTL, ML_SEND_DATE, ML_FL_NM, ML_FL_RT
+	from ML 
+	where ML_SQ = #{ml_sq}</select>
 	
 </mapper>
 

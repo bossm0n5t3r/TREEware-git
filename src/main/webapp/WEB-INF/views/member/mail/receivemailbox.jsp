@@ -26,6 +26,7 @@ $(document).ready(function(){
 			remote : '${root}/menu/mail/deleteok.jsp'
 		});		
 	});
+});
 
 </script>
 

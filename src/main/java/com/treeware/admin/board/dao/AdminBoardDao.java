@@ -1,16 +1,22 @@
 package com.treeware.admin.board.dao;
 
+import java.util.List;
+
+import com.treeware.admin.board.model.BoardDto;
 import com.treeware.admin.board.model.BoardListDto;
 
 public interface AdminBoardDao {
 
 	public int addBoard(BoardListDto boardListDto);
 	public int getBoardCount(String bcode);
-	public int deleteBoard();
-	public int modifyBoard();
-	public int writePosts();
-	public int deletePosts();
-	public int modifyPosts();
+	List<BoardDto> boardViewsBcode(int bcode);
+	List<BoardDto> boardViews();
+	String getBoardEmpName(String emp_sq);
+//	public int deleteBoard();
+//	public int modifyBoard();
+//	public int writePosts();
+//	public int deletePosts();
+//	public int modifyPosts();
 //	public List<PostsDto> getPostsList();
 //	public PostsDto getPosts();
 }

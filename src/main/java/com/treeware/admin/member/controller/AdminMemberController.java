@@ -67,7 +67,6 @@ public class AdminMemberController {
 	        DateFormat df = new SimpleDateFormat("yyMMdd");
 	        String saveFolder = df.format(new Date());
 	        String realSaveFolder = realPath + File.separator + saveFolder;
-	        System.out.println(realSaveFolder);
 	        File dir = new File(realSaveFolder);
 	        if (!dir.exists()) {
 	          dir.mkdirs();
@@ -182,7 +181,6 @@ public class AdminMemberController {
 	//사원검색
 	@RequestMapping("/membersearch.tree")
 	public @ResponseBody String memberSearch(@RequestParam Map<String, String> map) {
-		System.out.println(map);
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
