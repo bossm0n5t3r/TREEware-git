@@ -1,6 +1,6 @@
 package com.treeware.address.model;
 
-public class AddressDto {
+public class AddressDto extends AddressGroupDto {
 	private int 	addr_sq;
 	private int 	addr_grp_sq;
 	private String 	addr_nm;
