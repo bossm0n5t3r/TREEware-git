@@ -1,5 +1,11 @@
 package com.treeware.address.service;
 
-public interface AddressService {
+import java.util.List;
 
+import com.treeware.address.model.AddressDto;
+import com.treeware.address.model.AddressGroupDto;
+
+public interface AddressService {
+	public List<AddressGroupDto> getAddrGrpList(String emp_sq);
+	public int registerAddress(AddressDto addressDto);
 }
