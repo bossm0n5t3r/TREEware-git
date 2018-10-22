@@ -8,16 +8,16 @@
 <script>
 $(document).ready(function() {
 	$("#writeBtn").click(function() {
-		if($("#members").val()==''){
-			alert("수신처를 추가해주세요");
+		if($("#memberEmpnm0").val()=='' || $("#memberEmpnm1").val()=='' || $("#memberEmpnm2").val()==''){
+			alert("결재 받으실 사원을 추가해주세요(3명)");
 			return;
 		}else if($("#title").val() == '') {
 			alert("제목을 입력해주세요");
 			return;
-		} else if($("#date2").val() == '') {
+		} else if($("#date").val() == '') {
 			alert("시행일을 입력해주세요");
 			return;
-		} else if($('#text').val()==''){
+		} else if($('#content').val()==''){
 			alert("내용을 입력해주세요");
 			return;
 		}else {
@@ -38,7 +38,22 @@ $(document).ready(function() {
 	$("#dpt_name").text(b);
 	livetime();
 	$("#userEmpnm").val(c);
+	nextSq();
 });
+
+function nextSq(){
+	$.ajax({
+		type : "GET"
+		,url : "/treeware/member/sign/nextseq.tree"
+		,dataType : "json"
+		,success : function(data) {
+			$("#nextseq").val("2018" + data.nextseq);
+		}
+		,error : function(e) {
+			alert("error 발생");
+		}
+	})
+}
 
 //결재서류에 보여지는 현재시간
 function livetime() {
@@ -155,7 +170,7 @@ function memberList(){
 		<tr>
 			<td width="20%" class="info_title" style="background-color:#eee;text-align:center">문서번호</td>
 			<td width="80%" colspan="3" style="background-color:#eee">
-			<input type="text" name="APV_SQ" style="border:0px;background-color:#eee" >
+			<input type="text" id="nextseq" name="APV_SQ" style="border:0px;background-color:#eee" >
 			</td>
 		</tr> 
 		<tr>

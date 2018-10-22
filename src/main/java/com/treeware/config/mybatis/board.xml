@@ -24,8 +24,8 @@
 	</insert>
 
 	<select id="getNextSeq" resultType="int">
-	SELECT BRD_SQ
-	FROM BRD
+	SELECT BRD_SQ.NEXTVAL
+	FROM DUAL
 	</select>
 
 	<select id="boardView" parameterType="BoardDto" resultType="BoardDto">
