@@ -15,5 +15,25 @@
 	FROM BRD
 	WHERE bcode = #{bcode}
 	</select>
+	
+	<select id="boardViews" resultType="BoardDto">
+	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
+	FROM BRD
+	ORDER BY BRD_SQ DESC
+	</select>
+	
+	<select id="boardViewsBcode" parameterType="int" resultType="BoardDto">
+	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
+	FROM BRD
+	<if test="bcode != 0">
+	WHERE BCODE = #{bcode}
+	</if>
+	</select>
+	
+	<select id="getBoardEmpName" parameterType="String" resultType="String">
+	SELECT EMP_NM
+	FROM EMP
+	WHERE EMP_SQ = #{emp_sq}
+	</select>
 
 </mapper>

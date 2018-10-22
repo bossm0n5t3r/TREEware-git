@@ -38,8 +38,8 @@ $(document).ready(function(){
 		});		
 	});
 	
-	$(".mailList").click(function() {
-		$("#ml_grp_sq").val('${mail.ml_grp_sq}');
+	$(".posting").click(function() {
+		$("#ml_grp_sq").val('${ml_grp_sq}');
 		$("#pg").val('${pg}');
 		$("#key").val('${key}');
 		$("#word").val('${word}');
@@ -52,14 +52,15 @@ $(document).ready(function(){
 
 </head>
 <body>
-<form name="commonform" id="commonform">
-	<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="">
-	<input type="hidden" name="pg" id="pg" value="">
-	<input type="hidden" name="key" id="key" value="">
-	<input type="hidden" name="word" id="word" value="">
-	<input type="hidden" name="ml_sq" id="ml_sq" value="">
-</form>
+	<form name="commonform" id="commonform">
+		<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="">
+		<input type="hidden" name="pg" id="pg" value=""> <input
+			type="hidden" name="key" id="key" value=""> <input
+			type="hidden" name="word" id="word" value=""> <input
+			type="hidden" name="ml_sq" id="ml_sq" value="">
+	</form>
 
+	
 	<!-- 			https://www.w3schools.com/bootstrap4/bootstrap_navs.asp -->
 	<div class="wrapper">
 		<%@ include file="/assets/common/top.jsp"%>
@@ -103,88 +104,39 @@ $(document).ready(function(){
 									<div class="btn-group">
 										<button class="btn btn-default btn-sm dropdown-toggle"
 											data-toggle="dropdown">이동</button>
-										<ul id="movedrop"class="dropdown-menu" role="menu"
+										<ul id="movedrop" class="dropdown-menu" role="menu"
 											aria-labelledby="dropdownMenu">
 											<li><a class="dropdown-item" href="#">휴지통</a></li>
 											<li><a class="dropdown-item" href="#">새메일함2</a></li>
 										</ul>
 									</div>
 								</div>
-								<div class="col-lg-2" style="float: left; text-align: right;">
-									<div class="d1" style="float: left;">
-										<form>
-											<input class="form-control" type="text">
-											<button type="submit"></button>
-										</form>
-									</div>
-								</div>
-								<div class="col-lg-1"
-									style="float: left; text-align: left; margin-top: 3px;">
-									<select id="toolbar_list_pagebase" evt-rol="change-pagebase">
-										<option value="20" selected="">20</option>
-										<option value="40">40</option>
-										<option value="60">60</option>
-										<option value="80">80</option>
-									</select>
-								</div>
+							
 							</div>
 							<div class="card-body">
 								<div class="panel">
-									<table class="table">
-										<thead>
-											<tr>
-												<th>
-													<div class="form-check">
-														<label class="form-check-label"> <input
-															class="form-check-input select-all-checkbox"
-															type="checkbox" data-select="checkbox"
-															data-target=".task-select"> <span
-															class="form-check-sign"></span>
-														</label>
-													</div>
-												</th>
-												<th>받는사람</th>
-												<th>제목</th>
-												<th>보낸날짜</th>
-											</tr>
-										</thead>
-										<tbody>
-										<c:forEach var="mail" items="${mailList}">
-											<tr class="mailList" article-seq="${mail.ml_sq}">
-												<td>
-													<div class="form-check">
-														<label class="form-check-label"> <input
-															class="form-check-input task-select" type="checkbox">
-															<span class="form-check-sign"></span>
-														</label>
-													</div>
-												</td>
-												<td>${mail.ml_rcv_add}</td>
-												<td>${mail.ml_ttl}</td>
-												<td>${mail.ml_send_date}</td>
-											</tr>
-											</c:forEach>
-										</tbody>
+									<table width="100%">
+										<tr>
+											<td>${mail.ml_ttl}</td>
+										
+										</tr>
+										<tr>
+											<td colspan="2">보낸사람</td>
+											<td>${mail.ml_snd_add}</td>
+										</tr>
+
+										<tr>
+											<td colspan="2">받는사람</td>
+											<td>${mail.ml_rcv_add}</td>
+										</tr>
+										<tr>
+											<td colspan="3">내용</td>
+											<td>${mail.ml_ctt}</td>
+										</tr>
 									</table>
+									<br>
 								</div>
-								<div style="width: 100%; text-align: center;">
-									<div style="width: 185px; margin: 0 auto;">
-										<ul class="pagination pg-primary">
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Previous"> <span aria-hidden="true">«</span>
-													<span class="sr-only">Previous</span>
-											</a></li>
-											<li class="page-item active"><a class="page-link"
-												href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Next"> <span aria-hidden="true">»</span> <span
-													class="sr-only">Next</span>
-											</a></li>
-										</ul>
-									</div>
-								</div>
+
 							</div>
 						</div>
 					</div>

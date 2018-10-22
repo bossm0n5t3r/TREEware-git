@@ -3,6 +3,25 @@
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
 		<%@ include file="/assets/common/user.jsp" %>
+		
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#sendmailbox").click(function(){	
+ 				$("#ml_grp_sq").val("2");
+				<c:set var="ml_grp_sq" value="${param.ml_grp_sq}"/>
+				$("#commonform").attr("action","${root}/member/mail/sendmailbox.tree").submit();			
+			});
+		});
+		
+		</script>
+		
+		<form name="commonform" id="commonform">
+			<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="">
+			<input type="hidden" name="pg" id="pg" value="">
+			<input type="hidden" name="key" id="key" value="">
+			<input type="hidden" name="word" id="word" value="">
+			<input type="hidden" name="ml_sq" id="ml_sq" value="">
+		</form>
 		<!-- 
 		<style>
 		#menucate:hover{
@@ -42,9 +61,9 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/member/mail/sendmailbox.tree">
-					<p><i class="la la-mail-forward"></i>보낸메일함</p>
-				</a>
+				<Button id="sendmailbox">
+					<p id="sendmailbox"><i class="la la-mail-forward"></i>보낸메일함</p>
+				</Button>
 			</li>
 			<li class="nav-item">
 				<a href="${root}/member/mail/newmailbox.tree">

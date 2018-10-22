@@ -21,7 +21,7 @@ $(document).ready(function() {
 		, monthNames : ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]
 		, monthNamesShort : ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]
 		, dayNames : ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"]
-		, dayNamesShort : ["일","월","화 ","수 ","목 ","금 ","토 "]      ///한글로변환
+		, dayNamesShort : ["일","월","화 ","수 ","목 ","금 ","토 "]
 		, buttonText : {
 			today : "오늘"
 		}
@@ -33,25 +33,27 @@ $(document).ready(function() {
 			$("#register .scd_sday").val(date.format());
 			$("#register").modal({backdrop: 'static'});
 		}
-		, eventClick : function(event) {
-			if (event.url) {
-				alert("구글 url 감지한거임 ㅇㅇ");
-				return false;
-			}
-			alert(event.start);
+		, eventClick: function(event) {
+			cleanSchedule();
+			getScdDivList();
+	    	// 수정모달에 데이터 집어넣기
+	    	$("#modify .scd_sq").val(event.id);
+	    	$("#modify .scd_nm").val(event.subject);
+	    	$("#modify .scd_div_sq option:eq("+ event.div +")").attr("selected", "selected");
+	    	$("#modify .scd_sday").val(new Date(event.start).toISOString().slice(0, 10));
+	    	if (event.end == null) {
+	    		$("#modify .scd_eday").val(new Date(event.start).toISOString().slice(0, 10));
+	    	} else {
+		    	$("#modify .scd_eday").val(new Date(event.end).toISOString().slice(0, 10));	    		
+	    	}
+	    	$("#modify .scd_dct").val(event.content);
+	    	$("#modify").modal({backdrop: 'static'});
 		}
-//             , select: function(start, end) {
-//                 $("#mySchedule .modal-title").html('일정을 입력하세요!');
-//                 $('#mySchedule').modal('show');
-               
-//                 dt_start = moment(start).format('YYYY-MM-DD hh:mm');
-//                 dt_end = moment(end).format('YYYY-MM-DD hh:mm');              //달력일자 선택시 작성화면 노출
-//                }
 		// 구글 캘린더를 사용하기 위한 ApiKey - 지훈
 		// https://fullcalendar.io/docs/google-calendar
 		, googleCalendarApiKey: 'AIzaSyCoSzL9_Raphwupf46XPGJmHcNSJhRA1M0'
 		, eventSources: [
-		// 구글 공휴일 캘린더 소스 적용
+			// 구글 공휴일 캘린더 소스 적용
 			{
 				googleCalendarId: "ko.south_korea#holiday@group.v.calendar.google.com"
 				,className: "대한민국 공휴일"
@@ -62,12 +64,12 @@ $(document).ready(function() {
 	});
 });
 
-// 일정등록하기
+// 일정 등록하기
 $(document).on("click", "#registerBtn", function() {
 	if ($("#register .scd_nm").val() == '') {
 		alert('제목이 없습니다');
 		return;
-	} else if ($("#register #scd_div_sq").val() == null) {
+	} else if ($("#register .scd_div_sq").val() == null) {
 		alert('일정 종류를 선택해주세요.');
 		return;
 	} else if ($("#register .scd_sday").val() == '' || $("#register .scd_eday").val() == '') {
@@ -75,18 +77,109 @@ $(document).on("click", "#registerBtn", function() {
 		return;
 	} else {
 		var startDate = $("#register .scd_sday").val();
-		var startTime = $("#register .scd_stime").val();
 		var endDate = $("#register .scd_eday").val();
-		var endTime = $("#register .scd_etime").val();
-		if(startDate+ " "+ startTime > endDate+ " "+ endTime) {
+		if(startDate > endDate) {
 			alert("종료일이 시작일 보다 빠를 수 없습니다.");
 			return;
 		}
-		$("#register #registerForm").attr("method", "POST")
-									.attr("action", "${root}/member/calendar/register.tree")
-									.submit();
+		$.ajax({
+			type : "POST"
+			,url : "${root}/member/calendar/register.tree"
+			,dataType : "json"
+			,data : {
+				"scd_div_sq" : $("#register .scd_div_sq").val()
+				,"emp_sq" : "${userInfo.emp_sq}"
+				,"scd_nm" : $("#register .scd_nm").val()
+				,"scd_pst" : $("#register .scd_pst").val()
+				,"scd_sday" : $("#register .scd_sday").val()
+				,"scd_eday" : $("#register .scd_eday").val()
+				,"scd_dct" : $("#register .scd_dct").val()
+			}
+			,success : function(data) {
+				addList(data);
+			}
+		});
 	}
 });
+
+// 일정 수정하기
+$(document).on("click", "#modifyBtn", function() {
+	if ($("#modify .scd_nm").val() == '') {
+		alert('제목이 없습니다');
+		return;
+	} else if ($("#modify .scd_div_sq").val() == null) {
+		alert('일정 종류를 선택해주세요.');
+		return;
+	} else if ($("#modify .scd_sday").val() == '' || $("#modify .scd_eday").val() == '') {
+		alert('날짜가 완전하지 않습니다.');
+		return;
+	} else {
+		var startDate = $("#modify .scd_sday").val();
+		var endDate = $("#modify .scd_eday").val();
+		if(startDate > endDate) {
+			alert("종료일이 시작일 보다 빠를 수 없습니다.");
+			return;
+		}
+		if (confirm("수정하시겠습니까?")) {
+			$.ajax({
+				type : "POST"
+				,url : "${root}/member/calendar/modify.tree"
+				,dataType : "json"
+				,data : {
+					"scd_sq" : $("#modify .scd_sq").val()
+					,"scd_div_sq" : $("#modify .scd_div_sq").val()
+					,"emp_sq" : "${userInfo.emp_sq}"
+					,"scd_nm" : $("#modify .scd_nm").val()
+					,"scd_pst" : $("#modify .scd_pst").val()
+					,"scd_sday" : $("#modify .scd_sday").val()
+					,"scd_eday" : $("#modify .scd_eday").val()
+					,"scd_dct" : $("#modify .scd_dct").val()
+				}
+				,success : function(data) {
+					modifySchedule();
+				}
+				,error : function() {
+
+				}
+			});	
+		} else {
+			return;
+		}
+	}
+});
+
+// 일정목록 수정하기
+function modifySchedule() {
+	// 기존의 리스트를 불러와서 삭제
+	clearCalendar();
+	getList();
+}
+
+// 일정 삭제하기
+$(document).on("click", "#deleteBtn", function() {
+	if (confirm("삭제하시겠습니까?")) {
+		$.ajax({
+			type : "GET"
+			,url : "${root}/member/calendar/delete.tree"
+			,dataType : "json"
+			,data : {
+				"scd_sq" : $("#modify .scd_sq").val()
+			}
+			,success : function(data) {
+				deleteSchedule(data.SCD_SQ);
+			}
+			,error : function() {
+
+			}
+		});	
+	} else {
+		return;
+	}
+});
+
+function deleteSchedule(data) {
+	$('#calendar').fullCalendar('removeEvents', data);
+}
 
 // 등록한 일정 화면에 보여주기
 function addList(data) {
@@ -125,11 +218,11 @@ function addList(data) {
         title: "["+data.scd_div_nm+"]"+data.scd_nm,
         start: data.scd_sday,
         end: data.scd_eday,
-        content: data.scd_dct,
-        sname: data.scd_div_nm, 
-        subject: data.scd_nm,
         color: scolor,
-        textColor: 'white'
+        textColor: 'white',
+        content: data.scd_dct,
+        div: data.scd_div_sq, 
+        subject: data.scd_nm
     }]);
 }
 
@@ -139,6 +232,9 @@ function getList() {
 		type : "GET"
 		,url : "${root}/admin/calendar/getList.tree"
 		,dataType : "json"
+		,data : {
+			"emp_sq" : "${userInfo.emp_sq}"
+		}
 		,success : function(data) {
 			makeList(data);
 		}
@@ -152,7 +248,7 @@ function getList() {
 function makeList(data) {
 	var slist = data.scheduleList;
 	scheduleList = slist;
-	for(var i=0; i<scheduleList.length; i++){
+	for(var i = 0; i < scheduleList.length; i++){
 		// 이벤트마다 색 설정
 		var scolor= "";
 		// 휴가, 파랑
@@ -187,12 +283,18 @@ function makeList(data) {
 	        title: "["+scheduleList[i].scd_div_nm+"]"+scheduleList[i].scd_nm,
 	        start: scheduleList[i].scd_sday,
 	        end: scheduleList[i].scd_eday,
-	        content: scheduleList[i].scd_dct,
-	        sname: scheduleList[i].scd_div_nm, 
-	        subject: scheduleList[i].scd_nm,
 	        color: scolor,
-	        textColor: 'white'
+	        textColor: 'white',
+	        content: scheduleList[i].scd_dct,
+	        div: scheduleList[i].scd_div_sq, 
+	        subject: scheduleList[i].scd_nm
 	    }]);
+	}
+}
+
+function clearCalendar() {
+	for(var i=0; i < scheduleList.length; i++){
+		$('#calendar').fullCalendar('removeEvents', scheduleList[i].scd_sq);
 	}
 }
 
@@ -213,14 +315,14 @@ function getScdDivList() {
 
 // 일정 분류를 등록하기 화면에서 보여주기
 function makeDivList(data) {
-	$("#register #scd_div_sq").empty();
+	$(".scd_div_sq").empty();
 	var sdivlist = data.scheduleDivList;
 	scheduleDivideList = sdivlist;
-	$("#register #scd_div_sq").append("<option value='0' selected='selected' disabled>일정분류선택</option>");
+	$(".scd_div_sq").append("<option value='0' selected='selected' disabled>일정분류선택</option>");
 	for (var i = 0; i < scheduleDivideList.length; i++) {
 		var option = $("<option></option>").attr("value", scheduleDivideList[i].SCD_DIV_SQ)
 										   .text(scheduleDivideList[i].SCD_DIV_NM);
-		$("#register #scd_div_sq").append(option);
+		$(".scd_div_sq").append(option);
 	}
 }
 
@@ -228,9 +330,7 @@ function makeDivList(data) {
 function cleanSchedule() {
 	$("#register .scd_nm").val('');
 	$("#register .scd_sday").val('');
-	$("#register .scd_stime").val('');
 	$("#register .scd_eday").val('');
-	$("#register .scd_etime").val('');
 	$("#register .scd_pst").val('');
 	$("#register .scd_dct").val('');
 }

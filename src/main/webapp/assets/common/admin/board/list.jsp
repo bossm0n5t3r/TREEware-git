@@ -22,14 +22,14 @@
 					</label>
 				</div>
 			</th>
-			<th width="15%">글번호</th>
+			<th style="text-align:center" width="15%">글번호</th>
 			<th width="40%">제목</th>
 			<th width="15%">작성자</th>
 			<th width="15%">작성일</th>
 		</tr>
 	</thead>
 	<tbody>
-	
+	<c:forEach var="adminBoardList" items="${adminBoardList}">
 		<tr>
 			<td>
 				<div class="form-check">
@@ -39,10 +39,11 @@
 					</label>
 				</div>
 			</td>
-<%-- 			<td>${brd_ttl}</td> --%>
-<%-- 			<td>${brd_ttl}</td> --%>
-<%-- 			<td>${emp_nm}</td> --%>
-<%-- 			<td>${brd_dt}</td> --%>
+			<c:set var="emp_sq" value="${adminBoardList.emp_sq}" />
+			<td style="text-align:center">${adminBoardList.brd_sq}</td>
+			<td>${adminBoardList.brd_ttl}</td>
+			<td>${boardEmpName[emp_sq]}</td>
+			<td>${adminBoardList.brd_dt}</td>
 			<td class="td-actions text-left">
 				<div class="form-button-action">
 					<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary">
@@ -54,6 +55,6 @@
 				</div>
 			</td>
 		</tr>
-		
+	</c:forEach>	
 	</tbody>
 </table>

@@ -516,9 +516,7 @@ CREATE TABLE SCD (
     SCD_NM VARCHAR2(100) NOT NULL, /* 이름 */
     SCD_PST VARCHAR2(300), /* 위치 */
     SCD_SDAY VARCHAR2(50) NOT NULL, /* 시작날짜 */
-    SCD_STIME VARCHAR2(50), /* 시작시간 */
     SCD_EDAY VARCHAR2(50) NOT NULL, /* 종료날짜 */
-    SCD_ETIME VARCHAR2(50), /* 종료시간 */
     SCD_DCT VARCHAR2(4000) /* 설명 */
 );
 
@@ -536,11 +534,7 @@ COMMENT ON COLUMN SCD.SCD_PST IS '위치';
 
 COMMENT ON COLUMN SCD.SCD_SDAY IS '시작날짜';
 
-COMMENT ON COLUMN SCD.SCD_STIME IS '시작시간';
-
 COMMENT ON COLUMN SCD.SCD_EDAY IS '종료날짜';
-
-COMMENT ON COLUMN SCD.SCD_ETIME IS '종료시간';
 
 COMMENT ON COLUMN SCD.SCD_DCT IS '설명';
 
@@ -1352,9 +1346,9 @@ CREATE SEQUENCE "ML_IPT_SQ" MINVALUE 1 MAXVALUE 99999999999999999999 INCREMENT B
 DROP SEQUENCE "APV_OK_SQ";
 CREATE SEQUENCE "APV_OK_SQ" MINVALUE 1 MAXVALUE 99999999999999999999 INCREMENT BY 1 START WITH 1 NOCACHE NOORDER NOCYCLE;
 
--- 문서번호 SEQ
+-- 문서번호 SEQ / 10001 ~ 19999
 DROP SEQUENCE "APV_SQ";
-CREATE SEQUENCE "APV_SQ" MINVALUE 1 MAXVALUE 99999999999999999999 INCREMENT BY 1 START WITH 1 NOCACHE NOORDER NOCYCLE;
+CREATE SEQUENCE "APV_SQ" MINVALUE 10001 MAXVALUE 19999 INCREMENT BY 1 START WITH 10001 NOCACHE NOORDER NOCYCLE;
 
 -- 결재양식분류번호 SEQ
 DROP SEQUENCE "APV_FORM_DIV_SQ";
@@ -1444,14 +1438,14 @@ INSERT INTO APV_FORM_DIV (APV_FORM_DIV_SQ, APV_FORM_DIV_NM) VALUES(4, '경력');
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD)
-VALUES ('0',2,1,5,5,'관리자','admin','admin','M','1993-02-22','admin','@admin.com',
+VALUES ('20180',2,1,5,5,'관리자','admin','admin','M','1993-02-22','admin','@admin.com',
         '010','0000','0000','00000','대한민국','서울','02','0000','0000','',sysdate,'',sysdate);
 
 -- 일반사원
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD)
-VALUES ('1',1,1,1,1,'일반사원','member','member','M','1993-02-22','member','@member.com',
+VALUES ('20181',1,1,1,1,'일반사원','member','member','M','1993-02-22','member','@member.com',
         '010','0000','0000','00000','대한민국','서울','02','0000','0000','',sysdate,'',sysdate);
 
 -- 
@@ -1459,301 +1453,301 @@ VALUES ('1',1,1,1,1,'일반사원','member','member','M','1993-02-22','member','
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('001',1,1,1,1,'김고은','mskim','mskim','F','1991-03-03','mskim','@mskim.com',
+VALUES ('2018001',1,1,1,1,'김고은','mskim','mskim','F','1991-03-03','mskim','@mskim.com',
         '010','0001','1234','00001','서울특별시','가리봉동',SYSDATE,SYSDATE);                            --1명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('002',1,2,2,1,'박윤민','mrpark','mrpark','M','1992-03-03','mrpark','@mrpark.com',
+VALUES ('2018002',1,2,2,1,'박윤민','mrpark','mrpark','M','1992-03-03','mrpark','@mrpark.com',
         '010','0002','1235','00002','경기도','의정부시',SYSDATE,SYSDATE);                                --2명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('003',1,2,1,3,'김지훈','mrkim','mrkim','M','1993-03-03','mrkim','@mrkim.com',
+VALUES ('2018003',1,2,1,3,'김지훈','mrkim','mrkim','M','1993-03-03','mrkim','@mrkim.com',
         '010','0003','1235','00003','인천','부평시',SYSDATE,SYSDATE);                                    --3명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('004',1,3,1,3,'강혜인','mskang','mskang','F','1995-03-03','mskang','@mskang.com',
+VALUES ('2018004',1,3,1,3,'강혜인','mskang','mskang','F','1995-03-03','mskang','@mskang.com',
         '010','0003','1237','00004','경기도','의왕시',SYSDATE,SYSDATE);                                    --4명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('005',1,2,2,4,'강수민','kkang','kkang','F','1995-03-03','kkang','@kkang.com',
+VALUES ('2018005',1,2,2,4,'강수민','kkang','kkang','F','1995-03-03','kkang','@kkang.com',
         '010','0012','1346','00005','경기도','고양시',SYSDATE,SYSDATE);                                    --5명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('006',1,3,2,4,'가나다','gaga','gaga','M','1990-03-03','gaga','@gaga.com',
+VALUES ('2018006',1,3,2,4,'가나다','gaga','gaga','M','1990-03-03','gaga','@gaga.com',
         '010','0812','1646','00012','서울시','구로구',SYSDATE,SYSDATE);                                    --6명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('007',1,1,1,4,'나다라','nana','nana','M','1993-03-03','nana','@nana.com',
+VALUES ('2018007',1,1,1,4,'나다라','nana','nana','M','1993-03-03','nana','@nana.com',
         '010','7912','1846','02212','서울시','구로구',SYSDATE,SYSDATE);                                    --7명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('008',1,3,5,5,'다라마','dada','dada','F','1993-03-03','dada','@dada.com',
+VALUES ('2018008',1,3,5,5,'다라마','dada','dada','F','1993-03-03','dada','@dada.com',
         '010','8521','7894','02002','서울시','관악구',SYSDATE,SYSDATE);                                    --8명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('009',1,2,2,3,'라마바','ba','ba','M','1994-03-03','ba','@ba.com',
+VALUES ('2018009',1,2,2,3,'라마바','ba','ba','M','1994-03-03','ba','@ba.com',
         '010','2912','4646','02202','서울시','영등포구',SYSDATE,SYSDATE);                                --9명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('010',1,2,1,3,'홍길동','hong','hong','M','1980-03-03','hong','@hong.com',
+VALUES ('2018010',1,2,1,3,'홍길동','hong','hong','M','1980-03-03','hong','@hong.com',
         '010','4136','3659','95314','경기도','광명시',SYSDATE,SYSDATE);                                    --10명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                   EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                   EMP_REG,EMP_FNL_MOD)
-VALUES ('011',1,3,2,6,'유관순','yoo','yoo','F','1970-03-03','yoo','@yoo.com',
+VALUES ('2018011',1,3,2,6,'유관순','yoo','yoo','F','1970-03-03','yoo','@yoo.com',
         '010','8524','0068','95314','서울특별시','중구',SYSDATE,SYSDATE);                                --11명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                   EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                   EMP_REG,EMP_FNL_MOD)
-VALUES ('012',1,4,4,4,'김소현','kimms','kimms','F','1988-03-03','kimms','@kimms.com',
+VALUES ('2018012',1,4,4,4,'김소현','kimms','kimms','F','1988-03-03','kimms','@kimms.com',
         '010','8884','8888','91004','서울특별시','중구',SYSDATE,SYSDATE);                                --12명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                   EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                   EMP_REG,EMP_FNL_MOD)
-VALUES ('013',1,5,6,6,'신영준','joon','joon','M','1990-03-03','joon','@joon.com',
+VALUES ('2018013',1,5,6,6,'신영준','joon','joon','M','1990-03-03','joon','@joon.com',
         '010','8642','2648','10021','서울특별시','마포구',SYSDATE,SYSDATE);                                --13명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                   EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                   EMP_REG,EMP_FNL_MOD)
-VALUES ('014',1,2,2,6,'고정렬','koh','koh','M','1994-03-03','koh','@koh.com',
+VALUES ('2018014',1,2,2,6,'고정렬','koh','koh','M','1994-03-03','koh','@koh.com',
         '010','6881','8114','16254','경기도','김포시',SYSDATE,SYSDATE);                                    --14명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('015',1,3,5,4,'김다빈','dabin1','dabin1','M','1992-03-03','dabin1','@dabin.com',
+VALUES ('2018015',1,3,5,4,'김다빈','dabin1','dabin1','M','1992-03-03','dabin1','@dabin.com',
         '010','3564','6444','20654','경기도','용인시',SYSDATE,SYSDATE);                                    --15명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('016',1,1,1,1,'조성진','jin','jin','M','1991-03-03','jin','@jin.com',
+VALUES ('2018016',1,1,1,1,'조성진','jin','jin','M','1991-03-03','jin','@jin.com',
         '010','0252','6584','20654','경기도','용인시',SYSDATE,SYSDATE);                                    --16명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('017',1,2,3,2,'임종윤','yoons','yoons','M','1994-03-03','yoons','@yoons.com',
+VALUES ('2018017',1,2,3,2,'임종윤','yoons','yoons','M','1994-03-03','yoons','@yoons.com',
         '010','1369','8541','94658','강원도','강릉시',SYSDATE,SYSDATE);                                    --17명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('018',1,2,6,6,'하영선','young','young','F','1968-03-03','young','@young.com',
+VALUES ('2018018',1,2,6,6,'하영선','young','young','F','1968-03-03','young','@young.com',
         '010','8564','9964','03652','서울특별시','강남구',SYSDATE,SYSDATE);                                --18명               
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('019',1,1,6,6,'강상헌','kanghun','kanghun','M','1963-03-03','kanghun','@kanghun.com',
+VALUES ('2018019',1,1,6,6,'강상헌','kanghun','kanghun','M','1963-03-03','kanghun','@kanghun.com',
         '010','6666','9222','03652','서울특별시','서초구',SYSDATE,SYSDATE);                                --19명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('020',1,4,6,6,'김수진','soooo','soooo','F','1988-03-03','soooo','@soooo.com',
+VALUES ('2018020',1,4,6,6,'김수진','soooo','soooo','F','1988-03-03','soooo','@soooo.com',
         '010','6886','8524','11111','서울특별시','영등포구',SYSDATE,SYSDATE);                            --20명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('021',1,3,1,1,'한정희','grand','grand','F','1977-03-03','grand','@grand.com',
+VALUES ('2018021',1,3,1,1,'한정희','grand','grand','F','1977-03-03','grand','@grand.com',
         '010','5391','1624','15611','서울특별시','노원구',SYSDATE,SYSDATE);                                --21명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_REG,EMP_FNL_MOD)
-VALUES ('022',1,3,4,5,'황수빈','hwang','hwang','F','1995-03-03','hwang','@hwang.com',
+VALUES ('2018022',1,3,4,5,'황수빈','hwang','hwang','F','1995-03-03','hwang','@hwang.com',
         '010','8844','9999','05060','서울특별시','관악구',SYSDATE,SYSDATE);                                --22명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('023',1,3,4,5,'황수빈','aaa','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018023',1,3,4,5,'황수빈','aaa','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --23명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('024',1,3,4,5,'황수빈','aab','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018024',1,3,4,5,'황수빈','aab','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --24명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('025',1,3,4,5,'황수빈','aac','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018025',1,3,4,5,'황수빈','aac','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --25명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('026',1,3,4,5,'황수빈','aad','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018026',1,3,4,5,'황수빈','aad','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --26명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('027',1,3,4,5,'황수빈','aae','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018027',1,3,4,5,'황수빈','aae','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --27명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('028',1,3,4,5,'황수빈','aaf','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018028',1,3,4,5,'황수빈','aaf','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --28명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('029',1,3,4,5,'황수빈','aag','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018029',1,3,4,5,'황수빈','aag','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --29명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('030',1,3,4,5,'황수빈','aah','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018030',1,3,4,5,'황수빈','aah','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --30명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('031',1,3,4,5,'황수빈','aai','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018031',1,3,4,5,'황수빈','aai','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --31명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('032',1,3,4,5,'황수빈','aaj','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018032',1,3,4,5,'황수빈','aaj','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --32명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('033',1,3,4,5,'황수빈','aak','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018033',1,3,4,5,'황수빈','aak','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --33명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('034',1,3,4,5,'황수빈','aal','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018034',1,3,4,5,'황수빈','aal','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --34명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('035',1,3,4,5,'황수빈','aam','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018035',1,3,4,5,'황수빈','aam','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --35명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('036',1,3,4,5,'황수빈','aan','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018036',1,3,4,5,'황수빈','aan','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --36명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('037',1,3,4,5,'황수빈','aao','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018037',1,3,4,5,'황수빈','aao','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --37명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('038',1,3,4,5,'황수빈','aap','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018038',1,3,4,5,'황수빈','aap','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --38명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('039',1,3,4,5,'황수빈','aaq','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018039',1,3,4,5,'황수빈','aaq','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --39명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('040',1,3,4,5,'황수빈','aar','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018040',1,3,4,5,'황수빈','aar','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --40명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('041',1,3,4,5,'황수빈','aas','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018041',1,3,4,5,'황수빈','aas','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --41명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('042',1,3,4,5,'황수빈','aat','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018042',1,3,4,5,'황수빈','aat','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --42명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('043',1,3,4,5,'황수빈','aau','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018043',1,3,4,5,'황수빈','aau','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --43명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('044',1,3,4,5,'황수빈','aav','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018044',1,3,4,5,'황수빈','aav','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --44명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('045',1,3,4,5,'황수빈','aaw','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018045',1,3,4,5,'황수빈','aaw','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --45명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('046',1,3,4,5,'황수빈','aax','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018046',1,3,4,5,'황수빈','aax','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --46명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('047',1,3,4,5,'황수빈','aay','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018047',1,3,4,5,'황수빈','aay','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --47명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('048',1,3,4,5,'황수빈','aaz','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018048',1,3,4,5,'황수빈','aaz','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --48명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('049',1,3,4,5,'황수빈','abb','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018049',1,3,4,5,'황수빈','abb','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --49명
 
 INSERT INTO EMP (EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE,
                  EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT,
                  EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_REG,EMP_FNL_MOD)
-VALUES ('050',1,3,4,5,'황수빈','abc','aaa','F','1995-03-03','aaa','@aaa.com',
+VALUES ('2018050',1,3,4,5,'황수빈','abc','aaa','F','1995-03-03','aaa','@aaa.com',
         '010','8844','9999','05060','서울특별시','관악구',02,123,123,SYSDATE,SYSDATE);                    --50명
 
 

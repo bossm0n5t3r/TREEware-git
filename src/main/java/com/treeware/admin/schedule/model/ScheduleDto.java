@@ -6,9 +6,7 @@ public class ScheduleDto extends ScheduleDivideDto {
 	private String scd_nm;
 	private String scd_pst;
 	private String scd_sday;
-	private String scd_stime;
 	private String scd_eday;
-	private String scd_etime;
 	private String scd_dct;
 
 	public int getScd_sq() {
@@ -51,28 +49,12 @@ public class ScheduleDto extends ScheduleDivideDto {
 		this.scd_sday = scd_sday;
 	}
 
-	public String getScd_stime() {
-		return scd_stime;
-	}
-
-	public void setScd_stime(String scd_stime) {
-		this.scd_stime = scd_stime;
-	}
-
 	public String getScd_eday() {
 		return scd_eday;
 	}
 
 	public void setScd_eday(String scd_eday) {
 		this.scd_eday = scd_eday;
-	}
-
-	public String getScd_etime() {
-		return scd_etime;
-	}
-
-	public void setScd_etime(String scd_etime) {
-		this.scd_etime = scd_etime;
 	}
 
 	public String getScd_dct() {

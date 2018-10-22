@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.treeware.admin.member.model.*;
 import com.treeware.admin.member.service.AdminMemberService;
+import com.treeware.util.NumberCheck;
 
 @Controller
 @RequestMapping("/admin/account")
@@ -67,7 +68,6 @@ public class AdminMemberController {
 	        DateFormat df = new SimpleDateFormat("yyMMdd");
 	        String saveFolder = df.format(new Date());
 	        String realSaveFolder = realPath + File.separator + saveFolder;
-	        System.out.println(realSaveFolder);
 	        File dir = new File(realSaveFolder);
 	        if (!dir.exists()) {
 	          dir.mkdirs();
@@ -89,7 +89,7 @@ public class AdminMemberController {
 	        }
 		}
 
-		int cnt = adminMemberService.register(employeePicDto);
+		adminMemberService.register(employeePicDto);
 		return "admin/account/main";
 	}
 	
@@ -123,7 +123,7 @@ public class AdminMemberController {
 	@RequestMapping("/idsetup.tree")
 	public ModelAndView idSetup(@RequestParam Map<String, String> map) {
 		ModelAndView mav = new ModelAndView();
-		int cnt = adminMemberService.idSetup(map);
+		adminMemberService.idSetup(map);
 		mav.setViewName("index");
 		return mav;
 	}
@@ -141,7 +141,7 @@ public class AdminMemberController {
 	// 사원정보 수정
 	@RequestMapping(value="/modify.tree", method=RequestMethod.POST)
 	public String modify(EmployeeDto employeeDto) {
-		int cnt = adminMemberService.modify(employeeDto);
+		adminMemberService.modify(employeeDto);
 		return "admin/account/view";
 	}
 	
@@ -182,7 +182,6 @@ public class AdminMemberController {
 	//사원검색
 	@RequestMapping("/membersearch.tree")
 	public @ResponseBody String memberSearch(@RequestParam Map<String, String> map) {
-		System.out.println(map);
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
@@ -211,5 +210,41 @@ public class AdminMemberController {
 		}
 		json.put("employee", jarray);
 		return json.toString();
+	}
+
+	// 권한명 얻기
+	@RequestMapping(value="/getPermission.tree", method=RequestMethod.POST)
+	public @ResponseBody String getPermission(@RequestParam Map<String, String> map) {
+		JSONObject object = new JSONObject();
+		PermissionDto permissionDto = adminMemberService.getPermission(NumberCheck.nullToZero(map.get("pms_sq")));
+		object.put("PMS_NM", permissionDto.getPms_nm());
+		return object.toString();
+	}
+	
+	// 부서명 얻기
+	@RequestMapping(value="/getDepartment.tree", method=RequestMethod.POST)
+	public @ResponseBody String getDepartment(@RequestParam Map<String, String> map) {
+		JSONObject object = new JSONObject();
+		DepartmentDto departmentDto = adminMemberService.getDepartment(NumberCheck.nullToZero(map.get("dpt_sq")));
+		object.put("DPT_NM", departmentDto.getDpt_nm());
+		return object.toString();
+	}
+	
+	// 직위명 얻기
+	@RequestMapping(value="/getRank.tree", method=RequestMethod.POST)
+	public @ResponseBody String getRank(@RequestParam Map<String, String> map) {
+		JSONObject object = new JSONObject();
+		RankDto rankDto = adminMemberService.getRank(NumberCheck.nullToZero(map.get("rnk_sq")));
+		object.put("RNK_NM", rankDto.getRnk_nm());
+		return object.toString();
+	}
+	
+	// 직책명 얻기
+	@RequestMapping(value="/getPosition.tree", method=RequestMethod.POST)
+	public @ResponseBody String getPosition(@RequestParam Map<String, String> map) {
+		JSONObject object = new JSONObject();
+		PositionDto positionDto = adminMemberService.getPosition(NumberCheck.nullToZero(map.get("pst_sq")));
+		object.put("PST_NM", positionDto.getPst_nm());
+		return object.toString();
 	}
 }

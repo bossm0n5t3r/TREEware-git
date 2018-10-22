@@ -28,9 +28,7 @@ $(document).ready(function(){
 				</div>
 		<!-- 일정 추가 Modal -->
 		<%@ include file="/assets/common/modal/schedule/register.jsp" %>
-		<!-- 일정 보기 Modal -->
-		<%@ include file="/assets/common/modal/schedule/view.jsp" %>
-		<!-- 일정 수정 Modal -->
+		<!-- 일정 보기, 수정, 삭제 Modal -->
 		<%@ include file="/assets/common/modal/schedule/modify.jsp" %>
 		<%@ include file="/assets/common/footer.jsp" %>
 		</div>

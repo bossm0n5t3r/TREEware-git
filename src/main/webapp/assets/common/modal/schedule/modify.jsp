@@ -9,6 +9,7 @@
 			</div>
 			<div class="modal-body text-center" align="center">
 				<form id="modifyForm">
+				<input type="hidden" name="scd_sq" class="scd_sq">
 					<table style="width:100%">
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">
@@ -16,8 +17,16 @@
 							</td>
 						</tr>
 						<tr>
+							<td>
+								<div style="width:100%" class="box-group">
+									<select name="scd_div_sq" class="form-control scd_div_sq" style="font-size:100%">
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
 							<td style="padding:5px 10px">
-							 	시작날짜:
+							 	시작일:
 							</td>
 							<td style="padding:5px 10px">
 								<input type="date" name="scd_sday" class="start scd_sday" style="width:100%">
@@ -25,26 +34,10 @@
 						</tr>
 						<tr>
 							<td style="padding:5px 10px">
-							 	시작시간:
-							</td>
-							<td style="padding:5px 10px">
-								<input type="time" name="scd_stime" class="start scd_stime" style="width:100%">
-							</td>
-						</tr>
-						<tr>
-							<td style="padding:5px 10px">
-							 	종료날짜:
+							 	종료일:
 							</td>
 							<td style="padding:5px 10px">
 								<input type="date" name="scd_eday" class="end scd_eday" style="width:100%">
-							</td>
-						</tr>
-						<tr>
-							<td style="padding:5px 10px">
-							 	종료시간:
-							</td>
-							<td style="padding:5px 10px">
-								<input type="time" name="scd_etime" class="end scd_etime" style="width:100%">
 							</td>
 						</tr>
 						<tr>
@@ -54,7 +47,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">
-								<textarea class="form-control" name="scd_dct" class="scd_dct" rows="5"></textarea>
+								<textarea class="form-control scd_dct" name="scd_dct" rows="5"></textarea>
 							</td>
 						</tr>
 					</table>
@@ -63,6 +56,7 @@
 			</div>
 			<div class="modal-footer" align="center">
 				<button class="btn btn-success" id="modifyBtn" data-dismiss="modal" style="width:100px">수정</button>
+				<button class="btn btn-default" id="deleteBtn" data-dismiss="modal" style="width:100px">삭제</button>
 				<button class="btn btn-danger" data-dismiss="modal" style="width:100px">취소</button>
 			</div>
 		</div>

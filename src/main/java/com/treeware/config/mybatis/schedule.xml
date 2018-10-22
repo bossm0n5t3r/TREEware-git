@@ -11,25 +11,20 @@
 	</select>
 
 	<select id="getSchedule" parameterType="int" resultType="ScheduleDto">
-		SELECT s.scd_sq, s.scd_div_sq, d.scd_div_nm, s.emp_sq, s.scd_nm, s.scd_pst,
-			   s.scd_sday, s.scd_stime, s.scd_eday, s.scd_etime, s.scd_dct
+		SELECT s.scd_sq, s.scd_div_sq, d.scd_div_nm, s.emp_sq, s.scd_nm, s.scd_pst, s.scd_sday, s.scd_eday, s.scd_dct
 		FROM SCD s, SCD_DIV d
 		WHERE scd_sq = #{scd_sq}
 		AND s.scd_div_sq = d.scd_div_sq
 	</select>
 
-	<insert id="registerSchedule" parameterType="ScheduleDto">
-		INSERT INTO SCD (scd_sq, scd_div_sq, emp_sq, scd_nm, scd_pst
-						 , scd_sday, scd_stime, scd_eday, scd_etime, scd_dct)
-		values (#{scd_sq}, #{scd_div_sq}, #{emp_sq}, #{scd_nm}, #{scd_pst}
-				, #{scd_sday}, #{scd_stime}, #{scd_eday}, #{scd_etime}, #{scd_dct})
+	<insert id="registerSchedule" parameterType="java.util.Map">
+		INSERT INTO SCD (scd_sq, scd_div_sq, emp_sq, scd_nm, scd_pst, scd_sday, scd_eday, scd_dct)
+		VALUES (#{scd_sq}, #{scd_div_sq}, #{emp_sq}, #{scd_nm}, #{scd_pst}, #{scd_sday}, #{scd_eday}, #{scd_dct})
 	</insert>
 	
-	<update id="modifySchedule" parameterType="ScheduleDto">
+	<update id="modifySchedule" parameterType="java.util.Map">
 		UPDATE SCD
-		SET scd_div_sq = #{scd_div_sq}, scd_nm = #{scd_nm}, scd_pst = #{scd_pst}, scd_sday = #{scd_sday}
-			, scd_stime = #{scd_stime}, scd_eday = #{scd_eday}, scd_etime = #{scd_etime}
-			, scd_dct = #{scd_dct}
+		SET scd_div_sq = #{scd_div_sq}, scd_nm = #{scd_nm}, scd_pst = #{scd_pst}, scd_sday = #{scd_sday}, scd_eday = #{scd_eday}, scd_dct = #{scd_dct}
 		WHERE scd_sq = #{scd_sq}
 	</update>
 	
