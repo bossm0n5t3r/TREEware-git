@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.treeware.address.dao.AddressDao">
+
+	<select id="getNextAddrSq" resultType="int">
+		SELECT ADDR_SQ.nextval
+		FROM dual
+	</select>
+	
+	<select id="getAddrGrpSq" parameterType="String" resultType="int">
+		SELECT ADDR_GRP_SQ
+		FROM ADDR_GRP
+		WHERE EMP_SQ = #{EMP_SQ}
+	</select>
+	
+	<select id="getAddrGrpList" parameterType="String" resultType="AddressGroupDto">
+		SELECT ADDR_GRP_SQ, EMP_SQ, ADDR_GRP_NM
+		FROM ADDR_GRP
+		WHERE EMP_SQ = #{EMP_SQ}
+	</select>
+
+	<insert id="registerAddress" parameterType="AddressDto">
+		INSERT INTO ADDR (addr_sq, addr_grp_sq, addr_nm, addr_tel, addr_email, addr_cpn_tel, addr_addr, addr_mm)
+		VALUES (#{addr_sq}, #{addr_grp_sq}, #{addr_nm}, #{addr_tel}, #{addr_email}, #{addr_cpn_tel}
+				, #{addr_addr}, #{addr_mm})
+	</insert>
+
+</mapper>
