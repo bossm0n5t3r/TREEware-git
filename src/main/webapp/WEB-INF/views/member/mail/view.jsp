@@ -130,7 +130,7 @@ $(document).ready(function(){
 											<td>${mail.ml_rcv_add}</td>
 										</tr>
 										<tr>
-											<td colspan="3">내용</td>
+											<td colspan="2">내용</td>
 											<td>${mail.ml_ctt}</td>
 										</tr>
 									</table>

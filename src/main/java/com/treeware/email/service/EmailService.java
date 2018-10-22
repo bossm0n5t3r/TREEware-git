@@ -11,5 +11,6 @@ public interface EmailService {
 	int sendMail(MailDto mailDto);
 	List<MailDto> listMail(Map<String, String> map);
 	MailDto viewMail(int ml_sq);
+	int deleteMail(int ml_sq);
 
 }

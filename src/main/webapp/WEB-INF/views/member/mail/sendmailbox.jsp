@@ -24,7 +24,6 @@ $(document).ready(function(){
 	});	
 	
 	$("#movedrop li a").click(function(){
-
 		$("#readbtn:first-child").text($(this).text());
 		$("#readbtn:first-child").val($(this).text());
 		if($(this).text()=="휴지통"){
@@ -32,19 +31,64 @@ $(document).ready(function(){
 		}
 	});	
 	
-	$("#delete").click(function() {
-		$("#deletemodal").modal({
-			remote : '${root}/menu/mail/deleteok.jsp'
-		});		
+// 	$("#deleteBtn").click(function() {
+// 		$("#ml_grp_sq").val('2');
+// 		$("#pg").val('${pg}');
+// 		$("#key").val('${key}');
+// 		$("#word").val('${word}');
+// 		$("#ml_sq").val($("#maillist_group").attr("article-seq"));
+// 		$("#commonform").attr("action", "${root}/member/mail/delete.tree").submit();
+	    
+// 		if(cnt != 0){
+// 		$("#deletemodal").modal({
+// 			remote : '${root}/menu/mail/deleteok.jsp'
+// 		});		
+// 		}
+// 		else{
+// 			alert("휴지통 이동 실패");
+			
+// 		}
+// 	});
+	
+	$("#deleteBtn").click(function() {
+	    var val = [];
+		$("checkbox[checked='checked']").each(function(i){
+		          val[i] = $(this).val();
+		});
+		alert(val);
+// 		$.ajax({
+// 		    type : "POST",
+// 		    url : "${root}/menu/mail/deleteok.jsp",
+// 		    data : {
+// 		        myArray: val
+// 		    },
+// 		    success : function(response) {
+		       
+// 		    },
+// 		    error : function(e) {
+// 		       alert('Error: ' + e);
+// 		    }
+// 		}); 
+		
+		     
 	});
 	
 	$(".mailList").click(function() {
-		$("#ml_grp_sq").val('${mail.ml_grp_sq}');
+		$("#ml_grp_sq").val('2');
 		$("#pg").val('${pg}');
 		$("#key").val('${key}');
 		$("#word").val('${word}');
-		$("#ml_sq").val($(this).attr("article-seq"));
+		$("#ml_sq").val($("#maillist_group").attr("article-seq"));
 		$("#commonform").attr("action", "${root}/member/mail/view.tree").submit();
+	});
+	
+	$("#searchBtn").click(function(){
+		$("#ml_grp_sq").val('2');
+		$("#pg").val('${pg}');
+		$("#key").val($("#skey").val());
+		$("#word").val($("#sword").val());
+		$("#ml_sq").val($("#maillist_group").attr("article-seq"));
+		$("#commonform").attr("action", "${root}/member/mail/sendmailbox.tree").submit();
 	});
 });
 
@@ -52,6 +96,11 @@ $(document).ready(function(){
 
 </head>
 <body>
+<c:set var="ml_grp_sq" value="${param.ml_grp_sq}"/>
+		<c:set var="ml_sq" value="${param.ml_sq}"/>
+		<c:set var="pg" value="${param.pg}"/>
+		<c:set var="key" value="${param.key}"/>
+		<c:set var="word" value="${param.word}"/>
 <form name="commonform" id="commonform">
 	<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="">
 	<input type="hidden" name="pg" id="pg" value="">
@@ -75,15 +124,15 @@ $(document).ready(function(){
 									<div style="margin-top: 100px; display: inline;">
 										<i id="bookmark" class="la la-heart-o" style="color: #FF6C6C;"></i>
 									</div>
-									<font size="2"> &nbsp;전체메일 &nbsp;0 &nbsp;/ &nbsp;안읽은 메일
+									<font size="2"> &nbsp;전체메일 &nbsp;${navigator.totalArticleCount} &nbsp;/ &nbsp;안읽은 메일
 										&nbsp;0</font>
 								</div>
 							</div>
 							<br>
 
 							<div class="col-lg-12">
-								<div class="col-lg-9" style="float: left;">
-									<button type="button" class="btn btn-default btn-sm"
+								<div class="col-lg-8" style="float: left;">
+									<button id="deleteBtn" type="button" class="btn btn-default btn-sm"
 										data-toggle="modal" data-target="#dropmodal">삭제</button>
 									&nbsp;
 									<button class="btn btn-default btn-sm">답장</button>
@@ -103,30 +152,26 @@ $(document).ready(function(){
 									<div class="btn-group">
 										<button class="btn btn-default btn-sm dropdown-toggle"
 											data-toggle="dropdown">이동</button>
-										<ul id="movedrop"class="dropdown-menu" role="menu"
+										<ul id="movedrop" class="dropdown-menu" role="menu"
 											aria-labelledby="dropdownMenu">
 											<li><a class="dropdown-item" href="#">휴지통</a></li>
-											<li><a class="dropdown-item" href="#">새메일함2</a></li>
+											<li><a class="dropdown-item" href="#">받은메일함</a></li>
 										</ul>
 									</div>
 								</div>
-								<div class="col-lg-2" style="float: left; text-align: right;">
-									<div class="d1" style="float: left;">
-										<form>
-											<input class="form-control" type="text">
-											<button type="submit"></button>
-										</form>
-									</div>
-								</div>
-								<div class="col-lg-1"
-									style="float: left; text-align: left; margin-top: 3px;">
-									<select id="toolbar_list_pagebase" evt-rol="change-pagebase">
-										<option value="20" selected="">20</option>
-										<option value="40">40</option>
-										<option value="60">60</option>
-										<option value="80">80</option>
+								<div class="col-lg-4" style="float: left; text-align: right;">
+									<select id="skey" name="key" class="form-control"
+										style="width: 100px; font-size: 100%; height: 35px; float: left;">
+										<option value='ml_ttl'>제목</option>
+										<option value='ml_rcv_add'>받는사람</option>
 									</select>
+									
+									<input id="sword" name="word" type="text" style="width: 100%; width: 150px; height: 35px; float: left;" value="">								
+									<button class="btn btn-default btn-sm" id="searchBtn"
+										style="float: left;">검색</button>
+								
 								</div>
+
 							</div>
 							<div class="card-body">
 								<div class="panel">
@@ -135,10 +180,11 @@ $(document).ready(function(){
 											<tr>
 												<th>
 													<div class="form-check">
-														<label class="form-check-label"> <input
+														<label class="form-check-label">
+														 <input
 															class="form-check-input select-all-checkbox"
 															type="checkbox" data-select="checkbox"
-															data-target=".task-select"> <span
+															data-target=".task-select" > <span
 															class="form-check-sign"></span>
 														</label>
 													</div>
@@ -149,20 +195,20 @@ $(document).ready(function(){
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach var="mail" items="${mailList}">
-											<tr class="mailList" article-seq="${mail.ml_sq}">
-												<td>
-													<div class="form-check">
-														<label class="form-check-label"> <input
-															class="form-check-input task-select" type="checkbox">
-															<span class="form-check-sign"></span>
-														</label>
-													</div>
-												</td>
-												<td>${mail.ml_rcv_add}</td>
-												<td>${mail.ml_ttl}</td>
-												<td>${mail.ml_send_date}</td>
-											</tr>
+											<c:forEach var="mail" items="${mailList}">
+												<tr id="maillist_group" article-seq="${mail.ml_sq}">
+													<td>
+														<div class="form-check">
+															<label class="form-check-label"> 
+															<input class="check form-check-input task-select" type="checkbox">
+																<span class="form-check-sign" value="${mail.ml_sq}"></span>
+															</label>
+														</div>
+													</td>
+													<td class="mailList">${mail.ml_rcv_add}</td>
+													<td class="mailList">${mail.ml_ttl}</td>
+													<td class="mailList">${mail.ml_send_date}</td>
+												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
@@ -188,7 +234,7 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
-					<%@ include file="/assets/common/modal/delete.jsp"%>
+<%-- 					<%@ include file="/assets/common/modal/delete.jsp"%> --%>
 					<%@ include file="/assets/common/modal/alldelete.jsp"%>
 					<%@ include file="/assets/common/modal/addmailbox.jsp"%>
 				</div>

@@ -29,6 +29,9 @@
 		
 		<!-- 결재 -->
 		<typeAlias alias="FormDto" type="com.treeware.form.model.FormDto"/>
-	</typeAliases>
+		
+		<!-- 페이징 -->
+		<typeAlias alias="CommonDto" type="com.treeware.common.dao.CommonDao"/>
 	
+	</typeAliases>
 </configuration>

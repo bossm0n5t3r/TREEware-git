@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class TreewareConstance {
 	public static final String TODAY = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-	public static final String TODAY_KOR = new SimpleDateFormat("yyyyë…„ MMì›” ddì¼ ").format(new Date());
-	public static final String [] DayOfWeek = new String [] {"ì¼ìš”ì¼", "ì›”ìš”ì¼", "í™”ìš”ì¼", "ìˆ˜ìš”ì¼", "ëª©ìš”ì¼", "ê¸ˆìš”ì¼", "í† ìš”ì¼"};
+	public static final String TODAY_KOR = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ ").format(new Date());
+	public static final String [] DayOfWeek = new String [] {"ÀÏ¿äÀÏ", "¿ù¿äÀÏ", "È­¿äÀÏ", "¼ö¿äÀÏ", "¸ñ¿äÀÏ", "±İ¿äÀÏ", "Åä¿äÀÏ"};
 	public static final int [] DateOfMonth = new int [] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 }

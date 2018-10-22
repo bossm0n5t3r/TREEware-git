@@ -3,24 +3,34 @@
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
 		<%@ include file="/assets/common/user.jsp" %>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- 		<%@ include file="/assets/common/import.jsp"%> --%>
+<%-- 		<script type="text/javascript" src="${root}/assets/js/member/mail/mail.js"></script> --%>
+		
 		
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$("#sendmailbox").click(function(){	
+// 				movePage('2','','1','','','sendmailbox');
  				$("#ml_grp_sq").val("2");
-				<c:set var="ml_grp_sq" value="${param.ml_grp_sq}"/>
+ 				$("#pg").val("1");
 				$("#commonform").attr("action","${root}/member/mail/sendmailbox.tree").submit();			
 			});
 		});
-		
 		</script>
+		
+		<c:set var="ml_grp_sq" value="${param.ml_grp_sq}"/>
+		<c:set var="ml_sq" value="${param.ml_sq}"/>
+		<c:set var="pg" value="${param.pg}"/>
+		<c:set var="key" value="${param.key}"/>
+		<c:set var="word" value="${param.word}"/>
 		
 		<form name="commonform" id="commonform">
 			<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="">
+			<input type="hidden" name="ml_sq" id="ml_sq" value="">
 			<input type="hidden" name="pg" id="pg" value="">
 			<input type="hidden" name="key" id="key" value="">
-			<input type="hidden" name="word" id="word" value="">
-			<input type="hidden" name="ml_sq" id="ml_sq" value="">
+			<input type="hidden" name="word" id="word" value="">	
 		</form>
 		<!-- 
 		<style>
@@ -56,28 +66,23 @@
 		<i class="la la-edit"></i> &nbsp;메일쓰기</button></a></div><br>
 			
 			<li class="nav-item">
-				<a href="${root}/member/mail/receivemailbox.tree">
-					<p><i class="la la-mail-reply"></i>받은메일함</p>
-				</a>
+				<a>
+					<p><i class="la la-mail-reply"></i>받은메일함</p></a>
+				
 			</li>
 			<li class="nav-item">
-				<Button id="sendmailbox">
+				<a id="sendmailbox">
 					<p id="sendmailbox"><i class="la la-mail-forward"></i>보낸메일함</p>
-				</Button>
-			</li>
-			<li class="nav-item">
-				<a href="${root}/member/mail/newmailbox.tree">
-					<p><i class="la la-folder"></i>새메일함1</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}/member/mail/newmailbox.tree">
-					<p><i class="la la-folder"></i>새메일함2</p>
+				<a>
+					<p><i class="la la-folder"></i>새메일함1</p>
 				</a>
 			</li>
 			
 			<li class="nav-item">
-				<a href="${root}/member/mail/trashmailbox.tree">
+				<a>
 					<i class="la la-trash"></i>휴지통
 				</a>
 			</li>

@@ -37,6 +37,8 @@
 				<value>classpath:com/treeware/config/mybatis/adminboard.xml</value>
 				<!-- 결재 -->
 				<value>classpath:com/treeware/config/mybatis/form.xml</value>
+				<!-- 페이징 -->
+				<value>classpath:com/treeware/config/mybatis/common.xml</value>
 			</list>
 		</property>
 	</bean>

@@ -38,6 +38,11 @@ public class EmailServiceImpl implements EmailService {
 	public MailDto viewMail(int ml_sq) {
 		return sqlSession.getMapper(EmailDao.class).viewMail(ml_sq);
 	}
+
+	@Override
+	public int deleteMail(int ml_sq) {
+		return sqlSession.getMapper(EmailDao.class).deleteMail(ml_sq);
+	}
 	
 	 
   
