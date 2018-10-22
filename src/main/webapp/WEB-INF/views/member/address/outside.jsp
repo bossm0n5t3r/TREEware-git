@@ -29,20 +29,20 @@ $(document).ready(function(){
 					</div>
 					<div class="card-body">
 						<div class="row">
-								<div class="col-md-3">
-									<div class="card-sub">
-										<div style="width:170px">
-										<table style="width:100%">
-											<tr>
-												<td><input type="text" style="width:130px" placeholder="검색어입력"></td>
-												<td><input type="button" value="검색" style="font-size:70%;padding:4px 10px"></td>
-											</tr>
-										</table>
-										<hr><ul id="tree" class="ztree" style="width:100%;overflow:auto;"></ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-9" style="padding:0 40px 0px 20px ">
+<!-- 								<div class="col-md-3"> -->
+<!-- 									<div class="card-sub"> -->
+<!-- 										<div style="width:170px"> -->
+<!-- 										<table style="width:100%"> -->
+<!-- 											<tr> -->
+<!-- 												<td><input type="text" style="width:130px" placeholder="검색어입력"></td> -->
+<!-- 												<td><input type="button" value="검색" style="font-size:70%;padding:4px 10px"></td> -->
+<!-- 											</tr> -->
+<!-- 										</table> -->
+<!-- 										<hr><ul id="tree" class="ztree" style="width:100%;overflow:auto;"></ul> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+								<div class="col-md-12" style="padding:0 40px 0px 20px ">
 								<!-- 주소록 콘텐츠 페이지  -->
 								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/member/address/list.jsp"></IFRAME>
 								<!-- 주소록 콘텐츠 끝 -->

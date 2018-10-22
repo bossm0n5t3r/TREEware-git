@@ -25,11 +25,11 @@
 			</div>
 		</div>
 		<ul class="nav">
-			<li id="menu1" class="nav-item">
-				<a href="${root}/member/address/main.tree">
-					<p>사내조직도</p>
-				</a>
-			</li>
+<!-- 			<li id="menu1" class="nav-item"> -->
+<%-- 				<a href="${root}/member/address/main.tree"> --%>
+<!-- 					<p>사내조직도</p> -->
+<!-- 				</a> -->
+<!-- 			</li> -->
 			<li id="menu2" class="nav-item active">
 				<a href="${root}/member/address/inside.tree">
 					<p>내부연락망</p>
@@ -45,11 +45,11 @@
 					<p>등록하기</p>
 				</a>
 			</li>
-			<li id="menu5" class="nav-item">
-				<a href="${root}/member/address/bookmark.tree">
-					<p>즐겨찾기</p>
-				</a>
-			</li>
+<!-- 			<li id="menu5" class="nav-item"> -->
+<%-- 				<a href="${root}/member/address/bookmark.tree"> --%>
+<!-- 					<p>즐겨찾기</p> -->
+<!-- 				</a> -->
+<!-- 			</li> -->
 		</ul>
 	</div>
 </div>
