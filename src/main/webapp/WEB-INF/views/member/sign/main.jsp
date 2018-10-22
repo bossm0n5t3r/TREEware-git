@@ -4,13 +4,25 @@
 <html>
 <head>
 <%@ include file="/assets/common/import.jsp" %>
+<script src="/treeware/assets/js/common.js"></script>
 <script>
 $(document).ready(function(){
 	document.getElementById("menu1").setAttribute("class", "nav-item");
 	document.getElementById("menu2").setAttribute("class", "nav-item active");
 	document.getElementById("menu3").setAttribute("class", "nav-item");
 });
+function boardClick(data){
+	var a = $(data).attr('id');
+	var apv_sq = parseInt(a);
+	location.href = '${root}/member/sign/approve.tree?apv_sq='+apv_sq;
+}
+
 </script>
+<style type="text/css">
+.listcursor:hover{
+	cursor:pointer;
+}
+</style>
 </head>
 <body>
 	<div class="wrapper">
@@ -32,7 +44,7 @@ $(document).ready(function(){
 											<div class="buttonmenu" align="center" style="margin:5px 0 5px 0">
 												<div class="row" style="width:100%">
 													<div style="width:50%;text-align:left;padding:20px 10px">
-														<p style="color:#007bff">전체목록 [123개]</p>
+														<p style="color:#007bff">전체목록 [${cnt}]</p>
 													</div>
 													<div style="width:50%;text-align:right;padding:15px 10px">
 														<div class="row" style="float:right">
@@ -70,31 +82,63 @@ $(document).ready(function(){
 																</label>
 															</div>
 														</th>
-														<th width="57%">제목</th>
-														<th width="10%">기안자</th>
-														<th width="10%">작성일</th>
-														<th width="8%">현황</th>
-														<th width="8%">재작성</th>
+														<th width="15%">문서번호</th>
+														<th width="42%">제목</th>
+														<th width="16%">기안일</th>
+														<th width="10%">진행사항</th>
+														<th width="10%">작성자</th>
 													</tr>
 												</thead>
 												<tbody>
-													<% for(int i=0; i<10 ; i++){ %>
-													<tr>
-														<td>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input task-select" type="checkbox">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</td>
-														<td style="text-align:left">9월 회식비용 영수증 <img src="${root}/assets/img/icon_new1.gif"></td>
-														<td>손예진</td>
-														<td>18.10.02</td>
-														<td>진행중</td>
-														<td><a href="#">추가</a></td>
-													</tr>
-													<%} %>
+													<c:forEach varStatus="i" var="formList" items="${formList}">
+														<c:set var="oksq" value="${formList.APV_OK_SQ}"/>
+														<c:set var="emp1" value="${formList.EMP_1ST_SQ}"/>
+														<c:set var="emp2" value="${formList.EMP_2ND_SQ}"/>
+														<c:set var="emp3" value="${formList.EMP_FNL_SQ}"/>
+														<c:set var="emp" value="${userInfo.emp_sq}"/>
+														<c:choose>
+															<c:when test="${emp1 eq emp}"><c:set var="okmy" value="1"/></c:when>
+															<c:when test="${emp2 eq emp}"><c:set var="okmy" value="2"/></c:when>
+															<c:when test="${emp3 eq emp}"><c:set var="okmy" value="3"/></c:when>
+														</c:choose>
+															<tr id="${formList.APV_SQ}" onclick="javascript:boardClick(this)" class="listcursor">
+																<td>
+																	<div class="form-check">
+																		<label class="form-check-label">
+																			<input class="form-check-input task-select" type="checkbox">
+																			<span class="form-check-sign"></span>
+																		</label>
+																	</div>
+																</td>
+																<td style="color:#777">${formList.APV_SQ}</td>
+																<td style="text-align:left">
+																<c:choose>
+																	<c:when test="${oksq eq okmy}"><span style="color:#007bff">${formList.APV_TITLE}</span></c:when>
+																	<c:otherwise>${formList.APV_TITLE}</c:otherwise>
+																</c:choose>
+																	<img src="${root}/assets/img/icon_new1.gif">
+																</td>
+																<td><b>${formList.APV_DATE}</b> 까지</td>
+																<td>
+																	<c:choose>
+																			<c:when test="${oksq eq 0}"><span>진행중</span></c:when>
+																			<c:when test="${oksq eq 1}"><span>1차승인</span></c:when>
+																			<c:when test="${oksq eq 2}"><span>2차승인</span></c:when>
+																			<c:when test="${oksq eq 3}"><span style="color:#007bff"><b>결재완료</b></span></c:when>
+																			<c:when test="${oksq eq 4}"><span style="color:#dc3545">반려처리</span></c:when>
+																			<c:otherwise><span>보류</span></c:otherwise>
+																	</c:choose>
+																</td>
+																<td>
+																	<c:forEach varStatus="j" var="writer" items="${empWriter}">
+																		<c:if test="${i.index == j.index}">
+																			${writer.emp_nm}
+																		</c:if>
+																	</c:forEach>
+																</td>
+																<td></td>
+															</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 											<div class="clear"></div>
