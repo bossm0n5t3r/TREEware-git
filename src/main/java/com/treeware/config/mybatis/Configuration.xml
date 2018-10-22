@@ -7,6 +7,7 @@
 	<typeAliases>
 		<!-- 사원 -->
 		<typeAlias alias="EmployeeDto" type="com.treeware.admin.member.model.EmployeeDto"/>
+		<typeAlias alias="PermissionDto" type="com.treeware.admin.member.model.PermissionDto"/>
 		<typeAlias alias="DepartmentDto" type="com.treeware.admin.member.model.DepartmentDto"/>
 		<typeAlias alias="PositionDto" type="com.treeware.admin.member.model.PositionDto"/>
 		<typeAlias alias="RankDto" type="com.treeware.admin.member.model.RankDto"/>

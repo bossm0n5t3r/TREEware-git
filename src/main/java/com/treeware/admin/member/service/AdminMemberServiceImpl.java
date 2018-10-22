@@ -79,6 +79,11 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	}
 
 	@Override
+	public PermissionDto getPermission(int pms_sq) {
+		return sqlSession.getMapper(AdminMemberDao.class).getPermission(pms_sq);
+	}
+	
+	@Override
 	public DepartmentDto getDepartment(int dpt_sq) {
 		return sqlSession.getMapper(AdminMemberDao.class).getDepartment(dpt_sq);
 	}

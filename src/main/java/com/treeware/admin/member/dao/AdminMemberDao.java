@@ -10,6 +10,7 @@ public interface AdminMemberDao {
 	public int modify(EmployeeDto employeeDto);
 	public int getMemberCount();
 	public EmployeeDto getEmployee(String emp_sq);
+	public PermissionDto getPermission(int pms_sq);
 	public DepartmentDto getDepartment(int dpt_sq);
 	public PositionDto getPosition(int pst_sq);
 	public RankDto getRank(int rnk_sq);
