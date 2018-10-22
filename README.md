@@ -15,3 +15,8 @@
 - [ ] root-context.xml 에서 불필요한 DB url 삭제
 - [ ] Schedule - 일정 눌렀을 때, scd_div_sq 자동으로 선택하게 하기
 - [ ] Schedule - Apply ajax
+
+## Bug
+
+- [ ] schedule - 일정 새로 생성 후, 처음 수정할 때 기존의 일정이 삭제되지않음
+                하지만 이후 수정 혹은 삭제하면 정상적으로 하나의 일정만이 나옴.
