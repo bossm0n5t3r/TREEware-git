@@ -82,9 +82,25 @@ $(document).on("click", "#registerBtn", function() {
 			alert("종료일이 시작일 보다 빠를 수 없습니다.");
 			return;
 		}
-		$("#register #registerForm").attr("method", "POST")
-									.attr("action", "${root}/member/calendar/register.tree")
-									.submit();
+		$.ajax({
+			type : "POST"
+			,url : "${root}/member/calendar/register.tree"
+			,dataType : "json"
+			,data : {
+				"scd_div_sq" : $("#register .scd_div_sq").val()
+				,"emp_sq" : "${userInfo.emp_sq}"
+				,"scd_nm" : $("#register .scd_nm").val()
+				,"scd_pst" : $("#register .scd_pst").val()
+				,"scd_sday" : $("#register .scd_sday").val()
+				,"scd_stime" : $("#register .scd_stime").val()
+				,"scd_eday" : $("#register .scd_eday").val()
+				,"scd_etime" : $("#register .scd_etime").val()
+				,"scd_dct" : $("#register .scd_dct").val()
+			}
+			,success : function(data) {
+				addList(data);
+			}
+		});
 	}
 });
 
@@ -107,14 +123,46 @@ $(document).on("click", "#modifyBtn", function() {
 			return;
 		}
 		if (confirm("수정하시겠습니까?")) {
-			$("#modify #modifyForm").attr("method", "POST")
-									.attr("action", "${root}/member/calendar/modify.tree")
-									.submit();	
+			$.ajax({
+				type : "POST"
+				,url : "${root}/member/calendar/modify.tree"
+				,dataType : "json"
+				,data : {
+					"scd_sq" : $("#modify .scd_sq").val()
+					,"scd_div_sq" : $("#modify .scd_div_sq").val()
+					,"emp_sq" : "${userInfo.emp_sq}"
+					,"scd_nm" : $("#modify .scd_nm").val()
+					,"scd_pst" : $("#modify .scd_pst").val()
+					,"scd_sday" : $("#modify .scd_sday").val()
+					,"scd_stime" : $("#modify .scd_stime").val()
+					,"scd_eday" : $("#modify .scd_eday").val()
+					,"scd_etime" : $("#modify .scd_etime").val()
+					,"scd_dct" : $("#modify .scd_dct").val()
+				}
+				,success : function(data) {
+					alert("수정수정~");
+					modifySchedule();
+				}
+				,error : function() {
+					alert("실패함?");
+				}
+			});	
 		} else {
 			return;
 		}
 	}
 });
+
+// 일정목록 수정하기
+function modifySchedule() {
+	// 기존의 리스트를 불러와서 삭제
+	for(var i=0; i<scheduleList.length; i++){
+		console.log("scheduleList[i].scd_sq : " + scheduleList[i].scd_sq);
+		$('#calendar').fullCalendar('removeEvents', scheduleList[i].scd_sq);
+	}
+	
+	getList();
+}
 
 // 일정 삭제하기
 $(document).on("click", "#deleteBtn", function() {
@@ -191,7 +239,7 @@ function getList() {
 function makeList(data) {
 	var slist = data.scheduleList;
 	scheduleList = slist;
-	for(var i=0; i<scheduleList.length; i++){
+	for(var i = 0; i < scheduleList.length; i++){
 		// 이벤트마다 색 설정
 		var scolor= "";
 		// 휴가, 파랑

@@ -18,14 +18,14 @@
 		AND s.scd_div_sq = d.scd_div_sq
 	</select>
 
-	<insert id="registerSchedule" parameterType="ScheduleDto">
+	<insert id="registerSchedule" parameterType="java.util.Map">
 		INSERT INTO SCD (scd_sq, scd_div_sq, emp_sq, scd_nm, scd_pst
 						 , scd_sday, scd_stime, scd_eday, scd_etime, scd_dct)
 		VALUES (#{scd_sq}, #{scd_div_sq}, #{emp_sq}, #{scd_nm}, #{scd_pst}
 				, #{scd_sday}, #{scd_stime}, #{scd_eday}, #{scd_etime}, #{scd_dct})
 	</insert>
 	
-	<update id="modifySchedule" parameterType="ScheduleDto">
+	<update id="modifySchedule" parameterType="java.util.Map">
 		UPDATE SCD
 		SET scd_div_sq = #{scd_div_sq}, scd_nm = #{scd_nm}, scd_pst = #{scd_pst}, scd_sday = #{scd_sday}
 			, scd_stime = #{scd_stime}, scd_eday = #{scd_eday}, scd_etime = #{scd_etime}
