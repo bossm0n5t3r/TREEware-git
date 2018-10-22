@@ -64,10 +64,6 @@ function punchInClick() {
 	$("#punchInBtn").click(function() {
 		if (punchOutTime == "-" || punchOutTime.trim().length == 1) {
 			punchIn();
-			$("#punchInBtn").attr("class", "nav-link active");
-			status();
-			getStatics();
-			workStatus();
 		} else {
 			alert("이미 퇴근했습니다.");
 			return;
@@ -82,10 +78,6 @@ function workOutClick() {
 			return;
 		} else if (punchOutTime == "-" || punchOutTime.trim().length == 1) {
 			workOut();
-			$("#workOutBtn").attr("class", "nav-link active");
-			status();
-			getStatics();
-			workStatus();
 		} else {
 			alert("이미 퇴근했습니다.");
 			return;
@@ -103,10 +95,6 @@ function comeBackClick() {
 			return;			
 		} else if (punchOutTime == "-" || punchOutTime.trim().length == 1) {
 			comeBack();
-			$("#comeBackBtn").attr("class", "nav-link active");
-			status();
-			getStatics();
-			workStatus();
 		} else {
 			alert("이미 퇴근했습니다.");
 			return;
@@ -122,10 +110,6 @@ function punchOutClick() {
 				return;
 			} else if (punchOutTime == "-" || punchOutTime.trim().length == 1) {
 				punchOut();
-				$("#punchOutBtn").attr("class", "nav-link active");
-				status();
-				getStatics();
-				workStatus();
 			} else {
 				alert("이미 퇴근했습니다.");
 				return;
@@ -141,6 +125,9 @@ function punchIn() {
 		,dataType : "json"
 		,success : function(data) {
 			savePunchInTime(data.CMT_STR_TM);
+			status();
+			getStatics();
+			workStatus();
 		}
 		,error : function(e) {
 			
@@ -154,7 +141,10 @@ function workOut() {
 		,url : root + "/member/commute/workOut.tree"
 		,dataType : "json"
 		,success : function(data) {
-			saveWorkOutData(data.CMT_WOUT_TM);
+			saveWorkOutTime(data.CMT_WOUT_TM);
+			status();
+			getStatics();
+			workStatus();
 		}
 		,error : function(e) {
 			
@@ -168,7 +158,10 @@ function comeBack() {
 		,url : root + "/member/commute/comeBack.tree"
 		,dataType : "json"
 		,success : function(data) {
-			saveComeBackData(data.CMT_CB_TM);
+			saveComeBackTime(data.CMT_CB_TM);
+			status();
+			getStatics();
+			workStatus();
 		}
 		,error : function(e) {
 			
@@ -182,7 +175,10 @@ function punchOut() {
 		,url : root + "/member/commute/punchOut.tree"
 		,dataType : "json"
 		,success : function(data) {
-			savaPunchOutData(data.CMT_END_TM);
+			savePunchOutTime(data.CMT_END_TM);
+			status();
+			getStatics();
+			workStatus();
 		}
 		,error : function(e) {
 			

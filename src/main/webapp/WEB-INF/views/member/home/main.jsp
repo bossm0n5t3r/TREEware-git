@@ -91,6 +91,7 @@
 							</div>
 						</div>
 						<div class="row">
+							<!-- 출퇴근 -->
 							<div class="col-md-5">
 								<%@ include file="/assets/common/member/home/clock.jsp" %>
 							</div>
