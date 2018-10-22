@@ -30,6 +30,10 @@
 		
 		<!-- 결재 -->
 		<typeAlias alias="FormDto" type="com.treeware.form.model.FormDto"/>
+		
+		<!-- 주소록 -->
+		<typeAlias alias="AddressDto" type="com.treeware.address.model.AddressDto"/>
+		<typeAlias alias="AddressGroupDto" type="com.treeware.address.model.AddressGroupDto"/>
 	</typeAliases>
 	
 </configuration>

@@ -8,10 +8,10 @@
 	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<!-- KITRI SETTING -->
-		<property name="url" value="jdbc:oracle:thin:@183.101.196.136:1521:xe" />
+		<!-- <property name="url" value="jdbc:oracle:thin:@183.101.196.136:1521:xe" /> -->
 		
 		<!-- HOME SETTING for ghoon -->
-		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.35.41:1521:xe" /> -->
+		<property name="url" value="jdbc:oracle:thin:@192.168.35.41:1521:xe" />
 		<property name="username" value="fooding" />
 		<property name="password" value="fooding" />
 	</bean>
@@ -37,6 +37,8 @@
 				<value>classpath:com/treeware/config/mybatis/adminboard.xml</value>
 				<!-- 결재 -->
 				<value>classpath:com/treeware/config/mybatis/form.xml</value>
+				<!-- 주소록 -->
+				<value>classpath:com/treeware/config/mybatis/address.xml</value>
 			</list>
 		</property>
 	</bean>
