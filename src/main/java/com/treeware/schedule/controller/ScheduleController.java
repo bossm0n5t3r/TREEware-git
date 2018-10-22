@@ -42,9 +42,7 @@ public class ScheduleController {
 		object.put("scd_nm", scheduleDto.getScd_nm());
 		object.put("scd_pst", scheduleDto.getScd_pst());
 		object.put("scd_sday", scheduleDto.getScd_sday());
-		object.put("scd_stime", scheduleDto.getScd_stime());
 		object.put("scd_eday", scheduleDto.getScd_eday());
-		object.put("scd_etime", scheduleDto.getScd_etime());
 		object.put("scd_dct", scheduleDto.getScd_dct());
 		return object.toString();
 	}
@@ -53,14 +51,16 @@ public class ScheduleController {
 	@RequestMapping(value="/modify.tree", method=RequestMethod.POST)
 	public @ResponseBody String modify(@RequestParam Map<String, String> map) {
 		scheduleService.modifySchedule(map);
-		return "";
+		return new JSONObject().toString();
 	}
 	
 	// 일정 삭제
 	@RequestMapping(value="/delete.tree", method=RequestMethod.GET)
-	public String delete(@RequestParam int scd_sq) {
+	public @ResponseBody String delete(@RequestParam int scd_sq) {
+		JSONObject object = new JSONObject();
+		object.put("SCD_SQ", scd_sq);
 		scheduleService.deleteSchedule(scd_sq);
-		return "member/calendar/main";
+		return object.toString();
 	}
 
 }

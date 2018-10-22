@@ -10,8 +10,6 @@
 			<div class="modal-body text-center" align="center">
 				<form id="registerForm">
 				<input type="hidden" name="scd_sq" class="scd_sq">
-				<input type="hidden" name="scd_stime" class="scd_stime">
-				<input type="hidden" name="scd_etime" class="scd_etime">
 					<table style="width:100%">
 						<tr>
 							<td colspan="2" width="100%" style="padding:10px">

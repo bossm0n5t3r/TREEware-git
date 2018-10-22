@@ -92,9 +92,7 @@ $(document).on("click", "#registerBtn", function() {
 				,"scd_nm" : $("#register .scd_nm").val()
 				,"scd_pst" : $("#register .scd_pst").val()
 				,"scd_sday" : $("#register .scd_sday").val()
-				,"scd_stime" : $("#register .scd_stime").val()
 				,"scd_eday" : $("#register .scd_eday").val()
-				,"scd_etime" : $("#register .scd_etime").val()
 				,"scd_dct" : $("#register .scd_dct").val()
 			}
 			,success : function(data) {
@@ -134,17 +132,14 @@ $(document).on("click", "#modifyBtn", function() {
 					,"scd_nm" : $("#modify .scd_nm").val()
 					,"scd_pst" : $("#modify .scd_pst").val()
 					,"scd_sday" : $("#modify .scd_sday").val()
-					,"scd_stime" : $("#modify .scd_stime").val()
 					,"scd_eday" : $("#modify .scd_eday").val()
-					,"scd_etime" : $("#modify .scd_etime").val()
 					,"scd_dct" : $("#modify .scd_dct").val()
 				}
 				,success : function(data) {
-					alert("수정수정~");
 					modifySchedule();
 				}
 				,error : function() {
-					alert("실패함?");
+
 				}
 			});	
 		} else {
@@ -156,24 +151,35 @@ $(document).on("click", "#modifyBtn", function() {
 // 일정목록 수정하기
 function modifySchedule() {
 	// 기존의 리스트를 불러와서 삭제
-	for(var i=0; i<scheduleList.length; i++){
-		console.log("scheduleList[i].scd_sq : " + scheduleList[i].scd_sq);
-		$('#calendar').fullCalendar('removeEvents', scheduleList[i].scd_sq);
-	}
-	
+	clearCalendar();
 	getList();
 }
 
 // 일정 삭제하기
 $(document).on("click", "#deleteBtn", function() {
 	if (confirm("삭제하시겠습니까?")) {
-		$("#modify #modifyForm").attr("method", "GET")
-								.attr("action", "${root}/member/calendar/delete.tree")
-								.submit();	
+		$.ajax({
+			type : "GET"
+			,url : "${root}/member/calendar/delete.tree"
+			,dataType : "json"
+			,data : {
+				"scd_sq" : $("#modify .scd_sq").val()
+			}
+			,success : function(data) {
+				deleteSchedule(data.SCD_SQ);
+			}
+			,error : function() {
+
+			}
+		});	
 	} else {
 		return;
 	}
 });
+
+function deleteSchedule(data) {
+	$('#calendar').fullCalendar('removeEvents', data);
+}
 
 // 등록한 일정 화면에 보여주기
 function addList(data) {
@@ -226,6 +232,9 @@ function getList() {
 		type : "GET"
 		,url : "${root}/admin/calendar/getList.tree"
 		,dataType : "json"
+		,data : {
+			"emp_sq" : "${userInfo.emp_sq}"
+		}
 		,success : function(data) {
 			makeList(data);
 		}
@@ -283,6 +292,12 @@ function makeList(data) {
 	}
 }
 
+function clearCalendar() {
+	for(var i=0; i < scheduleList.length; i++){
+		$('#calendar').fullCalendar('removeEvents', scheduleList[i].scd_sq);
+	}
+}
+
 // 일정 분류 가져오기
 function getScdDivList() {
 	$.ajax({
@@ -315,9 +330,7 @@ function makeDivList(data) {
 function cleanSchedule() {
 	$("#register .scd_nm").val('');
 	$("#register .scd_sday").val('');
-	$("#register .scd_stime").val('');
 	$("#register .scd_eday").val('');
-	$("#register .scd_etime").val('');
 	$("#register .scd_pst").val('');
 	$("#register .scd_dct").val('');
 }
