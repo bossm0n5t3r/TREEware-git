@@ -5,6 +5,40 @@
 
 <mapper namespace="com.treeware.form.dao.FormDao">
 
+	<select id="view" parameterType="int" resultType="FormDto">
+	select *
+	from APV
+	where APV_SQ = #{APV_SQ}
+	order by APV_SQ DESC
+	</select>
+	
+	<select id="approve" parameterType="int" resultType="FormDto">
+	select *
+	from APV
+	where APV_SQ = #{APV_SQ}
+	order by APV_DATE DESC, APV_OK_SQ ASC
+	</select>
+	
+	<update id="change" parameterType="FormDto">
+	update APV
+	set APV_OK_SQ = #{APV_OK_SQ}
+	where APV_SQ = #{APV_SQ}
+	</update>
+
+	<select id="receiveList" parameterType="String" resultType="FormDto">
+	select *
+	from APV
+	where EMP_1ST_SQ = #{EMP_SQ} or EMP_2ND_SQ = #{EMP_SQ} or EMP_FNL_SQ = #{EMP_SQ}
+	order by APV_OK_SQ, APV_DATE
+	</select>
+	
+	<select id="sendList" parameterType="String" resultType="FormDto">
+	select *
+	from APV
+	where EMP_SQ = #{EMP_SQ}
+	order by APV_OK_SQ, APV_DATE
+	</select>
+	
 	<insert id="write" parameterType="FormDto" >
 	insert into APV(APV_SQ, 
 					APV_FORM_SQ, 
@@ -23,7 +57,7 @@
 					APV_TITLE) 
 	values(	#{APV_SQ}, 
 			1, 
-			1, 
+			0, 
 			#{EMP_SQ}, 
 			1, 
 			#{APV_CTT}, 
@@ -37,37 +71,10 @@
 			sysdate,
 			#{APV_TITLE})
 	</insert>
-<!-- 	<insert id="write" parameterType="FormDto" > -->
-<!-- 	insert into APV(APV_SQ,  -->
-<!-- 					APV_FORM_SQ,  -->
-<!-- 					APV_OK_SQ,  -->
-<!-- 					EMP_SQ,  -->
-<!-- 					APV_SAVE,  -->
-<!-- 					APV_CTT,  -->
-<!-- 					APV_FL_RT,  -->
-<!-- 					APV_FL_NM,  -->
-<!-- 					EMP_1ST_SQ,  -->
-<!-- 					EMP_2ND_SQ,  -->
-<!-- 					EMP_FNL_SQ,  -->
-<!-- 					APV_NO,  -->
-<!-- 					APV_DATE,  -->
-<!-- 					APV_WRITE_DATE,  -->
-<!-- 					APV_TITLE)  -->
-<!-- 	values(	1,  -->
-<!-- 			#{apv_form_sq},  -->
-<!-- 			0,  -->
-<!-- 			#{emp_sq},  -->
-<!-- 			1,  -->
-<!-- 			#{apv_ctt},  -->
-<!-- 			"",  -->
-<!-- 			"", -->
-<!-- 			#{emp_1st_sq}, -->
-<!-- 			#{emp_2nd_sq}, -->
-<!-- 			#{emp_fnl_sq}, -->
-<!-- 			"", -->
-<!-- 			#{apv_date}, -->
-<!-- 			sysdate, -->
-<!-- 			#{apv_title}) -->
-<!-- 	</insert> -->
+	
+	<select id="getNextSeq" resultType="int">
+	select APV_SQ.NEXTVAL
+	from DUAL
+	</select>
 </mapper>
 

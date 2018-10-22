@@ -10,4 +10,4 @@ $(document).ready(function() {
 	$("#gototop").click();
 })
 </script>
-<a href="/treeware/member/sign/main.tree" target="_top"><span id="gototop">페이지 이동중입니다...</span></a>
+<a href="/treeware/member/sign/sendbox.tree" target="_top"><span id="gototop">페이지 이동중입니다...</span></a>
