@@ -30,15 +30,15 @@
 					<i class="la la-envelope"></i>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">전체메일함</a>
+					<a class="dropdown-item" href="${root}/member/mail/main.tree">전체메일함</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">메일쓰기</a>
+					<a class="dropdown-item" href="${root}/member/mail/write.tree">메일쓰기</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">받은메일함</a>
-					<a class="dropdown-item" href="#">보낸메일함</a>
-					<a class="dropdown-item" href="#">휴지통</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">설정</a>
+					<a class="dropdown-item" href="${root}/member/mail/receivemailbox.tree">받은메일함</a>
+					<a class="dropdown-item" href="${root}/member/mail/sendmailbox.tree">보낸메일함</a>
+					<a class="dropdown-item" href="${root}/member/mail/trashmailbox.tree">휴지통</a>
+<!-- 					<div class="dropdown-divider"></div> -->
+<!-- 					<a class="dropdown-item" href="#">설정</a> -->
 				</div>
 			</li>
 			<li class="nav-item dropdown hidden-caret">
@@ -182,18 +182,20 @@
 							<div class="u-img"><img src="${root}/assets/img/profile1.jpg" alt="user"></div>
 							<div class="u-text">
 								<h4>김고은</h4>
-								<p class="text-muted">201810222</p>
-								<p class="text-muted">이메일@projectname.com</p>
+								<p class="text-muted">${userInfo.emp_sq}</p>
+								<p class="text-muted">${userInfo.emp_ml_id}${userInfo.emp_ml_addr}</p>
 								<!-- <a href="profile.html" class="btn btn-rounded btn-danger btn-sm">버튼 메뉴</a> -->
 							</div>
 							</div>
 						</li>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${root}/admin/home/main.tree"><i class="ti-user"></i>관리자 페이지</a>
+						<c:if test="${userInfo.pms_sq == 2}">
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="${root}/admin/home/main.tree"><i class="ti-user"></i>관리자 페이지</a>
+						</c:if>
 <!-- 						<a class="dropdown-item" href="#"></i>단축 메뉴2</a> -->
 <!-- 						<a class="dropdown-item" href="#"><i class="ti-email"></i>단축 메뉴3</a> -->
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#"><i class="ti-settings"></i>정보 수정</a>
+						<a class="dropdown-item" href="${root}/member/home/myinfo.tree"><i class="ti-settings"></i>정보 수정</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="${root}/member/home/logout.tree"><i class="fa fa-power-off"></i>로그아웃</a>
 					</ul>
