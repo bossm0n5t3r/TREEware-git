@@ -1,10 +1,16 @@
 package com.treeware.address.dao;
 
+import java.util.List;
+
+import com.treeware.address.model.AddressDto;
+import com.treeware.address.model.AddressGroupDto;
+
 public interface AddressDao {
 
-	public int addAddress();
-	public int modifyAddress();
-	public int deleteAddress();
-//	public List<AddressDto> getAddressList();
-//	public AddressDto getAddress();
+	public int getNextAddrSq();
+	public int getAddrGrpSq(String emp_sq);
+	public List<AddressDto> getAddrList(String emp_sq);
+	public List<AddressGroupDto> getAddrGrpList(String emp_sq);
+	public int registerAddress(AddressDto addressDto);
+
 }

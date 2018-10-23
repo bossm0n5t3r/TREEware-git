@@ -40,6 +40,7 @@ $(document).ready(function() {
     		$("#mailwriteform").submit();
 		}
 	});
+    
     $("#tome").change(function(){
         if($("#tome").is(":checked")){
             $("#receiver").attr("value","${userInfo.emp_ml_id}${userInfo.emp_ml_addr}");
@@ -48,6 +49,11 @@ $(document).ready(function() {
         }
     });
 
+    
+// 		$("#tome").is(":checked"){
+// 			alert("클릭됨");
+// 		$("#receiver").attr("value", "{userInfo.emp_ml_id}+{userInfo.emp_ml_addr}");
+// 		}
 });
 </script>
 </head>
@@ -63,13 +69,15 @@ $(document).ready(function() {
             <input type="hidden" name="emp_sq" value="${userInfo.emp_sq}">
                <div class="form-group">
                  <div id="mailwritebtn" class="card-title" style="margin-left: 15px">
-						<h5>메일쓰기<h5> </div>
+						메일전달 &nbsp;			
+								</div>
                   <div class="btn-group">
                   <button id="" class="mailwritebtn btn btn-info btn-sm">보내기</button>&nbsp;
                   <button class="btn btn-default btn-sm">미리보기</button>&nbsp;
                   <button class="btn btn-default btn-sm">다시쓰기</button>&nbsp;
                   </div>
                   <br>
+                   <c:forEach var="mail" items="${mailList}">
                <table width="100%">
                   <tr>
                      <td style="width:70px">받는사람</td>
@@ -83,7 +91,7 @@ $(document).ready(function() {
                   </tr>
                      <tr>
                      <td colspan="2">제목</td>
-                     <td><input id="title" name="title" type="text" class="form-control" placeholder="제목을 입력하세요" style="width:100%"></td>   
+                     <td><input id="title" name="title" type="text" class="form-control" style="width:100%" value="FW : ${mail.ml_ttl}"></td>   
                   </tr>
               
                      <tr>
@@ -94,9 +102,21 @@ $(document).ready(function() {
                   </tr>
                   </table>
                <br>                                        
-   
-                  <textarea name="content" id="content" rows="20" style="width:100%"></textarea>
+ 				 
+                 	 <textarea name="content" id="content" rows="20" style="width:100%">
+                 	 <br><br><br>
+                 	 ---------------------Original Message---------------------<br>
+                 	 From : &lt; ${mail.ml_snd_add} &gt; <br>
+                 	 To : &lt; ${mail.ml_rcv_add} &gt;<br>
+                 	 Sent : ${mail.ml_send_date} <br>
+                 	 Subject : ${mail.ml_ttl} <br>
+                 	 <br>
+                 	 ${mail.ml_ctt}
+                 	
+                 	 
+                 	 </textarea>
                 <br>
+                </c:forEach>
                 <button id="" class="mailwritebtn btn btn-info btn-sm" onclick="">보내기</button>
                 
                 </div>              

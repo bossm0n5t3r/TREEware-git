@@ -31,47 +31,42 @@ $(document).ready(function(){
 		}
 	});	
 	
-// 	$("#deleteBtn").click(function() {
-// 		$("#ml_grp_sq").val('2');
-// 		$("#pg").val('${pg}');
-// 		$("#key").val('${key}');
-// 		$("#word").val('${word}');
-// 		$("#ml_sq").val($("#maillist_group").attr("article-seq"));
-// 		$("#commonform").attr("action", "${root}/member/mail/delete.tree").submit();
-	    
-// 		if(cnt != 0){
+	$("#deleteBtn").click(function() {
+		var seqlist=[];
+		$("input[name='seq']:checked").each(function() {
+			seqlist.push($(this).val());
+		});
+
+			$.ajax({
+			    type : "POST",
+			    url : "${root}/member/mail/movetrashmail.tree",
+			    data : {
+			        myArray : seqlist
+			    },
+			    success : function(response) {
+			  
+			    },
+			    error : function(e) {
+			       alert('Error: ' + e);
+			    }
+			}); 
+		});
+	
+	$("#deliveryBtn").click(function() {
+
+        $("#ml_grp_sq").val('2');
+ 		$("#pg").val('${pg}');
+ 		$("#key").val('${key}');
+ 		$("#word").val('${word}');
+ 		$("#ml_sq").val($("input[name='seq']:checked").val());
+ 		$("#commonform").attr("action", "${root}/member/mail/delivery.tree").submit();
+
+		});
+// 	});
+		
 // 		$("#deletemodal").modal({
 // 			remote : '${root}/menu/mail/deleteok.jsp'
 // 		});		
-// 		}
-// 		else{
-// 			alert("휴지통 이동 실패");
-			
-// 		}
-// 	});
-	
-	$("#deleteBtn").click(function() {
-	    var val = [];
-		$("checkbox[checked='checked']").each(function(i){
-		          val[i] = $(this).val();
-		});
-		alert(val);
-// 		$.ajax({
-// 		    type : "POST",
-// 		    url : "${root}/menu/mail/deleteok.jsp",
-// 		    data : {
-// 		        myArray: val
-// 		    },
-// 		    success : function(response) {
-		       
-// 		    },
-// 		    error : function(e) {
-// 		       alert('Error: ' + e);
-// 		    }
-// 		}); 
-		
-		     
-	});
 	
 	$(".mailList").click(function() {
 		$("#ml_grp_sq").val('2');
@@ -90,6 +85,7 @@ $(document).ready(function(){
 		$("#ml_sq").val($("#maillist_group").attr("article-seq"));
 		$("#commonform").attr("action", "${root}/member/mail/sendmailbox.tree").submit();
 	});
+	
 });
 
 </script>
@@ -137,7 +133,7 @@ $(document).ready(function(){
 									&nbsp;
 									<button class="btn btn-default btn-sm">답장</button>
 									&nbsp;
-									<button class="btn btn-default btn-sm">전달</button>
+									<button id="deliveryBtn" class="btn btn-default btn-sm">전달</button>
 									&nbsp;
 									<div class="btn-group">
 										<button id="readbtn"
@@ -154,8 +150,8 @@ $(document).ready(function(){
 											data-toggle="dropdown">이동</button>
 										<ul id="movedrop" class="dropdown-menu" role="menu"
 											aria-labelledby="dropdownMenu">
-											<li><a class="dropdown-item" href="#">휴지통</a></li>
-											<li><a class="dropdown-item" href="#">받은메일함</a></li>
+											<li><a class="dropdown-item" href="#">새메일함1</a></li>
+											<li><a class="dropdown-item" href="#">새메일함2</a></li>
 										</ul>
 									</div>
 								</div>
@@ -200,8 +196,8 @@ $(document).ready(function(){
 													<td>
 														<div class="form-check">
 															<label class="form-check-label"> 
-															<input class="check form-check-input task-select" type="checkbox">
-																<span class="form-check-sign" value="${mail.ml_sq}"></span>
+															<input id="seq" name="seq" value="${mail.ml_sq}" class="check form-check-input task-select" type="checkbox">
+																<span class="form-check-sign" ></span>
 															</label>
 														</div>
 													</td>

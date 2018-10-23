@@ -11,6 +11,7 @@ public interface EmailDao {
 	int sendMail(MailDto mailDto);
 	List<MailDto> listMail(Map<String, String> map);
 	MailDto viewMail(int ml_sq);
-	int deleteMail(int ml_sq);
+	int moveTrashMailbox(int ml_sq);
+	List<MailDto> delivery(int ml_sq);
 
 }

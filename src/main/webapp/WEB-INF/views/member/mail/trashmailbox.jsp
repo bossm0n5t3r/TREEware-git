@@ -48,7 +48,7 @@ $(document).ready(function(){
 									<div style="margin-top: 100px; display: inline;">
 										<i id="bookmark" class="la la-heart-o" style="color: #FF6C6C;"></i>
 									</div>
-									<font size="2"> &nbsp;전체메일 &nbsp;0 &nbsp;/ &nbsp;안읽은 메일
+									<font size="2"> &nbsp;전체메일 &nbsp;${navigator.totalArticleCount} &nbsp;/ &nbsp;안읽은 메일
 										&nbsp;0</font>
 								</div>
 							</div>
@@ -122,34 +122,22 @@ $(document).ready(function(){
 												<th>보낸날짜</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td>
-													<div class="form-check">
-														<label class="form-check-label"> <input
-															class="form-check-input task-select" type="checkbox">
-															<span class="form-check-sign"></span>
-														</label>
-													</div>
-												</td>
-												<td>김고은 부장</td>
-												<td>워크샵 결재 요청 메일</td>
-												<td>2018-10-4</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="form-check">
-														<label class="form-check-label"> <input
-															class="form-check-input task-select" type="checkbox">
-															<span class="form-check-sign"></span>
-														</label>
-													</div>
-												</td>
-												<td>김지훈 이사</td>
-												<td>동호회 모집 안내 공고문[사진첨부]</td>
-												<td>2018-10-5</td>
-											</tr>
-
+											<tbody>
+											<c:forEach var="mail" items="${mailList}">
+												<tr id="maillist_group" article-seq="${mail.ml_sq}">
+													<td>
+														<div class="form-check">
+															<label class="form-check-label"> 
+															<input id="seq" name="seq" value="${mail.ml_sq}" class="check form-check-input task-select" type="checkbox">
+																<span class="form-check-sign" ></span>
+															</label>
+														</div>
+													</td>
+													<td class="mailList">${mail.ml_rcv_add}</td>
+													<td class="mailList">${mail.ml_ttl}</td>
+													<td class="mailList">${mail.ml_send_date}</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

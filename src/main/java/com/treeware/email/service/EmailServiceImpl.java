@@ -40,10 +40,16 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public int deleteMail(int ml_sq) {
-		return sqlSession.getMapper(EmailDao.class).deleteMail(ml_sq);
+	public int moveTrashMailbox(int ml_sq) {
+		return sqlSession.getMapper(EmailDao.class).moveTrashMailbox(ml_sq);
 	}
-	
+
+	@Override
+	public List<MailDto>delivery(int ml_sq) {
+		return sqlSession.getMapper(EmailDao.class).delivery(ml_sq);
+	}
+
+
 	 
   
 }

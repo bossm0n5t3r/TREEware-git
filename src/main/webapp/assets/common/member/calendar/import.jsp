@@ -21,7 +21,7 @@ $(document).ready(function() {
 		, monthNames : ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]
 		, monthNamesShort : ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]
 		, dayNames : ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"]
-		, dayNamesShort : ["일","월","화 ","수 ","목 ","금 ","토 "]      ///한글로변환
+		, dayNamesShort : ["일","월","화 ","수 ","목 ","금 ","토 "]
 		, buttonText : {
 			today : "오늘"
 		}
@@ -82,9 +82,23 @@ $(document).on("click", "#registerBtn", function() {
 			alert("종료일이 시작일 보다 빠를 수 없습니다.");
 			return;
 		}
-		$("#register #registerForm").attr("method", "POST")
-									.attr("action", "${root}/member/calendar/register.tree")
-									.submit();
+		$.ajax({
+			type : "POST"
+			,url : "${root}/member/calendar/register.tree"
+			,dataType : "json"
+			,data : {
+				"scd_div_sq" : $("#register .scd_div_sq").val()
+				,"emp_sq" : "${userInfo.emp_sq}"
+				,"scd_nm" : $("#register .scd_nm").val()
+				,"scd_pst" : $("#register .scd_pst").val()
+				,"scd_sday" : $("#register .scd_sday").val()
+				,"scd_eday" : $("#register .scd_eday").val()
+				,"scd_dct" : $("#register .scd_dct").val()
+			}
+			,success : function(data) {
+				addList(data);
+			}
+		});
 	}
 });
 
@@ -107,25 +121,65 @@ $(document).on("click", "#modifyBtn", function() {
 			return;
 		}
 		if (confirm("수정하시겠습니까?")) {
-			$("#modify #modifyForm").attr("method", "POST")
-									.attr("action", "${root}/member/calendar/modify.tree")
-									.submit();	
+			$.ajax({
+				type : "POST"
+				,url : "${root}/member/calendar/modify.tree"
+				,dataType : "json"
+				,data : {
+					"scd_sq" : $("#modify .scd_sq").val()
+					,"scd_div_sq" : $("#modify .scd_div_sq").val()
+					,"emp_sq" : "${userInfo.emp_sq}"
+					,"scd_nm" : $("#modify .scd_nm").val()
+					,"scd_pst" : $("#modify .scd_pst").val()
+					,"scd_sday" : $("#modify .scd_sday").val()
+					,"scd_eday" : $("#modify .scd_eday").val()
+					,"scd_dct" : $("#modify .scd_dct").val()
+				}
+				,success : function(data) {
+					modifySchedule();
+				}
+				,error : function() {
+
+				}
+			});	
 		} else {
 			return;
 		}
 	}
 });
 
+// 일정목록 수정하기
+function modifySchedule() {
+	// 기존의 리스트를 불러와서 삭제
+	clearCalendar();
+	getList();
+}
+
 // 일정 삭제하기
 $(document).on("click", "#deleteBtn", function() {
 	if (confirm("삭제하시겠습니까?")) {
-		$("#modify #modifyForm").attr("method", "GET")
-								.attr("action", "${root}/member/calendar/delete.tree")
-								.submit();	
+		$.ajax({
+			type : "GET"
+			,url : "${root}/member/calendar/delete.tree"
+			,dataType : "json"
+			,data : {
+				"scd_sq" : $("#modify .scd_sq").val()
+			}
+			,success : function(data) {
+				deleteSchedule(data.SCD_SQ);
+			}
+			,error : function() {
+
+			}
+		});	
 	} else {
 		return;
 	}
 });
+
+function deleteSchedule(data) {
+	$('#calendar').fullCalendar('removeEvents', data);
+}
 
 // 등록한 일정 화면에 보여주기
 function addList(data) {
@@ -178,6 +232,9 @@ function getList() {
 		type : "GET"
 		,url : "${root}/admin/calendar/getList.tree"
 		,dataType : "json"
+		,data : {
+			"emp_sq" : "${userInfo.emp_sq}"
+		}
 		,success : function(data) {
 			makeList(data);
 		}
@@ -191,7 +248,7 @@ function getList() {
 function makeList(data) {
 	var slist = data.scheduleList;
 	scheduleList = slist;
-	for(var i=0; i<scheduleList.length; i++){
+	for(var i = 0; i < scheduleList.length; i++){
 		// 이벤트마다 색 설정
 		var scolor= "";
 		// 휴가, 파랑
@@ -235,6 +292,12 @@ function makeList(data) {
 	}
 }
 
+function clearCalendar() {
+	for(var i=0; i < scheduleList.length; i++){
+		$('#calendar').fullCalendar('removeEvents', scheduleList[i].scd_sq);
+	}
+}
+
 // 일정 분류 가져오기
 function getScdDivList() {
 	$.ajax({
@@ -267,9 +330,7 @@ function makeDivList(data) {
 function cleanSchedule() {
 	$("#register .scd_nm").val('');
 	$("#register .scd_sday").val('');
-	$("#register .scd_stime").val('');
 	$("#register .scd_eday").val('');
-	$("#register .scd_etime").val('');
 	$("#register .scd_pst").val('');
 	$("#register .scd_dct").val('');
 }

@@ -16,6 +16,12 @@
  				$("#pg").val("1");
 				$("#commonform").attr("action","${root}/member/mail/sendmailbox.tree").submit();			
 			});
+			
+			$("#trashmailbox").click(function(){	
+ 				$("#ml_grp_sq").val("3");
+ 				$("#pg").val("1");
+				$("#commonform").attr("action","${root}/member/mail/trashmailbox.tree").submit();			
+			});
 		});
 		</script>
 		
@@ -82,7 +88,7 @@
 			</li>
 			
 			<li class="nav-item">
-				<a>
+				<a id="trashmailbox">
 					<i class="la la-trash"></i>휴지통
 				</a>
 			</li>

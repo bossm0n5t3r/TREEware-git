@@ -15,11 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.treeware.common.service.CommonService;
 import com.treeware.email.model.MailDto;
 import com.treeware.email.service.EmailService;
+import com.treeware.util.NumberCheck;
 import com.treeware.util.PageNavigation;
 
 @Controller
@@ -57,9 +59,6 @@ public class EmailController {
 	@RequestMapping("/sendmailbox.tree")
 	public ModelAndView sendMailBox(@RequestParam Map<String, String> map, HttpServletRequest request) {
 		List<MailDto> list = emailService.listMail(map);
-		System.out.println(map.get("key"));
-		System.out.println(map.get("word"));
-		System.out.println(map.get("ml_sq"));
 		PageNavigation navigator = commonService.makePageNavigation(map);
 		navigator.setRoot(request.getContextPath());
 		navigator.setKey(map.get("key"));
@@ -74,8 +73,16 @@ public class EmailController {
 	}
 
 	@RequestMapping("/trashmailbox.tree")
-	public ModelAndView trashMailBox() {
+	public ModelAndView trashMailBox(@RequestParam Map<String, String> map, HttpServletRequest request) {
+		List<MailDto> list = emailService.listMail(map);
+		PageNavigation navigator = commonService.makePageNavigation(map);
+		navigator.setRoot(request.getContextPath());
+		navigator.setKey(map.get("key"));
+		navigator.setWord(map.get("word"));
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("mailList", list);
+		mav.addObject("navigator", navigator);
 		mav.setViewName("member/mail/trashmailbox");
 		return mav;
 	}
@@ -88,23 +95,29 @@ public class EmailController {
 		mav.setViewName("member/mail/view");
 		return mav;
 	}
-	
-//	@RequestMapping("/delete.tree")
-//	public ModelAndView delete(@RequestParam Map<String, String> map) {
-//		System.out.println(map.get("ml_grp_sq"));
-//		System.out.println(map.get("ml_sq"));
-//		int cnt = emailService.deleteMail(Integer.parseInt(map.get("ml_sq")));
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("cnt", cnt);
-//		mav.setViewName("member/mail/sendmailbox");
-//		return mav;
-//	}
-	
-	@RequestMapping("/delete.tree")
-	public String controllerMethod(@RequestParam(value="myArray[]") Integer[] myArray){
-	    System.out.println(myArray);
-	    return "member/mail/sendmailbox";
+		
+	@RequestMapping(value="/movetrashmail.tree", method = RequestMethod.POST)
+	@ResponseBody	
+	public String deleteMail(@RequestParam(value="myArray[]") List<String> myArray) {
+		
+		for(String ml_sq : myArray) {
+			emailService.moveTrashMailbox(NumberCheck.nullToZero(ml_sq));
+			
+		}	
+		return "member/mail/sendmailbox";
 	}
+	
+	@RequestMapping("/delivery.tree")
+	public ModelAndView delivery(@RequestParam int ml_sq) {
+		List<MailDto> list = emailService.delivery(ml_sq);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("mailList", list);
+		mav.setViewName("member/mail/delivery_write");
+	
+		return mav;
+	}
+		
 
 	@RequestMapping(value = "/write.tree", method = RequestMethod.GET)
 	public ModelAndView write() {

@@ -1,12 +1,12 @@
 package com.treeware.schedule.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.admin.schedule.model.ScheduleDto;
 import com.treeware.schedule.service.ScheduleService;
 
@@ -31,27 +31,36 @@ public class ScheduleController {
 	
 	// 일정 등록
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
-	public String register(ScheduleDto scheduleDto, HttpSession session) {
-		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
-		scheduleDto.setEmp_sq(employeeDto.getEmp_sq());
-		scheduleService.registerSchedule(scheduleDto);
-		return "member/calendar/main";
+	public @ResponseBody String register(@RequestParam Map<String, String> map) {
+		JSONObject object = new JSONObject();
+		int scd_sq = scheduleService.registerSchedule(map);
+		ScheduleDto scheduleDto = scheduleService.getSchedule(scd_sq);
+		object.put("scd_sq", scheduleDto.getScd_sq());
+		object.put("scd_div_sq", scheduleDto.getScd_div_sq());
+		object.put("scd_div_nm", scheduleDto.getScd_div_nm());
+		object.put("emp_sq", scheduleDto.getEmp_sq());
+		object.put("scd_nm", scheduleDto.getScd_nm());
+		object.put("scd_pst", scheduleDto.getScd_pst());
+		object.put("scd_sday", scheduleDto.getScd_sday());
+		object.put("scd_eday", scheduleDto.getScd_eday());
+		object.put("scd_dct", scheduleDto.getScd_dct());
+		return object.toString();
 	}
 	
 	// 일정 수정
 	@RequestMapping(value="/modify.tree", method=RequestMethod.POST)
-	public String modify(ScheduleDto scheduleDto, HttpSession session) {
-		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
-		scheduleDto.setEmp_sq(employeeDto.getEmp_sq());
-		scheduleService.modifySchedule(scheduleDto);
-		return "member/calendar/main";
+	public @ResponseBody String modify(@RequestParam Map<String, String> map) {
+		scheduleService.modifySchedule(map);
+		return new JSONObject().toString();
 	}
 	
 	// 일정 삭제
 	@RequestMapping(value="/delete.tree", method=RequestMethod.GET)
-	public String delete(@RequestParam int scd_sq) {
+	public @ResponseBody String delete(@RequestParam int scd_sq) {
+		JSONObject object = new JSONObject();
+		object.put("SCD_SQ", scd_sq);
 		scheduleService.deleteSchedule(scd_sq);
-		return "member/calendar/main";
+		return object.toString();
 	}
 
 }

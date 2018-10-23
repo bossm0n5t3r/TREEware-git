@@ -29,3 +29,16 @@ function change_rnk(data){
 		return '사장';
 	}
 }
+function change_name(data){
+	if(data ===0){
+		return '김고은';
+	} else if(data ===1){
+		return '김지훈';
+	} else if(data ===2){
+		return '강수민';
+	} else if(data ===3){
+		return '강혜인';
+	} else if(data ===4){
+		return '박윤민';
+	}
+}

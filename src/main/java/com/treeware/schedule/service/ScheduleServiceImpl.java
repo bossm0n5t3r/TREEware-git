@@ -1,5 +1,7 @@
 package com.treeware.schedule.service;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,19 +17,19 @@ public class ScheduleServiceImpl implements ScheduleService {
 	
 	@Override
 	public ScheduleDto getSchedule(int scd_sq) {
-		return null;
+		return sqlSession.getMapper(ScheduleDao.class).getSchedule(scd_sq);
 	}
 	
 	@Override
-	public int registerSchedule(ScheduleDto scheduleDto) {
+	public int registerSchedule(Map<String, String> map) {
 		int scd_sq = sqlSession.getMapper(ScheduleDao.class).getNextScheduleSq();
-		scheduleDto.setScd_sq(scd_sq);
-		return sqlSession.getMapper(ScheduleDao.class).registerSchedule(scheduleDto) != 0 ? scd_sq : 0;
+		map.put("scd_sq", scd_sq + "");
+		return sqlSession.getMapper(ScheduleDao.class).registerSchedule(map) != 0 ? scd_sq : 0;
 	}
 
 	@Override
-	public int modifySchedule(ScheduleDto scheduleDto) {
-		return sqlSession.getMapper(ScheduleDao.class).modifySchedule(scheduleDto);
+	public int modifySchedule(Map<String, String> map) {
+		return sqlSession.getMapper(ScheduleDao.class).modifySchedule(map);
 	}
 
 	@Override

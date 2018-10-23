@@ -7,7 +7,7 @@ $(document).ready(function(){
 	var rnk_sq = ${userInfo.rnk_sq};
 	var dpt_name = change_dpt(dpt_sq);
 	var rnk_name = change_rnk(rnk_sq);
-	$("#rnk_name").text(name+rnk_name);
+	$("#rnk_name").text(rnk_name);
 	$("#dpt_name").html(dpt_name);
 });
 </script>
@@ -19,7 +19,7 @@ $(document).ready(function(){
 			<a class="" data-toggle="collapse" href="#collapseUser" aria-expanded="true">
 				<span class="user_level">
 					<span id="dpt_name" ></span>
-					<span>${userInfo.emp_nm}&nbsp;<span id="rnk_name" ></span>님</span>
+					<span>${userInfo.emp_nm}&nbsp;<span id="rnk_name"></span>님</span>
 					<span class="caret"></span>
 				</span>
 			</a>

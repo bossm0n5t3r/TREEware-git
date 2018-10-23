@@ -7,6 +7,7 @@
 	<typeAliases>
 		<!-- 사원 -->
 		<typeAlias alias="EmployeeDto" type="com.treeware.admin.member.model.EmployeeDto"/>
+		<typeAlias alias="PermissionDto" type="com.treeware.admin.member.model.PermissionDto"/>
 		<typeAlias alias="DepartmentDto" type="com.treeware.admin.member.model.DepartmentDto"/>
 		<typeAlias alias="PositionDto" type="com.treeware.admin.member.model.PositionDto"/>
 		<typeAlias alias="RankDto" type="com.treeware.admin.member.model.RankDto"/>
@@ -32,6 +33,10 @@
 		
 		<!-- 페이징 -->
 		<typeAlias alias="CommonDto" type="com.treeware.common.dao.CommonDao"/>
-	
+		
+		<!-- 주소록 -->
+		<typeAlias alias="AddressDto" type="com.treeware.address.model.AddressDto"/>
+		<typeAlias alias="AddressGroupDto" type="com.treeware.address.model.AddressGroupDto"/>
 	</typeAliases>
+	
 </configuration>

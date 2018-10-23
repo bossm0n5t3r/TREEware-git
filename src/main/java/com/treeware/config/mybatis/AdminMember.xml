@@ -60,6 +60,13 @@
 	FROM DPT, EMP
 	WHERE DPT.DPT_SQ = EMP.DPT_SQ
 	</select>
+
+	<select id="getPermission" parameterType="int" resultType="PermissionDto">
+	SELECT DISTINCT PMS.PMS_SQ, PMS_NM
+	FROM PMS, EMP
+	WHERE PMS.PMS_SQ = EMP.PMS_SQ
+	AND EMP.PMS_SQ = #{pms_sq}
+	</select>
 	
 	<select id="getDepartment" parameterType="int" resultType="DepartmentDto">
 	SELECT DISTINCT DPT.DPT_SQ, DPT_NM
