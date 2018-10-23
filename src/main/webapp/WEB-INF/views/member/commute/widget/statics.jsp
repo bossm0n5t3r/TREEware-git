@@ -22,36 +22,36 @@
 				<td>평균퇴근시간</td>
 				<td id="avgEndTime"></td>
 			</tr>
-			<tr>
-				<td>올해사용연차</td>
-				<td>2/20</td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td>올해사용연차</td> -->
+<!-- 				<td>2/20</td> -->
+<!-- 			</tr> -->
 		</table>
-		<table class="table table-hover" style="width:100%;text-align:center;margin:10px 0 50px 0">
-			<tr>
-				<th colspan="2" width="100%" style="text-align:center">부서별통계</th>
-			</tr>
-			<tr>
-				<td width="50%">특징</td>
-				<td width="50%">이름</td>
-			</tr>
-			<tr>
-				<td>출근대장</td>
-				<td>유연석</td>
-			</tr>
-			<tr>
-				<td>야근대장</td>
-				<td>유연석</td>
-			</tr>
-			<tr>
-				<td>외근대장</td>
-				<td>유연석</td>
-			</tr>
-			<tr>
-				<td>지각대장</td>
-				<td>유연석</td>
-			</tr>
+<!-- 		<table class="table table-hover" style="width:100%;text-align:center;margin:10px 0 50px 0"> -->
+<!-- 			<tr> -->
+<!-- 				<th colspan="2" width="100%" style="text-align:center">부서별통계</th> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td width="50%">특징</td> -->
+<!-- 				<td width="50%">이름</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>출근대장</td> -->
+<!-- 				<td>유연석</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>야근대장</td> -->
+<!-- 				<td>유연석</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>외근대장</td> -->
+<!-- 				<td>유연석</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>지각대장</td> -->
+<!-- 				<td>유연석</td> -->
+<!-- 			</tr> -->
 			
-		</table>
+<!-- 		</table> -->
 	</div>
 </div>

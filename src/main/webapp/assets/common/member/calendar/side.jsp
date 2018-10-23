@@ -69,11 +69,11 @@
 <!-- 					<p>일정등록</p> -->
 <!-- 				</a> -->
 <!-- 			</li> -->
-			<li id="menu2" class="nav-item">
-				<a href="${root}/member/calendar/todo.tree">
-					<p>TO DO</p>
-				</a>
-			</li>
+<!-- 			<li id="menu2" class="nav-item"> -->
+<%-- 				<a href="${root}/member/calendar/todo.tree"> --%>
+<!-- 					<p>TO DO</p> -->
+<!-- 				</a> -->
+<!-- 			</li> -->
 		</ul>
 	</div>
 </div>

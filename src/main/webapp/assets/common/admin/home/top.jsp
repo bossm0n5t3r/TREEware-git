@@ -42,8 +42,8 @@
 						</li>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="${root}/member/home/main.tree"><i class="ti-user"></i>사원 페이지</a>
-						<a class="dropdown-item" href="#"></i>단축 메뉴2</a>
-						<a class="dropdown-item" href="#"><i class="ti-email"></i>단축 메뉴3</a>
+<!-- 						<a class="dropdown-item" href="#"></i>단축 메뉴2</a> -->
+<!-- 						<a class="dropdown-item" href="#"><i class="ti-email"></i>단축 메뉴3</a> -->
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#"><i class="ti-settings"></i>정보 수정</a>
 						<div class="dropdown-divider"></div>

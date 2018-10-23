@@ -114,64 +114,64 @@
 				</div>
 			</li>
 			
-			<li class="nav-item dropdown hidden-caret">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="la la-bell"></i>
-					<span class="notification">4</span>
-				</a>
-				<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
-					<li>
-						<div class="dropdown-title">4건의 새로운 소식이 있습니다.</div>
-					</li>
-					<li>
-						<div class="notif-center">
-							<a href="#">
-								<div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div>
-								<div class="notif-content">
-									<span class="block">
-										[공지] 신입사원 환영회
-									</span>
-									<span class="time">2018년 10월 5일 18:00</span> 
-								</div>
-							</a>
-							<a href="#">
-								<div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
-								<div class="notif-content">
-									<span class="block">
-										[일정] PM 2시 계열사 미팅
-									</span>
-									<span class="time">12 minutes ago</span> 
-								</div>
-							</a>
-							<a href="#">
-								<div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
-								<div class="notif-content">
-									<span class="block">
-										[일정] AM 11시 팀회의 
-									</span>
-									<span class="time">12 minutes ago</span> 
-								</div>
-							</a>
-							<a href="#">
-								<!-- <div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
-								<div class="notif-content"> -->
-								<div class="notif-img"> 
-									<img src="${root}/assets/img/profile2.jpg" alt="Img Profile">
-								</div>
-								<div class="notif-content">
-									<span class="block">
-										[메세지] 이사님 힘내세요!
-									</span>
-									<span class="time">17 minutes ago</span> 
-								</div>
-							</a>
-						</div>
-					</li>
-					<li>
-						<a class="see-all" href="javascript:void(0);"> <strong>모든 알림 확인하기</strong> <i class="la la-angle-right"></i> </a>
-					</li>
-				</ul>
-			</li>
+<!-- 			<li class="nav-item dropdown hidden-caret"> -->
+<!-- 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<!-- 					<i class="la la-bell"></i> -->
+<!-- 					<span class="notification">4</span> -->
+<!-- 				</a> -->
+<!-- 				<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown"> -->
+<!-- 					<li> -->
+<!-- 						<div class="dropdown-title">4건의 새로운 소식이 있습니다.</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="notif-center"> -->
+<!-- 							<a href="#"> -->
+<!-- 								<div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div> -->
+<!-- 								<div class="notif-content"> -->
+<!-- 									<span class="block"> -->
+<!-- 										[공지] 신입사원 환영회 -->
+<!-- 									</span> -->
+<!-- 									<span class="time">2018년 10월 5일 18:00</span>  -->
+<!-- 								</div> -->
+<!-- 							</a> -->
+<!-- 							<a href="#"> -->
+<!-- 								<div class="notif-icon notif-success"> <i class="la la-comment"></i> </div> -->
+<!-- 								<div class="notif-content"> -->
+<!-- 									<span class="block"> -->
+<!-- 										[일정] PM 2시 계열사 미팅 -->
+<!-- 									</span> -->
+<!-- 									<span class="time">12 minutes ago</span>  -->
+<!-- 								</div> -->
+<!-- 							</a> -->
+<!-- 							<a href="#"> -->
+<!-- 								<div class="notif-icon notif-success"> <i class="la la-comment"></i> </div> -->
+<!-- 								<div class="notif-content"> -->
+<!-- 									<span class="block"> -->
+<!-- 										[일정] AM 11시 팀회의  -->
+<!-- 									</span> -->
+<!-- 									<span class="time">12 minutes ago</span>  -->
+<!-- 								</div> -->
+<!-- 							</a> -->
+<!-- 							<a href="#"> -->
+<!-- 								<div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div> -->
+<!-- 								<div class="notif-content"> -->
+<!-- 								<div class="notif-img">  -->
+<%-- 									<img src="${root}/assets/img/profile2.jpg" alt="Img Profile"> --%>
+<!-- 								</div> -->
+<!-- 								<div class="notif-content"> -->
+<!-- 									<span class="block"> -->
+<!-- 										[메세지] 이사님 힘내세요! -->
+<!-- 									</span> -->
+<!-- 									<span class="time">17 minutes ago</span>  -->
+<!-- 								</div> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<a class="see-all" href="javascript:void(0);"> <strong>모든 알림 확인하기</strong> <i class="la la-angle-right"></i> </a> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
+<!-- 			</li> -->
 			<li class="nav-item dropdown">
 				<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> 
 <%-- 				<img src="${root}/assets/img/profile1.jpg" alt="user-img" width="36" class="img-circle"> --%>
@@ -190,8 +190,8 @@
 						</li>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="${root}/admin/home/main.tree"><i class="ti-user"></i>관리자 페이지</a>
-						<a class="dropdown-item" href="#"></i>단축 메뉴2</a>
-						<a class="dropdown-item" href="#"><i class="ti-email"></i>단축 메뉴3</a>
+<!-- 						<a class="dropdown-item" href="#"></i>단축 메뉴2</a> -->
+<!-- 						<a class="dropdown-item" href="#"><i class="ti-email"></i>단축 메뉴3</a> -->
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#"><i class="ti-settings"></i>정보 수정</a>
 						<div class="dropdown-divider"></div>
