@@ -120,22 +120,22 @@ public class AdminMemberController {
 		return mav;
 	}
 	
-	@RequestMapping("/idsetup.tree")
-	public ModelAndView idSetup(@RequestParam Map<String, String> map) {
-		ModelAndView mav = new ModelAndView();
-		adminMemberService.idSetup(map);
-		mav.setViewName("index");
-		return mav;
+	@RequestMapping(value="/idsetup.tree", method=RequestMethod.POST)
+	public @ResponseBody String idSetup(@RequestParam Map<String, String> map) {
+		JSONObject object = new JSONObject();
+		int count = adminMemberService.idSetup(map);
+		object.put("count", count);
+		return object.toString();
 	}
 	
 	
 	// 아이디 중복 검사
 	@RequestMapping("/idcheck.tree")
 	public @ResponseBody String checkId(@RequestParam String id) {
-		int cnt = adminMemberService.idCheck(id);
-		JSONObject json = new JSONObject();
-		json.put("cnt", cnt);
-		return json.toString();
+		int count = adminMemberService.idCheck(id);
+		JSONObject object = new JSONObject();
+		object.put("count", count);
+		return object.toString();
 	}
 	
 	// 사원정보 수정

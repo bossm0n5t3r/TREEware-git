@@ -51,7 +51,8 @@ public class MemberController {
 			}
 			session.setAttribute("userInfo", employeeDto);
 			if ("TREE".equals(check)) {
-				path = "redirect:/idsetup.jsp";
+				mav.addObject("emp_sq", employeeDto.getEmp_sq());
+				path = "member/home/idsetup";
 			} else {
 				int PMS_SQ = employeeDto.getPms_sq();
 				if (PMS_SQ == 1) {

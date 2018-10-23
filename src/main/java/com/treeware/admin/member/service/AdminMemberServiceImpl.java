@@ -44,7 +44,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	@Override
 	public int idSetup(Map<String, String> map) {
-		return 0;
+		return sqlSession.getMapper(AdminMemberDao.class).idSetup(map);
 	}
 
 	// 아이디 중복 검사

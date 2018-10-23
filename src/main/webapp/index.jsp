@@ -41,7 +41,7 @@
 	<div class="col-lg-4">
 		<img src="/treeware/assets/img/treeware4.png" width="190px">
 			<form class="login" name="loginForm" id="loginForm" method="POST" action="">
-				<div class="mainform"><input id="id" name="id" class="mainbox" type="text" value="${id}" placeholder="사원번호"></div>
+				<div class="mainform"><input id="id" name="id" class="mainbox" type="text" value="${id}" placeholder="아이디"></div>
 				<div class="mainform"><input id="pw" name="pw" class="mainbox" type="password" placeholder="비밀번호"></div>
 				<div class="mainform">
 					<label class="form-check-label">

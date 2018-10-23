@@ -5,6 +5,18 @@
 
 <mapper namespace="com.treeware.admin.member.dao.AdminMemberDao">
 
+	<select id="idCheck" parameterType="String" resultType="int">
+		SELECT count(emp_id)
+		FROM EMP
+		WHERE EMP_ID = #{emp_id}
+	</select>
+
+	<update id="idSetup" parameterType="java.util.Map">
+		UPDATE EMP
+		SET EMP_ID = #{id}, EMP_PW = #{pw}
+		WHERE EMP_SQ = #{emp_sq}
+	</update>
+
 	<select id="memberSearch" parameterType="map" resultType="EmployeeDto">
 	SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
 	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
