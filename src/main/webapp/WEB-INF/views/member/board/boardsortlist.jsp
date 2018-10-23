@@ -39,7 +39,7 @@ function boardClick(data){
 											<div class="buttonmenu" align="center" style="margin:5px 0 5px 0">
 												<div class="row" style="width:100%">
 													<div style="width:50%;text-align:left;padding:10px">
-														<p id="pageNumber" style="color:#007bff">전체목록 [${cnt}개]</p>
+														<p id="page" style="color:#007bff">전체목록 [<span id="pageNumber"></span>개]</p>
 													</div>
 													<div style="width:50%;text-align:right">
 														<div class="row" style="float:right">
@@ -167,7 +167,7 @@ var board;
 
 //목록입력
 $(document).ready(function(){
-	
+	$('#pageNumber').text('${cnt}');
 	'<c:forEach items="${board}" var="item">'
 	'<c:set var="emp_sq" value="${item.emp_sq}"/>'
 	emp_sq.push('${item.emp_sq}');
@@ -291,10 +291,12 @@ function searchajax(){
 		,dataType : "json"
 		,data : {
 			"key" : $("#key").val(),
-			"word" : $("#word").val()
+			"word" : $("#word").val(),
+			"bcode" : '${userBoardInfo.bcode}'
 		}
 		,success : function(data) {
-			board = data.board
+			board = data.board;
+			$('#pageNumber').text(board.length);
 			memberSearch();
 		}
 		,error : function(e) {
