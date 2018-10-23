@@ -97,12 +97,16 @@ function boardClick(data){
 														<c:set var="emp3" value="${formList.EMP_FNL_SQ}"/>
 														<c:set var="emp" value="${userInfo.emp_sq}"/>
 														<c:choose>
-															<c:when test="${emp1 eq emp}"><c:set var="okmy" value="1"/></c:when>
-															<c:when test="${emp2 eq emp}"><c:set var="okmy" value="2"/></c:when>
-															<c:when test="${emp3 eq emp}"><c:set var="okmy" value="3"/></c:when>
+															<c:when test="${emp1 eq emp}"><c:set var="okmy" value="0"/></c:when>
+															<c:when test="${emp2 eq emp}"><c:set var="okmy" value="1"/></c:when>
+															<c:when test="${emp3 eq emp}"><c:set var="okmy" value="2"/></c:when>
 														</c:choose>
+<%-- 														<c:if test="true"> --%>
+														<c:if test="${oksq >= okmy}">
 															<tr id="${formList.APV_SQ}" onclick="javascript:boardClick(this)" class="listcursor">
 																<td>
+<%-- 																	<c:out value="${oksq}"></c:out> --%>
+<%-- 																	<c:out value="${okmy}"></c:out> --%>
 																	<div class="form-check">
 																		<label class="form-check-label">
 																			<input class="form-check-input task-select" type="checkbox">
@@ -113,10 +117,10 @@ function boardClick(data){
 																<td style="color:#777">${formList.APV_SQ}</td>
 																<td style="text-align:left">
 																<c:choose>
-																	<c:when test="${oksq eq okmy}"><span style="color:#007bff">${formList.APV_TITLE}</span></c:when>
-																	<c:otherwise>${formList.APV_TITLE}</c:otherwise>
+																	<c:when test="${oksq >= okmy+1}"><span style="color:#ccc">${formList.APV_TITLE}</span></c:when>
+																	<c:when test="${oksq eq 4}"><span style="color:#dc3545;opacity:60%">${formList.APV_TITLE}</span></c:when>
+																	<c:otherwise>${formList.APV_TITLE}&nbsp;<img src="${root}/assets/img/icon_new1.gif"></c:otherwise>
 																</c:choose>
-																	<img src="${root}/assets/img/icon_new1.gif">
 																</td>
 																<td><b>${formList.APV_DATE}</b> 까지</td>
 																<td>
@@ -138,6 +142,7 @@ function boardClick(data){
 																</td>
 																<td></td>
 															</tr>
+														</c:if>
 													</c:forEach>
 												</tbody>
 											</table>

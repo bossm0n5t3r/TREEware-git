@@ -98,11 +98,20 @@ function boardClick(data){
 																</label>
 															</div>
 														</td>
+														<c:set var="oksq" value="${formList.APV_OK_SQ}"/>
 														<td style="color:#777">${formList.APV_SQ}</td>
-														<td style="text-align:left">${formList.APV_TITLE}<img src="${root}/assets/img/icon_new1.gif"></td>
+														<td style="text-align:left">
+														<c:choose>
+																<c:when test="${oksq eq 0}"><span>${formList.APV_TITLE}</span></c:when>
+																<c:when test="${oksq eq 1}"><span>${formList.APV_TITLE}</span></c:when>
+																<c:when test="${oksq eq 2}"><span>${formList.APV_TITLE}</span></c:when>
+																<c:when test="${oksq eq 3}"><span style="color:#ccc">${formList.APV_TITLE}</span></c:when>
+																<c:when test="${oksq eq 4}"><span style="color:#dc3545">${formList.APV_TITLE}</span></c:when>
+																<c:otherwise><span>${formList.APV_TITLE}</span></c:otherwise>
+														</c:choose>
+														</td>
 														<td><b>${formList.APV_DATE}</b> 까지</td>
 														<td>
-															<c:set var="oksq" value="${formList.APV_OK_SQ}"/>
 															<c:choose>
 																<c:when test="${oksq eq 0}"><span>진행중</span></c:when>
 																<c:when test="${oksq eq 1}"><span>1차승인</span></c:when>
