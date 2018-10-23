@@ -12,7 +12,7 @@ $(document).ready(function(){
 	document.getElementById("menu2").setAttribute("class", "nav-item");
 	document.getElementById("menu3").setAttribute("class", "nav-item");
 	document.getElementById("menu4").setAttribute("class", "nav-item");
-	document.getElementById("menu5").setAttribute("class", "nav-item active");
+// 	document.getElementById("menu5").setAttribute("class", "nav-item active");
 });
 </script>
 </head>
