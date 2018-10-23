@@ -5,9 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#addBtn").click(function(){
+	 	if($("#mailboxname").val().trim().length==0){
+			alert("메일함 이름을 입력해주세요!");
+			return;
+	 }else{
+		 $("#addmailform").attr("action", "${root}/member/mail/addmailbox.tree").submit();
+	 }
+	});
+ });
+</script>
 </head>
 <body>
  	<!-- 메일함 추가 Modal -->
+ 	  <form id="addmailform" name="addmailform">
   <div class="modal fade" id="addmodal">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -28,9 +41,10 @@
           </div>
         </div>
         <br>
+        </form>
         <!-- Modal footer -->
         <div class="modal-footer" >
-        <button type="button" class="btn btn-secondary btn-sm" onclick="">확인</button>
+        <button id="addBtn" name="addBtn" type="button" class="btn btn-secondary btn-sm" >확인</button>
           <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">닫기</button>
         </div>
         

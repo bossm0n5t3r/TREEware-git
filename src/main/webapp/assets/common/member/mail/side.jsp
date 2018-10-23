@@ -4,19 +4,29 @@
 	<div class="scrollbar-inner sidebar-wrapper">
 		<%@ include file="/assets/common/user.jsp" %>
 		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- 		<%@ include file="/assets/common/import.jsp"%> --%>
-<%-- 		<script type="text/javascript" src="${root}/assets/js/member/mail/mail.js"></script> --%>
-		
 		
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$("#sendmailbox").click(function(){	
-// 				movePage('2','','1','','','sendmailbox');
- 				$("#ml_grp_sq").val("2");
- 				$("#pg").val("1");
-				$("#commonform").attr("action","${root}/member/mail/sendmailbox.tree").submit();			
+				$.ajax({
+				    type : "GET",
+				    url : "${root}/member/mail/sendmailbox.tree",
+				    data : {
+				        "ml_grp_sq" : 2,
+				        "pg" : 1
+				    },
+				    success : function(response) {
+				  		
+				    },
+				    error : function(e) {
+				       alert('Error: ' + e);
+				    }
+				}); 
+//  				$("#ml_grp_sq").val("2");
+//  				$("#pg").val("1");
+// 				$("#commonform").attr("action","${root}/member/mail/sendmailbox.tree").submit();			
 			});
-			
+
 			$("#trashmailbox").click(function(){	
  				$("#ml_grp_sq").val("3");
  				$("#pg").val("1");
@@ -72,23 +82,23 @@
 		<i class="la la-edit"></i> &nbsp;메일쓰기</button></a></div><br>
 			
 			<li class="nav-item">
-				<a>
-					<p><i class="la la-mail-reply"></i>받은메일함</p></a>
+				<a href="${root}/member/mail/receivemailbox.tree">
+					<i class="la la-mail-reply"></i>받은메일함</a>
 				
 			</li>
 			<li class="nav-item">
-				<a id="sendmailbox">
-					<p id="sendmailbox"><i class="la la-mail-forward"></i>보낸메일함</p>
+				<a href="${root}/member/mail/sendmailbox.tree">
+					<i class="la la-mail-forward"></i>보낸메일함
 				</a>
 			</li>
 			<li class="nav-item">
-				<a>
+				<a href="${root}/member/mail/newmailbox1.tree">
 					<p><i class="la la-folder"></i>새메일함1</p>
 				</a>
 			</li>
 			
 			<li class="nav-item">
-				<a id="trashmailbox">
+				<a href="${root}/member/mail/trashmailbox.tree">
 					<i class="la la-trash"></i>휴지통
 				</a>
 			</li>

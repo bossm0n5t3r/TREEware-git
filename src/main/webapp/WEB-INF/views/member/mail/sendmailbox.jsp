@@ -7,103 +7,209 @@
 <link rel="stylesheet" href="${root}/assets/css/search.css">
 
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#bookmark").click(function(){
-		var src = ($(this).attr('class') == 'la la-heart-o') ? 'la la-heart'
-				: 'la la-heart-o';
-		$(this).attr('class', src);
-	});
-	
-	$("#readdrop li a").click(function(){
+	// 	리스트 ajax 처리
+	var ml_sq = new Array();
+	var ml_rcv_add = new Array();
+	var ml_ttl = new Array();
+	var ml_send_date = new Array();
+	var page = new Array();
+	var mailList;
+	var totalData;
+	var dataPerPage = 10;
+	var first = 1;
+	var last;
+	var pageCount = 10;
+	var currentPage = 1;
+	var totalPage;
 
-		$("#readbtn:first-child").text($(this).text());
-		$("#readbtn:first-child").val($(this).text());
-		if($(this).text()=="안읽음"){
-			alert("안읽음으로 이동");
-		}	
-	});	
-	
-	$("#movedrop li a").click(function(){
-		$("#readbtn:first-child").text($(this).text());
-		$("#readbtn:first-child").val($(this).text());
-		if($(this).text()=="휴지통"){
-			alert("안읽음으로 이동");
-		}
-	});	
-	
-	$("#deleteBtn").click(function() {
-		var seqlist=[];
-		$("input[name='seq']:checked").each(function() {
-			seqlist.push($(this).val());
-		});
+	$(document).ready(function() {
 
-			$.ajax({
-			    type : "POST",
-			    url : "${root}/member/mail/movetrashmail.tree",
-			    data : {
-			        myArray : seqlist
-			    },
-			    success : function(response) {
-			  
-			    },
-			    error : function(e) {
-			       alert('Error: ' + e);
-			    }
-			}); 
-		});
-	
-	$("#deliveryBtn").click(function() {
-
-        $("#ml_grp_sq").val('2');
- 		$("#pg").val('${pg}');
- 		$("#key").val('${key}');
- 		$("#word").val('${word}');
- 		$("#ml_sq").val($("input[name='seq']:checked").val());
- 		$("#commonform").attr("action", "${root}/member/mail/delivery.tree").submit();
-
-		});
-// 	});
+		getMailList();
 		
-// 		$("#deletemodal").modal({
-// 			remote : '${root}/menu/mail/deleteok.jsp'
-// 		});		
-	
-	$(".mailList").click(function() {
-		$("#ml_grp_sq").val('2');
-		$("#pg").val('${pg}');
-		$("#key").val('${key}');
-		$("#word").val('${word}');
-		$("#ml_sq").val($("#maillist_group").attr("article-seq"));
-		$("#commonform").attr("action", "${root}/member/mail/view.tree").submit();
-	});
-	
-	$("#searchBtn").click(function(){
-		$("#ml_grp_sq").val('2');
-		$("#pg").val('${pg}');
-		$("#key").val($("#skey").val());
-		$("#word").val($("#sword").val());
-		$("#ml_sq").val($("#maillist_group").attr("article-seq"));
-		$("#commonform").attr("action", "${root}/member/mail/sendmailbox.tree").submit();
-	});
-	
-});
+		for (var i = 0; i < mailList.length; i++) {
+			ml_rcv_add.push(mailList[i].ml_rcv_add);
+			ml_ttl.push(mailList[i].ml_ttl);
+			ml_send_date.push(mailList[i].ml_send_date);
+			ml_sq.push(mailList[i].ml_sq);
+		}
+		totalPage = Math.ceil((totalData - 1) / dataPerPage);
+		viewList();
+	})
 
+	function getMailList() {
+		$.ajax({
+			async : false,
+			type : "POST",
+			url : "${root}/member/mail/getMailList.tree",
+			dataType : "json",
+			data : {
+				"ml_grp_sq" : 2,
+				"pg" : 1
+			},
+			success : function(data) {
+				setMailList(data.mailList);
+				setTotalData(data.page);
+			},
+			error : function(e) {
+				alert('Error: ' + e);
+			}
+
+		});
+	}
+	function setMailList(data) {
+		mailList = data;
+	}
+
+	function setTotalData(data) {
+		totalData = data;
+	}
+
+	// 		리스트 보여주기(viewList)
+	function viewList() {
+		$("#view").empty();
+		for (var i = ((currentPage - 1) * 10); i < Math.min(pageCount,
+				totalData); i++) {
+
+			$('#view').append('<tr id="maillist_group" article-seq="'+ml_sq[i]+'">');
+			$('#view').append('<td>');
+			$('#view').append('<div class="form-check">');
+			$('#view').append('<label class="form-check-label">');
+			$('#view')
+					.append(
+							'<input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox">');
+			$('#view').append('	<span class="form-check-sign" ></span>');
+			$('#view').append('</label>');
+			$('#view').append('</div>');
+			$('#view').append('</td>');
+			$('#view')
+					.append('<td class="mailList">' + ml_rcv_add[i] + '</td>');
+			$('#view').append('<td class="mailList">' + ml_ttl[i] + '</td>');
+			$('#view').append(
+					'<td class="mailList">' + ml_send_date[i] + '</td>');
+			$('#view').append('</tr>');
+		}
+	}
+	$(document)
+			.ready(
+					function() {
+						$("#bookmark")
+								.click(
+										function() {
+											var src = ($(this).attr('class') == 'la la-heart-o') ? 'la la-heart'
+													: 'la la-heart-o';
+											$(this).attr('class', src);
+										});
+
+						$("#readdrop li a").click(function() {
+
+							$("#readbtn:first-child").text($(this).text());
+							$("#readbtn:first-child").val($(this).text());
+							if ($(this).text() == "안읽음") {
+								alert("안읽음으로 이동");
+							}
+						});
+
+						$("#movedrop li a").click(function() {
+							$("#readbtn:first-child").text($(this).text());
+							$("#readbtn:first-child").val($(this).text());
+							if ($(this).text() == "휴지통") {
+								alert("안읽음으로 이동");
+							}
+						});
+
+						$("#deleteBtn").click(function() {
+							var seqlist = [];
+							$("input[name='seq']:checked").each(function() {
+								seqlist.push($(this).val());
+							});
+
+							$.ajax({
+								type : "POST",
+								url : "${root}/member/mail/movetrashmail.tree",
+								data : {
+									myArray : seqlist
+								},
+								success : function(response) {
+
+								},
+								error : function(e) {
+									alert('Error: ' + e);
+								}
+							});
+						});
+
+						$("#deliveryBtn")
+								.click(
+										function() {
+
+											$("#ml_grp_sq").val('2');
+											$("#pg").val('${pg}');
+											$("#key").val('${key}');
+											$("#word").val('${word}');
+											$("#ml_sq")
+													.val(
+															$(
+																	"input[name='seq']:checked")
+																	.val());
+											$("#commonform")
+													.attr("action",
+															"${root}/member/mail/delivery.tree")
+													.submit();
+
+										});
+						// 	});
+
+						// 		$("#deletemodal").modal({
+						// 			remote : '${root}/menu/mail/deleteok.jsp'
+						// 		});		
+
+						$(".mailList").click(
+								function() {
+									$("#ml_grp_sq").val('2');
+									$("#pg").val('${pg}');
+									$("#key").val('${key}');
+									$("#word").val('${word}');
+									$("#ml_sq").val(
+											$("#maillist_group").attr(
+													"article-seq"));
+									$("#commonform").attr("action",
+											"${root}/member/mail/view.tree")
+											.submit();
+								});
+
+						$("#searchBtn")
+								.click(
+										function() {
+											$("#ml_grp_sq").val('2');
+											$("#pg").val('${pg}');
+											$("#key").val($("#skey").val());
+											$("#word").val($("#sword").val());
+											$("#ml_sq").val(
+													$("#maillist_group").attr(
+															"article-seq"));
+											$("#commonform")
+													.attr("action",
+															"${root}/member/mail/sendmailbox.tree")
+													.submit();
+										});
+
+					});
 </script>
 
 </head>
 <body>
-<c:set var="ml_grp_sq" value="${param.ml_grp_sq}"/>
-		<c:set var="ml_sq" value="${param.ml_sq}"/>
-		<c:set var="pg" value="${param.pg}"/>
-		<c:set var="key" value="${param.key}"/>
-		<c:set var="word" value="${param.word}"/>
-<form name="commonform" id="commonform">
-	<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="">
-	<input type="hidden" name="pg" id="pg" value="">
-	<input type="hidden" name="key" id="key" value="">
-	<input type="hidden" name="word" id="word" value="">
-	<input type="hidden" name="ml_sq" id="ml_sq" value="">
-</form>
+	<c:set var="ml_grp_sq" value="${param.ml_grp_sq}" />
+	<c:set var="ml_sq" value="${param.ml_sq}" />
+	<c:set var="pg" value="${param.pg}" />
+	<c:set var="key" value="${param.key}" />
+	<c:set var="word" value="${param.word}" />
+	<form name="commonform" id="commonform">
+		<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="">
+		<input type="hidden" name="pg" id="pg" value=""> <input
+			type="hidden" name="key" id="key" value=""> <input
+			type="hidden" name="word" id="word" value=""> <input
+			type="hidden" name="ml_sq" id="ml_sq" value="">
+	</form>
 
 	<!-- 			https://www.w3schools.com/bootstrap4/bootstrap_navs.asp -->
 	<div class="wrapper">
@@ -120,7 +226,8 @@ $(document).ready(function(){
 									<div style="margin-top: 100px; display: inline;">
 										<i id="bookmark" class="la la-heart-o" style="color: #FF6C6C;"></i>
 									</div>
-									<font size="2"> &nbsp;전체메일 &nbsp;${navigator.totalArticleCount} &nbsp;/ &nbsp;안읽은 메일
+									<font size="2"> &nbsp;전체메일
+										&nbsp;${navigator.totalArticleCount} &nbsp;/ &nbsp;안읽은 메일
 										&nbsp;0</font>
 								</div>
 							</div>
@@ -128,8 +235,9 @@ $(document).ready(function(){
 
 							<div class="col-lg-12">
 								<div class="col-lg-8" style="float: left;">
-									<button id="deleteBtn" type="button" class="btn btn-default btn-sm"
-										data-toggle="modal" data-target="#dropmodal">삭제</button>
+									<button id="deleteBtn" type="button"
+										class="btn btn-default btn-sm" data-toggle="modal"
+										data-target="#dropmodal">삭제</button>
 									&nbsp;
 									<button class="btn btn-default btn-sm">답장</button>
 									&nbsp;
@@ -160,12 +268,12 @@ $(document).ready(function(){
 										style="width: 100px; font-size: 100%; height: 35px; float: left;">
 										<option value='ml_ttl'>제목</option>
 										<option value='ml_rcv_add'>받는사람</option>
-									</select>
-									
-									<input id="sword" name="word" type="text" style="width: 100%; width: 150px; height: 35px; float: left;" value="">								
+									</select> <input id="sword" name="word" type="text"
+										style="width: 100%; width: 150px; height: 35px; float: left;"
+										value="">
 									<button class="btn btn-default btn-sm" id="searchBtn"
 										style="float: left;">검색</button>
-								
+
 								</div>
 
 							</div>
@@ -174,38 +282,37 @@ $(document).ready(function(){
 									<table class="table">
 										<thead>
 											<tr>
-												<th>
+												<th width="10%">
 													<div class="form-check">
-														<label class="form-check-label">
-														 <input
+														<label class="form-check-label"> <input
 															class="form-check-input select-all-checkbox"
 															type="checkbox" data-select="checkbox"
-															data-target=".task-select" > <span
+															data-target=".task-select"> <span
 															class="form-check-sign"></span>
 														</label>
 													</div>
 												</th>
-												<th>받는사람</th>
-												<th>제목</th>
-												<th>보낸날짜</th>
+												<th width="30%">받는사람</th>
+												<th width="40%">제목</th>
+												<th width="20%">보낸날짜</th>
 											</tr>
 										</thead>
-										<tbody>
-											<c:forEach var="mail" items="${mailList}">
-												<tr id="maillist_group" article-seq="${mail.ml_sq}">
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> 
-															<input id="seq" name="seq" value="${mail.ml_sq}" class="check form-check-input task-select" type="checkbox">
-																<span class="form-check-sign" ></span>
-															</label>
-														</div>
-													</td>
-													<td class="mailList">${mail.ml_rcv_add}</td>
-													<td class="mailList">${mail.ml_ttl}</td>
-													<td class="mailList">${mail.ml_send_date}</td>
-												</tr>
-											</c:forEach>
+										<tbody id="view">
+<%-- 																						<c:forEach var="mail" items="${mailList}"> --%>
+<%-- 																							<tr id="maillist_group" article-seq="${mail.ml_sq}"> --%>
+<!-- 																								<td> -->
+<!-- 																									<div class="form-check"> -->
+<!-- 																										<label class="form-check-label">  -->
+<%-- 																										<input id="seq" name="seq" value="${mail.ml_sq}" class="check form-check-input task-select" type="checkbox"> --%>
+<!-- 																											<span class="form-check-sign" ></span> -->
+<!-- 																										</label> -->
+<!-- 																									</div> -->
+<!-- 																								</td> -->
+<%-- 																								<td class="mailList">${mail.ml_rcv_add}</td> --%>
+<%-- 																								<td class="mailList">${mail.ml_ttl}</td> --%>
+<%-- 																								<td class="mailList">${mail.ml_send_date}</td> --%>
+<!-- 																							</tr> -->
+<%-- 																						</c:forEach> --%>
 										</tbody>
 									</table>
 								</div>
@@ -230,7 +337,7 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
-<%-- 					<%@ include file="/assets/common/modal/delete.jsp"%> --%>
+					<%@ include file="/assets/common/modal/delete.jsp"%>
 					<%@ include file="/assets/common/modal/alldelete.jsp"%>
 					<%@ include file="/assets/common/modal/addmailbox.jsp"%>
 				</div>

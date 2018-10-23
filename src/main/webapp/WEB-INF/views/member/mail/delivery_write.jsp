@@ -69,7 +69,7 @@ $(document).ready(function() {
             <input type="hidden" name="emp_sq" value="${userInfo.emp_sq}">
                <div class="form-group">
                  <div id="mailwritebtn" class="card-title" style="margin-left: 15px">
-						메일전달 &nbsp;			
+						메일전달 &nbsp;<br>			
 								</div>
                   <div class="btn-group">
                   <button id="" class="mailwritebtn btn btn-info btn-sm">보내기</button>&nbsp;

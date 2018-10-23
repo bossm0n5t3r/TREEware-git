@@ -63,7 +63,7 @@ $(document).ready(function() {
             <input type="hidden" name="emp_sq" value="${userInfo.emp_sq}">
                <div class="form-group">
                  <div id="mailwritebtn" class="card-title" style="margin-left: 15px">
-						<h5>메일쓰기<h5> </div>
+						메일쓰기 </div><br>
                   <div class="btn-group">
                   <button id="" class="mailwritebtn btn btn-info btn-sm">보내기</button>&nbsp;
                   <button class="btn btn-default btn-sm">미리보기</button>&nbsp;

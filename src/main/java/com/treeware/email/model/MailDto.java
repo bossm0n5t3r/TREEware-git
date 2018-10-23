@@ -4,7 +4,6 @@ public class MailDto {
 	private int ml_sq;
 	private int ml_grp_sq;
 	private int ml_stt_sq;
-	private int ml_ipt_sq;
 	private String emp_sq;
 	private String ml_snd_add;
 	private String ml_rcv_add;
@@ -31,12 +30,6 @@ public class MailDto {
 	}
 	public void setMl_stt_sq(int ml_stt_sq) {
 		this.ml_stt_sq = ml_stt_sq;
-	}
-	public int getMl_ipt_sq() {
-		return ml_ipt_sq;
-	}
-	public void setMl_ipt_sq(int ml_ipt_sq) {
-		this.ml_ipt_sq = ml_ipt_sq;
 	}
 	public String getEmp_sq() {
 		return emp_sq;

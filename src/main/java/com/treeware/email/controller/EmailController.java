@@ -8,6 +8,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -41,8 +43,35 @@ public class EmailController {
 	public String main() {
 		return "member/mail/main";
 	}
+	
+	@RequestMapping(value="/getMailList.tree", method=RequestMethod.POST)
+	public @ResponseBody String getMailList(@RequestParam Map<String, String> map) {
+		JSONObject object = new JSONObject();
+		List<MailDto> list = emailService.listMail(map);
+		JSONArray mailArray = new JSONArray();
+		for(MailDto dto : list) {
+			JSONObject mailDto = new JSONObject();
+			mailDto.put("ml_sq",dto.getMl_sq());
+			mailDto.put("ml_grp_sq",dto.getMl_grp_sq());
+			mailDto.put("ml_stt_sq",dto.getMl_stt_sq());
+			mailDto.put("emp_sq",dto.getEmp_sq()==null ? "-" : dto.getEmp_sq());
+			mailDto.put("ml_snd_add",dto.getMl_snd_add());
+			mailDto.put("ml_rcv_add",dto.getMl_rcv_add());
+			mailDto.put("ml_send_date",dto.getMl_send_date());
+			mailDto.put("ml_ttl",dto.getMl_ttl());
+			mailDto.put("ml_ctt",dto.getMl_ctt()==null ? "-" : dto.getMl_ctt());
+			mailDto.put("ml_fl_nm",dto.getMl_fl_nm()==null ? "-" : dto.getMl_fl_nm());
+			mailDto.put("ml_fl_rt",dto.getMl_fl_rt()==null ? "-" : dto.getMl_fl_rt());
+			mailArray.put(mailDto);
+		}
+		object.put("mailList", mailArray);
+		System.out.println(">>>>>>>>>>>>>>"+mailArray.length());
+		object.put("page", list.size());
+		System.out.println(object.toString());
+		return object.toString();
+	}
 
-	@RequestMapping("/newmailbox.tree")
+	@RequestMapping("/newmailbox1.tree")
 	public ModelAndView newMailBox() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/mail/newmailbox");
@@ -55,37 +84,60 @@ public class EmailController {
 		mav.setViewName("member/mail/receivemailbox");
 		return mav;
 	}
-
+	
 	@RequestMapping("/sendmailbox.tree")
-	public ModelAndView sendMailBox(@RequestParam Map<String, String> map, HttpServletRequest request) {
-		List<MailDto> list = emailService.listMail(map);
-		PageNavigation navigator = commonService.makePageNavigation(map);
-		navigator.setRoot(request.getContextPath());
-		navigator.setKey(map.get("key"));
-		navigator.setWord(map.get("word"));
-//		navigator.setNavigator();
-		
+	public ModelAndView sendMailBox() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("mailList", list);
-		mav.addObject("navigator", navigator);
 		mav.setViewName("member/mail/sendmailbox");
 		return mav;
 	}
 
+//	@RequestMapping("/sendmailbox.tree")
+//	@ResponseBody
+//	public String sendMailBox(@RequestParam Map<String, String> map, HttpServletRequest request) {
+//		System.out.println(map.get("ml_grp_sq"));
+//		System.out.println(map.get("pg"));
+//		
+//		List<MailDto> list = emailService.listMail(map);
+//		PageNavigation navigator = commonService.makePageNavigation(map);
+//		navigator.setRoot(request.getContextPath());
+//		navigator.setKey(map.get("key"));
+//		navigator.setWord(map.get("word"));
+////		navigator.setNavigator();
+//		
+//		ModelAndView mav = new ModelAndView();
+//
+//		JSONObject json = new JSONObject();
+//		json.put("mailList", list)
+//		
+//
+//		mav.addObject("navigator", navigator);
+//		mav.setViewName("member/mail/sendmailbox");
+//		return mav;
+//	}
+	
+	
 	@RequestMapping("/trashmailbox.tree")
-	public ModelAndView trashMailBox(@RequestParam Map<String, String> map, HttpServletRequest request) {
-		List<MailDto> list = emailService.listMail(map);
-		PageNavigation navigator = commonService.makePageNavigation(map);
-		navigator.setRoot(request.getContextPath());
-		navigator.setKey(map.get("key"));
-		navigator.setWord(map.get("word"));
-		
+	public ModelAndView trashMailBox() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("mailList", list);
-		mav.addObject("navigator", navigator);
 		mav.setViewName("member/mail/trashmailbox");
 		return mav;
 	}
+
+//	@RequestMapping("/trashmailbox.tree")
+//	public ModelAndView trashMailBox(@RequestParam Map<String, String> map, HttpServletRequest request) {
+//		List<MailDto> list = emailService.listMail(map);
+//		PageNavigation navigator = commonService.makePageNavigation(map);
+//		navigator.setRoot(request.getContextPath());
+//		navigator.setKey(map.get("key"));
+//		navigator.setWord(map.get("word"));
+//		
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("mailList", list);
+//		mav.addObject("navigator", navigator);
+//		mav.setViewName("member/mail/trashmailbox");
+//		return mav;
+//	}
 	
 	@RequestMapping("/view.tree")
 	public ModelAndView view(@RequestParam int ml_sq) {
@@ -98,7 +150,7 @@ public class EmailController {
 		
 	@RequestMapping(value="/movetrashmail.tree", method = RequestMethod.POST)
 	@ResponseBody	
-	public String deleteMail(@RequestParam(value="myArray[]") List<String> myArray) {
+	public String moveTrashMailbox(@RequestParam(value="myArray[]") List<String> myArray) {
 		
 		for(String ml_sq : myArray) {
 			emailService.moveTrashMailbox(NumberCheck.nullToZero(ml_sq));
@@ -130,7 +182,6 @@ public class EmailController {
 	public String sendEmailAction(@RequestParam Map<String, String> map) throws Exception {
 
 		int seq = 0;
-		System.out.println(map.toString());
 		MailDto mailDto = new MailDto();
 		mailDto.setMl_rcv_add(map.get("receiver"));
 		mailDto.setMl_ttl(map.get("title"));
@@ -157,11 +208,19 @@ public class EmailController {
 			seq = emailService.sendMail(mailDto);
 
 		} catch (MailException e) {
-			System.out.println("MailException ¹ß»ý");
+			System.out.println("MailException ï¿½ß»ï¿½");
 			e.printStackTrace();
 		}
 
 		return seq != 0 ? "member/mail/writeok" : "member/mail/writefail";
 	}
+	
+	@RequestMapping("/addmailbox.tree")
+	public ModelAndView addmailbox() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/mail/write");
+		return mav;
+	}
+	
 
 }

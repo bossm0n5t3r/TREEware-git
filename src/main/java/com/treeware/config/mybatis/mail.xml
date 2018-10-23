@@ -16,7 +16,7 @@
 	</select>
 	
 	<select id="listMail" resultType="MailDto">
-	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_TTL, ML_CTT, ML_SEND_DATE, ML_FL_NM, ML_FL_RT, ML_SEND_DATE
+	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_SEND_DATE, ML_TTL, ML_CTT, ML_FL_NM, ML_FL_RT
 	from ML 
 	where ML_GRP_SQ = #{ml_grp_sq}
 		<if test="word != null and word != ''">
@@ -34,7 +34,7 @@
 	
 	
 	<select id="viewMail" parameterType="int" resultType="MailDto">
-	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_TTL, ML_CTT, ML_SEND_DATE, ML_FL_NM, ML_FL_RT, ML_SEND_DATE
+	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_SEND_DATE, ML_TTL, ML_CTT, ML_FL_NM, ML_FL_RT
 	from ML 
 	where ML_SQ = #{ml_sq}
 	</select>
@@ -45,7 +45,7 @@
 	</update>
 	
 	<select id="delivery" parameterType="int" resultType="MailDto">
-	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_TTL, ML_CTT, ML_SEND_DATE, ML_FL_NM, ML_FL_RT, ML_SEND_DATE
+	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_SEND_DATE, ML_TTL, ML_CTT, ML_FL_NM, ML_FL_RT
 	from ML 
 	where ML_SQ = #{ml_sq}
 	</select>
