@@ -25,7 +25,7 @@
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
 													<p class="card-category">입사한지</p>
-													<h4 class="card-title">1,294일</h4>
+													<h4 class="card-title" id="howlong"></h4>
 												</div>
 											</div>
 										</div>
@@ -221,6 +221,17 @@ $(document).ready(function() {
 	workOutClick();
 	comeBackClick();
 	punchOutClick();
+	
+	howLong();
 })
+
+function howLong() {
+	var now = new Date();
+	var emp_reg = "${userInfo.emp_reg}".split(" ")[0];
+	var regDate = new Date(emp_reg);
+	var diff = new Date(now - regDate);
+	var days = Math.floor(diff/1000/60/60/24);
+	$("#howlong").text(days + "일");
+}
 </script>
 </html>
