@@ -22,6 +22,14 @@
 		WHERE EMP_SQ = #{EMP_SQ}
 	</select>
 
+	<select id="getAddrList" parameterType="String" resultType="AddressDto">
+		SELECT a.addr_sq, a.addr_grp_sq, g.addr_grp_nm, g.emp_sq, a.addr_nm, a.addr_tel, a.addr_email,
+			   a.addr_cpn_tel, a.addr_addr, a.addr_mm
+		FROM ADDR a, ADDR_GRP g
+		WHERE g.EMP_SQ = #{EMP_SQ}
+		AND a.ADDR_GRP_SQ = g.ADDR_GRP_SQ
+	</select>
+
 	<insert id="registerAddress" parameterType="AddressDto">
 		INSERT INTO ADDR (addr_sq, addr_grp_sq, addr_nm, addr_tel, addr_email, addr_cpn_tel, addr_addr, addr_mm)
 		VALUES (#{addr_sq}, #{addr_grp_sq}, #{addr_nm}, #{addr_tel}, #{addr_email}, #{addr_cpn_tel}

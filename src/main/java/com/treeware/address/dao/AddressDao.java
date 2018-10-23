@@ -9,6 +9,7 @@ public interface AddressDao {
 
 	public int getNextAddrSq();
 	public int getAddrGrpSq(String emp_sq);
+	public List<AddressDto> getAddrList(String emp_sq);
 	public List<AddressGroupDto> getAddrGrpList(String emp_sq);
 	public int registerAddress(AddressDto addressDto);
 

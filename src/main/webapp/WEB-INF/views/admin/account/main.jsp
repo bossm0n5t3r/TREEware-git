@@ -383,7 +383,7 @@ function empajax(){
 		,error : function(e) {
 			alert("에러");
 		}
-});
+	});
 }
 function searchajax(){
 	$.ajax({

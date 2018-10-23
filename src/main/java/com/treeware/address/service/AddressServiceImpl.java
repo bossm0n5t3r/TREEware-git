@@ -28,4 +28,9 @@ public class AddressServiceImpl implements AddressService {
 		return sqlSession.getMapper(AddressDao.class).getAddrGrpList(emp_sq);
 	}
 
+	@Override
+	public List<AddressDto> getAddrList(String emp_sq) {
+		return sqlSession.getMapper(AddressDao.class).getAddrList(emp_sq);
+	}
+
 }
