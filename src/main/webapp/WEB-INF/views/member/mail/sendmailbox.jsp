@@ -5,14 +5,13 @@
 <head>
 <%@ include file="/assets/common/import.jsp"%>
 <link rel="stylesheet" href="${root}/assets/css/search.css">
-
+<%-- <c:set var="emp_sq" value="${userInfo.emp_sq}"/> --%>
 <script type="text/javascript">
 	// 	리스트 ajax 처리
 	var ml_sq = new Array();
 	var ml_rcv_add = new Array();
 	var ml_ttl = new Array();
 	var ml_send_date = new Array();
-	var page = new Array();
 	var mailList;
 	var totalData;
 	var dataPerPage = 10;
@@ -34,8 +33,8 @@
 		}
 		totalPage = Math.ceil((totalData - 1) / dataPerPage);
 		viewList();
+		viewPaging();
 	})
-
 	function getMailList() {
 		$.ajax({
 			async : false,
@@ -44,7 +43,7 @@
 			dataType : "json",
 			data : {
 				"ml_grp_sq" : 2,
-				"pg" : 1
+				"emp_sq" : "${userInfo.emp_sq}"
 			},
 			success : function(data) {
 				setMailList(data.mailList);
@@ -64,48 +63,62 @@
 		totalData = data;
 	}
 
-	// 		리스트 보여주기(viewList)
+	//리스트 보여주기(viewList)
 	function viewList() {
 		$("#view").empty();
 		for (var i = ((currentPage - 1) * 10); i < Math.min(pageCount,
 				totalData); i++) {
 
 			$('#view').append('<tr id="maillist_group" article-seq="'+ml_sq[i]+'">');
-			$('#view').append('<td>');
-			$('#view').append('<div class="form-check">');
-			$('#view').append('<label class="form-check-label">');
-			$('#view')
-					.append(
-							'<input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox">');
-			$('#view').append('	<span class="form-check-sign" ></span>');
-			$('#view').append('</label>');
-			$('#view').append('</div>');
-			$('#view').append('</td>');
-			$('#view')
-					.append('<td class="mailList">' + ml_rcv_add[i] + '</td>');
+			$('#view').append('<td><div class="form-check"><label class="form-check-label"><input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox"><span class="form-check-sign" ></span>');
+			$('#view').append('</label></div></td>');
+			$('#view').append('<td class="mailList">' + ml_rcv_add[i] + '</td>');
 			$('#view').append('<td class="mailList">' + ml_ttl[i] + '</td>');
-			$('#view').append(
-					'<td class="mailList">' + ml_send_date[i] + '</td>');
+			$('#view').append('<td class="mailList">' + ml_send_date[i] + '</td>');
 			$('#view').append('</tr>');
 		}
 	}
-	$(document)
-			.ready(
-					function() {
-						$("#bookmark")
-								.click(
-										function() {
-											var src = ($(this).attr('class') == 'la la-heart-o') ? 'la la-heart'
-													: 'la la-heart-o';
-											$(this).attr('class', src);
-										});
+	//페이지번호출력
+	function viewPaging(){
+		last = Math.min(pageCount,totalPage);
+		$('#paging').empty();
+		$('#paging').append('<li class="page-item"><a id="pre" class="page-link" href="javascript:pre_click();" aria-label="Previous"><span aria-hidden="true">&laquo;</span>');
+		for (var i = first; i <= last; i++){
+			$('#paging').append('<li class="page-item"><a class="page-link" href="javascript:number_click('+i+')">'+i+'</a></li>');
+		}
+		$('#paging').append('<li class="page-item"><a id="next" class="page-link" href="javascript:next_click();" aria-label="Next"><span aria-hidden="true">&raquo;</span>');
+	}
+	//다음클릭이벤트
+	function next_click(){
+		if(last<totalPage){
+		first = first + 10;
+		pageCount = pageCount + 10;
+		currentPage = first;
+		viewPaging();
+		}
+	};
+	//번호클릭이벤트
+	function number_click(data){
+		currentPage = data;
+		pageCount = dataPerPage * data;
+		viewList();
+	}
+	
+	$(document).ready(function(){
+		$("#bookmark").click(function(){
+			var src = ($(this).attr('class') == 'la la-heart-o') ? 'la la-heart'
+												: 'la la-heart-o';
+				$(this).attr('class', src);
+								});
 
 						$("#readdrop li a").click(function() {
 
 							$("#readbtn:first-child").text($(this).text());
 							$("#readbtn:first-child").val($(this).text());
 							if ($(this).text() == "안읽음") {
-								alert("안읽음으로 이동");
+								$("input[name='seq']:checked").each(function() {
+									$(".maillist").css("color","red");
+								});
 							}
 						});
 
@@ -113,11 +126,11 @@
 							$("#readbtn:first-child").text($(this).text());
 							$("#readbtn:first-child").val($(this).text());
 							if ($(this).text() == "휴지통") {
-								alert("안읽음으로 이동");
+							
 							}
 						});
 
-						$("#deleteBtn").click(function() {
+						$("#movetrashBtn").click(function() {
 							var seqlist = [];
 							$("input[name='seq']:checked").each(function() {
 								seqlist.push($(this).val());
@@ -146,15 +159,10 @@
 											$("#pg").val('${pg}');
 											$("#key").val('${key}');
 											$("#word").val('${word}');
-											$("#ml_sq")
-													.val(
-															$(
-																	"input[name='seq']:checked")
-																	.val());
-											$("#commonform")
-													.attr("action",
-															"${root}/member/mail/delivery.tree")
-													.submit();
+											
+											$("#ml_sq").val($("input[name='seq']:checked").val());
+// 											다중처리하기
+											$("#commonform").attr("action", "${root}/member/mail/delivery.tree").submit();
 
 										});
 						// 	});
@@ -227,7 +235,7 @@
 										<i id="bookmark" class="la la-heart-o" style="color: #FF6C6C;"></i>
 									</div>
 									<font size="2"> &nbsp;전체메일
-										&nbsp;${navigator.totalArticleCount} &nbsp;/ &nbsp;안읽은 메일
+										&nbsp;totalData &nbsp;/ &nbsp;안읽은 메일
 										&nbsp;0</font>
 								</div>
 							</div>
@@ -235,9 +243,9 @@
 
 							<div class="col-lg-12">
 								<div class="col-lg-8" style="float: left;">
-									<button id="deleteBtn" type="button"
+									<button id="movetrashBtn" type="button"
 										class="btn btn-default btn-sm" data-toggle="modal"
-										data-target="#dropmodal">삭제</button>
+										data-target="#dropmodal">휴지통</button>
 									&nbsp;
 									<button class="btn btn-default btn-sm">답장</button>
 									&nbsp;
@@ -316,24 +324,13 @@
 										</tbody>
 									</table>
 								</div>
-								<div style="width: 100%; text-align: center;">
-									<div style="width: 185px; margin: 0 auto;">
-										<ul class="pagination pg-primary">
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Previous"> <span aria-hidden="true">«</span>
-													<span class="sr-only">Previous</span>
-											</a></li>
-											<li class="page-item active"><a class="page-link"
-												href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Next"> <span aria-hidden="true">»</span> <span
-													class="sr-only">Next</span>
-											</a></li>
-										</ul>
-									</div>
-								</div>
+								<table>
+									<tr align="center">
+										<td>
+											<ul class="pagination pg-default pg-small" id="paging" style="align:center"></ul>
+										</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>

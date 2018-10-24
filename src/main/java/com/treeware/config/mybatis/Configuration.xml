@@ -15,6 +15,7 @@
 		
 		<!-- 메일 -->
 		<typeAlias alias="MailDto" type="com.treeware.email.model.MailDto"/>
+		<typeAlias alias="MailGroupDto" type="com.treeware.email.model.MailGroupDto"/>
 		
 		<!-- 출퇴근 -->
 		<typeAlias alias="CommuteDto" type="com.treeware.admin.commute.model.CommuteDto"/>

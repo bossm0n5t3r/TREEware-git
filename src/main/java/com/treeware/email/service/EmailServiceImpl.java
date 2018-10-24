@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.treeware.email.dao.EmailDao;
 import com.treeware.email.model.MailDto;
+import com.treeware.email.model.MailGroupDto;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -47,6 +48,33 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	public List<MailDto>delivery(int ml_sq) {
 		return sqlSession.getMapper(EmailDao.class).delivery(ml_sq);
+	}
+
+	@Override
+	public int addMailbox(MailGroupDto mailGroupDto) {
+		int seq = sqlSession.getMapper(EmailDao.class).getEmailBoxNextSeq();
+		mailGroupDto.setMl_grp_sq(seq);
+		return sqlSession.getMapper(EmailDao.class).addMailbox(mailGroupDto);
+	}
+
+	@Override
+	public List<MailGroupDto> listMailbox() {
+		return sqlSession.getMapper(EmailDao.class).listMailbox();
+	}
+
+	@Override
+	public List<MailGroupDto> addMailbox_list(Map<String, String> map) {
+		return sqlSession.getMapper(EmailDao.class).addMailbox_list(map);
+	}
+
+	@Override
+	public int deleteAll(Map<String, String> map) {
+		return sqlSession.getMapper(EmailDao.class).deleteAll(map);
+	}
+
+	@Override
+	public int delete(Map<String, String> map) {
+		return sqlSession.getMapper(EmailDao.class).delete(map);
 	}
 
 

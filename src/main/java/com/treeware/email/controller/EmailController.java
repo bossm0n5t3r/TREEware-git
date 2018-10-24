@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.treeware.common.service.CommonService;
 import com.treeware.email.model.MailDto;
+import com.treeware.email.model.MailGroupDto;
 import com.treeware.email.service.EmailService;
 import com.treeware.util.NumberCheck;
 import com.treeware.util.PageNavigation;
@@ -44,10 +45,12 @@ public class EmailController {
 		return "member/mail/main";
 	}
 	
+	//메일함 리스트 가져오기
 	@RequestMapping(value="/getMailList.tree", method=RequestMethod.POST)
 	public @ResponseBody String getMailList(@RequestParam Map<String, String> map) {
 		JSONObject object = new JSONObject();
 		List<MailDto> list = emailService.listMail(map);
+		System.out.println(map);
 		JSONArray mailArray = new JSONArray();
 		for(MailDto dto : list) {
 			JSONObject mailDto = new JSONObject();
@@ -65,7 +68,6 @@ public class EmailController {
 			mailArray.put(mailDto);
 		}
 		object.put("mailList", mailArray);
-		System.out.println(">>>>>>>>>>>>>>"+mailArray.length());
 		object.put("page", list.size());
 		System.out.println(object.toString());
 		return object.toString();
@@ -78,13 +80,14 @@ public class EmailController {
 		return mav;
 	}
 
+	//받은메일함으로 이동
 	@RequestMapping("/receivemailbox.tree")
 	public ModelAndView receiveMailBox() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/mail/receivemailbox");
 		return mav;
 	}
-	
+	//보낸메일함으로 이동
 	@RequestMapping("/sendmailbox.tree")
 	public ModelAndView sendMailBox() {
 		ModelAndView mav = new ModelAndView();
@@ -116,7 +119,7 @@ public class EmailController {
 //		return mav;
 //	}
 	
-	
+	//휴지통으로 이동
 	@RequestMapping("/trashmailbox.tree")
 	public ModelAndView trashMailBox() {
 		ModelAndView mav = new ModelAndView();
@@ -139,6 +142,7 @@ public class EmailController {
 //		return mav;
 //	}
 	
+	//메일 내용 보여주기
 	@RequestMapping("/view.tree")
 	public ModelAndView view(@RequestParam int ml_sq) {
 		MailDto mailDto = emailService.viewMail(ml_sq);
@@ -147,10 +151,11 @@ public class EmailController {
 		mav.setViewName("member/mail/view");
 		return mav;
 	}
-		
+	
+	//휴지통으로 이동
 	@RequestMapping(value="/movetrashmail.tree", method = RequestMethod.POST)
 	@ResponseBody	
-	public String moveTrashMailbox(@RequestParam(value="myArray[]") List<String> myArray) {
+	public String moveTrashMailbox(@RequestParam(value="myArray[]") List<String> myArray, Map<String,String> map)  {
 		
 		for(String ml_sq : myArray) {
 			emailService.moveTrashMailbox(NumberCheck.nullToZero(ml_sq));
@@ -158,7 +163,7 @@ public class EmailController {
 		}	
 		return "member/mail/sendmailbox";
 	}
-	
+	//전달 버튼
 	@RequestMapping("/delivery.tree")
 	public ModelAndView delivery(@RequestParam int ml_sq) {
 		List<MailDto> list = emailService.delivery(ml_sq);
@@ -169,15 +174,14 @@ public class EmailController {
 	
 		return mav;
 	}
-		
-
+	//메일쓰기로 이동
 	@RequestMapping(value = "/write.tree", method = RequestMethod.GET)
 	public ModelAndView write() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/mail/write");
 		return mav;
 	}
-
+	//메일 전송
 	@RequestMapping(value = "/write.tree", method = RequestMethod.POST)
 	public String sendEmailAction(@RequestParam Map<String, String> map) throws Exception {
 
@@ -215,12 +219,57 @@ public class EmailController {
 		return seq != 0 ? "member/mail/writeok" : "member/mail/writefail";
 	}
 	
+	//	메일함 추가 버튼
 	@RequestMapping("/addmailbox.tree")
-	public ModelAndView addmailbox() {
+	public String addmailbox(@RequestParam Map<String, String> map) {
+		MailGroupDto mailGroupDto = new MailGroupDto();
+		mailGroupDto.setMl_grp_nm(map.get("mailboxname"));
+		int seq = emailService.addMailbox(mailGroupDto);
+		
+		return "member/mail/receivemailbox";
+	}
+	
+	// 메일함 펼치기 버튼
+	@RequestMapping("/listmailbox.tree")
+	public ModelAndView listmailbox(@RequestParam Map<String, String> map) {
+		List<MailGroupDto> list = emailService.listMailbox();
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/mail/write");
+		mav.addObject("mailBox",list);
+		mav.setViewName("member/mail/receivemailbox");
 		return mav;
 	}
 	
+	// 추가 메일함 클릭시 보여주는 메일함(추가 메일함 공통)
+	@RequestMapping("/addlistview.tree")
+	public ModelAndView addlistview(@RequestParam Map<String, String> map, HttpServletRequest request) {
+		System.out.println("addlistview 넘어옴");
+		System.out.println(map);
+		List<MailDto> list = emailService.listMail(map);
+		System.out.print(list);
+		List<MailGroupDto> list2 = emailService.addMailbox_list(map);
+		System.out.print(list2);
+		PageNavigation navigator = commonService.makePageNavigation(map);
+		navigator.setRoot(request.getContextPath());
+		navigator.setKey(map.get("key"));
+		navigator.setWord(map.get("word"));
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("mailList", list);	
+		mav.addObject("mailGroup", list2);
+		mav.addObject("navigator", navigator);
+		mav.setViewName("member/mail/addlist");
+		return mav;
+	}
+	//비우기 버튼 (휴지통 데이터 모두 삭제)
+	@RequestMapping("/deleteall.tree")
+	public ModelAndView alldelete(@RequestParam Map<String, String> map) {
+		List<MailGroupDto> list = emailService.listMailbox();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("mailBox",list);
+		mav.setViewName("member/mail/receivemailbox");
+		return mav;
+	}
 
+	
+	
 }
