@@ -43,8 +43,8 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">9월 근무일지</p>
-													<h4 class="card-title">30건</h4>
+													<p class="card-category">남은 근무시간</p>
+													<h4 class="card-title"><span id="timer"></span></h4>
 												</div>
 											</div>
 										</div>
@@ -223,6 +223,7 @@ $(document).ready(function() {
 	punchOutClick();
 	
 	howLong();
+	tid = setInterval('msg_time()', 1000);
 })
 
 function howLong() {
@@ -230,8 +231,54 @@ function howLong() {
 	var emp_reg = "${userInfo.emp_reg}".split(" ")[0];
 	var regDate = new Date(emp_reg);
 	var diff = new Date(now - regDate);
-	var days = Math.floor(diff/1000/60/60/24);
+	var days = Math.floor(diff/(1000*60*60*24));
 	$("#howlong").text(days + "일");
+}
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+	dd = '0' + dd
+}
+
+if (mm < 10) {
+	mm = '0' + mm
+}
+
+today = yyyy + '-' + mm + '-' + dd;
+
+var stDate = new Date().getTime();
+var edDate = new Date(today + ' 18:00:00').getTime(); // 종료날짜
+var RemainDate = edDate - stDate;
+
+function msg_time() {
+	var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24))
+			/ (1000 * 60 * 60));
+	var miniutes = Math
+			.floor((RemainDate % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+
+	if (miniutes < 10) {
+		miniutes = '0' + miniutes;
+	}
+	
+	if (seconds < 10) {
+		seconds = '0' + seconds;
+	}
+	
+	m = hours + ":" + miniutes + ":" + seconds; // 남은 시간 text형태로 변경
+	
+	if (RemainDate < 0) {
+		// 시간이 종료 되었으면..
+		$("#timer").text("-");
+		clearInterval(tid); // 타이머 해제
+	} else {
+		RemainDate = RemainDate - 1000; // 남은시간 -1초
+		$("#timer").text(m);			// div 영역에 보여줌
+	}
 }
 </script>
 </html>

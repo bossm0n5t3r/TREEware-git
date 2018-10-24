@@ -33,7 +33,7 @@
 						<div class="user-box">
 							<div class="u-img"><img src="${root}/assets/img/profile1.jpg" alt="user"></div>
 							<div class="u-text">
-								<h4>김고은</h4>
+								<h4>${userInfo.emp_nm}</h4>
 								<p class="text-muted">${userInfo.emp_sq}</p>
 								<p class="text-muted">${userInfo.emp_ml_id}${userInfo.emp_ml_addr}</p>
 								<!-- <a href="profile.html" class="btn btn-rounded btn-danger btn-sm">버튼 메뉴</a> -->
