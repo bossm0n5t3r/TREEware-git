@@ -129,7 +129,7 @@ public class CommuteController {
 			for (CommuteDto dto : list) {
 				JSONObject cmtDto = new JSONObject();
 				// 날짜
-				String date = dto.getCmt_date().split("/")[2];
+				String date = dto.getCmt_date().split("/")[1];
 				cmtDto.put("DATE", date);
 				
 				// 요일
@@ -288,7 +288,7 @@ public class CommuteController {
 	
 	// 특정날짜 요일 가져오기
 	public int getDateDay(String cmt_date) throws ParseException {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		Date date = formatter.parse(cmt_date);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
