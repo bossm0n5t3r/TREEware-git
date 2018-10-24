@@ -36,7 +36,7 @@ $(document).ready(function(){
  	        <br>새 메일함 이름을 입력해주세요.<br><br>
  	       <div style="width:100%; text-align:center;">
 				<div style="width:300px; margin:0 auto;">
-         			 <input id="mailboxname" type="text" class="form-control" style="width:300px;">
+         			 <input id="mailboxname" name="mailboxname" type="text" class="form-control" style="width:300px;">
           		</div>
           </div>
         </div>

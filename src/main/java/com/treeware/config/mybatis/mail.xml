@@ -15,10 +15,10 @@
 	from dual
 	</select>
 	
-	<select id="listMail" resultType="MailDto">
+	<select id="listMail" resultType="MailDto" parameterType="java.util.Map">
 	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_SEND_DATE, ML_TTL, ML_CTT, ML_FL_NM, ML_FL_RT
 	from ML 
-	where ML_GRP_SQ = #{ml_grp_sq}
+	where ML_GRP_SQ = #{ml_grp_sq}||#{emp_sq}
 		<if test="word != null and word != ''">
 				<choose>
 					<when test="key == 'ml_ttl'">
@@ -49,6 +49,40 @@
 	from ML 
 	where ML_SQ = #{ml_sq}
 	</select>
+	
+	<select id="getEmailBoxNextSeq" resultType="int">
+	select ML_GRP_SQ.nextval
+	from dual
+	</select>
+	
+	<insert id="addMailbox" parameterType="MailGroupDto">
+	insert into ML_GRP(ML_GRP_SQ, ML_GRP_NM) 
+	values (#{ml_grp_sq}, #{ml_grp_nm}) 
+	</insert>
+	
+	<select id="listMailbox" resultType="MailGroupDto">
+	select ML_GRP_SQ, ML_GRP_NM 
+	from ML_GRP
+	where ML_GRP_SQ > 3
+	order by ML_GRP_SQ
+	</select>
+	
+	<select id="addMailbox_list" resultType="MailGroupDto">
+	select ML_GRP_SQ, ML_GRP_NM 
+	from ML_GRP
+	where ML_GRP_SQ = #{ml_grp_sq}
+	</select>
+	
+	<delete id="deleteAll" parameterType="int">
+	delete from ML 
+	where ML_GRP_SQ = #{ml_grp_sq}
+	</delete>
+	
+	<delete id="delete" parameterType="int">
+	delete from ML 
+	where ML_GRP_SQ = #{ml_grp_sq} 
+	and ML_SQ = #{ml_sq}
+	</delete>
 	
 </mapper>
 

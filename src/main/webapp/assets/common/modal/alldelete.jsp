@@ -1,12 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/assets/common/import.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+
+$("#deleteallBtn").click(function(){
+	$("#commonform").attr("action", "${root}/member/mail/deleteall.tree");
+});
+	</script>
+
 </head>
 <body>
+
+	<form name="commonform" id="commonform">
+		<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="3">	
+	</form>
+
 	<!-- 휴지통 비우기 Modal -->
   <div class="modal fade" id="alldropmodal">
     <div class="modal-dialog modal-dialog-centered">
@@ -28,7 +42,7 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" onclick="">확인</button>
+        <button id="deleteallBtn" type="button" class="btn btn-secondary btn-sm">확인</button>
           <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">닫기</button>
         </div>
         

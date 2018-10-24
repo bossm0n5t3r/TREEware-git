@@ -1,10 +1,8 @@
 package com.treeware.email.model;
 
-public class MailDto {
+public class MailDto extends MailGroupDto{
 	private int ml_sq;
-	private int ml_grp_sq;
 	private int ml_stt_sq;
-	private String emp_sq;
 	private String ml_snd_add;
 	private String ml_rcv_add;
 	private String ml_send_date;	
@@ -12,30 +10,17 @@ public class MailDto {
 	private String ml_ctt;
 	private String ml_fl_nm;
 	private String ml_fl_rt;
-	
 	public int getMl_sq() {
 		return ml_sq;
 	}
 	public void setMl_sq(int ml_sq) {
 		this.ml_sq = ml_sq;
 	}
-	public int getMl_grp_sq() {
-		return ml_grp_sq;
-	}
-	public void setMl_grp_sq(int ml_grp_sq) {
-		this.ml_grp_sq = ml_grp_sq;
-	}
 	public int getMl_stt_sq() {
 		return ml_stt_sq;
 	}
 	public void setMl_stt_sq(int ml_stt_sq) {
 		this.ml_stt_sq = ml_stt_sq;
-	}
-	public String getEmp_sq() {
-		return emp_sq;
-	}
-	public void setEmp_sq(String emp_sq) {
-		this.emp_sq = emp_sq;
 	}
 	public String getMl_snd_add() {
 		return ml_snd_add;
@@ -79,7 +64,8 @@ public class MailDto {
 	public void setMl_fl_rt(String ml_fl_rt) {
 		this.ml_fl_rt = ml_fl_rt;
 	}
-
+	
+	
 	
 
 }

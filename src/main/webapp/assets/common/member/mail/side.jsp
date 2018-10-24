@@ -32,6 +32,18 @@
  				$("#pg").val("1");
 				$("#commonform").attr("action","${root}/member/mail/trashmailbox.tree").submit();			
 			});
+			
+			$("#mailboxopen").click(function(){
+				$("#commonform").attr("action","${root}/member/mail/listmailbox.tree").submit();
+			});
+			
+			$(".addlist").click(function(){
+// 				$("#ml_grp_sq").val("${mailbox.ml_grp_sq}");			
+				$("#ml_grp_sq").val("4");	
+				
+				$("#commonform").attr("action","${root}/member/mail/addlistview.tree").submit();
+			});
+			
 		});
 		</script>
 		
@@ -46,7 +58,8 @@
 			<input type="hidden" name="ml_sq" id="ml_sq" value="">
 			<input type="hidden" name="pg" id="pg" value="">
 			<input type="hidden" name="key" id="key" value="">
-			<input type="hidden" name="word" id="word" value="">	
+			<input type="hidden" name="word" id="word" value="">
+				
 		</form>
 		<!-- 
 		<style>
@@ -91,21 +104,26 @@
 					<i class="la la-mail-forward"></i>보낸메일함
 				</a>
 			</li>
-			<li class="nav-item">
-				<a href="${root}/member/mail/newmailbox1.tree">
-					<p><i class="la la-folder"></i>새메일함1</p>
-				</a>
-			</li>
 			
 			<li class="nav-item">
 				<a href="${root}/member/mail/trashmailbox.tree">
 					<i class="la la-trash"></i>휴지통
 				</a>
 			</li>
-			<br>
+			<hr>
 			<div style="margin-left:30px">
 		<button class="btn btn-outline-info" data-toggle="modal" data-target="#addmodal" style="width:130px;">
-		<i class="la la-plus-square"></i> &nbsp;메일함 추가</button></div>
+		<i class="la la-plus-square"></i> &nbsp;메일함 추가</button>
+		<button id="mailboxopen" name="mailboxopen" class="btn btn-outline-info">펼치기</button></div>
+		
+		<c:forEach var="mailbox" items="${mailBox}">
+		<c:set var ="ml_grp_seq2" value="${mailbox.ml_grp_nm}"/>
+		<li class="nav-item">
+				<a class="addlist" name="addlist"> 
+					<i class="la la-trash"></i>${mailbox.ml_grp_nm}
+				</a>
+			</li>
+		</c:forEach>
 		</ul>
 	</div>
 </div>
