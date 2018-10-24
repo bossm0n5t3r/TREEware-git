@@ -3,6 +3,7 @@ package com.treeware.email.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.email.model.MailDto;
 import com.treeware.email.model.MailGroupDto;
 
@@ -19,6 +20,9 @@ public interface EmailDao {
 	List<MailGroupDto> listMailbox();
 	List<MailGroupDto> addMailbox_list(Map<String,String> map);
 	int deleteAll(Map<String,String> map);
-	int delete(Map<String,String> map);
+	int delete(int ml_sq);
+	List<MailDto> memberSearch(Map<String, String> map);
+	int readchange(int ml_sq);
+	int noreadchange(int ml_sq);
 
 }

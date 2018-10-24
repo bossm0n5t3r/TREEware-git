@@ -13,6 +13,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.email.dao.EmailDao;
 import com.treeware.email.model.MailDto;
 import com.treeware.email.model.MailGroupDto;
@@ -73,8 +74,23 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public int delete(Map<String, String> map) {
-		return sqlSession.getMapper(EmailDao.class).delete(map);
+	public int delete(int ml_sq) {
+		return sqlSession.getMapper(EmailDao.class).delete(ml_sq);
+	}
+
+	@Override
+	public List<MailDto> memberSearch(Map<String, String> map) {
+		return sqlSession.getMapper(EmailDao.class).memberSearch(map);
+	}
+
+	@Override
+	public int readchange(int ml_sq) {
+		return sqlSession.getMapper(EmailDao.class).readchange(ml_sq);
+	}
+
+	@Override
+	public int noreadchange(int ml_sq) {
+		return sqlSession.getMapper(EmailDao.class).noreadchange(ml_sq);
 	}
 
 

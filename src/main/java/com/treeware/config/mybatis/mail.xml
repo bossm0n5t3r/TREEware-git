@@ -32,7 +32,6 @@
 			order by ML_SQ desc
 	</select>
 	
-	
 	<select id="viewMail" parameterType="int" resultType="MailDto">
 	select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_SEND_DATE, ML_TTL, ML_CTT, ML_FL_NM, ML_FL_RT
 	from ML 
@@ -42,6 +41,7 @@
 	<update id="moveTrashMailbox" parameterType="int">
 	update ML set ML_GRP_SQ=3 
 	where ML_SQ = #{ml_sq}
+	and ML_GRP_SQ = #{ml_grp_sq}||#{emp_sq}
 	</update>
 	
 	<select id="delivery" parameterType="int" resultType="MailDto">
@@ -75,14 +75,40 @@
 	
 	<delete id="deleteAll" parameterType="int">
 	delete from ML 
-	where ML_GRP_SQ = #{ml_grp_sq}
+	where ML_GRP_SQ = {ml_grp_sq}||#{emp_sq}
 	</delete>
 	
 	<delete id="delete" parameterType="int">
 	delete from ML 
-	where ML_GRP_SQ = #{ml_grp_sq} 
+	where ML_GRP_SQ = {ml_grp_sq}||#{emp_sq} 
 	and ML_SQ = #{ml_sq}
 	</delete>
 	
+	<select id="memberSearch" parameterType="map" resultType="MailDto">
+		select ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_SEND_DATE, ML_TTL, ML_CTT, ML_FL_NM, ML_FL_RT
+	from ML 
+	where ML_GRP_SQ = #{ml_grp_sq}||#{emp_sq}
+		<if test="word != null and word != ''">
+				<choose>
+					<when test="key == 'ml_ttl'">
+					and ML_TTL like '%'||#{word}||'%'
+					</when>
+					<when test="key == 'ml_rcv_add'">
+					and ML_RCV_ADD like '%'||#{word}||'%'
+					</when>
+				</choose>
+			</if>
+			order by ML_SQ desc
+	</select>
+	
+	<update id="readchange" parameterType="int">
+	update ML set ML_STT_SQ = 1 
+	where ML_SQ = #{ml_sq}
+	</update>
+	
+	<update id="noreadchange" parameterType="int">
+	update ML set ML_STT_SQ = 2
+	where ML_SQ = #{ml_sq}
+	</update>
 </mapper>
 
