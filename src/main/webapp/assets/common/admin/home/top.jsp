@@ -18,7 +18,7 @@
 					<i class="la la-user"></i>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">사원등록</a>
+					<a class="dropdown-item" href="${root}/admin/account/register.tree">사원등록</a>
 					<a class="dropdown-item" href="#">메일쓰기</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#">문의글</a>
@@ -34,8 +34,8 @@
 							<div class="u-img"><img src="${root}/assets/img/profile1.jpg" alt="user"></div>
 							<div class="u-text">
 								<h4>김고은</h4>
-								<p class="text-muted">201810222</p>
-								<p class="text-muted">이메일@projectname.com</p>
+								<p class="text-muted">${userInfo.emp_sq}</p>
+								<p class="text-muted">${userInfo.emp_ml_id}${userInfo.emp_ml_addr}</p>
 								<!-- <a href="profile.html" class="btn btn-rounded btn-danger btn-sm">버튼 메뉴</a> -->
 							</div>
 							</div>
@@ -47,7 +47,7 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#"><i class="ti-settings"></i>정보 수정</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${root}/index.jsp"><i class="fa fa-power-off"></i>로그아웃</a>
+						<a class="dropdown-item" href="${root}/member/home/logout.tree"><i class="fa fa-power-off"></i>로그아웃</a>
 					</ul>
 					<!-- /.dropdown-user -->
 				</li>

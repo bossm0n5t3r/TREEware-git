@@ -82,7 +82,7 @@
 											<div class="col-md-2" style="padding:10px 20px 0 0">
 												<label class="form-check-label">
 													<input class="form-check-input" type="checkbox" value="" style="height:10px">
-													<span class="form-check-sign">
+<!-- 													<span class="form-check-sign"> -->
 													사원번호
 													<input id="emp_sq" name="emp_sq"type="text" readonly="readonly" style="width:100%">
 													</span>
@@ -221,11 +221,13 @@ $(document).ready(function (){
 		var dt = new Date();
 		var year = dt.getFullYear();
 		var empsq;
+		var empid;
 		var cnt = parseInt('${cnt}') + 1;
 		cnt = pad(cnt, 3);
-		empsq = "TREE"+ year + cnt;
+		empsq = year + cnt;
+		empid = "TREE"+ year + cnt;
 		document.getElementById("emp_sq").value = empsq;
-		document.getElementById("emp_id").value = empsq;
+		document.getElementById("emp_id").value = empid;
 		document.getElementById("emp_pw").value = "1234";
 		
 		var upload = document.getElementById('file'),

@@ -1,7 +1,6 @@
 package com.treeware.address.controller;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.treeware.address.model.AddressDto;
 import com.treeware.address.model.AddressGroupDto;
 import com.treeware.address.service.AddressService;
+import com.treeware.admin.member.model.*;
+import com.treeware.admin.member.service.AdminMemberService;
 
 @Controller
 @RequestMapping("/member/address")
@@ -21,15 +22,27 @@ public class AddressController {
 	@Autowired
 	private AddressService addressService;
 	
+	@Autowired
+	private AdminMemberService adminMemberService;
+	
 	// 주소록 메인 페이지
 	@RequestMapping("/main.tree")
 	public String main() {
 		return "member/address/main";
 	}
 	
+	// 내부 연락망
 	@RequestMapping("/inside.tree")
-	public String inside() {
-		return "member/address/inside";
+	public ModelAndView inside() {
+		ModelAndView mav = new ModelAndView("member/address/inside");
+		List<EmployeeDto> list = adminMemberService.getMemberList();
+		List<DepartmentDto> list2 = adminMemberService.getDepartmentList();
+		List<RankDto> list3 = adminMemberService.getRankList();
+		mav.addObject("employeeInfo", list);
+		mav.addObject("departmentInfo", list2);
+		mav.addObject("rankInfo", list3);
+		mav.addObject("page", list.size());
+		return mav;
 	}
 	
 	@RequestMapping("/outside.tree")

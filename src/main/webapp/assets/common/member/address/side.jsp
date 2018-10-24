@@ -45,11 +45,11 @@
 					<p>등록하기</p>
 				</a>
 			</li>
-			<li id="menu5" class="nav-item">
-				<a href="${root}/member/address/bookmark.tree">
-					<p>즐겨찾기</p>
-				</a>
-			</li>
+<!-- 			<li id="menu5" class="nav-item"> -->
+<%-- 				<a href="${root}/member/address/bookmark.tree"> --%>
+<!-- 					<p>즐겨찾기</p> -->
+<!-- 				</a> -->
+<!-- 			</li> -->
 		</ul>
 	</div>
 </div>

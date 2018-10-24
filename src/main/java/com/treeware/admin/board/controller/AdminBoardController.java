@@ -43,6 +43,7 @@ public class AdminBoardController {
 	//게시판생성
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
 	public String register(BoardListDto boardListDto) {
+		System.out.println(boardListDto.getBname());
 		adminBoardService.addBoard(boardListDto);
 		return "admin/board/register";
 	}

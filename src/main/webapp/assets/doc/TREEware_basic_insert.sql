@@ -1,0 +1,22 @@
+-- 회원별 받은메일함 추가
+INSERT INTO ML_GRP (ML_GRP_SQ, EMP_SQ, ML_GRP_NM)
+SELECT '1'||EMP_SQ, EMP_SQ, '받은메일함'
+FROM EMP;
+
+-- 회원별 보낸메일함 추가
+INSERT INTO ML_GRP (ML_GRP_SQ, EMP_SQ, ML_GRP_NM)
+SELECT '2'||EMP_SQ, EMP_SQ, '보낸메일함'
+FROM EMP;
+
+-- 회원별 휴지통 추가
+INSERT INTO ML_GRP (ML_GRP_SQ, EMP_SQ, ML_GRP_NM)
+SELECT '3'||EMP_SQ, EMP_SQ, '휴지통'
+FROM EMP;
+
+-- 회원별 개인 주소록 추가
+INSERT INTO ADDR_GRP (ADDR_GRP_SQ, EMP_SQ, ADDR_GRP_NM)
+SELECT '1'||EMP_SQ, EMP_SQ, '기본 주소록'
+FROM EMP;
+
+
+COMMIT;
