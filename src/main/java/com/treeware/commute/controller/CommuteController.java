@@ -139,13 +139,13 @@ public class CommuteController {
 				cmtDto.put("DAY", dayKor);
 				
 				// 출근시간
-				cmtDto.put("CMT_STR_TM", dto.getCmt_str_tm());
+				cmtDto.put("CMT_STR_TM", dto.getCmt_str_tm() != null ? dto.getCmt_str_tm() : "-");
 				
 				// 퇴근시간
-				cmtDto.put("CMT_END_TM", dto.getCmt_end_tm());
+				cmtDto.put("CMT_END_TM", dto.getCmt_end_tm() != null ? dto.getCmt_end_tm() : "-");
 				
 				// 외근시간
-				cmtDto.put("CMT_WOUT_TM", dto.getCmt_wout_tm());
+				cmtDto.put("CMT_WOUT_TM", dto.getCmt_wout_tm() != null ? dto.getCmt_wout_tm() : "-");
 				
 				array.put(cmtDto);
 			}
