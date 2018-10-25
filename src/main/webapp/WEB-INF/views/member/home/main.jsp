@@ -65,7 +65,7 @@
 													<p class="card-category">
 														<span class="month"></span>월 결재문건
 													</p>
-													<h4 class="card-title">40건</h4>
+													<h4 class="card-title"><span  id="howManyDocs"></span>건</h4>
 												</div>
 											</div>
 										</div>
@@ -86,7 +86,7 @@
 													<p class="card-category">
 														<span class="month"></span>월 일정
 													</p>
-													<h4 class="card-title" style="font-size:100%" id="monthlySchedule"></h4>
+													<h4 class="card-title"><span id="monthlySchedule"></span></h4>
 												</div>
 											</div>
 										</div>
@@ -102,7 +102,7 @@
 							<div class="col-md-7">
 								<div class="card card-tasks">
 									<div class="card-header ">
-										<h4 class="card-title">대기중인 결재서류</h4>
+										<h4 class="card-title"><a href="${root}/member/sign/main.tree" style="color:#575962">대기중인 결재서류</a></h4>
 										<p class="card-category"></p>
 									</div>
 									<div class="card-body">
@@ -110,7 +110,7 @@
 									</div>
 									<div class="card-footer ">
 										<div class="stats">
-											<i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+<!-- 											<i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago -->
 										</div>
 									</div>
 								</div>

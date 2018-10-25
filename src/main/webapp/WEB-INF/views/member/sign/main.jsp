@@ -16,7 +16,6 @@ function boardClick(data){
 	var apv_sq = parseInt(a);
 	location.href = '${root}/member/sign/approve.tree?apv_sq='+apv_sq;
 }
-
 </script>
 <style type="text/css">
 .listcursor:hover{

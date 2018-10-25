@@ -1,6 +1,6 @@
 package com.treeware.member.controller;
 
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.*;
 
@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
 import com.treeware.admin.member.model.EmployeeDto;
+import com.treeware.form.model.FormDto;
+import com.treeware.form.service.FormService;
 import com.treeware.member.service.MemberService;
 
 @Controller
@@ -18,6 +21,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private FormService formService;
 	
 	// 로그인
 	@RequestMapping(value="/login.tree", method=RequestMethod.POST)
@@ -54,6 +59,12 @@ public class MemberController {
 				mav.addObject("emp_sq", employeeDto.getEmp_sq());
 				path = "member/home/idsetup";
 			} else {
+				//결재서류 가져오기
+				List<EmployeeDto> empWriter = new ArrayList<EmployeeDto>();
+				List<FormDto> formDto = formService.receiveList(employeeDto.getEmp_sq());
+				int cnt = formDto.size();
+				mav.addObject("cnt", cnt);
+				mav.addObject("formList", formDto);
 				int PMS_SQ = employeeDto.getPms_sq();
 				if (PMS_SQ == 1) {
 					path = "member/home/main";
@@ -61,18 +72,16 @@ public class MemberController {
 					path = "admin/home/main";
 				}
 			}
-		}		
+		}
 		mav.setViewName(path);
 		return mav;
 	}
-	
 	// 로그아웃
 	@RequestMapping(value="/logout.tree", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.removeAttribute("userInfo");
 		return "redirect:/index.jsp";
 	}
-	
 	
 	// 관리자에게 문의하기
 	@RequestMapping(value="/askform.tree", method=RequestMethod.GET)
@@ -82,8 +91,18 @@ public class MemberController {
 	
 	// 회원 메인 페이지
 	@RequestMapping("/main.tree")
-	public String main() {
-		return "member/home/main";
+	public ModelAndView main(HttpSession session) {
+		//결재서류 가져오기
+		ModelAndView mav = new ModelAndView();
+		EmployeeDto user = (EmployeeDto) session.getAttribute("userInfo");
+		List<EmployeeDto> empWriter = new ArrayList<EmployeeDto>();
+		List<FormDto> formDto = formService.receiveList(user.getEmp_sq());
+		int cnt = formDto.size();
+		mav.addObject("cnt", cnt);
+		mav.addObject("formList", formDto);
+		String path = "member/home/main";
+		mav.setViewName(path);
+		return mav;
 	}
 	
 	// 회원 나의정보 페이지
