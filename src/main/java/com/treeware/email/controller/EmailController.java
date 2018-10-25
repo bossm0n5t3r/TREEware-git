@@ -50,7 +50,33 @@ public class EmailController {
 	public @ResponseBody String getMailList(@RequestParam Map<String, String> map) {
 		JSONObject object = new JSONObject();
 		List<MailDto> list = emailService.listMail(map);
+		JSONArray mailArray = new JSONArray();
+		for(MailDto dto : list) {
+			JSONObject mailDto = new JSONObject();
+			mailDto.put("ml_sq",dto.getMl_sq());
+			mailDto.put("ml_grp_sq",dto.getMl_grp_sq());
+			mailDto.put("ml_stt_sq",dto.getMl_stt_sq());
+			mailDto.put("emp_sq",dto.getEmp_sq()==null ? "-" : dto.getEmp_sq());
+			mailDto.put("ml_snd_add",dto.getMl_snd_add());
+			mailDto.put("ml_rcv_add",dto.getMl_rcv_add());
+			mailDto.put("ml_send_date",dto.getMl_send_date());
+			mailDto.put("ml_ttl",dto.getMl_ttl());
+			mailDto.put("ml_ctt",dto.getMl_ctt()==null ? "-" : dto.getMl_ctt());
+			mailDto.put("ml_fl_nm",dto.getMl_fl_nm()==null ? "-" : dto.getMl_fl_nm());
+			mailDto.put("ml_fl_rt",dto.getMl_fl_rt()==null ? "-" : dto.getMl_fl_rt());
+			mailArray.put(mailDto);
+		}
+		object.put("mailList", mailArray);
+		object.put("page", list.size());
+		return object.toString();
+	}
+	//메일 검색
+	@RequestMapping("/mailsearch.tree")
+	public @ResponseBody String mailsearch(@RequestParam Map<String, String> map) {
+		System.out.println("메일서치 넘어옴");
 		System.out.println(map);
+		JSONObject object = new JSONObject();
+		List<MailDto> list = emailService.memberSearch(map);
 		JSONArray mailArray = new JSONArray();
 		for(MailDto dto : list) {
 			JSONObject mailDto = new JSONObject();
@@ -72,6 +98,8 @@ public class EmailController {
 		System.out.println(object.toString());
 		return object.toString();
 	}
+	
+	
 
 	@RequestMapping("/newmailbox1.tree")
 	public ModelAndView newMailBox() {
@@ -163,6 +191,7 @@ public class EmailController {
 		}	
 		return "member/mail/sendmailbox";
 	}
+
 	//전달 버튼
 	@RequestMapping("/delivery.tree")
 	public ModelAndView delivery(@RequestParam int ml_sq) {
@@ -212,11 +241,11 @@ public class EmailController {
 			seq = emailService.sendMail(mailDto);
 
 		} catch (MailException e) {
-			System.out.println("MailException �߻�");
+			System.out.println("MailException 발생");
 			e.printStackTrace();
 		}
 
-		return seq != 0 ? "member/mail/writeok" : "member/mail/writefail";
+		return seq != 0 ? "member/mail/sendmailbox" : "member/mail/writefail";
 	}
 	
 	//	메일함 추가 버튼
@@ -262,14 +291,46 @@ public class EmailController {
 	}
 	//비우기 버튼 (휴지통 데이터 모두 삭제)
 	@RequestMapping("/deleteall.tree")
-	public ModelAndView alldelete(@RequestParam Map<String, String> map) {
-		List<MailGroupDto> list = emailService.listMailbox();
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("mailBox",list);
-		mav.setViewName("member/mail/receivemailbox");
-		return mav;
+	public String deleteall(@RequestParam Map<String, String> map) {
+		int cnt = emailService.deleteAll(map);
+		return "member/mail/trashmailbox";
+	}
+	
+	//삭제 버튼 처리 (휴지통 데이터 선택 삭제)
+	@RequestMapping(value="/deletemail.tree", method = RequestMethod.POST)
+	@ResponseBody	
+	public String deletemail(@RequestParam(value="myArray[]") List<String> myArray, Map<String,String> map)  {
+		
+		for(String ml_sq : myArray) {
+			emailService.delete(NumberCheck.nullToZero(ml_sq));
+			
+		}	
+		return "member/mail/sendmailbox";
 	}
 
-	
+
+		//읽음 처리
+		@RequestMapping(value="/readchange.tree", method = RequestMethod.POST)
+		@ResponseBody	
+		public String readchange(@RequestParam(value="myArray[]") List<String> myArray)  {
+			
+			for(String ml_sq : myArray) {
+				emailService.readchange(NumberCheck.nullToZero(ml_sq));
+				
+			}	
+			return "member/mail/sendmailbox";
+		}
+		
+		//안읽음 처리
+		@RequestMapping(value="/noreadchange.tree", method = RequestMethod.POST)
+		@ResponseBody	
+		public String noreadchange(@RequestParam(value="myArray[]") List<String> myArray)  {
+			
+			for(String ml_sq : myArray) {
+				emailService.noreadchange(NumberCheck.nullToZero(ml_sq));
+				
+			}	
+			return "member/mail/sendmailbox";
+		}
 	
 }

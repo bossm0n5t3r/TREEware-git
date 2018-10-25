@@ -5,7 +5,6 @@
 <head>
 <%@ include file="/assets/common/import.jsp"%>
 <link rel="stylesheet" href="${root}/assets/css/search.css">
-<%-- <c:set var="emp_sq" value="${userInfo.emp_sq}"/> --%>
 <script type="text/javascript">
 	// 	리스트 ajax 처리
 	var ml_sq = new Array();
@@ -65,7 +64,10 @@
 
 	//리스트 보여주기(viewList)
 	function viewList() {
+		totalData=mailList.length;
+		$('#totalMail').text(mailList.length);
 		$("#view").empty();
+// 		${"#totalMail"}.text(mailList.length);
 		for (var i = ((currentPage - 1) * 10); i < Math.min(pageCount,
 				totalData); i++) {
 
@@ -111,15 +113,51 @@
 				$(this).attr('class', src);
 								});
 
+						//읽음 안읽음 처리
 						$("#readdrop li a").click(function() {
-
 							$("#readbtn:first-child").text($(this).text());
 							$("#readbtn:first-child").val($(this).text());
-							if ($(this).text() == "안읽음") {
+							if ($(this).text() == "읽음") {
+								var seqlist = [];
 								$("input[name='seq']:checked").each(function() {
-									$(".maillist").css("color","red");
+									seqlist.push($(this).val());
+									$(".mailList").css("color","gray");
 								});
-							}
+								$.ajax({
+									type : "POST",
+									url : "${root}/member/mail/readchange.tree",
+									data : {
+										myArray : seqlist,
+// 										"emp_sq" : "${userInfo.emp_sq}"
+									},
+									success : function(response) {
+
+									},
+									error : function(e) {
+										alert('Error: ' + e);
+									}
+								});
+							}else if($(this).text() == "안읽음"){
+								var seqlist = [];
+								$("input[name='seq']:checked").each(function() {
+									seqlist.push($(this).val());
+									$(".mailList").css("color","black");
+								});
+								$.ajax({
+									type : "POST",
+									url : "${root}/member/mail/noreadchange.tree",
+									data : {
+										myArray : seqlist,
+// 										"emp_sq" : "${userInfo.emp_sq}"
+									},
+									success : function(response) {
+
+									},
+									error : function(e) {
+										alert('Error: ' + e);
+									}
+								});		
+							}													
 						});
 
 						$("#movedrop li a").click(function() {
@@ -129,7 +167,7 @@
 							
 							}
 						});
-
+						//휴지통으로 이동
 						$("#movetrashBtn").click(function() {
 							var seqlist = [];
 							$("input[name='seq']:checked").each(function() {
@@ -140,7 +178,8 @@
 								type : "POST",
 								url : "${root}/member/mail/movetrashmail.tree",
 								data : {
-									myArray : seqlist
+									myArray : seqlist,
+									"emp_sq" : "${userInfo.emp_sq}"
 								},
 								success : function(response) {
 
@@ -150,7 +189,53 @@
 								}
 							});
 						});
+						
+						$("#searchBtn").click(function(){
+								empajax();
+							
+						});
+						
+						function empajax(){
+							$.ajax({
+								type : "GET"
+								,url : "${root}/member/mail/mailsearch.tree"
+								,dataType : "json"
+								,data : {
+									"ml_grp_sq" : 2,
+									"emp_sq" : "${userInfo.emp_sq}",
+									"key" : $('#skey').val(),
+									"word" :$('#sword').val()
+								}
+								,success : function(data) {
+									mailList = data.mailList
+									memberSearch();
+								}
+								,error : function(e) {
+									alert("에러");
+								}
+							});
+						}
+						
+						function memberSearch() {
+							totalData=mailList.length;
+							currentPage = 1;
+							totalPage = Math.ceil((totalData-1)/dataPerPage);
+							$('#totalMail').text(mailList.length);
+							$("#view").empty();
+							for (var i = ((currentPage - 1) * 10); i < Math.min(pageCount,
+									totalData); i++) {
 
+								$('#view').append('<tr id="maillist_group" article-seq="'+mailList[i].ml_sq+'">');
+								$('#view').append('<td><div class="form-check"><label class="form-check-label"><input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox"><span class="form-check-sign" ></span>');
+								$('#view').append('</label></div></td>');
+								$('#view').append('<td class="mailList">' + mailList[i].ml_rcv_add + '</td>');
+								$('#view').append('<td class="mailList">' + mailList[i].ml_ttl + '</td>');
+								$('#view').append('<td class="mailList">' + mailList[i].ml_send_date + '</td>');
+								$('#view').append('</tr>');
+							}
+						}
+						
+						
 						$("#deliveryBtn")
 								.click(
 										function() {
@@ -185,27 +270,29 @@
 											.submit();
 								});
 
-						$("#searchBtn")
-								.click(
-										function() {
-											$("#ml_grp_sq").val('2');
-											$("#pg").val('${pg}');
-											$("#key").val($("#skey").val());
-											$("#word").val($("#sword").val());
-											$("#ml_sq").val(
-													$("#maillist_group").attr(
-															"article-seq"));
-											$("#commonform")
-													.attr("action",
-															"${root}/member/mail/sendmailbox.tree")
-													.submit();
-										});
+// 						$("#searchBtn")
+// 								.click(
+// 										function() {
+// 											$("#ml_grp_sq").val('2');
+// 											$("#pg").val('${pg}');
+// 											$("#key").val($("#skey").val());
+// 											$("#word").val($("#sword").val());
+// 											$("#ml_sq").val(
+// 													$("#maillist_group").attr(
+// 															"article-seq"));
+// 											$("#commonform")
+// 													.attr("action",
+// 															"${root}/member/mail/sendmailbox.tree")
+// 													.submit();
+// 										});
 
 					});
 </script>
 
 </head>
 <body>
+<%@ include file="/assets/common/top.jsp"%>
+<%@ include file="/assets/common/member/mail/side.jsp"%>
 	<c:set var="ml_grp_sq" value="${param.ml_grp_sq}" />
 	<c:set var="ml_sq" value="${param.ml_sq}" />
 	<c:set var="pg" value="${param.pg}" />
@@ -219,10 +306,7 @@
 			type="hidden" name="ml_sq" id="ml_sq" value="">
 	</form>
 
-	<!-- 			https://www.w3schools.com/bootstrap4/bootstrap_navs.asp -->
 	<div class="wrapper">
-		<%@ include file="/assets/common/top.jsp"%>
-		<%@ include file="/assets/common/member/mail/side.jsp"%>
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
@@ -235,7 +319,7 @@
 										<i id="bookmark" class="la la-heart-o" style="color: #FF6C6C;"></i>
 									</div>
 									<font size="2"> &nbsp;전체메일
-										&nbsp;totalData &nbsp;/ &nbsp;안읽은 메일
+										&nbsp;<span id="totalMail"></span> &nbsp;/ &nbsp;안읽은 메일
 										&nbsp;0</font>
 								</div>
 							</div>
@@ -276,12 +360,12 @@
 										style="width: 100px; font-size: 100%; height: 35px; float: left;">
 										<option value='ml_ttl'>제목</option>
 										<option value='ml_rcv_add'>받는사람</option>
-									</select> <input id="sword" name="word" type="text"
+									</select> 
+									<input id="sword" name="word" type="text"
 										style="width: 100%; width: 150px; height: 35px; float: left;"
 										value="">
-									<button class="btn btn-default btn-sm" id="searchBtn"
+									<button id="searchBtn" class="btn btn-default btn-sm" 
 										style="float: left;">검색</button>
-
 								</div>
 
 							</div>
@@ -325,7 +409,7 @@
 									</table>
 								</div>
 								<table>
-									<tr align="center">
+									<tr style="align:center;">
 										<td>
 											<ul class="pagination pg-default pg-small" id="paging" style="align:center"></ul>
 										</td>

@@ -153,7 +153,7 @@ $(document).ready(function() {
 				<tr>
 					<td width="20%" class="info_title" style="background-color:#eee;text-align:center">제 목</td>
 					<td width="80%" colspan="3">
-						<input type="text" style="border:0px" readonly="readonly" value="${formDto.APV_TITLE}">
+						<input type="text" style="border:0px;" readonly="readonly" value="${formDto.APV_TITLE}">
 					</td>
 				</tr>
 				<tr>
