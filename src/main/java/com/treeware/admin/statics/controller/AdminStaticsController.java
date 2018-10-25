@@ -30,7 +30,7 @@ public class AdminStaticsController {
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView("admin/chart/main");
 		String month = String.format("%02d", TreewareConstance.MONTH);
-		List<DepartmentDto> list = adminMemberService.getDepartmentList();
+		List<DepartmentDto> list = adminMemberService.getDistinctDepartmentList();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("month", month);
 		// 월별 부서 평균 출근시간
@@ -98,7 +98,7 @@ public class AdminStaticsController {
 		ModelAndView mav = new ModelAndView("admin/chart/big/commute");
 		JSONArray array = new JSONArray();
 		String month = String.format("%02d", TreewareConstance.MONTH);
-		List<DepartmentDto> list = adminMemberService.getDepartmentList();
+		List<DepartmentDto> list = adminMemberService.getDistinctDepartmentList();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("month", month);
 		for (DepartmentDto dto : list) {
@@ -121,7 +121,7 @@ public class AdminStaticsController {
 		ModelAndView mav = new ModelAndView("admin/chart/big/offWork");
 		JSONArray array = new JSONArray();
 		String month = String.format("%02d", TreewareConstance.MONTH);
-		List<DepartmentDto> list = adminMemberService.getDepartmentList();
+		List<DepartmentDto> list = adminMemberService.getDistinctDepartmentList();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("month", month);
 		for (DepartmentDto dto : list) {

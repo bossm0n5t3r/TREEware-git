@@ -59,6 +59,11 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	}
 
 	@Override
+	public List<DepartmentDto> getDistinctDepartmentList() {
+		return sqlSession.getMapper(AdminMemberDao.class).getDistinctDepartmentList();
+	}
+	
+	@Override
 	public List<PositionDto> getPositionList() {
 		return sqlSession.getMapper(AdminMemberDao.class).getPositionList();
 	}

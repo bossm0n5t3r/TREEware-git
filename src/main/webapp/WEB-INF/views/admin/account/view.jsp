@@ -142,7 +142,7 @@
 												<th width="7%">직위</th>
 												<th width="15%">회사전화</th>
 												<th width="15%">휴대전화</th>
-												<th width="10%">상태</th>
+<!-- 												<th width="10%">상태</th> -->
 												<th width="20%">수정일</th>
 											</tr>
 										</thead>
@@ -151,11 +151,11 @@
 											<tr class="emp" id="${list.emp_sq}">
 												<td>${list.emp_nm}</td>
 												<td>${departmentInfo[status.index].dpt_nm}</td>
-												<td>${rankInfo[status.index].rnk_nm}</td>
 												<td>${positionInfo[status.index].pst_nm}</td>
+												<td>${rankInfo[status.index].rnk_nm}</td>
 												<td>${list.emp_bs_tel1}-${list.emp_bs_tel2}-${list.emp_bs_tel3}</td>
 												<td>${list.emp_tel1}-${list.emp_tel2}-${list.emp_tel3}</td>
-												<td>휴직</td>
+<!-- 												<td>휴직</td> -->
 												<td>${list.emp_fnl_mod}</td>
 											</tr>
 										</c:forEach>

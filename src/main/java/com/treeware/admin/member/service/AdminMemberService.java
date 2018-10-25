@@ -16,6 +16,7 @@ public interface AdminMemberService {
 	public RankDto getRank(int rnk_sq);
 	public List<EmployeeDto> getMemberList();
 	public List<DepartmentDto> getDepartmentList();
+	public List<DepartmentDto> getDistinctDepartmentList();
 	public List<PositionDto> getPositionList();	
 	public List<RankDto> getRankList();	
 	public List<EmployeeDto> memberSearch(Map<String, String> map);
