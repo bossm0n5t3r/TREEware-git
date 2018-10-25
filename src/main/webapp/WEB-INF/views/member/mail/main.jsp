@@ -116,6 +116,7 @@
 				$(this).attr('class', src);
 								});
 
+							//읽음 안읽음 처리
 						$("#readdrop li a").click(function() {
 
 							$("#readbtn:first-child").text($(this).text());
@@ -127,13 +128,33 @@
 							}
 						});
 
-						$("#movedrop li a").click(function() {
-							$("#readbtn:first-child").text($(this).text());
-							$("#readbtn:first-child").val($(this).text());
-							if ($(this).text() == "휴지통") {
+						
+						//메일함 이동
+						$("#movedrop li > a").click(function() {
+							var seqlist = [];
+								$("input[name='seq']:checked").each(function() {
+									seqlist.push($(this).val());
+								});
+
+							$.ajax({
+								type : "POST",
+								url : "${root}/member/mail/movemailbox.tree",
+								data : {
+									myArray : seqlist,
+									"emp_sq" : "${userInfo.emp_sq}",
+									"ml_grp_sq" : $(this).attr("value")
+									
+								},
+								success : function(response) {
+								$(location).attr("href", "${root}/member/mail/receivemailbox.tree");
+									
+								},
+								error : function(e) {
 							
-							}
+								}
+							});
 						});
+
 
 						//휴지통으로 이동
 						$("#movetrashBtn").click(function() {
@@ -325,8 +346,13 @@
 											data-toggle="dropdown">이동</button>
 										<ul id="movedrop" class="dropdown-menu" role="menu"
 											aria-labelledby="dropdownMenu">
-											<li><a class="dropdown-item" href="#">새메일함1</a></li>
-											<li><a class="dropdown-item" href="#">새메일함2</a></li>
+											<li><a role="item"class="dropdown-item" href="#" value="1">받은메일함</a></li>
+											<li><a class="dropdown-item" href="#" value="2">
+											보낸메일함</a></li>
+											<li><a class="dropdown-item" href="#" value="4">
+											새메일함1</a></li>
+											<li><a class="dropdown-item" href="#" value="5">
+											새메일함2</a></li>
 										</ul>
 									</div>
 								</div>
