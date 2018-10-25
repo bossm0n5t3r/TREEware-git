@@ -98,7 +98,7 @@
 							<div class="col-md-7">
 								<div class="card card-tasks">
 									<div class="card-header ">
-										<h4 class="card-title">대기중인 결재서류</h4>
+										<h4 class="card-title"><a href="${root}/member/sign/main.tree" style="color:#575962">대기중인 결재서류</a></h4>
 										<p class="card-category"></p>
 									</div>
 									<div class="card-body">
@@ -106,7 +106,7 @@
 									</div>
 									<div class="card-footer ">
 										<div class="stats">
-											<i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+<!-- 											<i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago -->
 										</div>
 									</div>
 								</div>

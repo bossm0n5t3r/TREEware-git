@@ -24,7 +24,13 @@ $(document).ready(function(){
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						<div class="card-title">받은결재함</div>
+						<div class="card-title" align="right">
+						<a href="${root}/member/sign/main.tree">
+							<button class="btn btn-default" type="button" id="listBtn" style="padding:5px 15px;margin:10px 20px;alignt:right">
+								목록으로
+							</button>
+							</a>
+						</div>
 					</div>
 					<div class="card-body">
 						<div class="row">

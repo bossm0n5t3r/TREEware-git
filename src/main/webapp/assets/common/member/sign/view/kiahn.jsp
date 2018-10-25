@@ -30,8 +30,7 @@ $(document).ready(function() {
 	}
 	if(status==3){
 		$("#sign3").html("<img src='/treeware/assets/img/stamp/"+${formDto.EMP_FNL_SQ}+".png' height='50px'>");
-	}
-	
+	}	
 	//결재자 해당하는 사원만 signBtns 사용
 	if(emp == emp1){
 		emp_status=1;
@@ -47,8 +46,7 @@ $(document).ready(function() {
 	}
 	
 	if(status==4){
-		var temp = "#sign"+emp_status;
-		$(temp).html("<span style='color:#dc3545'>반려처리</span>")
+		$(".nonono").html("<td  class='info_img'  id='sign1' colspan='3'><span style='color:#dc3545'>반려처리</span></td>")
 	}
 	
 	$("#approveBtn").click(function() {
@@ -126,7 +124,7 @@ $(document).ready(function() {
 								<td class="info_text" id="emp2" style="text-align:center">${approver2.emp_nm}</td>
 								<td class="info_text" id="emp3" style="text-align:center">${approver3.emp_nm}</td>
 							</tr>
-							<tr>
+							<tr class="nonono">
 								<td class="info_img" id="sign1" ></td>
 								<td class="info_img" id="sign2" ></td>
 								<td class="info_img" id="sign3" ></td>
@@ -153,7 +151,7 @@ $(document).ready(function() {
 				<tr>
 					<td width="20%" class="info_title" style="background-color:#eee;text-align:center">제 목</td>
 					<td width="80%" colspan="3">
-						<input type="text" style="border:0px;" readonly="readonly" value="${formDto.APV_TITLE}">
+						<input type="text" style="border:0px;width:100%" readonly="readonly" value="${formDto.APV_TITLE}">
 					</td>
 				</tr>
 				<tr>
@@ -172,10 +170,18 @@ $(document).ready(function() {
 		<p id="signBtns" style="text-align:center;margin:30px 0 30px 0 ">
 			<button class="btn btn-primary" type="button" id="approveBtn" style="padding:5px 15px">승인하기</button>
 			<button class="btn btn-danger" type="button" id="denyBtn" style="padding:5px 15px">반려하기</button>
-			<button class="btn btn-default" type="button" id="listBtn" style="padding:5px 15px">목록으로</button>
+			<a href="${root}/member/sign/main.tree">
+				<button class="btn btn-default" type="button" id="listBtn" style="padding:5px 15px">
+							목록으로
+				</button>
+			</a>
 		<p>
 		<p id="controlBtns" style="text-align:center;margin:30px 0 30px 0 ">
-			<button class="btn btn-default" type="button" id="listBtn" style="padding:5px 15px">목록으로</button>
+			<a href="${root}/member/sign/sendbox.tree">
+				<button class="btn btn-default" type="button" id="listBtn" style="padding:5px 15px;margin:10px 20px;alignt:right">
+							목록으로
+				</button>
+			</a>
 		<p>
 	</form>
 </div>
