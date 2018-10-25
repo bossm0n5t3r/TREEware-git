@@ -249,7 +249,11 @@ $(document).ready(function(){
 				var emp_bdate = data.emp_bdate;
 				var emp_sex = data.emp_sex;
 				var emp_reg = data.emp_reg;
-				var emp_exit = data.emp_exit;
+				if (data.emp_exit.substr(0, 4) != '5000') {
+					var emp_exit = data.emp_exit;					
+				} else {
+					var emp_exit = '';
+				}
 				var emp_tel1 = data.emp_tel1;
 				var emp_tel2 = data.emp_tel2;
 				var emp_tel3 = data.emp_tel3;
