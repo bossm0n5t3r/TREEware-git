@@ -255,9 +255,9 @@ function makeList(data) {
 								  		   .append($("<td></td>").text(commutes[j].CMT_END_TM))
 								  		   .append($("<td></td>").text(commutes[j].CMT_WOUT_TM))
 								  		   // 출장, 연차, 휴가, 비고
-								  		   .append($("<td></td>").text("-"))
-										   .append($("<td></td>").text("-"))
-										   .append($("<td></td>").text("-"))
+//								  		   .append($("<td></td>").text("-"))
+//										   .append($("<td></td>").text("-"))
+//										   .append($("<td></td>").text("-"))
 										   .append($("<td></td>").text("-"))
 					break;
 				} else {
@@ -267,9 +267,9 @@ function makeList(data) {
 								  		   .append($("<td></td>").text("-"))
 								  		   .append($("<td></td>").text("-"))
 								  		   // 출장, 연차, 휴가, 비고
-								  		   .append($("<td></td>").text("-"))
-										   .append($("<td></td>").text("-"))
-										   .append($("<td></td>").text("-"))
+//								  		   .append($("<td></td>").text("-"))
+//										   .append($("<td></td>").text("-"))
+//										   .append($("<td></td>").text("-"))
 										   .append($("<td></td>").text("-"))
 				}
 			}
@@ -280,9 +280,9 @@ function makeList(data) {
 	  		   .append($("<td></td>").text("-"))
 	  		   .append($("<td></td>").text("-"))
 	  		   // 출장, 연차, 휴가, 비고
-	  		   .append($("<td></td>").text("-"))
-			   .append($("<td></td>").text("-"))
-			   .append($("<td></td>").text("-"))
+//	  		   .append($("<td></td>").text("-"))
+//			   .append($("<td></td>").text("-"))
+//			   .append($("<td></td>").text("-"))
 			   .append($("<td></td>").text("-"))
 		}
 		$("#listView").append(tr);

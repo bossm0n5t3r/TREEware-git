@@ -8,18 +8,18 @@
 	<div id="stats" style="width:80%">
 		<table class="table" style="width:100%;text-align:center;margin:30px 0">
 			<tr>
-				<th colspan="2" width="100%" style="text-align:center">나의통계</th>
+				<th colspan="2" width="100%" style="text-align:center">나의 통계</th>
 			</tr>
 			<tr>
 				<td width="50%">특징</td>
 				<td width="50%">시간</td>
 			</tr>
 			<tr>
-				<td>평균출근시간</td>
+				<td>전체 평균출근시간</td>
 				<td id="avgStartTime"></td>
 			</tr>
 			<tr>
-				<td>평균퇴근시간</td>
+				<td>전체 평균퇴근시간</td>
 				<td id="avgEndTime"></td>
 			</tr>
 <!-- 			<tr> -->
