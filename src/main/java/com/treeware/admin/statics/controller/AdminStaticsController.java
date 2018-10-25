@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.treeware.admin.member.model.DepartmentDto;
 import com.treeware.admin.member.service.AdminMemberService;
 import com.treeware.admin.statics.service.AdminStaticsService;
+import com.treeware.util.NumberCheck;
 import com.treeware.util.TreewareConstance;
 
 @Controller
@@ -26,12 +27,28 @@ public class AdminStaticsController {
 	
 	@RequestMapping("/main.tree")
 	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/chart/main");
+		ModelAndView mav = new ModelAndView("admin/chart/main");
+		// 월별 부서 평균 출근시간
+		JSONArray array = new JSONArray();
+		String month = String.format("%02d", TreewareConstance.MONTH);
+		List<DepartmentDto> list = adminMemberService.getDepartmentList();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("month", month);
+		for (DepartmentDto dto : list) {
+			map.remove("dpt_sq");
+			String dpt_sq = dto.getDpt_sq() + "";
+			map.put("dpt_sq", dpt_sq);
+			String avgCommuteStart = adminStaticsService.getDptCommute(map).replaceAll(":", "");
+			JSONObject data = new JSONObject();
+			data.put("dpt_nm", dto.getDpt_nm());
+			data.put("time", NumberCheck.nullToZero(avgCommuteStart));
+			array.put(data);
+		}
+		mav.addObject("dptAvgCmtStart", array.toString());
 		return mav;
 	}
 	
-	// 월별 부서 출근 통계시간
+	// 월별 부서 평균 출근시간
 	@RequestMapping("/commute.tree")
 	public ModelAndView bigCommute() {
 		ModelAndView mav = new ModelAndView("admin/chart/big/commute");
@@ -44,10 +61,10 @@ public class AdminStaticsController {
 			map.remove("dpt_sq");
 			String dpt_sq = dto.getDpt_sq() + "";
 			map.put("dpt_sq", dpt_sq);
-			String avgCommuteStart = adminStaticsService.getDptCommute(map);
+			String avgCommuteStart = adminStaticsService.getDptCommute(map).replaceAll(":", "");
 			JSONObject data = new JSONObject();
 			data.put("dpt_nm", dto.getDpt_nm());
-			data.put("time", avgCommuteStart);
+			data.put("time", NumberCheck.nullToZero(avgCommuteStart));
 			array.put(data);
 		}
 		mav.addObject("dptAvgCmtStart", array.toString());

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.treeware.admin.schedule.model.ScheduleDto;
 import com.treeware.schedule.service.ScheduleService;
+import com.treeware.util.TreewareConstance;
 
 @Controller
 @RequestMapping("/member/calendar")
@@ -60,6 +61,19 @@ public class ScheduleController {
 		JSONObject object = new JSONObject();
 		object.put("SCD_SQ", scd_sq);
 		scheduleService.deleteSchedule(scd_sq);
+		return object.toString();
+	}
+	
+	// 해당 월 일정 개수
+	@RequestMapping(value="/monthlyschedule.tree", method=RequestMethod.POST)
+	public @ResponseBody String getMonthlySchedule(@RequestParam Map<String, String> map) {
+		String year = TreewareConstance.YEAR + "";
+		String month = TreewareConstance.MONTH + "";
+		map.put("year", year);
+		map.put("month", month);
+		int cnt = scheduleService.monthlySchedule(map);
+		JSONObject object = new JSONObject();
+		object.put("count", cnt);
 		return object.toString();
 	}
 

@@ -33,4 +33,11 @@
 		WHERE scd_sq = #{scd_sq}
 	</delete>
 	
+	<select id="monthlySchedule" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*)
+		FROM SCD
+		WHERE SCD_SDAY like #{month}||'/'||'%'||'/'||#{year}
+		AND EMP_SQ = #{emp_sq}
+	</select>
+	
 </mapper>

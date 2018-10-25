@@ -28,7 +28,9 @@ $(document).ready(function(){
 							<div>
 								<div class="card" align="center">
 									<div class="card-header">
-										<div class="card-title" align="left">부서별 근태 현황</div>
+										<div class="card-title" align="left">
+										<span id="month"></span>월 부서별 평균 출근시간
+										</div>
 									</div>
 									<br>
 									<canvas id="commuteChart"></canvas>
@@ -86,11 +88,17 @@ var myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    min : 084000,
+                    stepSize: 500
                 }
             }]
         }
     }
 });
+
+var date = new Date();
+$(document).ready(function(){
+	$("#month").text(date.getMonth() + 1);
+})
 </script>
 </html>

@@ -64,7 +64,9 @@
 										</div>
 										<div class="col-7 d-flex align-items-center">
 											<div class="numbers">
-												<p class="card-category">9월 결재서류</p>
+												<p class="card-category">
+													<span class="month"></span>월 결재문건
+												</p>
 												<h4 class="card-title">40건</h4>
 											</div>
 										</div>
@@ -83,9 +85,10 @@
 										</div>
 										<div class="col-7 d-flex align-items-center">
 											<div class="numbers">
-												<p class="card-category">나의성과 20건</p>
-												<h4 class="card-title" style="font-size: 100%">사내 수영대회
-													500m 2위</h4>
+												<p class="card-category">
+													<span class="month"></span>월 일정
+												</p>
+												<h4 class="card-title" style="font-size: 100%" id="monthlySchedule"></h4>
 											</div>
 										</div>
 									</div>
@@ -374,8 +377,10 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$(".month").text(mm);
 		howLong();
 		tid = setInterval('msg_time()', 1000);
+		getMonthlySchedule();
 	})
 
 	function howLong() {
@@ -431,6 +436,21 @@
 			RemainDate = RemainDate - 1000; // 남은시간 -1초
 			$("#timer").text(m);			// div 영역에 보여줌
 		}
+	}
+	
+	function getMonthlySchedule() {
+		$.ajax({
+			type : "POST"
+			,dataType : "JSON"
+			,url : "${root}/member/calendar/monthlyschedule.tree"
+			,data : {
+				"emp_sq" : "${userInfo.emp_sq}"
+			}
+			,success : function(data) {
+				$("#monthlySchedule").text(data.count + "건");
+			}
+			,error : function(){}
+		})
 	}
 </script>
 </html>

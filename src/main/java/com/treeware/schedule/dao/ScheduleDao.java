@@ -10,4 +10,5 @@ public interface ScheduleDao {
 	public int registerSchedule(Map<String, String> map);
 	public int modifySchedule(Map<String, String> map);
 	public int deleteSchedule(int scd_sq);
+	public int monthlySchedule(Map<String, String> map);
 }
