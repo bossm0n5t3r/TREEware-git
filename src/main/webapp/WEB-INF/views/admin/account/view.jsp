@@ -136,27 +136,32 @@
 									<table class="table-hover" id="listtable" style="width:100%;font-size:100%">
 										<thead>
 											<tr style="style=background-color:#eee">
-												<th width="13%">이름</th>
-												<th width="13%">부서</th>
-												<th width="7%">직책</th>
-												<th width="7%">직위</th>
-												<th width="15%">회사전화</th>
-												<th width="15%">휴대전화</th>
+												<th width="13%" style="text-align:center">이름</th>
+												<th width="13%" style="text-align:center">부서</th>
+												<th width="7%" style="text-align:center">직책</th>
+												<th width="7%" style="text-align:center">직위</th>
+												<th width="15%" style="text-align:center">회사전화</th>
+												<th width="15%" style="text-align:center">휴대전화</th>
 <!-- 												<th width="10%">상태</th> -->
-												<th width="20%">수정일</th>
+												<th width="20%" style="text-align:center">수정일</th>
 											</tr>
 										</thead>
 										<tbody>
 										<c:forEach var="list" items="${employeeInfo}" varStatus="status">
 											<tr class="emp" id="${list.emp_sq}">
-												<td>${list.emp_nm}</td>
-												<td>${departmentInfo[status.index].dpt_nm}</td>
-												<td>${positionInfo[status.index].pst_nm}</td>
-												<td>${rankInfo[status.index].rnk_nm}</td>
-												<td>${list.emp_bs_tel1}-${list.emp_bs_tel2}-${list.emp_bs_tel3}</td>
-												<td>${list.emp_tel1}-${list.emp_tel2}-${list.emp_tel3}</td>
-<!-- 												<td>휴직</td> -->
-												<td>${list.emp_fnl_mod}</td>
+												<td style="text-align:center">${list.emp_nm}</td>
+												<td style="text-align:center">${departmentInfo[status.index].dpt_nm}</td>
+												<td style="text-align:center">${positionInfo[status.index].pst_nm}</td>
+												<td style="text-align:center">${rankInfo[status.index].rnk_nm}</td>
+												<c:if test="${list.emp_bs_tel1 == null }">
+													<td style="text-align:center">-</td>
+												</c:if>
+												<c:if test="${list.emp_bs_tel1 != null }">
+													<td style="text-align:center">${list.emp_bs_tel1}-${list.emp_bs_tel2}-${list.emp_bs_tel3}</td>
+												</c:if>
+												<td style="text-align:center">${list.emp_tel1}-${list.emp_tel2}-${list.emp_tel3}</td>
+												<!-- <td>휴직</td> -->
+												<td style="text-align:center">${list.emp_fnl_mod}</td>
 											</tr>
 										</c:forEach>
 										</tbody>
