@@ -75,6 +75,9 @@ $(document).on("click", "#registerBtn", function() {
 	} else if ($("#register .scd_sday").val() == '' || $("#register .scd_eday").val() == '') {
 		alert('날짜가 완전하지 않습니다.');
 		return;
+	} else if ($("#register .scd_sday").val() == $("#register .scd_eday").val()) {
+		alert('시작일과 종료일이 같을 수 없습니다.');
+		return;
 	} else {
 		var startDate = $("#register .scd_sday").val();
 		var endDate = $("#register .scd_eday").val();
