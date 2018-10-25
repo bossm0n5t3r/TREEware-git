@@ -9,9 +9,16 @@
 </div>
 		<!-- JavaScript Includes -->
 <script>
+var list = ${certificate};
+var valueX = new Array();
+var valueY = new Array();
+
+for (var i = 0; i < list.length; i++) {
+	valueX.push(list[i].name);
+	valueY.push(list[i].count);
+}
+
 var ctx = document.getElementById("memberChart").getContext('2d');
-var valueX = new Array("초급기술자", "중급기술자", "고급기술자", "특급기술자", "기술사");
-var valueY = new Array(12, 19, 3, 5, 2);
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {

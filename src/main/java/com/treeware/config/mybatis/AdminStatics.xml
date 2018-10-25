@@ -28,10 +28,16 @@
 	</select>
 	
 	<select id="getVacation" parameterType="String" resultType="int">
-		SELECT count(*)
+		SELECT COUNT(*)
 		FROM SCD
 		WHERE SCD_DIV_SQ = 1
 		AND SCD_SDAY LIKE #{month}||'%'
+	</select>
+	
+	<select id="getCertificates" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM EMP
+		WHERE EMP_CRT LIKE '%'||#{name}||'%'
 	</select>
 	
 </mapper>

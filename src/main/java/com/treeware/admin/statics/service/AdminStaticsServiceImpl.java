@@ -29,4 +29,9 @@ public class AdminStaticsServiceImpl implements AdminStaticsService {
 		return sqlSession.getMapper(AdminStaticsDao.class).getVacation(month);
 	}
 
+	@Override
+	public int getCertificates(String name) {
+		return sqlSession.getMapper(AdminStaticsDao.class).getCertificates(name);
+	}
+
 }

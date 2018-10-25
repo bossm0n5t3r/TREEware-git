@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <%@ include file="/assets/common/import.jsp"%>
 </head>
 <body>
@@ -117,144 +118,11 @@
 						<!-- 									</div> -->
 						<!-- 								</div> -->
 						<!-- 							</div> -->
-						<div class="col-md-12">
-							<div class="card card-tasks">
-								<div class="card-header ">
-									<h4 class="card-title">대기중인 결재서류</h4>
-									<p class="card-category"></p>
-								</div>
-								<div class="card-body ">
-									<div class="table-full-width">
-										<table class="table">
-											<thead>
-												<tr>
-													<th>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input  select-all-checkbox"
-																type="checkbox" data-select="checkbox"
-																data-target=".task-select"> <span
-																class="form-check-sign"></span>
-															</label>
-														</div>
-													</th>
-													<th>서류제목</th>
-													<th>제출인</th>
-													<th>처리상황</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input task-select" type="checkbox">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>9월 회식비용 영수증</td>
-													<td>머신러닝팀 김지훈 이사</td>
-													<td class="td-actions text-right">
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip"
-																title="Edit Task"
-																class="btn btn-link <btn-simple-primary">
-																<i class="la la-edit"></i>
-															</button>
-															<button type="button" data-toggle="tooltip"
-																title="Remove" class="btn btn-link btn-simple-danger">
-																<i class="la la-times"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input task-select" type="checkbox">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>사내체육대회 장소입찰 결재</td>
-													<td>경영지원팀 강수민 이사</td>
-													<td class="td-actions text-right">
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip"
-																title="Edit Task"
-																class="btn btn-link <btn-simple-primary">
-																<i class="la la-edit"></i>
-															</button>
-															<button type="button" data-toggle="tooltip"
-																title="Remove" class="btn btn-link btn-simple-danger">
-																<i class="la la-times"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input task-select" type="checkbox">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>후이즈 도메인 입찰서류</td>
-													<td>서버개발팀 박윤민 이사</td>
-													<td class="td-actions text-right">
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip"
-																title="Edit Task"
-																class="btn btn-link <btn-simple-primary">
-																<i class="la la-edit"></i>
-															</button>
-															<button type="button" data-toggle="tooltip"
-																title="Remove" class="btn btn-link btn-simple-danger">
-																<i class="la la-times"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input task-select" type="checkbox">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>사원 개인 노트북지원 예상견적서</td>
-													<td>프론트엔드팀 강혜인 이사</td>
-													<td class="td-actions text-right">
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip"
-																title="Edit Task"
-																class="btn btn-link <btn-simple-primary">
-																<i class="la la-edit"></i>
-															</button>
-															<button type="button" data-toggle="tooltip"
-																title="Remove" class="btn btn-link btn-simple-danger">
-																<i class="la la-times"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="card-footer ">
-									<div class="stats">
-										<i class="now-ui-icons loader_refresh spin"></i> Updated 3
-										minutes ago
-									</div>
-								</div>
-							</div>
+						<div class="col-md-6">
+							<%@ include file="/WEB-INF/views/admin/chart/category/vacation.jsp" %>
+						</div>
+						<div class="col-md-6">
+							<%@ include file="/WEB-INF/views/admin/chart/category/member.jsp" %>
 						</div>
 					</div>
 					<div class="row row-card-no-pd">

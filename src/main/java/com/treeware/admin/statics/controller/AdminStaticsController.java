@@ -75,6 +75,20 @@ public class AdminStaticsController {
 		}
 		mav.addObject("vacation", vacation.toString());
 		
+		// 보유인력 현황
+		String [] cert = new String [] {"정보처리기사", "정보보안기사", "운전면허증1종보통", "운전면허증2종보통"
+				, "SQLP", "SQLD", "컴퓨터활용능력1급", "컴퓨터활용능력2급"
+				, "DAP", "DASP", "MOS"};
+		JSONArray certificate = new JSONArray();
+		for (String name : cert) {
+		int count = adminStaticsService.getCertificates(name);
+		JSONObject data = new JSONObject();
+		data.put("name", name);
+		data.put("count", count);
+		certificate.put(data);
+		}
+		mav.addObject("certificate", certificate);
+		
 		return mav;
 	}
 	
@@ -145,8 +159,19 @@ public class AdminStaticsController {
 	
 	@RequestMapping("/member.tree")
 	public ModelAndView bigMember() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/chart/big/member");
+		ModelAndView mav = new ModelAndView("admin/chart/big/member");
+		String [] cert = new String [] {"정보처리기사", "정보보안기사", "운전면허증1종보통", "운전면허증2종보통"
+										, "SQLP", "SQLD", "컴퓨터활용능력1급", "컴퓨터활용능력2급"
+										, "DAP", "DASP", "MOS"};
+		JSONArray certificate = new JSONArray();
+		for (String name : cert) {
+			int count = adminStaticsService.getCertificates(name);
+			JSONObject data = new JSONObject();
+			data.put("name", name);
+			data.put("count", count);
+			certificate.put(data);
+		}
+		mav.addObject("certificate", certificate);
 		return mav;
 	}
 	
