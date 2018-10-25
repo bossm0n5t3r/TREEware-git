@@ -34,7 +34,7 @@ $(document).ready(function (){
 						</div>
 						<div class="col-md-6">
 							<div>
-								<%@ include file="category/workinghours.jsp" %>
+								<%@ include file="category/offwork.jsp" %>
 							</div>
 							<div>
 								<%@ include file="category/member.jsp" %>

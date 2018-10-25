@@ -28,12 +28,12 @@ public class AdminStaticsController {
 	@RequestMapping("/main.tree")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView("admin/chart/main");
-		// 월별 부서 평균 출근시간
 		JSONArray array = new JSONArray();
 		String month = String.format("%02d", TreewareConstance.MONTH);
 		List<DepartmentDto> list = adminMemberService.getDepartmentList();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("month", month);
+		// 월별 부서 평균 출근시간
 		for (DepartmentDto dto : list) {
 			map.remove("dpt_sq");
 			String dpt_sq = dto.getDpt_sq() + "";
@@ -45,6 +45,21 @@ public class AdminStaticsController {
 			array.put(data);
 		}
 		mav.addObject("dptAvgCmtStart", array.toString());
+		
+		// 월별 부서 평균 퇴근시간
+		JSONArray offwork = new JSONArray();
+		for (DepartmentDto dto : list) {
+			map.remove("dpt_sq");
+			String dpt_sq = dto.getDpt_sq() + "";
+			map.put("dpt_sq", dpt_sq);
+			String avgCommuteEnd = adminStaticsService.getDptOffWork(map).replaceAll(":", "");
+			JSONObject data = new JSONObject();
+			data.put("dpt_nm", dto.getDpt_nm());
+			data.put("time", NumberCheck.nullToZero(avgCommuteEnd));
+			offwork.put(data);
+		}
+		mav.addObject("dptAvgOffWork", offwork.toString());
+		
 		return mav;
 	}
 	
@@ -71,10 +86,26 @@ public class AdminStaticsController {
 		return mav;
 	}
 	
-	@RequestMapping("/workinghours.tree")
+	// 월별 부서 평균 퇴근시간
+	@RequestMapping("/offwork.tree")
 	public ModelAndView bigWorkingHours() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/chart/big/workinghours");
+		ModelAndView mav = new ModelAndView("admin/chart/big/offWork");
+		JSONArray array = new JSONArray();
+		String month = String.format("%02d", TreewareConstance.MONTH);
+		List<DepartmentDto> list = adminMemberService.getDepartmentList();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("month", month);
+		for (DepartmentDto dto : list) {
+			map.remove("dpt_sq");
+			String dpt_sq = dto.getDpt_sq() + "";
+			map.put("dpt_sq", dpt_sq);
+			String avgCommuteEnd = adminStaticsService.getDptOffWork(map).replaceAll(":", "");
+			JSONObject data = new JSONObject();
+			data.put("dpt_nm", dto.getDpt_nm());
+			data.put("time", NumberCheck.nullToZero(avgCommuteEnd));
+			array.put(data);
+		}
+		mav.addObject("dptAvgOffWork", array.toString());
 		return mav;
 	}
 	

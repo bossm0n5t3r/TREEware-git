@@ -16,4 +16,15 @@
 		AND CMT_DATE LIKE #{month}||'%'
 	</select>
 	
+	<select id="getDptOffWork" parameterType="java.util.Map" resultType="String">
+		SELECT LPAD(TRUNC(AVG(SUBSTR(CMT_END_TM, 1, 2) * 3600 + SUBSTR(CMT_END_TM, 4, 2) * 60 + SUBSTR(CMT_END_TM, 7, 2))/3600),2,'0')
+		       || ':' ||
+		       LPAD(TRUNC(MOD(AVG(SUBSTR(CMT_END_TM, 1, 2) * 3600 + SUBSTR(CMT_END_TM, 4, 2) * 60 + SUBSTR(CMT_END_TM, 7, 2)),3600)/60),2,'0')
+		       || ':' ||
+		       LPAD(TRUNC(MOD(AVG(SUBSTR(CMT_END_TM, 1, 2) * 3600 + SUBSTR(CMT_END_TM, 4, 2) * 60 + SUBSTR(CMT_END_TM, 7, 2)),60)),2,'0') CMT_END_TM
+		FROM CMT
+		WHERE EMP_SQ IN (SELECT EMP_SQ FROM EMP WHERE DPT_SQ = #{dpt_sq})
+		AND CMT_DATE LIKE #{month}||'%'
+	</select>
+	
 </mapper>

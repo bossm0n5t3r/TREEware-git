@@ -39,12 +39,12 @@
 			</li>
 			<li id="menu2" class="nav-item">
 				<a href="${root}/admin/chart/commute.tree">
-					<p>부서별 근태 현황</p>
+					<p>월별 부서 평균 출근시간</p>
 				</a>
 			</li>
 			<li id="menu3" class="nav-item">
-				<a href="${root}/admin/chart/workinghours.tree">
-					<p>자율출퇴근 근무 현황</p>
+				<a href="${root}/admin/chart/offwork.tree">
+					<p>월별 부서 평균 퇴근시간</p>
 				</a>
 			</li>
 			<li id="menu4" class="nav-item">

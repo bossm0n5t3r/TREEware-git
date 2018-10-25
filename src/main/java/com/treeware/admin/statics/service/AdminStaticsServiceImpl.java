@@ -19,4 +19,9 @@ public class AdminStaticsServiceImpl implements AdminStaticsService {
 		return sqlSession.getMapper(AdminStaticsDao.class).getDptCommute(map);
 	}
 
+	@Override
+	public String getDptOffWork(Map<String, String> map) {
+		return sqlSession.getMapper(AdminStaticsDao.class).getDptOffWork(map);
+	}
+
 }
