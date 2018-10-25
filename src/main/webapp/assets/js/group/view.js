@@ -10,46 +10,19 @@ function add_click(){
 //		}
 //		console.log($("div#chart-container > div > table > tr.nodes").children('td').toArray().sort().length);
 	})
-
-//        $.ajax({
-//            async: true,
-//            type : 'GET',
-//            data : {
-//            	act: 'idcheck',
-//            	id: $(check).val()
-//            },
-//            url : "${root}/member",
-//            dataType : "json",
-//            contentType: "application/json; charset=UTF-8",
-//            success : function(data) {
-//            	console.log(data)
-//                if (data != 0) {
-//                    $("#id_check").text("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
-//                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-//					$("#id_check").css("color", "red")                    
-//                } else {
-//                	$("#id_check").text("사용가능한 아이디입니다.");
-//                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-//                    $("#id_check").css("color", "blue")
-//                    //아이디가 중복하지 않으면  idck = 1 
-//                    idck = 1;
-//                }
-//            },
-//            error : function(error) {
-//                alert("error : " + error);
-//            }
-//        });
 }
 
 
 
 $(function() {
 	  	var datascource = {
-	      'name': 'Ball game',
+	      'name': '부서',
 	      'children': [
-	        { 'name': 'Football' },
-	        { 'name': 'Basketball' },
-	        { 'name': 'Volleyball' }
+	        { 'name': '관리부' },
+	        { 'name': '인사부' },
+	        { 'name': '무역부' },
+	        { 'name': '영업부' },
+	        { 'name': '판매부' }
 	      ]
 	    };
 

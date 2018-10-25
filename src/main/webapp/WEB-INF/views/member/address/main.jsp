@@ -33,43 +33,43 @@ $(document).ready(function(){
 							<div class="col-md-12">
 								<div id="chart-container" style="background-color:white;width:100%;padding:40px 0"></div>
 							</div>
-							<div class="col-md-12" style="padding:10px 80px 60px 80px ">
-							<!-- 주소록 콘텐츠 페이지  -->
-							<table class="table-hover" id="listtable" style="width:100%;font-size:100%;padding:5px 0">
-								<thead>
-									<tr height="50px" style="border-bottom:1px #ddd solid">
-										<th width="10%">이름</th>
-										<th width="10%">직위</th>
-										<th width="10%">직책</th>
-										<th width="20%">회사전화</th>
-										<th width="20%">이메일</th>
-										<th width="20%">휴대전화</th>
-										<th width="10%">입사일</th>
-									</tr>
-								</thead>
-								<tbody>
-									<% for(int i=0; i<10 ; i++){ %>
-									<tr height="40px">
-										<td>김하늘</td>
-										<td>팀원</td>
-										<td>사원</td>
-										<td>010-0000-0000</td>
-										<td>skykim@gmail.com</td>
-										<td>070-000-0000</td>
-										<td>18.09.01</td>
-									</tr>
-									<%} %>
-								</tbody>
-							</table>
-							<!-- 주소록 콘텐츠 끝 -->
-							</div>
+<!-- 							<div class="col-md-12" style="padding:10px 80px 60px 80px "> -->
+<!-- 							주소록 콘텐츠 페이지  -->
+<!-- 							<table class="table-hover" id="listtable" style="width:100%;font-size:100%;padding:5px 0"> -->
+<!-- 								<thead> -->
+<!-- 									<tr height="50px" style="border-bottom:1px #ddd solid"> -->
+<!-- 										<th width="10%">이름</th> -->
+<!-- 										<th width="10%">직위</th> -->
+<!-- 										<th width="10%">직책</th> -->
+<!-- 										<th width="20%">회사전화</th> -->
+<!-- 										<th width="20%">이메일</th> -->
+<!-- 										<th width="20%">휴대전화</th> -->
+<!-- 										<th width="10%">입사일</th> -->
+<!-- 									</tr> -->
+<!-- 								</thead> -->
+<!-- 								<tbody> -->
+<%-- 									<% for(int i=0; i<10 ; i++){ %> --%>
+<!-- 									<tr height="40px"> -->
+<!-- 										<td>김하늘</td> -->
+<!-- 										<td>팀원</td> -->
+<!-- 										<td>사원</td> -->
+<!-- 										<td>010-0000-0000</td> -->
+<!-- 										<td>skykim@gmail.com</td> -->
+<!-- 										<td>070-000-0000</td> -->
+<!-- 										<td>18.09.01</td> -->
+<!-- 									</tr> -->
+<%-- 									<%} %> --%>
+<!-- 								</tbody> -->
+<!-- 							</table> -->
+<!-- 							주소록 콘텐츠 끝 -->
+<!-- 							</div> -->
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-<%@ include file="/assets/common/footer.jsp" %>
+	<%@ include file="/assets/common/footer.jsp" %>
 </div>
 </body>
 </html>
