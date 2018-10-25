@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>회사이름</title>
+<title>TREEWARE</title>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
 <!-- BOOTSTRAP 4 -->
