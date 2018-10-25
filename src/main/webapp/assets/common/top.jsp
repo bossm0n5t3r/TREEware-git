@@ -47,15 +47,12 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				
-					<a class="dropdown-item" href="#">전체주소록</a>
+					<a class="dropdown-item" href="${root}/member/address/main.tree">사내조직도</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">즐겨찾기</a>
+					<a class="dropdown-item" href="${root}/member/address/inside.tree">내부연락망</a>
+					<a class="dropdown-item" href="${root}/member/address/outside.tree">외부연락망</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">사내주소록</a>
-					<a class="dropdown-item" href="#">거래처주소록</a>
-					<a class="dropdown-item" href="#">긴급연락망</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">설정</a>
+					<a class="dropdown-item" href="${root}/member/address/register.tree">등록하기</a>
 					
 				</div>
 			</li>
@@ -64,10 +61,7 @@
 					<i class="la la-calendar"></i>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">전체일정</a>
-					<a class="dropdown-item" href="#">중요일정</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">설정</a>
+					<a class="dropdown-item" href="${root}/member/calendar/main.tree">전체일정</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown hidden-caret">
@@ -76,13 +70,10 @@
 					<i class="la la-edit"></i>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">새결재진행</a>
+					<a class="dropdown-item" href="${root}/member/sign/write.tree">새결재진행</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">진행 결재목록</a>
-					<a class="dropdown-item" href="#">보류 결재목록</a>
-					<a class="dropdown-item" href="#">완료 결재목록</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">설정</a>
+					<a class="dropdown-item" href="${root}/member/sign/main.tree">받은 결재함</a>
+					<a class="dropdown-item" href="${root}/member/sign/sendbox.tree">보낸 결재함</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown hidden-caret">
@@ -90,13 +81,13 @@
 					<i class="la la-clock-o"></i>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">출퇴근관리</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">내근태현황</a>
-					<a class="dropdown-item" href="#">내연차현황</a>
-					<a class="dropdown-item" href="#">부서별현황</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">설정</a>
+					<a class="dropdown-item" href="${root}/member/commute/main.tree">출퇴근관리</a>
+<!-- 					<div class="dropdown-divider"></div> -->
+<!-- 					<a class="dropdown-item" href="#">내근태현황</a> -->
+<!-- 					<a class="dropdown-item" href="#">내연차현황</a> -->
+<!-- 					<a class="dropdown-item" href="#">부서별현황</a> -->
+<!-- 					<div class="dropdown-divider"></div> -->
+<!-- 					<a class="dropdown-item" href="#">설정</a> -->
 				</div>
 			</li>
 			<li class="nav-item dropdown hidden-caret">
@@ -104,13 +95,13 @@
 					<i class="la la-group"></i>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">공지사항</a>
-					<a class="dropdown-item" href="#">오피스소식</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">자료실</a>
-					<a class="dropdown-item" href="#">자유게시판</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">설정</a>
+					<a class="dropdown-item" href="${root}/member/board/main.tree">게시판</a>
+<!-- 					<a class="dropdown-item" href="#">오피스소식</a> -->
+<!-- 					<div class="dropdown-divider"></div> -->
+<!-- 					<a class="dropdown-item" href="#">자료실</a> -->
+<!-- 					<a class="dropdown-item" href="#">자유게시판</a> -->
+<!-- 					<div class="dropdown-divider"></div> -->
+<!-- 					<a class="dropdown-item" href="#">설정</a> -->
 				</div>
 			</li>
 			

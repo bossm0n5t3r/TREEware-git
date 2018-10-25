@@ -31,12 +31,12 @@
 				</div>
 			</div>
 		</div>
-<!-- 		<ul class="nav"> -->
-<!-- 			<li class="nav-item active"> -->
-<%-- 				<a href="${root}/pages/blank.jsp"> --%>
-<!-- 					<p>상세메뉴1</p> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
+		<ul class="nav">
+			<li class="nav-item active">
+				<a href="${root}/member/commute/main.tree">
+					<p>출퇴근 관리</p>
+				</a>
+			</li>
 <!-- 			<li class="nav-item"> -->
 <%-- 				<a href="${root}/pages/blank.jsp"> --%>
 <!-- 					<p>상세메뉴2</p> -->
@@ -47,6 +47,6 @@
 <!-- 					<p>상세메뉴3</p> -->
 <!-- 				</a> -->
 <!-- 			</li> -->
-<!-- 		</ul> -->
+		</ul>
 	</div>
 </div>
