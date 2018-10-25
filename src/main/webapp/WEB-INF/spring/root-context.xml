@@ -41,6 +41,8 @@
 				<value>classpath:com/treeware/config/mybatis/common.xml</value>
 				<!-- 주소록 -->
 				<value>classpath:com/treeware/config/mybatis/address.xml</value>
+				<!-- 통계 -->
+				<value>classpath:com/treeware/config/mybatis/AdminStatics.xml</value>
 			</list>
 		</property>
 	</bean>

@@ -1,5 +1,7 @@
 package com.treeware.admin.statics.service;
 
-public interface AdminStaticsService {
+import java.util.Map;
 
+public interface AdminStaticsService {
+	public String getDptCommute(Map<String, String> map);
 }

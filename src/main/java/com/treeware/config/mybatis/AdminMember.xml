@@ -68,7 +68,7 @@
 	</select>
 	
 	<select id="getDepartmentList" resultType="DepartmentDto">
-	SELECT DPT.DPT_SQ, DPT_NM
+	SELECT DISTINCT DPT.DPT_SQ, DPT_NM
 	FROM DPT, EMP
 	WHERE DPT.DPT_SQ = EMP.DPT_SQ
 	</select>

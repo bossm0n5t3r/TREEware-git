@@ -62,7 +62,7 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">9월 결재서류</p>
+													<p class="card-category" id="monthlySign"></p>
 													<h4 class="card-title">40건</h4>
 												</div>
 											</div>
@@ -221,6 +221,8 @@ $(document).ready(function() {
 	workOutClick();
 	comeBackClick();
 	punchOutClick();
+	
+	$("#monthlySign").text(mm +"월 결재문건");
 	
 	howLong();
 	tid = setInterval('msg_time()', 1000);
