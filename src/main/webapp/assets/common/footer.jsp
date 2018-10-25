@@ -3,6 +3,6 @@
 <footer class="footer">
 	<div align="right">
 <!-- 		2018, made by <i class="la la-heart heart text-danger"></i>  <a href="http://www.themekita.com">Team TREEWARE</a>				 -->
-		<a href="${root}/menu/home/about.jsp">sitemap</a>	 2018, made by <b>team TREEWARE </b>	
+		<a href="http://www.themekita.com/">designed by themekita</a>&emsp;2018, made by <b>team TREEWARE </b>	
 	</div>
 </footer>
