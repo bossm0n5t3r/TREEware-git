@@ -88,9 +88,9 @@ public class CommuteController {
 		JSONObject object = new JSONObject();
 		
 		// 년, 월, 해당 월의 일 수 가져오기!
-		int year = Calendar.getInstance().get(Calendar.YEAR);
+		int year = TreewareConstance.YEAR;
 		object.put("YEAR", year);
-		int month = Calendar.getInstance().get(Calendar.MONTH) + 1;			
+		int month = TreewareConstance.MONTH;			
 		if ("before".equals(data.get("type"))){
 			if (NumberCheck.nullToOne(data.get("month")) != 1) {
 				month = NumberCheck.nullToOne(data.get("month")) - 1;
@@ -284,7 +284,6 @@ public class CommuteController {
 		object.put("avgEndTime", avgEndTime);
 		return object.toString();
 	}
-	
 	
 	// 특정날짜 요일 가져오기
 	public int getDateDay(String cmt_date) throws ParseException {

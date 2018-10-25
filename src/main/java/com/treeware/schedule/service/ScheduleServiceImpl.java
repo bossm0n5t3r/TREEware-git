@@ -36,5 +36,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public int deleteSchedule(int scd_sq) {
 		return sqlSession.getMapper(ScheduleDao.class).deleteSchedule(scd_sq);
 	}
+	
+
+	@Override
+	public int monthlySchedule(Map<String, String> map) {
+		return sqlSession.getMapper(ScheduleDao.class).monthlySchedule(map);
+	}
 
 }
