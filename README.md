@@ -22,6 +22,7 @@
 - [x] 더미데이터 입력
 
 ### NOT NOW
+- [ ] 연락처 - 퇴사자 제외! But, Not implemented!
 - [ ] 월별 결재문서 건 수
 - [ ] 예외처리
 - [ ] Schedule - 일정 눌렀을 때, scd_div_sq 자동으로 선택하게 하기
