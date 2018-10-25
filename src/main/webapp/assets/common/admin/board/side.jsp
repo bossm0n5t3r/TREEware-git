@@ -25,7 +25,7 @@
 						<li><a href="${root}/admin/board/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-edit">&nbsp;&nbsp;게시판관리</i></span></a></li>
 <%-- 						<li><a href="${root}/admin/sign/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-edit">&nbsp;&nbsp;결재관리</i></span></a></li> --%>
 <%-- 						<li><a href="${root}/admin/calendar/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-calendar">&nbsp;&nbsp;일정관리</i></span></a></li> --%>
-						<li><a href="${root}/admin/commute/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-clock-o">&nbsp;&nbsp;근태관리</i></span></a></li>
+<%-- 						<li><a href="${root}/admin/commute/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-clock-o">&nbsp;&nbsp;근태관리</i></span></a></li> --%>
 						<li><a href="${root}/admin/chart/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-bar-chart">&nbsp;&nbsp;통계</i></span></a></li>
 					</ul>
 				</div>

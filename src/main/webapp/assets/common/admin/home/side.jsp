@@ -25,14 +25,14 @@
 <!-- 				<span class="badge badge-count">50</span> -->
 			</a>
 		</li>
-		<li class="nav-item">
-			<a href="${root}/admin/commute/main.tree">
-				<i class="la la-clock-o"></i>
+<!-- 		<li class="nav-item"> -->
+<%-- 			<a href="${root}/admin/commute/main.tree"> --%>
+<!-- 				<i class="la la-clock-o"></i> -->
 <!-- 				<i class="la la-file"></i> -->
-				<p>근태관리</p>
+<!-- 				<p>근태관리</p> -->
 <!-- 				<span class="badge badge-count">6</span> -->
-			</a>
-		</li>
+<!-- 			</a> -->
+<!-- 		</li> -->
 <!-- 		<li class="nav-item"> -->
 <%-- 			<a href="${root}/admin/group/main.tree"> --%>
 <!-- 				<i class="la la-sitemap"></i> -->
