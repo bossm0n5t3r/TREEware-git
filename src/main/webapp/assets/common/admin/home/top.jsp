@@ -19,9 +19,10 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="${root}/admin/account/register.tree">사원등록</a>
-					<a class="dropdown-item" href="#">메일쓰기</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">문의글</a>
+					<a class="dropdown-item" href="${root}/admin/board/register.tree">게시판등록</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${root}/admin/chart/main.tree">통계</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">
@@ -45,7 +46,7 @@
 <!-- 						<a class="dropdown-item" href="#"></i>단축 메뉴2</a> -->
 <!-- 						<a class="dropdown-item" href="#"><i class="ti-email"></i>단축 메뉴3</a> -->
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#"><i class="ti-settings"></i>정보 수정</a>
+						<a class="dropdown-item" href="${root}/member/home/myinfo.tree"><i class="ti-settings"></i>정보 수정</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="${root}/member/home/logout.tree"><i class="fa fa-power-off"></i>로그아웃</a>
 					</ul>
