@@ -74,25 +74,25 @@
 											<div class="col-md-10">
 													<div id="info" class="row">
 														<div style="width:50%" class="box-group">
-															<input type="text" name="dpt_nm" id="dpt_nm" class="mainbox">
+															<input type="text" name="dpt_nm" id="dpt_nm" placeholder="부서" class="mainbox">
 															<input type="hidden" name="dpt_sq" id="dpt_sq">															
 														</div>
 														<div style="width:25%" class="box-group">
-															<input name="rnk_nm" id="rnk_nm" type="text" class="mainbox">
+															<input name="rnk_nm" id="rnk_nm" type="text" placeholder="직위" class="mainbox">
 															<input type="hidden" name="rnk_sq" id="rnk_sq">
 														</div>
 														<div style="width:25%" class="box-group">
-															<input name="pst_nm" id="pst_nm" type="text" class="mainbox">
+															<input name="pst_nm" id="pst_nm" type="text" placeholder="직책" class="mainbox">
 															<input type="hidden" name="pst_sq" id="pst_sq">
 														</div>
 														<div style="width:35%" class="box-group">
-															<input name="emp_nm" id="emp_nm" type="text" class="mainbox" readonly="readonly">
+															<input name="emp_nm" id="emp_nm" type="text" placeholder="사원이름" class="mainbox" readonly="readonly">
 														</div>
 														<div style="width:35%" class="box-group">
-															<input name="emp_bdate" id="emp_bdate" type="birth" class="mainbox"  readonly="readonly">
+															<input name="emp_bdate" id="emp_bdate" type="birth" placeholder="생일" class="mainbox"  readonly="readonly">
 														</div>
 														<div style="width:15%" class="box-group">
-															<input name="emp_sex" id="emp_sex" type="gender" class="mainbox"  readonly="readonly">
+															<input name="emp_sex" id="emp_sex" type="gender" placeholder="성별" class="mainbox"  readonly="readonly">
 														</div>
 														<div style="width:15%" class="box-group">
 															<input name="pms_nm" id="pms_nm" type="power" class="mainbox" placeholder="관리자" readonly="readonly">
@@ -101,25 +101,25 @@
 															<input type="text" name="emp_reg" id="emp_reg" class="mainbox" placeholder="입사일" readonly="readonly">
 														</div>
 														<div style="width:25%" class="box-group">
-															<input type="text" name="emp_exit" id="emp_exit" class="mainbox" placeholder="퇴사일">
+															<input type="text" name="emp_exit" id="emp_exit" class="mainbox" placeholder="퇴사일 ex) 2018-10-23">
 														</div>
 														<div style="width:50%" class="box-group">
 															<input name="status" id="status" type="text" class="mainbox" placeholder="근무중" readonly="readonly">
 														</div>
 														<div style="width:50%" class="box-group">
-															<input name="email" id="email" type="text" class="mainbox" readonly="readonly">
+															<input name="email" id="email" type="text" class="mainbox" placeholder="이메일" readonly="readonly">
 														</div>
 														<div style="width:50%" class="box-group">
-															<input name="bes_tel" id="bes_tel" type="text" class="mainbox">
+															<input name="bes_tel" id="bes_tel" type="text" placeholder="사내번호" class="mainbox">
 															<input name="emp_bs_tel1" id="emp_bs_tel1" type="hidden">
 															<input name="emp_bs_tel2" id="emp_bs_tel2" type="hidden">
 															<input name="emp_bs_tel3" id="emp_bs_tel3" type="hidden">
 														</div>
 														<div style="width:50%" class="box-group">
-															<input type="text" name="address" id="address" class="mainbox" readonly="readonly" required>
+															<input type="text" name="address" id="address" placeholder="주소" class="mainbox" readonly="readonly" required>
 														</div>
 														<div style="width:50%" class="box-group">
-															<input type="text" name="tel" id="tel" class="mainbox" readonly="readonly" required>
+															<input type="text" name="tel" id="tel" class="mainbox" placeholder="전화번호" readonly="readonly" required>
 														</div>
 														<div style="width:100%" class="box-group">
 															<input class="simplebtn1" type="button" value="정보수정하기" id="modify" style="width:100%;padding:15px;background-color:#f2f3f8">
@@ -170,10 +170,10 @@
 								</div>
 							</div>
 							<!-- card end -->
-							<div class="card-action" style="text-align:center">
-								<button class="btn btn-success" onclick="javascript:edit()" style="width:120px;padding:10px;margin:5px">수정하기</button>
-								<button class="btn btn-danger" onclick="javascript:goback()" style="width:120px;padding:10px;margin:5px">이전메뉴</button>
-							</div>
+<!-- 							<div class="card-action" style="text-align:center"> -->
+<!-- 								<button class="btn btn-success" style="width:120px;padding:10px;margin:5px">수정하기</button> -->
+<!-- 								<button class="btn btn-danger" style="width:120px;padding:10px;margin:5px">이전메뉴</button> -->
+<!-- 							</div> -->
 							<!-- register form end-->
 						</div>	
 					</div>
@@ -186,7 +186,7 @@
 	</div>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	var dateReg = /^\d{4}[-]\d{2}[./-]\d{2}$/
 	//정보수정클릭
 	$('#modify').click(function(){
 		if($('#dpt_nm').val()==='퇴사'){
@@ -236,7 +236,12 @@ $(document).ready(function(){
 		$('#emp_bs_tel2').val($('#bes_tel').val().split('-')[1]);
 		$('#emp_bs_tel3').val($('#bes_tel').val().split('-')[2]);
 		
-		$('#registerMemberForm').attr("action", "${root}/admin/account/modify.tree").submit();
+		if ($("#emp_exit").val() != null && dateReg.test($("#emp_exit").val())) {
+			$('#registerMemberForm').attr("action", "${root}/admin/account/modify.tree").submit();
+		} else {
+			alert("잘못된 날짜형식입니다. ex) YYYY-MM-DD");
+			return;
+		}
 	});
 	
 	$('tr.emp').click(function(){
@@ -253,11 +258,11 @@ $(document).ready(function(){
 				var emp_nm = data.emp_nm;
 				var emp_bdate = data.emp_bdate;
 				var emp_sex = data.emp_sex;
-				var emp_reg = data.emp_reg;
-				if (data.emp_exit.substr(0, 4) != '5000') {
-					var emp_exit = data.emp_exit;					
+				var emp_reg = data.emp_reg.split(" ")[0];
+				if (data.emp_exit === undefined) {
+					var emp_exit = data.emp_exit;
 				} else {
-					var emp_exit = '';
+					var emp_exit = data.emp_exit.split(" ")[0];	
 				}
 				var emp_tel1 = data.emp_tel1;
 				var emp_tel2 = data.emp_tel2;

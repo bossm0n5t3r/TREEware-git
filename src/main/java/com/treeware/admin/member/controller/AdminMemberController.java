@@ -139,10 +139,24 @@ public class AdminMemberController {
 	}
 	
 	// 사원정보 수정
+	//TODO 바로 view.tree 로 가는 방법?
 	@RequestMapping(value="/modify.tree", method=RequestMethod.POST)
-	public String modify(EmployeeDto employeeDto) {
+	public ModelAndView modify(EmployeeDto employeeDto) {
 		adminMemberService.modify(employeeDto);
-		return "admin/account/view";
+		ModelAndView mav = new ModelAndView("admin/account/view");
+		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
+		List<DepartmentDto> list2 = new ArrayList<DepartmentDto>();
+		List<PositionDto> list3 = new ArrayList<PositionDto>();
+		List<RankDto> list4 = new ArrayList<RankDto>();
+		list = adminMemberService.getMemberList();
+		list2 = adminMemberService.getDepartmentList();
+		list3 = adminMemberService.getPositionList();
+		list4 = adminMemberService.getRankList();
+		mav.addObject("employeeInfo", list);
+		mav.addObject("departmentInfo", list2);
+		mav.addObject("positionInfo", list3);
+		mav.addObject("rankInfo", list4);
+		return mav;
 	}
 	
 	// 사원정보 얻기

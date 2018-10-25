@@ -48,7 +48,10 @@
 		EMP_BS_TEL1 = #{emp_bs_tel1},
 		EMP_BS_TEL2 = #{emp_bs_tel2},
 		EMP_BS_TEL3 = #{emp_bs_tel3},
-		EMP_EXIT = nvl(#{emp_exit}, '5000-10-10')
+		EMP_EXIT = TO_DATE(#{emp_exit}, 'YYYY-MM-DD')
+		<if test="emp_exit != null and emp_exit != ''">
+		,PMS_SQ = 0
+		</if>
 	WHERE EMP_SQ = #{emp_sq}
 	</update>
 	
