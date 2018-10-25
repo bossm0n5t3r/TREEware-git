@@ -91,7 +91,7 @@ public class FormController {
 	@RequestMapping(value="/write.tree", method=RequestMethod.POST)
 	public ModelAndView write(FormDto formDto) {
 		ModelAndView mav = new ModelAndView();
-		int cnt = formService.write(formDto);
+		formService.write(formDto);
 		mav.setViewName("member/sign/writeok");
 		return mav;
 	}
@@ -136,7 +136,7 @@ public class FormController {
 	@RequestMapping(value="/change.tree", method=RequestMethod.POST)
 	public ModelAndView change(FormDto formDto) {
 		ModelAndView mav = new ModelAndView();
-		int cnt = formService.change(formDto);
+		formService.change(formDto);
 		int apv_sq = formDto.getAPV_SQ();
 		FormDto formDto2 = formService.approve(apv_sq);
 		EmployeeDto writer = findBySq(formDto2.getEMP_SQ());

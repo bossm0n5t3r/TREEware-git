@@ -89,14 +89,15 @@ public class BoardController {
 		return mav;
 	}
 	
-	//글쓰기
+	// 글쓰기
+	//TODO 상태가 엉망임. 1. 왜 Map으로 캐스팅하는가 - 그냥 RequestParam으로 받으면 되지않는가, 2. redirect 시키면 날아감. 왜 담아?
 	@RequestMapping(value="/write.tree", method=RequestMethod.POST)
 	public ModelAndView write(BoardDto boardDto, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
-		Map<String, String> map = (Map) session.getAttribute("userBoardInfo");
+		Map<String, String> map = (Map<String, String>) session.getAttribute("userBoardInfo");
 		boardDto.setEmp_sq(employeeDto.getEmp_sq());
-		int cnt = boardService.boardWrite(boardDto);
+		boardService.boardWrite(boardDto);
 		mav.addObject("bcode", map.get("bcode"));
 		mav.addObject("btype", map.get("btype"));
 		mav.addObject("bname", map.get("bname"));

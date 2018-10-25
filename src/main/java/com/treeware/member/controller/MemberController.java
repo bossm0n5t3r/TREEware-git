@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
 import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.admin.statics.service.AdminStaticsService;
@@ -68,7 +67,8 @@ public class MemberController {
 				path = "member/home/idsetup";
 			} else {
 				//결재서류 가져오기
-				List<EmployeeDto> empWriter = new ArrayList<EmployeeDto>();
+				//TODO empWriter 필요한지...?
+//				List<EmployeeDto> empWriter = new ArrayList<EmployeeDto>();
 				List<FormDto> formDto = formService.receiveList(employeeDto.getEmp_sq());
 				int cnt = formDto.size();
 				mav.addObject("cnt", cnt);
@@ -132,7 +132,8 @@ public class MemberController {
 		//결재서류 가져오기
 		ModelAndView mav = new ModelAndView();
 		EmployeeDto user = (EmployeeDto) session.getAttribute("userInfo");
-		List<EmployeeDto> empWriter = new ArrayList<EmployeeDto>();
+		//TODO empWriter 필요한지...?
+//		List<EmployeeDto> empWriter = new ArrayList<EmployeeDto>();
 		List<FormDto> formDto = formService.receiveList(user.getEmp_sq());
 		int cnt = formDto.size();
 		mav.addObject("cnt", cnt);
