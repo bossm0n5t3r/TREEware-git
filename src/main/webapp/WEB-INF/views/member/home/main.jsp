@@ -65,7 +65,7 @@
 													<p class="card-category">
 														<span class="month"></span>월 결재문건
 													</p>
-													<h4 class="card-title">40건</h4>
+													<h4 class="card-title"><span  id="howManyDocs"></span>건</h4>
 												</div>
 											</div>
 										</div>
@@ -86,7 +86,7 @@
 													<p class="card-category">
 														<span class="month"></span>월 일정
 													</p>
-													<h4 class="card-title" style="font-size:100%" id="monthlySchedule"></h4>
+													<h4 class="card-title"><span id="monthlySchedule"></span></h4>
 												</div>
 											</div>
 										</div>

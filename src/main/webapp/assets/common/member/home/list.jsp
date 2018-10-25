@@ -12,6 +12,7 @@ function boardClick(data){
 	var apv_sq = parseInt(a);
 	location.href = '${root}/member/sign/approve.tree?apv_sq='+apv_sq;
 }
+$("#howManyDocs").text(${formList.size()});
 </script>
 <style type="text/css">
 .listcursor:hover{
@@ -20,6 +21,7 @@ function boardClick(data){
 </style>
 <div style="padding:10px">
 	<table class="table-hover" id="listtable" style="width:100%;font-size:100%;text-align:center">
+	<input type="hidden" value="${formList.size()}">
 			<thead>
 				<tr style="border-bottom:1px #ddd solid" >
 					<th width="15%" style="padding:20px 0 ">문서번호</th>
