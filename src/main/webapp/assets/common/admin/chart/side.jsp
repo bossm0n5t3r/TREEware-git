@@ -49,7 +49,7 @@
 			</li>
 			<li id="menu4" class="nav-item">
 				<a href="${root}/admin/chart/vacation.tree">
-					<p>기간별 휴가인원 통계</p>
+					<p>월별 휴가인원 통계</p>
 				</a>
 			</li>
 			<li id="menu5" class="nav-item">

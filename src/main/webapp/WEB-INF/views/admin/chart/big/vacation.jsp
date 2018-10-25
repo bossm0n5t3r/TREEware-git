@@ -28,7 +28,7 @@ $(document).ready(function(){
 							<div>
 								<div class="card" align="center">
 									<div class="card-header">
-										<div class="card-title" align="left">기간별 휴가인원 통계</div>
+										<div class="card-title" align="left">월별 휴가인원 통계</div>
 									</div>
 									<br>
 									<canvas id="vacationChart"></canvas>
@@ -44,9 +44,33 @@ $(document).ready(function(){
 	</div>
 </body>
 <script>
+var list = ${vacation};
+var valueX = new Array(list.JAN.month
+					  ,list.FEB.month
+					  ,list.MAR.month
+					  ,list.APR.month
+					  ,list.MAY.month
+					  ,list.JUN.month
+					  ,list.JUL.month
+					  ,list.AUG.month
+					  ,list.SEP.month
+					  ,list.OCT.month
+					  ,list.NOV.month
+					  ,list.DEC.month);
+var valueY = new Array(list.JAN.count
+		 			  ,list.FEB.count
+		  			  ,list.MAR.count
+					  ,list.APR.count
+					  ,list.MAY.count
+					  ,list.JUN.count
+					  ,list.JUL.count
+					  ,list.AUG.count
+					  ,list.SEP.count
+					  ,list.OCT.count
+					  ,list.NOV.count
+					  ,list.DEC.count);
+
 var ctx = document.getElementById("vacationChart").getContext('2d');
-var valueX = new Array("1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월");
-var valueY = new Array(12, 19, 3, 5, 2, 3, 4, 8, 10, 4, 5, 9);
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {

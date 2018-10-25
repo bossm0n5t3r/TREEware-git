@@ -27,4 +27,11 @@
 		AND CMT_DATE LIKE #{month}||'%'
 	</select>
 	
+	<select id="getVacation" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM SCD
+		WHERE SCD_DIV_SQ = 1
+		AND SCD_SDAY LIKE #{month}||'%'
+	</select>
+	
 </mapper>

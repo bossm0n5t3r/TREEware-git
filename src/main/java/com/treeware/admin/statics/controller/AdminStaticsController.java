@@ -25,15 +25,16 @@ public class AdminStaticsController {
 	@Autowired
 	private AdminMemberService adminMemberService;
 	
+	// 통계 메인 페이지
 	@RequestMapping("/main.tree")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView("admin/chart/main");
-		JSONArray array = new JSONArray();
 		String month = String.format("%02d", TreewareConstance.MONTH);
 		List<DepartmentDto> list = adminMemberService.getDepartmentList();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("month", month);
 		// 월별 부서 평균 출근시간
+		JSONArray commute = new JSONArray();
 		for (DepartmentDto dto : list) {
 			map.remove("dpt_sq");
 			String dpt_sq = dto.getDpt_sq() + "";
@@ -42,9 +43,9 @@ public class AdminStaticsController {
 			JSONObject data = new JSONObject();
 			data.put("dpt_nm", dto.getDpt_nm());
 			data.put("time", NumberCheck.nullToZero(avgCommuteStart));
-			array.put(data);
+			commute.put(data);
 		}
-		mav.addObject("dptAvgCmtStart", array.toString());
+		mav.addObject("dptAvgCmtStart", commute.toString());
 		
 		// 월별 부서 평균 퇴근시간
 		JSONArray offwork = new JSONArray();
@@ -59,6 +60,20 @@ public class AdminStaticsController {
 			offwork.put(data);
 		}
 		mav.addObject("dptAvgOffWork", offwork.toString());
+		
+		// 월별 휴가인원 통계
+		JSONObject vacation = new JSONObject();
+		String [] monthsKor = TreewareConstance.MONTHS_KOR;
+		String [] monthsEng = TreewareConstance.MONTHS_ENG;
+		for (int i = 0; i < 12; i++) {
+			String thisMonth = String.format("%02d", i + 1);
+			int count = adminStaticsService.getVacation(thisMonth);
+			JSONObject data = new JSONObject();
+			data.put("month", monthsKor[i]);
+			data.put("count", count);
+			vacation.put(monthsEng[i], data);
+		}
+		mav.addObject("vacation", vacation.toString());
 		
 		return mav;
 	}
@@ -109,10 +124,22 @@ public class AdminStaticsController {
 		return mav;
 	}
 	
+	// 월별 휴가인원 통계
 	@RequestMapping("/vacation.tree")
 	public ModelAndView bigVacation() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/chart/big/vacation");
+		ModelAndView mav = new ModelAndView("admin/chart/big/vacation");
+		JSONObject object = new JSONObject();
+		String [] monthsKor = TreewareConstance.MONTHS_KOR;
+		String [] monthsEng = TreewareConstance.MONTHS_ENG;
+		for (int i = 0; i < 12; i++) {
+			String month = String.format("%02d", i + 1);
+			int count = adminStaticsService.getVacation(month);
+			JSONObject data = new JSONObject();
+			data.put("month", monthsKor[i]);
+			data.put("count", count);
+			object.put(monthsEng[i], data);
+		}
+		mav.addObject("vacation", object.toString());
 		return mav;
 	}
 	
