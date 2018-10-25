@@ -13,16 +13,16 @@ public interface EmailDao {
 	int sendMail(MailDto mailDto);
 	List<MailDto> listMail(Map<String, String> map);
 	MailDto viewMail(int ml_sq);
-	int moveTrashMailbox(int ml_sq);
+	int moveTrashMailbox(Map<String, String> map);
 	List<MailDto> delivery(int ml_sq);
 	int getEmailBoxNextSeq();
 	int addMailbox(MailGroupDto mailGroupDto);
 	List<MailGroupDto> listMailbox();
 	List<MailGroupDto> addMailbox_list(Map<String,String> map);
 	int deleteAll(Map<String,String> map);
-	int delete(int ml_sq);
+	int delete(Map<String,String> map);
 	List<MailDto> memberSearch(Map<String, String> map);
 	int readchange(int ml_sq);
 	int noreadchange(int ml_sq);
-
+	int moveMailbox(Map<String, String> map);
 }

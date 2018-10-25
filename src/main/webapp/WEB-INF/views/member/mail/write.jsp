@@ -47,6 +47,10 @@ $(document).ready(function() {
         	 $("#receiver").attr("value","");
         }
     });
+    
+    $("#testBtn").click(function(){
+    	alert(${userInfo.emp_sq});
+    });
 
 });
 </script>
@@ -63,10 +67,10 @@ $(document).ready(function() {
             <input type="hidden" name="emp_sq" value="${userInfo.emp_sq}">
                <div class="form-group">
                  <div id="mailwritebtn" class="card-title" style="margin-left: 15px">
-						메일쓰기 </div><br>
+						메일쓰기</div><br>
                   <div class="btn-group">
                   <button id="" class="mailwritebtn btn btn-info btn-sm">보내기</button>&nbsp;
-                  <button class="btn btn-default btn-sm">미리보기</button>&nbsp;
+                  <button id="testBtn" class="btn btn-default btn-sm">미리보기</button>&nbsp;
                   <button class="btn btn-default btn-sm">다시쓰기</button>&nbsp;
                   </div>
                   <br>

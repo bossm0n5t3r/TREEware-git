@@ -111,19 +111,32 @@
 				</a>
 			</li>
 			<hr>
-			<div style="margin-left:30px">
-		<button class="btn btn-outline-info" data-toggle="modal" data-target="#addmodal" style="width:130px;">
-		<i class="la la-plus-square"></i> &nbsp;메일함 추가</button>
-		<button id="mailboxopen" name="mailboxopen" class="btn btn-outline-info">펼치기</button></div>
-		
-		<c:forEach var="mailbox" items="${mailBox}">
-		<c:set var ="ml_grp_seq2" value="${mailbox.ml_grp_nm}"/>
-		<li class="nav-item">
-				<a class="addlist" name="addlist"> 
-					<i class="la la-trash"></i>${mailbox.ml_grp_nm}
+			<li class="nav-item">
+				<a href="${root}/member/mail/newmailbox1.tree">
+					<i class="la la-trash"></i>새메일함1
 				</a>
 			</li>
-		</c:forEach>
+			
+			<li class="nav-item">
+				<a href="${root}/member/mail/newmailbox2.tree">
+					<i class="la la-trash"></i>새메일함2
+				</a>
+			</li>
+			
+<!--     	메일함추가		 -->
+<!-- 			<div style="margin-left:30px"> -->
+<!-- 		<button class="btn btn-outline-info" data-toggle="modal" data-target="#addmodal" style="width:130px;"> -->
+<!-- 		<i class="la la-plus-square"></i> &nbsp;메일함 추가</button> -->
+<!-- 		<button id="mailboxopen" name="mailboxopen" class="btn btn-outline-info">펼치기</button></div> -->
+		
+<%-- 		<c:forEach var="mailbox" items="${mailBox}"> --%>
+<%-- 		<c:set var ="ml_grp_seq2" value="${mailbox.ml_grp_nm}"/> --%>
+<!-- 		<li class="nav-item"> -->
+<!-- 				<a class="addlist" name="addlist">  -->
+<%-- 					<i class="la la-trash"></i>${mailbox.ml_grp_nm} --%>
+<!-- 				</a> -->
+<!-- 			</li> -->
+<%-- 		</c:forEach> --%>
 		</ul>
 	</div>
 </div>

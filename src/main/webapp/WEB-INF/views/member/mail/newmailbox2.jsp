@@ -4,10 +4,11 @@
 <html>
 <head>
 <%@ include file="/assets/common/import.jsp"%>
-<link rel="stylesheet" href="${root}/assets/css/search.css">
+<%-- <c:set var="emp_sq" value="${userInfo.emp_sq}"/> --%>
 <script type="text/javascript">
 	// 	리스트 ajax 처리
 	var ml_sq = new Array();
+	var ml_snd_add = new Array();
 	var ml_rcv_add = new Array();
 	var ml_ttl = new Array();
 	var ml_send_date = new Array();
@@ -21,10 +22,11 @@
 	var totalPage;
 
 	$(document).ready(function() {
-
+		
 		getMailList();
 		
 		for (var i = 0; i < mailList.length; i++) {
+			ml_snd_add.push(mailList[i].ml_snd_add);
 			ml_rcv_add.push(mailList[i].ml_rcv_add);
 			ml_ttl.push(mailList[i].ml_ttl);
 			ml_send_date.push(mailList[i].ml_send_date);
@@ -34,6 +36,7 @@
 		viewList();
 		viewPaging();
 	})
+	//메일 목록
 	function getMailList() {
 		$.ajax({
 			async : false,
@@ -41,7 +44,7 @@
 			url : "${root}/member/mail/getMailList.tree",
 			dataType : "json",
 			data : {
-				"ml_grp_sq" : 2,
+				"ml_grp_sq" : 5,
 				"emp_sq" : "${userInfo.emp_sq}"
 			},
 			success : function(data) {
@@ -62,7 +65,7 @@
 		totalData = data;
 	}
 
-	//리스트 보여주기(viewList)
+	//메일 리스트 보여주기(viewList)
 	function viewList() {
 		totalData=mailList.length;
 		$('#totalMail').text(mailList.length);
@@ -74,7 +77,7 @@
 			$('#view').append('<tr id="maillist_group" article-seq="'+ml_sq[i]+'">');
 			$('#view').append('<td><div class="form-check"><label class="form-check-label"><input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox"><span class="form-check-sign" ></span>');
 			$('#view').append('</label></div></td>');
-			$('#view').append('<td class="mailList">' + ml_rcv_add[i] + '</td>');
+			$('#view').append('<td class="mailList">' + ml_snd_add[i] + '</td>');
 			$('#view').append('<td class="mailList">' + ml_ttl[i] + '</td>');
 			$('#view').append('<td class="mailList">' + ml_send_date[i] + '</td>');
 			$('#view').append('</tr>');
@@ -113,53 +116,15 @@
 				$(this).attr('class', src);
 								});
 
-						//읽음 안읽음 처리
 						$("#readdrop li a").click(function() {
+
 							$("#readbtn:first-child").text($(this).text());
 							$("#readbtn:first-child").val($(this).text());
-							if ($(this).text() == "읽음") {
-								var seqlist = [];
+							if ($(this).text() == "안읽음") {
 								$("input[name='seq']:checked").each(function() {
-									seqlist.push($(this).val());
+									$(".maillist").css("color","red");
 								});
-								$.ajax({
-									type : "POST",
-									url : "${root}/member/mail/readchange.tree",
-									data : {
-										myArray : seqlist,
-// 										"emp_sq" : "${userInfo.emp_sq}"
-									},
-									success : function(response) {
-											$(".mailList").css("color","gray");
-										
-										$(location).attr("href", "${root}/member/mail/sendmailbox.tree");
-										
-									},
-									error : function(e) {
-										alert('Error: ' + e);
-									}
-								});
-							}else if($(this).text() == "안읽음"){
-								var seqlist = [];
-								$("input[name='seq']:checked").each(function() {
-									seqlist.push($(this).val());
-									$(".mailList").css("color","black");
-								});
-								$.ajax({
-									type : "POST",
-									url : "${root}/member/mail/noreadchange.tree",
-									data : {
-										myArray : seqlist,
-// 										"emp_sq" : "${userInfo.emp_sq}"
-									},
-									success : function(response) {
-
-									},
-									error : function(e) {
-										alert('Error: ' + e);
-									}
-								});		
-							}													
+							}
 						});
 
 						//메일함 이동
@@ -190,7 +155,7 @@
 						});
 
 						//휴지통으로 이동
-						$("#movetrashBtn").click(function(){
+						$("#movetrashBtn").click(function() {
 							var seqlist = [];
 							$("input[name='seq']:checked").each(function() {
 								seqlist.push($(this).val());
@@ -207,15 +172,13 @@
 								},
 								success : function(response) {
 									$("#movetrashBtn").attr("data-target","#movetrashmodal");
-
 								},
 								error : function(e) {
-									alert("휴지통으로 이동할 메일을 선택해주세요!");
+									alert('Error: ' + e);
 								}
 							});
 						});
 						
-						//검색
 						$("#searchBtn").click(function(){
 								empajax();
 							
@@ -227,14 +190,14 @@
 								,url : "${root}/member/mail/mailsearch.tree"
 								,dataType : "json"
 								,data : {
-									"ml_grp_sq" : 2,
+									"ml_grp_sq" : 5,
 									"emp_sq" : "${userInfo.emp_sq}",
 									"key" : $('#skey').val(),
 									"word" :$('#sword').val()
 								}
 								,success : function(data) {
 									mailList = data.mailList
-									mailSearch();
+									memberSearch();
 								}
 								,error : function(e) {
 									alert("에러");
@@ -242,8 +205,7 @@
 							});
 						}
 						
-						//메일 검색
-						function mailSearch() {
+						function memberSearch() {
 							totalData=mailList.length;
 							currentPage = 1;
 							totalPage = Math.ceil((totalData-1)/dataPerPage);
@@ -255,7 +217,7 @@
 								$('#view').append('<tr id="maillist_group" article-seq="'+mailList[i].ml_sq+'">');
 								$('#view').append('<td><div class="form-check"><label class="form-check-label"><input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox"><span class="form-check-sign" ></span>');
 								$('#view').append('</label></div></td>');
-								$('#view').append('<td class="mailList">' + mailList[i].ml_rcv_add + '</td>');
+								$('#view').append('<td class="mailList">' + mailList[i].ml_snd_add + '</td>');
 								$('#view').append('<td class="mailList">' + mailList[i].ml_ttl + '</td>');
 								$('#view').append('<td class="mailList">' + mailList[i].ml_send_date + '</td>');
 								$('#view').append('</tr>');
@@ -263,8 +225,11 @@
 						}
 						
 						// 전달
-						$("#deliveryBtn").click(function() {
-											$("#ml_grp_sq").val('2');
+						$("#deliveryBtn")
+								.click(
+										function() {
+
+											$("#ml_grp_sq").val('5');
 											$("#pg").val('${pg}');
 											$("#key").val('${key}');
 											$("#word").val('${word}');
@@ -281,11 +246,13 @@
 
 										});
 						
+						
+						
 						//답장
 						$("#replyBtn")
 								.click(
 										function() {
-											$("#ml_grp_sq").val('2');
+											$("#ml_grp_sq").val('5');
 											if($("input[name='seq']:checked").length ==1){
 												$("#ml_sq").val($("input[name='seq']:checked").val());
 											}
@@ -297,16 +264,20 @@
 											$("#commonform").attr("action", "${root}/member/mail/reply.tree").submit();
 
 										});
-								
-						
-						//리스트 td 누르면 view로 이동
-						$(".mailList").click(function() {
-									$("#ml_grp_sq").val('2');
+				
+						//리스트 td클릭하면 view로 이동
+						$(".mailList").click(
+								function() {
+									$("#ml_grp_sq").val('5');
 									$("#pg").val('${pg}');
 									$("#key").val('${key}');
 									$("#word").val('${word}');
-									$("#ml_sq").val($("#maillist_group").attr("article-seq"));
-									$("#commonform").attr("action",	"${root}/member/mail/view.tree").submit();
+									$("#ml_sq").val(
+											$("#maillist_group").attr(
+													"article-seq"));
+									$("#commonform").attr("action",
+											"${root}/member/mail/view.tree")
+											.submit();
 								});
 
 					});
@@ -337,7 +308,7 @@
 						<div class="card">
 							<div class="card-header">
 								<div class="card-title" style="margin-left: 15px">
-									보낸메일함 &nbsp;
+									새메일함 &nbsp;
 									<div style="margin-top: 100px; display: inline;">
 										<i id="bookmark" class="la la-heart-o" style="color: #FF6C6C;"></i>
 									</div>
@@ -351,8 +322,8 @@
 							<div class="col-lg-12">
 								<div class="col-lg-8" style="float: left;">
 									<button id="movetrashBtn" type="button"
-										class="btn btn-default btn-sm" data-toggle="modal"
-										><i class="la la-trash"></i>휴지통</button>
+										class="btn btn-default btn-sm" data-toggle="modal">
+										<i class="la la-trash"></i>휴지통</button>
 									&nbsp;
 									<button id="replyBtn" class="btn btn-default btn-sm">답장</button>
 									&nbsp;
@@ -368,18 +339,18 @@
 											<li><a class="dropdown-item" href="#">안읽음</a></li>
 										</ul>
 									</div>
-									<div class="btn-group">
+										<div class="btn-group">
 										<button class="btn btn-default btn-sm dropdown-toggle"
 											data-toggle="dropdown">이동</button>
 										<ul id="movedrop" class="dropdown-menu" role="menu"
 											aria-labelledby="dropdownMenu">
-											<li><a class="dropdown-item" href="#">
+											<li><a id="move" class="dropdown-item" href="#">
 											<input type="hidden" class="move" value="1">받은메일함</a></li>
-											<li><a class="dropdown-item" href="#">
+											<li><a id="move" class="dropdown-item" href="#">
 											<input type="hidden" class="move" value="2">보낸메일함</a></li>
-											<li><a class="dropdown-item" href="#">
+											<li><a id="move" class="dropdown-item" href="#">
 											<input type="hidden" class="move" value="4">새메일함1</a></li>
-											<li><a class="dropdown-item" href="#">
+											<li><a id="move2"class="dropdown-item" href="#">
 											<input type="hidden" class="move" value="5">새메일함2</a></li>
 										</ul>
 									</div>
@@ -413,17 +384,18 @@
 														</label>
 													</div>
 												</th>
-												<th width="30%">받는사람</th>
+												<th width="30%">보낸사람</th>
 												<th width="40%">제목</th>
-												<th width="20%">보낸날짜</th>
+												<th width="20%">받은날짜</th>
 											</tr>
 										</thead>
 										<tbody id="view">
+
 										</tbody>
 									</table>
 								</div>
 								<table>
-									<tr style="align:center;">
+									<tr align="center">
 										<td>
 											<ul class="pagination pg-default pg-small" id="paging" style="align:center"></ul>
 										</td>

@@ -236,29 +236,31 @@
 											.submit();
 								});
 						//메일 삭제
-						$("#deleteBtn").click(function() {
+						$("#deleteBtn").click(function(){
 							var seqlist = [];
 							$("input[name='seq']:checked").each(function() {
 								seqlist.push($(this).val());
+						
 							});
 
-							$.ajax({
-								type : "POST",
-								url : "${root}/member/mail/deletemail.tree",
-								data : {
-									myArray : seqlist,
-									"emp_sq" : "${userInfo.emp_sq}"
-								},
-								success : function(response) {
-
-								},
-								error : function(e) {
-									alert('Error: ' + e);
-								}
-							});
+						$.ajax({
+							type : "GET",
+							url : "${root}/member/mail/delete.tree",
+							data : {
+								myArray : seqlist,
+								"ml_grp_sq" : 3,
+								"emp_sq" : "${userInfo.emp_sq}"
+							},
+							success : function(response) {
+								$(location).attr("href", "${root}/member/mail/trashmailbox.tree");
+							},
+							error : function(e) {
+								alert("삭제할 메일을 선택해주세요!");
+							}
 						});
-
 					});
+
+				});
 	
 	
 </script>
@@ -365,21 +367,6 @@
 											</tr>
 										</thead>
 										<tbody id="view">
-<%-- 																						<c:forEach var="mail" items="${mailList}"> --%>
-<%-- 																							<tr id="maillist_group" article-seq="${mail.ml_sq}"> --%>
-<!-- 																								<td> -->
-<!-- 																									<div class="form-check"> -->
-<!-- 																										<label class="form-check-label">  -->
-<%-- 																										<input id="seq" name="seq" value="${mail.ml_sq}" class="check form-check-input task-select" type="checkbox"> --%>
-<!-- 																											<span class="form-check-sign" ></span> -->
-<!-- 																										</label> -->
-<!-- 																									</div> -->
-<!-- 																								</td> -->
-<%-- 																								<td class="mailList">${mail.ml_rcv_add}</td> --%>
-<%-- 																								<td class="mailList">${mail.ml_ttl}</td> --%>
-<%-- 																								<td class="mailList">${mail.ml_send_date}</td> --%>
-<!-- 																							</tr> -->
-<%-- 																						</c:forEach> --%>
 										</tbody>
 									</table>
 								</div>
@@ -393,7 +380,7 @@
 							</div>
 						</div>
 					</div>
-					<%@ include file="/assets/common/modal/delete.jsp"%>
+					
 					<%@ include file="/assets/common/modal/alldelete.jsp"%>
 					<%@ include file="/assets/common/modal/addmailbox.jsp"%>
 				</div>

@@ -7,7 +7,7 @@
 
 	<insert id="sendMail" parameterType="MailDto" >
 	insert into ML(ML_SQ, ML_GRP_SQ, ML_STT_SQ, EMP_SQ, ML_SND_ADD, ML_RCV_ADD, ML_TTL, ML_CTT, ML_SEND_DATE) 
-	values(#{ml_sq}, 2, 2, #{emp_sq}, #{ml_snd_add}, #{ml_rcv_add}, #{ml_ttl}, #{ml_ctt}, sysdate)
+	values(#{ml_sq}, #{ml_grp_sq}, 2, #{emp_sq}, #{ml_snd_add}, #{ml_rcv_add}, #{ml_ttl}, #{ml_ctt}, sysdate)
 	</insert>
 	
 	<select id="getNextSeq" resultType="int">
@@ -38,10 +38,9 @@
 	where ML_SQ = #{ml_sq}
 	</select>
 	
-	<update id="moveTrashMailbox" parameterType="int">
-	update ML set ML_GRP_SQ=3 
+	<update id="moveTrashMailbox" parameterType="map">
+	update ML set ML_GRP_SQ = #{ml_grp_sq}||#{emp_sq}
 	where ML_SQ = #{ml_sq}
-	and ML_GRP_SQ = #{ml_grp_sq}||#{emp_sq}
 	</update>
 	
 	<select id="delivery" parameterType="int" resultType="MailDto">
@@ -73,14 +72,14 @@
 	where ML_GRP_SQ = #{ml_grp_sq}
 	</select>
 	
-	<delete id="deleteAll" parameterType="int">
+	<delete id="deleteAll" parameterType="map">
 	delete from ML 
-	where ML_GRP_SQ = {ml_grp_sq}||#{emp_sq}
+	where ML_GRP_SQ = #{ml_grp_sq}||#{emp_sq}
 	</delete>
 	
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="map">
 	delete from ML 
-	where ML_GRP_SQ = {ml_grp_sq}||#{emp_sq} 
+	where ML_GRP_SQ = #{ml_grp_sq}||#{emp_sq} 
 	and ML_SQ = #{ml_sq}
 	</delete>
 	
@@ -108,6 +107,11 @@
 	
 	<update id="noreadchange" parameterType="int">
 	update ML set ML_STT_SQ = 2
+	where ML_SQ = #{ml_sq}
+	</update>
+	
+	<update id="moveMailbox" parameterType="map">
+	update ML set ML_GRP_SQ = #{ml_grp_sq}||#{emp_sq}
 	where ML_SQ = #{ml_sq}
 	</update>
 </mapper>

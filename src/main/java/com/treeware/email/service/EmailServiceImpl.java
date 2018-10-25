@@ -42,8 +42,10 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public int moveTrashMailbox(int ml_sq) {
-		return sqlSession.getMapper(EmailDao.class).moveTrashMailbox(ml_sq);
+	public int moveTrashMailbox(Map<String, String> map) {
+	
+		
+		return sqlSession.getMapper(EmailDao.class).moveTrashMailbox(map);
 	}
 
 	@Override
@@ -74,8 +76,8 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public int delete(int ml_sq) {
-		return sqlSession.getMapper(EmailDao.class).delete(ml_sq);
+	public int delete(Map<String,String> map) {
+		return sqlSession.getMapper(EmailDao.class).delete(map);
 	}
 
 	@Override
@@ -91,6 +93,11 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	public int noreadchange(int ml_sq) {
 		return sqlSession.getMapper(EmailDao.class).noreadchange(ml_sq);
+	}
+
+	@Override
+	public int moveMailbox(Map<String, String> map) {
+		return sqlSession.getMapper(EmailDao.class).moveMailbox(map);
 	}
 
 

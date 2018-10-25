@@ -4,7 +4,6 @@
 <html>
 <head>
 <%@ include file="/assets/common/import.jsp"%>
-<link rel="stylesheet" href="${root}/assets/css/search.css">
 <%-- <c:set var="emp_sq" value="${userInfo.emp_sq}"/> --%>
 <script type="text/javascript">
 	// 	리스트 ajax 처리
@@ -117,6 +116,7 @@
 				$(this).attr('class', src);
 								});
 
+							//읽음 안읽음 처리
 						$("#readdrop li a").click(function() {
 
 							$("#readbtn:first-child").text($(this).text());
@@ -128,14 +128,36 @@
 							}
 						});
 
+						
+						//메일함 이동
 						$("#movedrop li a").click(function() {
-							$("#readbtn:first-child").text($(this).text());
-							$("#readbtn:first-child").val($(this).text());
-							if ($(this).text() == "휴지통") {
+							alert($(this).val());
+							var seqlist = [];
+
+								$("input[name='seq']:checked").each(function() {
+									seqlist.push($(this).val());
+								});
+
+							$.ajax({
+								type : "POST",
+								url : "${root}/member/mail/movemailbox.tree",
+								data : {
+									myArray : seqlist,
+									"emp_sq" : "${userInfo.emp_sq}",
+									"ml_grp_sq" : $(".move").val()
+									
+								},
+								success : function(response) {
+								$(location).attr("href", "${root}/member/mail/sendmailbox.tree");
+									
+								},
+								error : function(e) {
 							
-							}
+								}
+							});
 						});
 
+						//휴지통으로 이동
 						$("#movetrashBtn").click(function() {
 							var seqlist = [];
 							$("input[name='seq']:checked").each(function() {
@@ -147,11 +169,12 @@
 								url : "${root}/member/mail/movetrashmail.tree",
 								data : {
 									myArray : seqlist,
-									"emp_sq" : "${userInfo.emp_sq}"
+									"emp_sq" : "${userInfo.emp_sq}",
+									"ml_grp_sq" : 3
 									
 								},
 								success : function(response) {
-
+									$("#movetrashBtn").attr("data-target","#movetrashmodal");
 								},
 								error : function(e) {
 									alert('Error: ' + e);
@@ -204,7 +227,7 @@
 							}
 						}
 						
-						
+						// 전달
 						$("#deliveryBtn")
 								.click(
 										function() {
@@ -214,17 +237,38 @@
 											$("#key").val('${key}');
 											$("#word").val('${word}');
 											
-											$("#ml_sq").val($("input[name='seq']:checked").val());
-// 											다중처리하기
+											if($("input[name='seq']:checked").length ==1){
+												$("#ml_sq").val($("input[name='seq']:checked").val());
+											}
+											else{
+												alert("전달은 최대 1개의 메일만 가능합니다.");
+												return;
+											}
+											
 											$("#commonform").attr("action", "${root}/member/mail/delivery.tree").submit();
 
 										});
-						// 	});
+						
+						
+						
+						//답장
+						$("#replyBtn")
+								.click(
+										function() {
+											$("#ml_grp_sq").val('1');
+											if($("input[name='seq']:checked").length ==1){
+												$("#ml_sq").val($("input[name='seq']:checked").val());
+											}
+											else{
+												alert("답장은 최대 1명에게만 가능합니다.");
+												return;
+											}
+											
+											$("#commonform").attr("action", "${root}/member/mail/reply.tree").submit();
 
-						// 		$("#deletemodal").modal({
-						// 			remote : '${root}/menu/mail/deleteok.jsp'
-						// 		});		
-
+										});
+				
+						//리스트 td클릭하면 view로 이동
 						$(".mailList").click(
 								function() {
 									$("#ml_grp_sq").val('1');
@@ -238,22 +282,6 @@
 											"${root}/member/mail/view.tree")
 											.submit();
 								});
-
-// 						$("#searchBtn")
-// 								.click(
-// 										function() {
-// 											$("#ml_grp_sq").val('2');
-// 											$("#pg").val('${pg}');
-// 											$("#key").val($("#skey").val());
-// 											$("#word").val($("#sword").val());
-// 											$("#ml_sq").val(
-// 													$("#maillist_group").attr(
-// 															"article-seq"));
-// 											$("#commonform")
-// 													.attr("action",
-// 															"${root}/member/mail/sendmailbox.tree")
-// 													.submit();
-// 										});
 
 					});
 </script>
@@ -297,10 +325,10 @@
 							<div class="col-lg-12">
 								<div class="col-lg-8" style="float: left;">
 									<button id="movetrashBtn" type="button"
-										class="btn btn-default btn-sm" data-toggle="modal"
-										data-target="#dropmodal">휴지통</button>
+										class="btn btn-default btn-sm" data-toggle="modal">
+										<i class="la la-trash"></i>휴지통</button>
 									&nbsp;
-									<button class="btn btn-default btn-sm">답장</button>
+									<button id="replyBtn" class="btn btn-default btn-sm">답장</button>
 									&nbsp;
 									<button id="deliveryBtn" class="btn btn-default btn-sm">전달</button>
 									&nbsp;
@@ -319,8 +347,14 @@
 											data-toggle="dropdown">이동</button>
 										<ul id="movedrop" class="dropdown-menu" role="menu"
 											aria-labelledby="dropdownMenu">
-											<li><a class="dropdown-item" href="#">새메일함1</a></li>
-											<li><a class="dropdown-item" href="#">새메일함2</a></li>
+											<li><a class="dropdown-item" >
+											<input type="hidden" class="move" value="1">받은메일함</a></li>
+											<li><a  class="dropdown-item" >
+											<input type="hidden" class="move" value="2">보낸메일함</a></li>
+											<li><a  class="dropdown-item">
+											<input type="hidden" class="move" value="4">새메일함1</a></li>
+											<li><a class="dropdown-item" >
+											<input type="hidden" class="move" value="5">새메일함2</a></li>
 										</ul>
 									</div>
 								</div>
@@ -359,21 +393,7 @@
 											</tr>
 										</thead>
 										<tbody id="view">
-<%-- 																						<c:forEach var="mail" items="${mailList}"> --%>
-<%-- 																							<tr id="maillist_group" article-seq="${mail.ml_sq}"> --%>
-<!-- 																								<td> -->
-<!-- 																									<div class="form-check"> -->
-<!-- 																										<label class="form-check-label">  -->
-<%-- 																										<input id="seq" name="seq" value="${mail.ml_sq}" class="check form-check-input task-select" type="checkbox"> --%>
-<!-- 																											<span class="form-check-sign" ></span> -->
-<!-- 																										</label> -->
-<!-- 																									</div> -->
-<!-- 																								</td> -->
-<%-- 																								<td class="mailList">${mail.ml_rcv_add}</td> --%>
-<%-- 																								<td class="mailList">${mail.ml_ttl}</td> --%>
-<%-- 																								<td class="mailList">${mail.ml_send_date}</td> --%>
-<!-- 																							</tr> -->
-<%-- 																						</c:forEach> --%>
+
 										</tbody>
 									</table>
 								</div>
@@ -387,8 +407,7 @@
 							</div>
 						</div>
 					</div>
-					<%@ include file="/assets/common/modal/delete.jsp"%>
-					<%@ include file="/assets/common/modal/alldelete.jsp"%>
+					<%@ include file="/assets/common/modal/movetrash.jsp"%>
 					<%@ include file="/assets/common/modal/addmailbox.jsp"%>
 				</div>
 			</div>

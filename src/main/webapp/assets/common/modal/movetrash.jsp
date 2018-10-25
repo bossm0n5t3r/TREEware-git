@@ -5,12 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#closeBtn").click(function(){
+		$(location).attr("href", "${root}/member/mail/sendmailbox.tree");
+	});
+});
+</script>
 
 </head>
 <body>
 	<!-- 삭제 Modal -->
-  <div class="modal fade" id="dropmodal">
+  <div class="modal fade" id="movetrashmodal">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content">
       
@@ -23,7 +29,7 @@
         <!-- Modal body -->
         <div class="modal-body" style="text-align:center;">
         <br>
-          	선택한 메일을 삭제했습니다. <br><br>
+          	메일을 휴지통으로 이동했습니다. <br><br>
         </div>
         
         <!-- Modal footer -->
