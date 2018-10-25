@@ -68,7 +68,7 @@
 												<p class="card-category">
 													<span class="month"></span>월 결재문건
 												</p>
-												<h4 class="card-title">40건</h4>
+												<h4 class="card-title"><span id="howManyDocs"></span>건</h4>
 											</div>
 										</div>
 									</div>
@@ -249,6 +249,8 @@
 		howLong();
 		tid = setInterval('msg_time()', 1000);
 		getMonthlySchedule();
+		
+		$("#howManyDocs").text(${formList.size()});
 	})
 
 	function howLong() {

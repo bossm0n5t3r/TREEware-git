@@ -1,5 +1,9 @@
 package com.treeware.admin.home.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.admin.statics.service.AdminStaticsService;
+import com.treeware.form.model.FormDto;
+import com.treeware.form.service.FormService;
 import com.treeware.util.TreewareConstance;
 
 @Controller
@@ -17,10 +24,19 @@ public class AdminHomeController {
 	@Autowired
 	private AdminStaticsService adminStaticsService;
 	
+	@Autowired
+	private FormService formService;
+	
 	// 관리자 메인 페이지
 	@RequestMapping("/main.tree")
-	public ModelAndView main() {
+	public ModelAndView main(HttpSession session) {
 		ModelAndView mav = new ModelAndView("admin/home/main");
+		
+		// 결재 문서 건 수
+		//TODO emp_sq를 많이 쓰므로 별도로 처리 필요. 굳이 session 까지 가야하나...
+		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
+		List<FormDto> formDto = formService.receiveList(employeeDto.getEmp_sq());
+		mav.addObject("formList", formDto);
 		
 		// 월별 휴가인원 통계
 		JSONObject vacation = new JSONObject();
