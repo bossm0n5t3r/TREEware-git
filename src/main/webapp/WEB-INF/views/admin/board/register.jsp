@@ -8,7 +8,7 @@
 	<%@ include file="/assets/common/import.jsp" %>
 <script>
 $(document).ready(function(){
-	document.getElementById("menu1").setAttribute("class", "nav-item");
+// 	document.getElementById("menu1").setAttribute("class", "nav-item");
 	document.getElementById("menu2").setAttribute("class", "nav-item active");
 	
 	$('#registerBtn').click(function(){

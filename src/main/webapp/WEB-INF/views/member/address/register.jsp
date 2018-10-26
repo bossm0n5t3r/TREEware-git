@@ -154,7 +154,7 @@ function makeAddrGrpList(data) {
 							</div>
 						</form>
 							<div class="card-action" style="text-align:center">
-								<button class="btn btn-default" onclick="javascript:submit()" style="width:120px;padding:10px;margin:5px">입력추가</button>
+<!-- 								<button class="btn btn-default" onclick="javascript:submit()" style="width:120px;padding:10px;margin:5px">입력추가</button> -->
 								<button class="btn btn-success" id="registerBtn" style="width:120px;padding:10px;margin:5px">전송하기</button>
 								<button class="btn btn-danger" onclick="javascript:goback()" style="width:120px;padding:10px;margin:5px">작성취소</button>
 							</div>
