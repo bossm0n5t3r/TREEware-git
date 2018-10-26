@@ -48,7 +48,7 @@
 <!-- 			</a> -->
 <!-- 		</li> -->
 		<li class="nav-item">
-			<a href="${root}/admin/board/main.tree">
+			<a href="${root}/admin/board/register.tree">
 				<i class="la la-edit"></i>
 				<p>게시판관리</p>
 <!-- 				<span class="badge badge-danger">2</span> -->
