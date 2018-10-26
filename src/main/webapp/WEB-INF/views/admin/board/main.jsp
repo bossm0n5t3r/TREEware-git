@@ -5,6 +5,12 @@
 <head>
 <%@ include file="/assets/common/import.jsp" %>
 <%@ include file="/assets/common/admin/board/import.jsp" %>
+<script type="text/javascript">
+$(document).ready(function(){
+	document.getElementById("menu1").setAttribute("class", "nav-item active");
+	document.getElementById("menu2").setAttribute("class", "nav-item");
+})
+</script>
 </head>
 <body>
 	<div class="wrapper">
