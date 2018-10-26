@@ -116,9 +116,24 @@ public class BoardController {
 	public ModelAndView boardview(BoardDto boardDto) {
 		ModelAndView mav = new ModelAndView();
 		BoardDto boardView = boardService.boardView(boardDto.getBrd_sq());
+		
+//		List<BoardDto> list = new ArrayList<BoardDto>();
+//		int num=boardDto.getBrd_sq();
+//		int cnt=0;
+//		for(int i=0 ; i<5 ; i++) {
+//			if(boardService.boardView(num)!=null) {
+//				list.add(boardService.boardView(num));
+//				cnt++;
+//			}else {
+//				num--;
+//			}
+//		}
+//		mav.addObject("boardList", list);
+//		mav.addObject("listCnt", cnt);
 		mav.addObject("boardView", boardView);
 		mav.setViewName("member/board/boardview");
 		return mav;
+		
 	}
 	
 	//글검색

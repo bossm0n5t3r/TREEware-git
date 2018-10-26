@@ -18,6 +18,11 @@ function boardClick(data){
 	location.href = '${root}/member/board/boardview.tree?brd_sq='+$(data).attr('id');
 }
 </script>
+<style type="text/css">
+.listcursor:hover{
+	cursor:pointer;
+}
+</style>
 </head>
 <body>
 	<div class="wrapper">
@@ -86,7 +91,7 @@ function boardClick(data){
 														<th width="8%">북마크</th>
 													</tr>
 												</thead>
-												<tbody id="view">
+												<tbody id="view" class="listcursor">
 <%-- 												<c:forEach var="board" items="${board}"> --%>
 <!-- 													<tr> -->
 <!-- 														<td> -->
