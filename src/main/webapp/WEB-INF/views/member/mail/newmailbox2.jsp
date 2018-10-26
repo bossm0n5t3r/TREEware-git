@@ -74,13 +74,9 @@
 		for (var i = ((currentPage - 1) * 10); i < Math.min(pageCount,
 				totalData); i++) {
 
-			$('#view').append('<tr id="maillist_group" article-seq="'+ml_sq[i]+'">');
-			$('#view').append('<td><div class="form-check"><label class="form-check-label"><input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox"><span class="form-check-sign" ></span>');
-			$('#view').append('</label></div></td>');
-			$('#view').append('<td class="mailList">' + ml_snd_add[i] + '</td>');
-			$('#view').append('<td class="mailList">' + ml_ttl[i] + '</td>');
-			$('#view').append('<td class="mailList">' + ml_send_date[i] + '</td>');
-			$('#view').append('</tr>');
+			//나눠서 append하면 정렬이 안되서 한번에 붙여 놓음
+			$('#view').append('<tr id="maillist_group" article-seq="'+ml_sq[i]+'"><td style="vertical-align:center;"><div class="form-check"><label class="form-check-label"><input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox"><span class="form-check-sign" ></span></label></div></td><td class="mailList" style="vertical-align:center;">' + ml_rcv_add[i] + '</td><td class="mailList" id="title" style="vertical-align:center;">' + ml_ttl[i] + '</td><td class="mailList">' + ml_send_date[i] + '</td></tr>');
+		
 		}
 	}
 	//페이지번호출력
@@ -170,7 +166,7 @@
 									
 								},
 								success : function(response) {
-									$("#movetrashBtn").attr("data-target","#movetrashmodal");
+									$(location).attr("href", "${root}/member/mail/newmailbox1.tree");
 								},
 								error : function(e) {
 									alert('Error: ' + e);
@@ -307,13 +303,12 @@
 						<div class="card">
 							<div class="card-header">
 								<div class="card-title" style="margin-left: 15px">
-									새메일함 &nbsp;
+									새메일함2 &nbsp;
 									<div style="margin-top: 100px; display: inline;">
 										<i id="bookmark" class="la la-heart-o" style="color: #FF6C6C;"></i>
 									</div>
 									<font size="2"> &nbsp;전체메일
-										&nbsp;<span id="totalMail"></span> &nbsp;/ &nbsp;안읽은 메일
-										&nbsp;0</font>
+										&nbsp;<span id="totalMail"></span></font>
 								</div>
 							</div>
 							<br>
@@ -392,13 +387,9 @@
 										</tbody>
 									</table>
 								</div>
-								<table>
-									<tr align="center">
-										<td>
-											<ul class="pagination pg-default pg-small" id="paging" style="align:center"></ul>
-										</td>
-									</tr>
-								</table>
+								<div class="col-md-12" style="width:300px; margin-left:auto; margin-right:auto;"> 
+											<ul class="pagination pg-default pg-small" id="paging" style="align:center"></ul>							
+								</div>
 							</div>
 						</div>
 					</div>

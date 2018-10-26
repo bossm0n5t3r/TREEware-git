@@ -113,13 +113,13 @@
 			<hr>
 			<li class="nav-item">
 				<a href="${root}/member/mail/newmailbox1.tree">
-					<i class="la la-trash"></i>새메일함1
+					<i class="la la-files-o"></i>새메일함1
 				</a>
 			</li>
 			
 			<li class="nav-item">
 				<a href="${root}/member/mail/newmailbox2.tree">
-					<i class="la la-trash"></i>새메일함2
+					<i class="la la-files-o"></i>새메일함2
 				</a>
 			</li>
 			

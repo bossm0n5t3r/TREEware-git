@@ -75,13 +75,9 @@
 		for (var i = ((currentPage - 1) * 10); i < Math.min(pageCount,
 				totalData); i++) {
 
-			$('#view').append('<tr id="maillist_group" article-seq="'+ml_sq[i]+'">');
-			$('#view').append('<td><div class="form-check"><label class="form-check-label"><input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox"><span class="form-check-sign" ></span>');
-			$('#view').append('</label></div></td>');
-			$('#view').append('<td class="mailList">' + ml_snd_add[i] + '</td>');
-			$('#view').append('<td class="mailList">' + ml_ttl[i] + '</td>');
-			$('#view').append('<td class="mailList">' + ml_send_date[i] + '</td>');
-			$('#view').append('</tr>');
+			//나눠서 append하면 정렬이 안되서 한번에 붙여 놓음
+			$('#view').append('<tr id="maillist_group" article-seq="'+ml_sq[i]+'"><td style="vertical-align:center;"><div class="form-check"><label class="form-check-label"><input id="seq" name="seq" value="'+ml_sq[i]+'"class="check form-check-input task-select" type="checkbox"><span class="form-check-sign" ></span></label></div></td><td class="mailList" style="vertical-align:center;">' + ml_rcv_add[i] + '</td><td class="mailList" id="title" style="vertical-align:center;">' + ml_ttl[i] + '</td><td class="mailList">' + ml_send_date[i] + '</td></tr>');
+		
 		}
 	}
 	//페이지번호출력
@@ -127,14 +123,33 @@
 								});
 							}
 						});
-						//메일 이동 버튼 처리
+
+						//메일함 이동
 						$("#movedrop li a").click(function() {
-							$("#readbtn:first-child").text($(this).text());
-							$("#readbtn:first-child").val($(this).text());
-							if ($(this).text() == "휴지통") {
+							var seqlist = [];
+								$("input[name='seq']:checked").each(function() {
+									seqlist.push($(this).val());
+								});
+
+							$.ajax({
+								type : "POST",
+								url : "${root}/member/mail/movemailbox.tree",
+								data : {
+									myArray : seqlist,
+									"emp_sq" : "${userInfo.emp_sq}",
+									"ml_grp_sq" : $(this).attr("value")
+									
+								},
+								success : function(response) {
+								$(location).attr("href", "${root}/member/mail/sendmailbox.tree");
+									
+								},
+								error : function(e) {
 							
-							}
+								}
+							});
 						});
+
 						//휴지통으로 이동
 						$("#movetrashBtn").click(function() {
 							var seqlist = [];
@@ -150,6 +165,7 @@
 									"emp_sq" : "${userInfo.emp_sq}"
 								},
 								success : function(response) {
+									$(location).attr("href", "${root}/member/mail/newmailbox1.tree");
 
 								},
 								error : function(e) {
@@ -296,8 +312,8 @@
 										<i id="bookmark" class="la la-heart-o" style="color: #FF6C6C;"></i>
 									</div>
 									<font size="2"> &nbsp;전체메일
-										&nbsp;<span id="totalMail"></span> &nbsp;/ &nbsp;안읽은 메일
-										&nbsp;0</font>
+										&nbsp;<span id="totalMail"></span>
+										</font>
 								</div>
 							</div>
 							<br>
@@ -322,13 +338,19 @@
 											<li><a class="dropdown-item" href="#">안읽음</a></li>
 										</ul>
 									</div>
+									
 									<div class="btn-group">
 										<button class="btn btn-default btn-sm dropdown-toggle"
 											data-toggle="dropdown">이동</button>
-										<ul class="dropdown-menu" role="menu"
+										<ul id="movedrop" class="dropdown-menu" role="menu"
 											aria-labelledby="dropdownMenu">
-											<li><a class="dropdown-item" href="#">새메일함1</a></li>
-											<li><a class="dropdown-item" href="#">새메일함2</a></li>
+											<li><a role="item"class="dropdown-item" href="#" value="1">받은메일함</a></li>
+											<li><a class="dropdown-item" href="#" value="2">
+											보낸메일함</a></li>
+											<li><a class="dropdown-item" href="#" value="4">
+											새메일함1</a></li>
+											<li><a class="dropdown-item" href="#" value="5">
+											새메일함2</a></li>
 										</ul>
 									</div>
 								</div>
@@ -370,13 +392,9 @@
 										</tbody>
 									</table>
 								</div>
-								<table>
-									<tr align="center">
-										<td>
-											<ul class="pagination pg-default pg-small" id="paging" style="align:center"></ul>
-										</td>
-									</tr>
-								</table>
+								<div class="col-md-12" style="width:300px; margin-left:auto; margin-right:auto;"> 
+											<ul class="pagination pg-default pg-small" id="paging" style="align:center"></ul>							
+								</div>
 							</div>
 						</div>
 					</div>

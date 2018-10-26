@@ -29,7 +29,7 @@
 					</when>
 				</choose>
 			</if>
-			order by ML_SQ desc
+			order by ML_SEND_DATE desc
 	</select>
 	
 	<select id="viewMail" parameterType="int" resultType="MailDto">
@@ -97,7 +97,7 @@
 					</when>
 				</choose>
 			</if>
-			order by ML_SQ desc
+			order by ML_SEND_DATE desc
 	</select>
 	
 	<update id="readchange" parameterType="int">

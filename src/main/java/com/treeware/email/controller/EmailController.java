@@ -128,6 +128,14 @@ public class EmailController {
 		return mav;
 	}
 
+
+	//목록으로
+	@RequestMapping("/backlist.tree")
+	public ModelAndView backlist() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/mail/sendmailbox");
+		return mav;
+	}
 //	@RequestMapping("/sendmailbox.tree")
 //	@ResponseBody
 //	public String sendMailBox(@RequestParam Map<String, String> map, HttpServletRequest request) {
@@ -178,6 +186,7 @@ public class EmailController {
 	//메일 내용 보여주기
 	@RequestMapping("/view.tree")
 	public ModelAndView view(@RequestParam int ml_sq) {
+		System.out.println(ml_sq);
 		MailDto mailDto = emailService.viewMail(ml_sq);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("mail", mailDto);
