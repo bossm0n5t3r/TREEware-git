@@ -116,7 +116,7 @@
 															</div>
 															<div style="width:25%" class="box-group">
 																<select id="rnk_sq" name="rnk_sq" class="form-control" style="font-size:100%">
-																	<option value='0' disabled>직위선택</option>
+																	<option value='0' selected="selected" disabled>직위선택</option>
 																	<option value='1'>사원</option>
 																	<option value='2'>대리</option>
 																	<option value='3'>과장</option>
@@ -127,7 +127,7 @@
 															</div>
 															<div style="width:25%" class="box-group">
 																<select id="pst_sq" name="pst_sq" class="form-control" style="font-size:100%">
-																	<option value='0' disabled>직책선택</option>
+																	<option value='0' selected="selected" disabled>직책선택</option>
 																	<option value='1'>팀원</option>
 																	<option value='2'>파트장</option>
 																	<option value='3'>팀장</option>
@@ -197,8 +197,8 @@
 							</div>
 							<!-- card end -->
 							<div class="card-action" style="text-align:center">
-								<button class="btn btn-default" id="addclick" style="width:120px;padding:10px;margin:5px">입력추가</button>
-								<button class="btn btn-default" onclick="" style="width:120px;padding:10px;margin:5px">선택삭제</button>
+<!-- 								<button class="btn btn-default" id="addclick" style="width:120px;padding:10px;margin:5px">입력추가</button> -->
+<!-- 								<button class="btn btn-default" onclick="" style="width:120px;padding:10px;margin:5px">선택삭제</button> -->
 								<button class="btn btn-success" onclick="javascript:submit()" style="width:120px;padding:10px;margin:5px">등록하기</button>
 								<button class="btn btn-danger" onclick="javascript:goback()" style="width:120px;padding:10px;margin:5px">작성취소</button>
 							</div>
@@ -218,37 +218,39 @@ function pad(n, width) {
 	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
 	}
 $(document).ready(function (){
-		var dt = new Date();
-		var year = dt.getFullYear();
-		var empsq;
-		var empid;
-		var cnt = parseInt('${cnt}') + 1;
-		cnt = pad(cnt, 3);
-		empsq = year + cnt;
-		empid = "TREE"+ year + cnt;
-		document.getElementById("emp_sq").value = empsq;
-		document.getElementById("emp_id").value = empid;
-		document.getElementById("emp_pw").value = "1234";
-		
-		var upload = document.getElementById('file'),
-	    	photoimg = document.getElementById('photoimg');
-
-		photoimg.src = "/treeware/assets/img/photo.jpg";
-	 
-		upload.onchange = function (e) {
-		  e.preventDefault();
-		  var file = upload.files[0],
-		      reader = new FileReader();
-		  reader.onload = function (event) {  
+	setRoot("${root}");
+	
+	var dt = new Date();
+	var year = dt.getFullYear();
+	var empsq;
+	var empid;
+	var cnt = parseInt('${cnt}') + 1;
+	cnt = pad(cnt, 3);
+	empsq = year + cnt;
+	empid = "TREE"+ year + cnt;
+	document.getElementById("emp_sq").value = empsq;
+	document.getElementById("emp_id").value = empid;
+	document.getElementById("emp_pw").value = "1234";
+	
+	var upload = document.getElementById('file'),
+	   	photoimg = document.getElementById('photoimg');
+	
+	photoimg.src = "/treeware/assets/img/photo.jpg";
+	
+	upload.onchange = function (e) {
+		e.preventDefault();
+		var file = upload.files[0],
+		reader = new FileReader();
+		reader.onload = function (event) {  
 			var img = new Image(); 
 		    img.src = event.target.result;
-		    if (img.width > 560) {
-		      img.width = 560;
-		    }
-		    photoimg.src = img.src;
-		  };
-		  reader.readAsDataURL(file);
-	  return false;
+			if (img.width > 560) {
+				img.width = 560;
+			}
+			photoimg.src = img.src;
+		};
+		reader.readAsDataURL(file);
+		return false;
 	};
 });
 </script>

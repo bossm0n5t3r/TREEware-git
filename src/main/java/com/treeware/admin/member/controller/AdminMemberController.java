@@ -59,7 +59,8 @@ public class AdminMemberController {
 	
 	//사원등록
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
-	public String register(EmployeePicDto employeePicDto, @RequestParam("file") MultipartFile multipartFile) {
+	public ModelAndView register(EmployeePicDto employeePicDto, @RequestParam("file") MultipartFile multipartFile) {
+		ModelAndView mav = new ModelAndView("admin/account/main");
 		if (multipartFile != null && !multipartFile.isEmpty()) {
 	        String ofile = multipartFile.getOriginalFilename();
 	        
@@ -90,7 +91,18 @@ public class AdminMemberController {
 		}
 
 		adminMemberService.register(employeePicDto);
-		return "admin/account/main";
+		
+		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
+		List<DepartmentDto> list2 = new ArrayList<DepartmentDto>();
+		List<RankDto> list3 = new ArrayList<RankDto>();
+		list = adminMemberService.getMemberList();
+		list2 = adminMemberService.getDepartmentList();
+		list3 = adminMemberService.getRankList();
+		mav.addObject("employeeInfo", list);
+		mav.addObject("departmentInfo", list2);
+		mav.addObject("rankInfo", list3);
+		mav.addObject("page", list.size());
+		return mav;
 	}
 	
 	@RequestMapping("/edit.tree")
