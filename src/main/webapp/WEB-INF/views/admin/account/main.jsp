@@ -86,13 +86,13 @@
 															</label>
 														</div>
 													</th>
-													<th width="10%">이름</th>
-													<th width="15%">회사전화</th>
-													<th width="20%">이메일</th>
-													<th width="10%">부서</th>
-													<th width="10%">직위</th>
-													<th width="15%">휴대전화</th>
-													<th width="5%">수정</th>
+													<th width="10%" style="text-align:center">이름</th>
+													<th width="15%" style="text-align:center">회사전화</th>
+													<th width="20%" style="text-align:center">이메일</th>
+													<th width="10%" style="text-align:center">부서</th>
+													<th width="10%" style="text-align:center">직위</th>
+													<th width="15%" style="text-align:center">휴대전화</th>
+													<th width="5%" style="text-align:center">수정</th>
 												</tr>
 											</thead>
 											<tbody id="view">
@@ -195,14 +195,14 @@ $(document).ready(function(){
 		$('#view').empty();
 		for(var i=((currentPage-1)*10);i<Math.min(pageCount,totalData);i++){
 			$('#view').append('<tr>');
-			$('#view').append('<td><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
-			$('#view').append('<td>'+emp_nm[i]+'</td>');
-			$('#view').append('<td>'+emp_bs_tel1[i]+'-'+emp_bs_tel2[i]+'-'+emp_bs_tel3[i]+'</td>');
-			$('#view').append('<td>'+emp_ml_id[i]+emp_ml_addr[i]+'</td>');
-			$('#view').append('<td>'+dpt_nm[i]+'</td>');
-			$('#view').append('<td>'+rnk_nm[i]+'</td>');
-			$('#view').append('<td>'+emp_tel1[i]+'-'+emp_tel2[i]+'-'+emp_tel3[i]+'</td>');
-			$('#view').append('<td><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
+			$('#view').append('<td style="text-align:center"><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
+			$('#view').append('<td style="text-align:center">'+emp_nm[i]+'</td>');
+			$('#view').append('<td style="text-align:center">'+emp_bs_tel1[i]+'-'+emp_bs_tel2[i]+'-'+emp_bs_tel3[i]+'</td>');
+			$('#view').append('<td style="text-align:center">'+emp_ml_id[i]+emp_ml_addr[i]+'</td>');
+			$('#view').append('<td style="text-align:center">'+dpt_nm[i]+'</td>');
+			$('#view').append('<td style="text-align:center">'+rnk_nm[i]+'</td>');
+			$('#view').append('<td style="text-align:center">'+emp_tel1[i]+'-'+emp_tel2[i]+'-'+emp_tel3[i]+'</td>');
+			$('#view').append('<td style="text-align:center"><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
 			$('#view').append('</tr>');
 		}
 	}
@@ -223,14 +223,14 @@ function viewlist(){
 	$('#view').empty();
 	for(var i=((currentPage-1)*10);i<Math.min(pageCount,totalData);i++){
 		$('#view').append('<tr>');
-		$('#view').append('<td><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
-		$('#view').append('<td>'+emp_nm[i]+'</td>');
-		$('#view').append('<td>'+emp_bs_tel1[i]+'-'+emp_bs_tel2[i]+'-'+emp_bs_tel3[i]+'</td>');
-		$('#view').append('<td>'+emp_ml_id[i]+emp_ml_addr[i]+'</td>');
-		$('#view').append('<td>'+dpt_nm[i]+'</td>');
-		$('#view').append('<td>'+rnk_nm[i]+'</td>');
-		$('#view').append('<td>'+emp_tel1[i]+'-'+emp_tel2[i]+'-'+emp_tel3[i]+'</td>');
-		$('#view').append('<td><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
+		$('#view').append('<td style="text-align:center"><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
+		$('#view').append('<td style="text-align:center">'+emp_nm[i]+'</td>');
+		$('#view').append('<td style="text-align:center">'+emp_bs_tel1[i]+'-'+emp_bs_tel2[i]+'-'+emp_bs_tel3[i]+'</td>');
+		$('#view').append('<td style="text-align:center">'+emp_ml_id[i]+emp_ml_addr[i]+'</td>');
+		$('#view').append('<td style="text-align:center">'+dpt_nm[i]+'</td>');
+		$('#view').append('<td style="text-align:center">'+rnk_nm[i]+'</td>');
+		$('#view').append('<td style="text-align:center">'+emp_tel1[i]+'-'+emp_tel2[i]+'-'+emp_tel3[i]+'</td>');
+		$('#view').append('<td style="text-align:center"><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
 		$('#view').append('</tr>');
 	}
 }
@@ -278,14 +278,14 @@ function memberSearch(){
 	$('#view').empty();
 	for(var i=((currentPage-1)*10);i<Math.min(pageCount,totalData);i++){
 		$('#view').append('<tr>');
-		$('#view').append('<td><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
-		$('#view').append('<td>'+employee[i].emp_nm+'</td>');
-		$('#view').append('<td>'+employee[i].emp_bs_tel1+'-'+employee[i].emp_bs_tel2+'-'+employee[i].emp_bs_tel3+'</td>');
-		$('#view').append('<td>'+employee[i].emp_ml_id+employee[i].emp_ml_addr+'</td>');
-		$('#view').append('<td>'+change_dpt(employee[i].dpt_sq)+'</td>');
-		$('#view').append('<td>'+change_rnk(employee[i].rnk_sq)+'</td>');
-		$('#view').append('<td>'+employee[i].emp_tel1+'-'+employee[i].emp_tel2+'-'+employee[i].emp_tel3+'</td>');
-		$('#view').append('<td><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
+		$('#view').append('<td style="text-align:center"><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
+		$('#view').append('<td style="text-align:center">'+employee[i].emp_nm+'</td>');
+		$('#view').append('<td style="text-align:center">'+employee[i].emp_bs_tel1+'-'+employee[i].emp_bs_tel2+'-'+employee[i].emp_bs_tel3+'</td>');
+		$('#view').append('<td style="text-align:center">'+employee[i].emp_ml_id+employee[i].emp_ml_addr+'</td>');
+		$('#view').append('<td style="text-align:center">'+change_dpt(employee[i].dpt_sq)+'</td>');
+		$('#view').append('<td style="text-align:center">'+change_rnk(employee[i].rnk_sq)+'</td>');
+		$('#view').append('<td style="text-align:center">'+employee[i].emp_tel1+'-'+employee[i].emp_tel2+'-'+employee[i].emp_tel3+'</td>');
+		$('#view').append('<td style="text-align:center"><div class="form-button-action"><button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary"><i class="la la-edit"></i></button></div></td>');
 		$('#view').append('</tr>');
 	}
 	viewpaging();
