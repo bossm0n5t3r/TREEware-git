@@ -199,7 +199,7 @@
 									
 								},
 								success : function(response) {
-									$(location).attr("href", "${root}/member/mail/newmailbox1.tree");
+									$(location).attr("href", "${root}/member/mail/sendmailbox.tree");
 
 								},
 								error : function(e) {
