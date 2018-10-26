@@ -30,8 +30,8 @@
 					<i class="la la-envelope"></i>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="${root}/member/mail/main.tree">전체메일함</a>
-					<div class="dropdown-divider"></div>
+<%-- 					<a class="dropdown-item" href="${root}/member/mail/main.tree">전체메일함</a> --%>
+<!-- 					<div class="dropdown-divider"></div> -->
 					<a class="dropdown-item" href="${root}/member/mail/write.tree">메일쓰기</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="${root}/member/mail/receivemailbox.tree">받은메일함</a>
