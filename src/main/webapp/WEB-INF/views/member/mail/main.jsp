@@ -291,11 +291,11 @@
 	<c:set var="key" value="${param.key}" />
 	<c:set var="word" value="${param.word}" />
 	<form name="commonform" id="commonform">
-		<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="">
-		<input type="hidden" name="pg" id="pg" value=""> <input
-			type="hidden" name="key" id="key" value=""> <input
-			type="hidden" name="word" id="word" value=""> <input
-			type="hidden" name="ml_sq" id="ml_sq" value="">
+	<input type="hidden" name="ml_grp_sq" id="ml_grp_sq" value="">
+	<input type="hidden" name="pg" id="pg" value="">
+	<input type="hidden" name="key" id="key" value="">
+	<input type="hidden" name="word" id="word" value="">
+	<input type="hidden" name="ml_sq" id="ml_sq" value="">
 	</form>
 
 	<div class="wrapper">

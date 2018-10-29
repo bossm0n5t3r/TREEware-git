@@ -6,7 +6,7 @@
 <mapper namespace="com.treeware.admin.member.dao.AdminMemberDao">
 
 	<select id="idCheck" parameterType="String" resultType="int">
-		SELECT count(emp_id)
+		SELECT COUNT(emp_id)
 		FROM EMP
 		WHERE EMP_ID = #{emp_id}
 	</select>
@@ -18,116 +18,116 @@
 	</update>
 
 	<select id="memberSearch" parameterType="map" resultType="EmployeeDto">
-	SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
-	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
-	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
-	FROM EMP
-	<if test="word != null and word != ''">
-	WHERE ${key} like '%'||#{word}||'%'
-	</if>
+		SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
+		   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
+		   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
+		FROM EMP
+		<if test="word != null and word != ''">
+		WHERE ${key} like '%'||#{word}||'%'
+		</if>
 	</select>
 
 	<insert id="register" parameterType="EmployeePicDto">
-	INSERT ALL
-	INTO EMP (EMP_SQ, PMS_SQ, DPT_SQ, RNK_SQ, PST_SQ, EMP_NM, EMP_ID, EMP_PW, EMP_SEX, EMP_BDATE
-			, EMP_ML_ID, EMP_ML_ADDR, EMP_TEL1, EMP_TEL2, EMP_TEL3, EMP_ZIP, EMP_ADDR, EMP_ADDR_DT
-			, EMP_BS_TEL1,EMP_BS_TEL2, EMP_BS_TEL3, EMP_CRT, EMP_REG, EMP_EXIT, EMP_FNL_MOD)
-	VALUES (#{emp_sq}, #{pms_sq}, #{dpt_sq}, #{rnk_sq}, #{pst_sq}
-		, #{emp_nm}, #{emp_id}, #{emp_pw}, #{emp_sex}
-		, TO_CHAR(TO_DATE(#{emp_bdate}, 'YYYYMMDD'), 'YYYY-MM-DD')
-		, #{emp_ml_id}, #{emp_ml_addr}, #{emp_tel1}, #{emp_tel2}, #{emp_tel3}
-		, #{emp_zip}, #{emp_addr}, #{emp_addr_dt}
-		, #{emp_bs_tel1}, #{emp_bs_tel2}, #{emp_bs_tel3}, #{emp_crt}, sysdate, '', sysdate)
-	INTO EMP_PIC (EMP_SQ, EMP_PIC_DT, EMP_PIC_RT, EMP_PIC_ONM, EMP_PIC_MNM)
-	VALUES (#{emp_sq}, #{emp_pic_dt}, #{emp_pic_rt}, #{emp_pic_onm}, #{emp_pic_mnm})
-	SELECT * FROM DUAL
+		INSERT ALL
+		INTO EMP (EMP_SQ, PMS_SQ, DPT_SQ, RNK_SQ, PST_SQ, EMP_NM, EMP_ID, EMP_PW, EMP_SEX, EMP_BDATE
+				, EMP_ML_ID, EMP_ML_ADDR, EMP_TEL1, EMP_TEL2, EMP_TEL3, EMP_ZIP, EMP_ADDR, EMP_ADDR_DT
+				, EMP_BS_TEL1,EMP_BS_TEL2, EMP_BS_TEL3, EMP_CRT, EMP_REG, EMP_EXIT, EMP_FNL_MOD)
+		VALUES (#{emp_sq}, #{pms_sq}, #{dpt_sq}, #{rnk_sq}, #{pst_sq}
+			, #{emp_nm}, #{emp_id}, #{emp_pw}, #{emp_sex}
+			, TO_CHAR(TO_DATE(#{emp_bdate}, 'YYYYMMDD'), 'YYYY-MM-DD')
+			, #{emp_ml_id}, #{emp_ml_addr}, #{emp_tel1}, #{emp_tel2}, #{emp_tel3}
+			, #{emp_zip}, #{emp_addr}, #{emp_addr_dt}
+			, #{emp_bs_tel1}, #{emp_bs_tel2}, #{emp_bs_tel3}, #{emp_crt}, sysdate, '', sysdate)
+		INTO EMP_PIC (EMP_SQ, EMP_PIC_DT, EMP_PIC_RT, EMP_PIC_ONM, EMP_PIC_MNM)
+		VALUES (#{emp_sq}, #{emp_pic_dt}, #{emp_pic_rt}, #{emp_pic_onm}, #{emp_pic_mnm})
+		SELECT * FROM DUAL
 	</insert>
 	
 	<update id="modify" parameterType="EmployeeDto">
-	UPDATE EMP
-	SET DPT_SQ = #{dpt_sq},
-		RNK_SQ = #{rnk_sq},
-		PST_SQ = #{pst_sq},
-		EMP_BS_TEL1 = #{emp_bs_tel1},
-		EMP_BS_TEL2 = #{emp_bs_tel2},
-		EMP_BS_TEL3 = #{emp_bs_tel3},
-		EMP_EXIT = TO_DATE(#{emp_exit}, 'YYYY-MM-DD')
-		<if test="emp_exit != null and emp_exit != ''">
-		,PMS_SQ = 0
-		</if>
-	WHERE EMP_SQ = #{emp_sq}
+		UPDATE EMP
+		SET DPT_SQ = #{dpt_sq},
+			RNK_SQ = #{rnk_sq},
+			PST_SQ = #{pst_sq},
+			EMP_BS_TEL1 = #{emp_bs_tel1},
+			EMP_BS_TEL2 = #{emp_bs_tel2},
+			EMP_BS_TEL3 = #{emp_bs_tel3},
+			EMP_EXIT = TO_DATE(#{emp_exit}, 'YYYY-MM-DD')
+			<if test="emp_exit != null and emp_exit != ''">
+			,PMS_SQ = 0
+			</if>
+		WHERE EMP_SQ = #{emp_sq}
 	</update>
 	
 	<select id="getMemberList" resultType="EmployeeDto">
-	SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
-	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
-	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
-	FROM EMP
+		SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
+		   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
+		   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
+		FROM EMP
 	</select>
 	
 	<select id="getEmployee" parameterType="String" resultType="EmployeeDto">
-	SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
-	   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
-	   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
-	FROM EMP
-	WHERE EMP_SQ = #{emp_sq}
+		SELECT EMP_SQ,PMS_SQ,DPT_SQ,RNK_SQ,PST_SQ,EMP_NM,EMP_ID,EMP_PW,EMP_SEX,EMP_BDATE
+		   ,EMP_ML_ID,EMP_ML_ADDR,EMP_TEL1,EMP_TEL2,EMP_TEL3,EMP_ZIP,EMP_ADDR,EMP_ADDR_DT
+		   ,EMP_BS_TEL1,EMP_BS_TEL2,EMP_BS_TEL3,EMP_CRT,EMP_REG,EMP_EXIT,EMP_FNL_MOD 
+		FROM EMP
+		WHERE EMP_SQ = #{emp_sq}
 	</select>
 	
 	<select id="getDepartmentList" resultType="DepartmentDto">
-	SELECT DPT.DPT_SQ, DPT_NM
-	FROM DPT, EMP
-	WHERE DPT.DPT_SQ = EMP.DPT_SQ
+		SELECT DPT.DPT_SQ, DPT_NM
+		FROM DPT, EMP
+		WHERE DPT.DPT_SQ = EMP.DPT_SQ
 	</select>
 	
 	<select id="getDistinctDepartmentList" resultType="DepartmentDto">
-	SELECT DISTINCT DPT.DPT_SQ, DPT_NM
-	FROM DPT, EMP
-	WHERE DPT.DPT_SQ = EMP.DPT_SQ
+		SELECT DISTINCT DPT.DPT_SQ, DPT_NM
+		FROM DPT, EMP
+		WHERE DPT.DPT_SQ = EMP.DPT_SQ
 	</select>
 
 	<select id="getPermission" parameterType="int" resultType="PermissionDto">
-	SELECT DISTINCT PMS.PMS_SQ, PMS_NM
-	FROM PMS, EMP
-	WHERE PMS.PMS_SQ = EMP.PMS_SQ
-	AND EMP.PMS_SQ = #{pms_sq}
+		SELECT DISTINCT PMS.PMS_SQ, PMS_NM
+		FROM PMS, EMP
+		WHERE PMS.PMS_SQ = EMP.PMS_SQ
+		AND EMP.PMS_SQ = #{pms_sq}
 	</select>
 	
 	<select id="getDepartment" parameterType="int" resultType="DepartmentDto">
-	SELECT DISTINCT DPT.DPT_SQ, DPT_NM
-	FROM DPT, EMP
-	WHERE DPT.DPT_SQ = EMP.DPT_SQ
-	AND EMP.DPT_SQ = #{dpt_sq}
+		SELECT DISTINCT DPT.DPT_SQ, DPT_NM
+		FROM DPT, EMP
+		WHERE DPT.DPT_SQ = EMP.DPT_SQ
+		AND EMP.DPT_SQ = #{dpt_sq}
 	</select>
 	
 	<select id="getPositionList" resultType="PositionDto">
-	SELECT PST.PST_SQ, PST_NM
-	FROM PST, EMP
-	WHERE PST.PST_SQ = EMP.PST_SQ
+		SELECT PST.PST_SQ, PST_NM
+		FROM PST, EMP
+		WHERE PST.PST_SQ = EMP.PST_SQ
 	</select>
 	
 	<select id="getPosition" parameterType="int" resultType="PositionDto">
-	SELECT DISTINCT PST.PST_SQ, PST_NM
-	FROM PST, EMP
-	WHERE PST.PST_SQ = EMP.PST_SQ
-	AND EMP.PST_SQ = #{pst_sq}
+		SELECT DISTINCT PST.PST_SQ, PST_NM
+		FROM PST, EMP
+		WHERE PST.PST_SQ = EMP.PST_SQ
+		AND EMP.PST_SQ = #{pst_sq}
 	</select>
 	
 	<select id="getRankList" resultType="RankDto">
-	SELECT RNK.RNK_SQ, RNK_NM
-	FROM RNK, EMP
-	WHERE RNK.RNK_SQ = EMP.RNK_SQ
+		SELECT RNK.RNK_SQ, RNK_NM
+		FROM RNK, EMP
+		WHERE RNK.RNK_SQ = EMP.RNK_SQ
 	</select>
 	
 	<select id="getRank" parameterType="int" resultType="RankDto">
-	SELECT DISTINCT RNK.RNK_SQ, RNK_NM
-	FROM RNK, EMP
-	WHERE RNK.RNK_SQ = EMP.RNK_SQ
-	AND EMP.RNK_SQ = #{rnk_sq}
+		SELECT DISTINCT RNK.RNK_SQ, RNK_NM
+		FROM RNK, EMP
+		WHERE RNK.RNK_SQ = EMP.RNK_SQ
+		AND EMP.RNK_SQ = #{rnk_sq}
 	</select>
 		
 	<select id="getMemberCount" resultType="int">
-	SELECT count(*)
-	FROM EMP
+		SELECT count(*)
+		FROM EMP
 	</select>
 	
 </mapper>
