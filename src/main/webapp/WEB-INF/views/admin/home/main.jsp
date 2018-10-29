@@ -98,26 +98,6 @@
 						</div>
 					</div>
 					<div class="row">
-						<!-- 							<div class="col-md-3"> -->
-						<!-- 								<div class="card"> -->
-						<!-- 									<div class="card-header"> -->
-						<!-- 										<h4 class="card-title">2018년 10월 01일</h4> -->
-						<!-- 										<p class="card-category">출근: 08:45</p> -->
-						<!-- 										<p class="card-category">외근: 13:50</p> -->
-						<!-- 										<p class="card-category">복귀: 16:50</p> -->
-						<!-- 									</div> -->
-						<!-- 									<div class="card-body"> -->
-						<!-- 										<div id="task-complete" class="chart-circle mt-4 mb-3"></div> -->
-						<!-- 									</div> -->
-						<!-- 									<div class="card-footer"> -->
-						<!-- 										<div class="legend" style="padding:5px"><button type="button" class="btn btn-outline-primary">출근하기</button></div> -->
-						<!-- 										<div class="legend" style="padding:5px"><button type="button" class="btn btn-outline-primary">외근하기</button></div> -->
-						<!-- 										<div class="legend" style="padding:5px"><button type="button" class="btn btn-outline-primary">복귀하기</button></div> -->
-						<!-- 										<div class="legend" style="padding:5px"><button type="button" class="btn btn-outline-primary">퇴근하기</button></div> -->
-						<!-- 										<div class="legend"><i class="la la-circle text-primary"></i>출근하기</div> -->
-						<!-- 									</div> -->
-						<!-- 								</div> -->
-						<!-- 							</div> -->
 						<div class="col-md-6">
 							<%@ include file="/WEB-INF/views/admin/chart/category/vacation.jsp" %>
 						</div>
