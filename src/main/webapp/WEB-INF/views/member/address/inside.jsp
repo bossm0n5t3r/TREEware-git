@@ -397,7 +397,7 @@ function rnk_nm_to_sq(){
 function empajax(){
 	$.ajax({
 		type : "GET"
-		,url : "${root}/admin/account/membersearch.tree"
+		,url : "${root}/admin/member/membersearch.tree"
 		,dataType : "json"
 		,data : {
 			"key" : $("#key").val(),
@@ -415,7 +415,7 @@ function empajax(){
 function searchajax(){
 	$.ajax({
 		type : "GET"
-		,url : "${root}/admin/account/membersearch.tree"
+		,url : "${root}/admin/member/membersearch.tree"
 		,dataType : "json"
 		,data : {
 			"key" : $("#key").val(),

@@ -20,7 +20,7 @@
 				<div class="collapse in" id="collapseMenu" aria-expanded="true" style="">
 					<ul class="nav">
 						<li><a href="${root}/admin/home/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-home">&nbsp;&nbsp;관리자메인</i></span></a></li>
-						<li><a href="${root}/admin/account/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-user">&nbsp;&nbsp;계정관리</i></span></a></li>
+						<li><a href="${root}/admin/member/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-user">&nbsp;&nbsp;계정관리</i></span></a></li>
 <%-- 						<li><a href="${root}/admin/group/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-sitemap">&nbsp;&nbsp;조직도관리</i></span></a></li> --%>
 						<li><a href="${root}/admin/board/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-edit">&nbsp;&nbsp;게시판관리</i></span></a></li>
 <%-- 						<li><a href="${root}/admin/sign/main.tree"><span class="link-collapse" style="margin:5px 0;color:#1d7af3"><i class="la la-edit">&nbsp;&nbsp;결재관리</i></span></a></li> --%>
@@ -42,22 +42,22 @@
 		</div>
 		<ul class="nav">
 			<li id="menu1" class="nav-item">
-				<a href="${root}/admin/account/main.tree">
+				<a href="${root}/admin/member/main.tree">
 					<p>사원목록</p>
 				</a>
 			</li>
 			<li id="menu2" class="nav-item">
-				<a href="${root}/admin/account/register.tree">
+				<a href="${root}/admin/member/register.tree">
 					<p>사원등록</p>
 				</a>
 			</li>
 			<li id="menu3" class="nav-item">
-				<a href="${root}/admin/account/view.tree">
+				<a href="${root}/admin/member/view.tree">
 					<p>정보수정</p>
 				</a>
 			</li>
 <!-- 			<li class="nav-item"> -->
-<%-- 				<a href="${root}/admin/account/edit.tree"> --%>
+<%-- 				<a href="${root}/admin/member/edit.tree"> --%>
 <!-- 					<p>상세페이지2)사원정보수정</p> -->
 <!-- 				</a> -->
 <!-- 			</li> -->

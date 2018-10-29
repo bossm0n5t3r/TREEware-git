@@ -5,7 +5,7 @@
 	<%@ include file="/assets/common/admin/home/user.jsp" %>
 	<ul class="nav">
 		<li class="nav-item active">
-			<a href="${root}/admin/account/main.tree">
+			<a href="${root}/admin/member/main.tree">
 				<i class="la la-user"></i>
 				<p>계정관리</p>
 <!-- 				<span class="badge badge-count">5</span> -->

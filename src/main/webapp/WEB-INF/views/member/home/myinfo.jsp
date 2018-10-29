@@ -58,7 +58,7 @@ $(document).ready(function(){
 function getDepartment(dpt_sq) {
 	$.ajax({
 		type : "POST"
-		,url : "${root}/admin/account/getDepartment.tree"
+		,url : "${root}/admin/member/getDepartment.tree"
 		,dataType : "json"
 		,data : {
 			"dpt_sq" : dpt_sq
@@ -72,7 +72,7 @@ function getDepartment(dpt_sq) {
 function getRank(rnk_sq) {
 	$.ajax({
 		type : "POST"
-		,url : "${root}/admin/account/getRank.tree"
+		,url : "${root}/admin/member/getRank.tree"
 		,dataType : "json"
 		,data : {
 			"rnk_sq" : rnk_sq
@@ -86,7 +86,7 @@ function getRank(rnk_sq) {
 function getPostion(pst_sq) {
 	$.ajax({
 		type : "POST"
-		,url : "${root}/admin/account/getPosition.tree"
+		,url : "${root}/admin/member/getPosition.tree"
 		,dataType : "json"
 		,data : {
 			"pst_sq" : pst_sq
@@ -100,7 +100,7 @@ function getPostion(pst_sq) {
 function getPermission(pms_sq) {
 	$.ajax({
 		type : "POST"
-		,url : "${root}/admin/account/getPermission.tree"
+		,url : "${root}/admin/member/getPermission.tree"
 		,dataType : "json"
 		,data : {
 			"pms_sq" : pms_sq

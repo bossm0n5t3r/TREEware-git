@@ -40,7 +40,7 @@
 <body>
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp" %>
-		<%@ include file="/assets/common/admin/account/side.jsp" %>
+		<%@ include file="/assets/common/admin/member/side.jsp" %>
 		<script type="text/javascript">
 		$(document).ready(function(){
 			document.getElementById("menu1").setAttribute("class", "nav-item");
@@ -237,7 +237,7 @@ $(document).ready(function(){
 		$('#emp_bs_tel3').val($('#bes_tel').val().split('-')[2]);
 		
 		if ($("#emp_exit").val() != null && dateReg.test($("#emp_exit").val())) {
-			$('#registerMemberForm').attr("action", "${root}/admin/account/modify.tree").submit();
+			$('#registerMemberForm').attr("action", "${root}/admin/member/modify.tree").submit();
 		} else {
 			alert("잘못된 날짜형식입니다. ex) YYYY-MM-DD");
 			return;
@@ -248,7 +248,7 @@ $(document).ready(function(){
 		var emp_sq=$(this).attr("id");
 		$.ajax({
 			type : "GET"
-			,url : "${root}/admin/account/getmember.tree"
+			,url : "${root}/admin/member/getmember.tree"
 			,dataType : "json"
 			,data : {
 				"emp_sq" : emp_sq

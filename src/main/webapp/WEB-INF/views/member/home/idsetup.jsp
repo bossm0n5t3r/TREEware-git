@@ -15,7 +15,7 @@ $(document).ready(function(){
 		} else {
 			$.ajax({
 				type : "GET"
-				,url : "${root}/admin/account/idcheck.tree"
+				,url : "${root}/admin/member/idcheck.tree"
 				,dataType : "json"
 				,data : {
 					"id" : sid
@@ -51,7 +51,7 @@ $(document).ready(function(){
 		} else {
 			$.ajax({
 				type : "POST"
-				,url : "${root}/admin/account/idsetup.tree"
+				,url : "${root}/admin/member/idsetup.tree"
 				,dataType : "json"
 				,data : {
 					"id" : $("#id").val()

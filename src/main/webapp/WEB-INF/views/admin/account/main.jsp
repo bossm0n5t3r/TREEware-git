@@ -4,12 +4,12 @@
 <html>
 <head>
 <%@ include file="/assets/common/import.jsp"%>
-<%-- <%@ include file="/assets/common/admin/account/import.jsp"%> --%>
+<%-- <%@ include file="/assets/common/admin/member/import.jsp"%> --%>
 </head>
 <body>
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp"%>
-		<%@ include file="/assets/common/admin/account/side.jsp"%>
+		<%@ include file="/assets/common/admin/member/side.jsp"%>
 		<script>
 		$(document).ready(function(){
 			document.getElementById("menu1").setAttribute("class", "nav-item active");
@@ -31,7 +31,7 @@
 									<div class="col-md-1"></div>
 									<div class="col-md-10">
 										<!-- 주소록 콘텐츠 페이지  -->
-										<%-- 								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/admin/account/list.jsp"></IFRAME> --%>
+										<%-- 								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/admin/member/list.jsp"></IFRAME> --%>
 										<div class="buttonmenu" align="center" style="margin: 20px 0 20px 0">
 											<div class="row" style="width: 100%">
 												<div style="width: 70%; text-align: left">
@@ -370,7 +370,7 @@ function rnk_nm_to_sq(){
 function empajax(){
 	$.ajax({
 		type : "GET"
-		,url : "${root}/admin/account/membersearch.tree"
+		,url : "${root}/admin/member/membersearch.tree"
 		,dataType : "json"
 		,data : {
 			"key" : $("#key").val(),
@@ -388,7 +388,7 @@ function empajax(){
 function searchajax(){
 	$.ajax({
 		type : "GET"
-		,url : "${root}/admin/account/membersearch.tree"
+		,url : "${root}/admin/member/membersearch.tree"
 		,dataType : "json"
 		,data : {
 			"key" : $("#key").val(),

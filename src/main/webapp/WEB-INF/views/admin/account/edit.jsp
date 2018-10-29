@@ -18,7 +18,7 @@
 <body>
 	<div class="wrapper">
 		<%@ include file="/assets/common/admin/home/top.jsp" %>
-		<%@ include file="/assets/common/admin/account/side.jsp" %>
+		<%@ include file="/assets/common/admin/member/side.jsp" %>
 		<script type="text/javascript">
 		$(document).ready(function(){
 			document.getElementById("menu1").setAttribute("class", "nav-item");

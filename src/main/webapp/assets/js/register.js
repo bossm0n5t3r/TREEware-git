@@ -9,7 +9,7 @@ function submit(){
 		 register_check();
 	}
 function goback(){
-		location.href= root + "/admin/account/main.tree";
+		location.href= root + "/admin/member/main.tree";
 	}
 
 function hypen(str) {
@@ -94,7 +94,7 @@ function register_check(){
 		}
 		$('#emp_ml_id').val($('#email').val().split("@")[0]);
 		$('#emp_ml_addr').val($('#email').val().split("@")[1]);
-		document.registerMemberForm.action = root + "/admin/account/register.tree";
+		document.registerMemberForm.action = root + "/admin/member/register.tree";
 		document.registerMemberForm.submit();
 	}	
 }

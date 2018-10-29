@@ -18,7 +18,7 @@
 					<i class="la la-user"></i>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="${root}/admin/account/register.tree">사원등록</a>
+					<a class="dropdown-item" href="${root}/admin/member/register.tree">사원등록</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="${root}/admin/board/register.tree">게시판등록</a>
 					<div class="dropdown-divider"></div>

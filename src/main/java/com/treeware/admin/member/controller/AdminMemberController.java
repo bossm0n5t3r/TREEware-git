@@ -21,7 +21,7 @@ import com.treeware.admin.member.service.AdminMemberService;
 import com.treeware.util.NumberCheck;
 
 @Controller
-@RequestMapping("/admin/account")
+@RequestMapping("/admin/member")
 public class AdminMemberController {
 	
 	@Autowired
