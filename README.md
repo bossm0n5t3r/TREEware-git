@@ -1,5 +1,6 @@
 # TREEware-git
 
+This is a final unsolved team project in KITRI Academy.
 
 ## To-Do List
 
@@ -26,6 +27,7 @@
   - ### NOT NOW
 
     - #### 프로젝트 전체
+      - - [ ] DB IMPORT 하기
       - - [ ] 예외처리
       - - [ ] AWS 적용
       - - [ ] 전체적인 변수 등 이름 통일하기!
