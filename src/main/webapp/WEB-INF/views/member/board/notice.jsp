@@ -5,26 +5,6 @@
 <head>
 <%@ include file="/assets/common/import.jsp" %>
 <link rel="stylesheet" href="${root}/assets/css/search.css">
-
-<script type="text/javascript">
-$(function(){
-$('#bookmark').click(function() { 
-         var src = ($(this).attr('class') == 'la la-heart-o') 
-            ? 'la la-heart'
-            : 'la la-heart-o'; 
-         $(this).attr('class', src); 
-     
-	});
-});
-
-$(function(){
-	$("#delete").click(function(){
-		$("#deletemodal").modal({
-			remote:'${root}/menu/mail/deleteok.jsp'});
-	});
-});
-</script>
-
 </head>
 <body>
 

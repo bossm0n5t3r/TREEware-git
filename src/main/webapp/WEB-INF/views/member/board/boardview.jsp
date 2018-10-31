@@ -5,31 +5,6 @@
 <head>
 <%@ include file="/assets/common/import.jsp" %>
 <%@ include file="/assets/common/member/board/import.jsp" %>
-<script>
-$(document).ready(function(){
-	var btype = '${userBoardInfo.btype}';
-	var bcode = '${userBoardInfo.bcode}';
-	var bname = '${userBoardInfo.bname}';
-	$('#category').text('${userBoardInfo.bname}');
-	if(btype == 1){
-		$('#file').attr("type", "hidden");
-	}
-// 	var cnt=${listCnt};
-// 	viewlist();
-// 	//목록출력
-// 	function viewlist(){
-// 		for(var i=0;i<cnt;i++){
-// 			$('#view').empty();
-// 			$('#view').append('<tr>');
-// 			$('#view').append('<td><div class="form-check"><label class="form-check-label" style="height:10px"><input class="form-check-input task-select" type="checkbox"><span class="form-check-sign"></span></label></div></td>');
-// 			$('#view').append('<td>'+'aaa'+'</td>');
-// 			$('#view').append('<td>'+'bbb'+'</td>');
-// 			$('#view').append('<td><a href="#">ccc</a></td>');
-// 			$('#view').append('</tr>');
-// 		}
-// 	}
-});
-</script>
 </head>
 <body>
 	<div class="wrapper">
