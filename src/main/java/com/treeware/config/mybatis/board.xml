@@ -5,6 +5,11 @@
 
 <mapper namespace="com.treeware.board.dao.BoardDao">
 
+	<insert id="write" parameterType="BoardDto">
+		INSERT BRD(BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT)
+		VALUES (#{brd_sq}, #{bcode}, #{brd_ttl}, #{emp_sq}, #{brd_ctt}, #{brd_dt}, #{brd_hits}, #{brd_fl_onm}, #{brd_fl_mnm}, #{brd_fl_rt})
+	</insert>
+
 	
 	<select id="getBoardList" resultType="BoardListDto">
 	SELECT BCODE, BNAME, BTYPE, CCODE
@@ -42,4 +47,5 @@
 	AND ${key} like '%'||#{word}||'%'
 	</if>
 	</select>
+	
 </mapper>
