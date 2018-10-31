@@ -6,6 +6,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%@ include file="/assets/common/import.jsp" %>
+	
+	<!-- 로그인시 아이디저장 체크 쿠키 유무 확인 -->
+	<!-- 쿠키 존재시 해당 아이디 입력 and 체크 활성화, 없으면 비어있게끔 설정 -->
 	<c:set var="id" value=""/>
 	<c:set var="loginCk" value=""/>
 	<c:set var="loop_flag" value="false"/>
