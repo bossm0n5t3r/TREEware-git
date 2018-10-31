@@ -1,30 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script>
-$(document).ready(function(){
-	$.ajax({
-		type : "GET"
-		,url : "${root}/member/board/boardlist.tree"
-		,dataType : "json"
-		,success : function(data) {
-			boardList = data.boardList;
-			board_list(boardList);
-		}
-		,error : function(e) {
-			alert("에러");
-		}
-	});
-})
-function board_list(boardList){
-	for(var i=0;i<boardList.length;i++){
-		var bname = boardList[i].bname.replace(",", "");
-		var bcode = boardList[i].bcode;
-		var btype = boardList[i].btype;
-		$('#boardlist').append('<li id="menu'+i+'" class="nav-item"><a href="${root}/member/board/boardsortlist.tree?bcode='+bcode+'&bname='+bname+'&btype='+btype+'"><p>'+bname+'</p></a></li>');
-	}
-}
-
-</script>
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
 		<%@ include file="/assets/common/user.jsp" %>
