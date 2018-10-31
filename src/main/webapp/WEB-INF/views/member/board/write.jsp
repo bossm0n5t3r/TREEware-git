@@ -5,18 +5,32 @@
 <head>
 <%@ include file="/assets/common/import.jsp" %>
 <%@ include file="/assets/common/member/board/import.jsp" %>
-<script>
+<script type="text/javascript">
 $(document).ready(function(){
-	var btype = '${userBoardInfo.btype}';
-	$('#category').val('${userBoardInfo.bname}');
-	if(btype == 1){
-		$('#file').attr("type", "hidden");
-	}
-	$('#write_submit').click(function(){
-		$('#bcode').val('${userBoardInfo.bcode}');
-		$('#writeform').attr("action", "${root}/member/board/write.tree").submit();
-	})
-});
+	getBrdList();
+	
+	$("#writeBtn").click(function() {
+		if ($("#brd_category").val() == null) {
+			alert("게시판을 선택해주세요.");
+			return;
+		} else if ($("#brd_ttl").val() == '') {
+			alert("제목이 비어있습니다.");
+			return;
+		} else if ($("#brd_ctt").val() == '') {
+			alert("내용이 비어있습니다.");
+			return;
+		} else {
+			$("#bcode").val($("#brd_category").val());
+			$("#writeFrom").attr("method", "POST")
+						   .attr("action", "${root}/member/board/write.tree")
+						   .submit();
+		}
+	});
+	
+	$("#returnBtn").click(function() {
+		$(location).attr("href", "${root}/member/board/main.tree");
+	});
+})
 </script>
 </head>
 <body>
@@ -25,26 +39,20 @@ $(document).ready(function(){
 		<%@ include file="/assets/common/member/board/side.jsp" %>
 		<div class="main-panel">
 			<div class="content" align="center">
-				<form name="writeform" id="writeform" method="post" style="width:95%">
+				<form name="writeForm" id="writeForm" method="post" style="width:95%">
+					<input type="hidden" name="bcode" value="">
+					<input type="hidden" name="pg" value="1">
+					<input type="hidden" name="key" value="">
+					<input type="hidden" name="word" value="">
 					<div class="form-group">
-<!-- 						<select id="" name="category" class="form-control" style="width:100%;font-size:100%;height:45px"> -->
-<!-- 							<option value='0'>[자유게시판] 일반게시글</option> -->
-<!-- 							<option value='1'>[자유게시판] 정보공유</option> -->
-<!-- 							<option value='2'>[자유게시판] Q&A</option> -->
-<!-- 							<option value='3'>[자유게시판] 건의사항</option> -->
-<!-- 							<option value='4'>[자유게시판] 칭찬합니다</option> -->
-<!-- 						</select> -->
-						<input name="category" type="text" class="form-control" id="category" readonly="readonly" style="height:45px">
+						<select id="brd_category" name="category" class="form-control" style="width:100%;font-size:100%;height:45px">
+						</select>
 						<input name="brd_ttl" type="text" class="form-control" id="brd_ttl" placeholder="제목을 입력하세요" style="height:45px">
 						<textarea name="brd_ctt" id="brd_ctt" rows="20" style="width:100%;margin:10px 0"></textarea>
-						<input name="file1" type="file" id="file" style="background-color:white;width:200px;button-radius:5px"><br><br>
-						<button class="btn btn-success" id="write_submit" style="width:120px;padding:10px;margin:5px">등록하기</button>
-						<button class="btn btn-danger" onclick="javascript:goback()" style="width:120px;padding:10px;margin:5px">작성취소</button>
+						<input name="brdFile" type="file" id="brdFile" style="background-color:white;width:200px;button-radius:5px"><br><br>
+						<button class="btn btn-success" id="writeBtn" style="width:120px;padding:10px;margin:5px">글쓰기</button>
+						<button class="btn btn-danger" id="returnBtn" style="width:120px;padding:10px;margin:5px">작성취소</button>
 				    </div>
-				    <input type="hidden" id="bcode" name="bcode">
-					<input type="hidden" id="pg" name="pg">
-					<input type="hidden" id="word" name="word">
-					<input type="hidden" id="key" name="key">
 				</form>
 			</div>
 		<%@ include file="/assets/common/footer.jsp" %>
