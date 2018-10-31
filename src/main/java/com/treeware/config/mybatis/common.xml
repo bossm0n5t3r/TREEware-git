@@ -6,6 +6,11 @@
   
 <mapper namespace="com.treeware.common.dao.CommonDao">
 
+	<select id="getNextBrdSeq">
+		SELECT BRD_SQ.NEXTVAL
+		FROM DUAL
+	</select>
+
 	<select id="getNextSeq" resultType="int">
 	select ML_SQ.nextval
 	from dual
@@ -33,6 +38,5 @@
 				</choose>
 			</if>
 	</select>
-	
 
 </mapper>
