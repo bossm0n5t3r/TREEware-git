@@ -1,15 +1,13 @@
 package com.treeware.admin.board.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.treeware.admin.board.model.BoardDto;
 import com.treeware.admin.board.model.BoardListDto;
 import com.treeware.admin.board.service.AdminBoardService;
 
@@ -20,42 +18,21 @@ public class AdminBoardController {
 	@Autowired
 	private AdminBoardService adminBoardService;
 	
-	@RequestMapping("/main.tree")
-	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		Map<String, String> map = new HashMap<String, String>();
-		List<BoardDto> list = adminBoardService.boardViews();
-		for(int i=0;i<list.size();i++) {
-			map.put(list.get(i).getEmp_sq(), adminBoardService.getBoardEmpName(list.get(i).getEmp_sq()));	
+	//	게시판 종류 가져가기
+	@RequestMapping(value="/getBrdList.tree", method=RequestMethod.GET)
+	public @ResponseBody String getBrdList() {
+		JSONObject object = new JSONObject();
+		JSONArray array = new JSONArray();
+		List <BoardListDto> list = adminBoardService.getBrdList();
+		for (BoardListDto dto : list) {
+			JSONObject brdList = new JSONObject();
+			brdList.put("BCODE", dto.getBcode());
+			brdList.put("BNAME", dto.getBname());
+			brdList.put("BTYPE", dto.getBtype());
+			brdList.put("CCODE", dto.getCcode());
+			array.put(brdList);
 		}
-		mav.addObject("boardEmpName", map);
-		mav.addObject("adminBoardList", list);
-		mav.setViewName("admin/board/main");
-		return mav;
-	}
-	
-	@RequestMapping(value="/register.tree", method=RequestMethod.GET)
-	public String register() {
-		return "admin/board/register";
-	}
-	//게시판생성
-	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
-	public String register(BoardListDto boardListDto) {
-		adminBoardService.addBoard(boardListDto);
-		return "admin/board/register";
-	}
-	
-	@RequestMapping("/view.tree")
-	public ModelAndView view() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/board/view");
-		return mav;
-	}
-	
-	@RequestMapping("/edit.tree")
-	public ModelAndView edit() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/board/edit");
-		return mav;
+		object.put("brdList", array);
+		return object.toString();
 	}
 }
