@@ -57,7 +57,7 @@ public class AdminMemberController {
 		return mav;
 	}
 	
-	//사원등록
+	//	사원등록
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
 	public ModelAndView register(EmployeePicDto employeePicDto, @RequestParam("file") MultipartFile multipartFile) {
 		ModelAndView mav = new ModelAndView("admin/account/main");
