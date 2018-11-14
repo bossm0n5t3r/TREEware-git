@@ -26,8 +26,8 @@
 		</div>
 		
 		<div style="margin:20px 0 10px 0" align="center">
-<%-- 		<a href="${root}/member/board/write.tree"><button class="btn btn-outline-primary" style="width:220px;"> --%>
-<!-- 		<i class="la la-edit"></i> &nbsp;글쓰기</button></a> -->
+			<a href="${root}/member/board/write.tree"><button class="btn btn-outline-primary" style="width:220px;">
+			<i class="la la-edit"></i> &nbsp;글쓰기</button></a>
 		</div>
 		<ul class="nav" id="boardlist">
 <!-- 			<li id="menu1" class="nav-item active"> -->
