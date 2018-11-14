@@ -5,7 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class TreewareConstance {
-	public static final String TODAY = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+	
+	//	TREEware basic date setting = yyyy-mm-dd (oracle), yyyy-MM-dd (java)
+	public static final String TODAY = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	public static final String TODAY_KOR = new SimpleDateFormat("yyyy년 MM월 dd일 ").format(new Date());
 	public static final int YEAR = Calendar.getInstance().get(Calendar.YEAR);
 	public static final int MONTH = Calendar.getInstance().get(Calendar.MONTH) + 1;
