@@ -6,8 +6,8 @@
 <mapper namespace="com.treeware.board.dao.BoardDao">
 
 	<insert id="write" parameterType="BoardDto">
-		INSERT BRD(BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT)
-		VALUES (#{brd_sq}, #{bcode}, #{brd_ttl}, #{emp_sq}, #{brd_ctt}, #{brd_dt}, #{brd_hits}, #{brd_fl_onm}, #{brd_fl_mnm}, #{brd_fl_rt})
+		INSERT INTO BRD(BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT)
+		VALUES (#{brd_sq}, #{bcode}, #{brd_ttl}, #{emp_sq}, #{brd_ctt}, #{brd_dt}, #{brd_hits}, #{brd_fl_onm, jdbcType=VARCHAR}, #{brd_fl_mnm, jdbcType=VARCHAR}, #{brd_fl_rt, jdbcType=VARCHAR})
 	</insert>
 
 	

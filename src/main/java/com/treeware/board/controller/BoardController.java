@@ -1,7 +1,12 @@
 package com.treeware.board.controller;
 
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +18,26 @@ import org.springframework.web.servlet.ModelAndView;
 import com.treeware.admin.board.model.BoardDto;
 import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.board.service.BoardService;
+import com.treeware.util.TreewareConstance;
 
 @Controller
 @RequestMapping("/member/board")
 public class BoardController {
 
 	@Autowired
+	private ServletContext servletContext;
+	
+	@Autowired
 	private BoardService boardService;
 	
-	//TODO	일단은 글쓰기페이지로 이동하게끔. 추후에 목록으로 이동할 예정.
+	//TODO 일단은 글쓰기페이지로 이동하게끔. 추후에 목록으로 이동할 예정.
 	@RequestMapping(value="/main.tree", method=RequestMethod.GET)
 	public String main() {
+		return "member/board/main";
+	}
+	
+	@RequestMapping(value="/write.tree", method=RequestMethod.GET)
+	public String mvWrite() {
 		return "member/board/write";
 	}
 	
@@ -34,6 +48,37 @@ public class BoardController {
 		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
 		if (employeeDto != null) {
 			boardDto.setEmp_sq(employeeDto.getEmp_sq());
+			boardDto.setBrd_dt(TreewareConstance.TODAY);
+			if (multipartFile != null && !multipartFile.isEmpty()) {
+				String ofile = multipartFile.getOriginalFilename();
+				
+				String realPath = servletContext.getRealPath("/assets/img/board");
+				
+				DateFormat df = new SimpleDateFormat("yyMMdd");
+				String saveFolder = df.format(new Date());
+				String realSaveFolder = realPath + File.separator + saveFolder;
+				File dir = new File(realSaveFolder);
+				if (!dir.exists()) {
+					dir.mkdirs();
+				}
+				
+				String sfile = UUID.randomUUID().toString() + ofile.substring(ofile.lastIndexOf("."));
+				
+				File file = new File(realSaveFolder, sfile);
+				
+				try {
+					multipartFile.transferTo(file);
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				boardDto.setBrd_fl_onm(ofile);
+				boardDto.setBrd_fl_mnm(sfile);
+				boardDto.setBrd_fl_rt(saveFolder);
+			}
+			boardService.write(boardDto);
 		}
 		return mav;
 	}
