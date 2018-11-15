@@ -7,6 +7,7 @@
 <%@ include file="/assets/common/member/board/import.jsp" %>
 <script>
 $(document).ready(function(){
+	getBrdList();
 	$('#menu0').attr("class", "nav-item active");
 // 	document.getElementById("menu0").setAttribute("class", "nav-item active");
 // 	document.getElementById("menu1").setAttribute("class", "nav-item");

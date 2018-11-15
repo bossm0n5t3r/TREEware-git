@@ -8,14 +8,15 @@ input[type=text]{
 <script type="text/javascript">
 var brdList;
 
-//게시판 종류 가져오기
+//	게시판 종류 가져오기
 function getBrdList() {
 	$.ajax({
 		type : "GET"
 		,url : "${root}/admin/board/getBrdList.tree"
 		,dataType : "json"
 		,success : function(data) {
-			makeBrdList(data);
+			makeBrdListInWrite(data);
+			makeBrdListInSide(data);
 		}
 		,error : function(e) {
 			
@@ -24,7 +25,7 @@ function getBrdList() {
 }
 
 //	게시판 분류를 글쓰기 화면에서 보여주기
-function makeBrdList(data) {
+function makeBrdListInWrite(data) {
 	$("#brd_category").empty();
 	var sBrdList = data.brdList;
 	brdList = sBrdList;
@@ -33,6 +34,19 @@ function makeBrdList(data) {
 		var option = $("<option></option>").attr("value", brdList[i].BCODE)
 										   .text(brdList[i].BNAME);
 		$("#brd_category").append(option);
+	}
+}
+
+function makeBrdListInSide(data) {
+	$("#boardlist").empty();
+	var sBrdList = data.brdList;
+	brdList = sBrdList;
+	for (var i = 0; i < brdList.length; i++) {
+		var atag = $("<a></a>").attr("href", "${root}/member/board/mvBoard.tree?bcode=" + brdList[i].BCODE)
+							   .text(brdList[i].BNAME);
+		var board = $("<li></li>").attr("class", "nav-item")
+								  .append(atag);
+		$("#boardlist").append(board);
 	}
 }
 </script>

@@ -30,15 +30,23 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	//TODO 일단은 글쓰기페이지로 이동하게끔. 추후에 목록으로 이동할 예정.
+	//	메인 페이지 이동
 	@RequestMapping(value="/main.tree", method=RequestMethod.GET)
 	public String main() {
 		return "member/board/main";
 	}
 	
+	//	글쓰기 페이지 이동
 	@RequestMapping(value="/write.tree", method=RequestMethod.GET)
 	public String mvWrite() {
 		return "member/board/write";
+	}
+	
+	//	해당 게시판으로 이동
+	@RequestMapping(value="/mvBoard.tree", method=RequestMethod.GET)
+	public ModelAndView mvBoard(@RequestParam Map<String, String> map) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
 	}
 	
 	//	글쓰기
