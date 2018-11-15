@@ -33,7 +33,7 @@ This is a final unsolved team project in KITRI Academy.
       - - [ ] 전체적인 변수 등 이름 통일하기!
       - - [ ] Paging 처리
     - #### 게시판
-      - - [ ] 글쓰기
+      - - [x] 글쓰기
       - - [ ] 글목록
       - - [ ] 페이징
       - - [ ] 게시판 생성
