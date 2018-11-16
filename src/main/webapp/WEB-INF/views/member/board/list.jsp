@@ -10,6 +10,13 @@
 	cursor:pointer;
 }
 </style>
+<script type="text/javascript">
+control = "${root}/member/board/";
+
+$(document).ready(function(){
+	getBrdList();
+});
+</script>
 </head>
 <body>
 	<div class="wrapper">

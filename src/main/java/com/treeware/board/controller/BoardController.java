@@ -45,7 +45,9 @@ public class BoardController {
 	//	해당 게시판으로 이동
 	@RequestMapping(value="/mvBoard.tree", method=RequestMethod.GET)
 	public ModelAndView mvBoard(@RequestParam Map<String, String> map) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("member/board/list");
+		// 해당 게시판 이름, 게시판 글 내용 전부
+		
 		return mav;
 	}
 	

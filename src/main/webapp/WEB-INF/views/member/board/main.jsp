@@ -7,8 +7,17 @@
 <%@ include file="/assets/common/member/board/import.jsp" %>
 <script>
 $(document).ready(function(){
+	control = "${root}/member/board/";
+	
 	getBrdList();
+	
 	$('#menu0').attr("class", "nav-item active");
+	
+	//TODO moveBoard is not worked YET
+	$("#boardlist .nav-item").click(function(){
+		moveBoard('${bcode}', '${pg}', '${key}', '${word}', '${wseq}', 'mvBoard');
+	});
+	
 // 	document.getElementById("menu0").setAttribute("class", "nav-item active");
 // 	document.getElementById("menu1").setAttribute("class", "nav-item");
 // 	document.getElementById("menu2").setAttribute("class", "nav-item");

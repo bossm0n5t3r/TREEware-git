@@ -5,6 +5,7 @@ input[type=text]{
 	margin:10px 0px;
 }
 </style>
+<script type="text/javascript" src="${root}/assets/js/member/board/board.js"></script>
 <script type="text/javascript">
 var brdList;
 
@@ -42,8 +43,7 @@ function makeBrdListInSide(data) {
 	var sBrdList = data.brdList;
 	brdList = sBrdList;
 	for (var i = 0; i < brdList.length; i++) {
-		var atag = $("<a></a>").attr("href", "${root}/member/board/mvBoard.tree?bcode=" + brdList[i].BCODE)
-							   .text(brdList[i].BNAME);
+		var atag = $("<a></a>").text(brdList[i].BNAME);
 		var board = $("<li></li>").attr("class", "nav-item")
 								  .append(atag);
 		$("#boardlist").append(board);
