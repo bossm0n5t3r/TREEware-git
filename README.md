@@ -37,7 +37,8 @@ This is a final unsolved team project in KITRI Academy.
       - - [ ] 글목록
       - - [ ] 페이징
       - - [ ] 게시판 생성
-      - - [ ] 게시판 보여주기
+      - - [x] 게시판 보여주기
+      - - [ ] 게시판에서 글목록 처리
       - - [ ] 관리자 게시판 설정
     - #### DB
       - - [ ] 날짜 형식 처리!!!
