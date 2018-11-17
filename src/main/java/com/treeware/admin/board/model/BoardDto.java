@@ -1,7 +1,6 @@
 package com.treeware.admin.board.model;
 
 public class BoardDto {
-
 	private int brd_sq;
 	private int bcode;
 	private String brd_ttl;
