@@ -26,6 +26,7 @@
 		
 		<!-- 게시판 -->
 		<typeAlias alias="BoardDto" type="com.treeware.admin.board.model.BoardDto"/>
+		<typeAlias alias="BoardDetailDto" type="com.treeware.admin.board.model.BoardDetailDto"/>
 		<typeAlias alias="BoardListDto" type="com.treeware.admin.board.model.BoardListDto"/>
 		<typeAlias alias="CategoryDto" type="com.treeware.admin.board.model.CategoryDto"/>
 		
