@@ -27,26 +27,29 @@ function getBrdList() {
 
 //	게시판 분류를 글쓰기 화면에서 보여주기
 function makeBrdListInWrite(data) {
-	$("#brd_category").empty();
+	$('#brd_category').empty();
 	var sBrdList = data.brdList;
 	brdList = sBrdList;
-	$("#brd_category").append("<option value='0' selected='selected' disabled>게시판 선택</option>");
+	$('#brd_category').append("<option value='0' selected='selected' disabled>게시판 선택</option>");
 	for (var i = 0; i < brdList.length; i++) {
 		var option = $("<option></option>").attr("value", brdList[i].BCODE)
 										   .text(brdList[i].BNAME);
-		$("#brd_category").append(option);
+		$('#brd_category').append(option);
 	}
 }
 
+//	게시판 종류를 side에 표시. 클릭시 해당 게시판의 첫 페이지로 이동
 function makeBrdListInSide(data) {
-	$("#boardlist").empty();
+	$('#boardlist').empty();
 	var sBrdList = data.brdList;
 	brdList = sBrdList;
 	for (var i = 0; i < brdList.length; i++) {
-		var atag = $("<a></a>").text(brdList[i].BNAME);
+		var ptag = $("<p></p>").text(brdList[i].BNAME);
+		var atag = $("<a></a>").attr("href", "${root}/member/board/mvBoard.tree?bcode=" + brdList[i].BCODE + "&pg=1&key=&word=&seq=")
+							   .append(ptag);
 		var board = $("<li></li>").attr("class", "nav-item")
 								  .append(atag);
-		$("#boardlist").append(board);
+		$('#boardlist').append(board);
 	}
 }
 </script>
