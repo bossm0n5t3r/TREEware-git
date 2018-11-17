@@ -11,11 +11,6 @@
 		FROM DUAL
 	</select>
 
-	<select id="getNextSeq" resultType="int">
-	select ML_SQ.nextval
-	from dual
-	</select>
-
 	<select id="getNewArticleCount" parameterType="map" resultType="int">
 	select count(ML_SQ)
 	from ML
