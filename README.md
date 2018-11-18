@@ -27,14 +27,14 @@ This is a final unsolved team project in KITRI Academy.
   - ### NOT NOW
 
     - #### 프로젝트 전체
-      - - [ ] DB IMPORT 하기
+      - - [x] DB IMPORT 하기
       - - [ ] 예외처리
       - - [ ] AWS 적용
       - - [ ] 전체적인 변수 등 이름 통일하기!
       - - [ ] Paging 처리
     - #### 게시판
       - - [x] 글쓰기
-      - - [ ] 글목록
+      - - [x] 글목록
       - - [ ] 페이징
       - - [ ] 게시판 생성
       - - [x] 게시판 보여주기
