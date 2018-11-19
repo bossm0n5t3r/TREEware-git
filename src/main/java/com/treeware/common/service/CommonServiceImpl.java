@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.treeware.common.dao.CommonDao;
 import com.treeware.util.PageNavigation;
+import com.treeware.util.TreewareConstance;
 
 @Service
 public class CommonServiceImpl implements CommonService {
@@ -22,8 +23,19 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public PageNavigation makePageNavigation(Map<String, String> map) {
-		// TODO Auto-generated method stub
-		return null;
+		int pg = Integer.parseInt(map.get("pg"));
+		PageNavigation navigator = new PageNavigation();
+		navigator.setPageNo(pg);
+		int newArticleCount = sqlSession.getMapper(CommonDao.class).getNewArticleCount(Integer.parseInt(map.get("bcode")));
+		navigator.setNewArticleCount(newArticleCount);
+		int totalArticleCount = sqlSession.getMapper(CommonDao.class).getTotalArticleCount(map);//DB
+		navigator.setTotalArticleCount(totalArticleCount);
+		int totalPageCount = (totalArticleCount - 1) / TreewareConstance.ARTICLE_COUNT + 1;
+		navigator.setTotalPageCount(totalPageCount);
+		int pc = TreewareConstance.PAGE_COUNT;
+		navigator.setNowFirst(pg <= pc);
+		navigator.setNowLast((pg - 1) / pc == (totalPageCount - 1) / pc);
+		return navigator;
 	}
 	
 }
