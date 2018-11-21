@@ -10,6 +10,11 @@
 		SELECT BRD_SQ.NEXTVAL
 		FROM DUAL
 	</select>
+	
+	<select id="getNextRplSeq" resultType="int">
+		SELECT RPL_SQ.NEXTVAL
+		FROM DUAL
+	</select>
 
 	<select id="getNewArticleCount" parameterType="int" resultType="int">
 		SELECT COUNT(BRD_SQ)
