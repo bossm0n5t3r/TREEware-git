@@ -5,38 +5,55 @@
 
 <mapper namespace="com.treeware.board.dao.BoardDao">
 
+	<update id="updateHit" parameterType="int">
+		UPDATE BRD
+		SET BRD_HITS = BRD_HITS + 1
+		WHERE BRD_SQ = #{brd_sq}
+	</update>
+
 	<insert id="write" parameterType="BoardDto">
 		INSERT INTO BRD(BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT)
-		VALUES (#{brd_sq}, #{bcode}, #{brd_ttl}, #{emp_sq}, #{brd_ctt}, #{brd_dt}, #{brd_hits}, #{brd_fl_onm, jdbcType=VARCHAR}, #{brd_fl_mnm, jdbcType=VARCHAR}, #{brd_fl_rt, jdbcType=VARCHAR})
+		VALUES (#{brd_sq}, #{bcode}, #{brd_ttl}, #{emp_sq}, #{brd_ctt}, sysdate, #{brd_hits}, #{brd_fl_onm, jdbcType=VARCHAR}, #{brd_fl_mnm, jdbcType=VARCHAR}, #{brd_fl_rt, jdbcType=VARCHAR})
 	</insert>
-
 	
-	<select id="getBoardList" resultType="BoardListDto">
-	SELECT BCODE, BNAME, BTYPE, CCODE
-	FROM BRD_LIST
+	<select id="getBoardName" parameterType="java.util.Map" resultType="String">
+		SELECT BNAME
+		FROM BRD_LIST
+		WHERE BCODE = #{bcode}
 	</select>
 	
-	<select id="getBoardInfo" parameterType="String" resultType="BoardDto">
-	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
-	FROM BRD
-	WHERE BCODE = #{bcode}
-	ORDER BY brd_sq DESC
+	<select id="viewArticle" parameterType="int" resultType="BoardDetailDto">
+		SELECT BRD_SQ, b.BCODE, l.BNAME, BRD_TTL, b.EMP_SQ, e.EMP_NM, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
+		FROM BRD b, BRD_LIST l, EMP e
+		WHERE BRD_SQ = #{brd_sq}
+		AND b.EMP_SQ = e.EMP_SQ
+		AND b.BCODE = l.BCODE
 	</select>
 	
-	<insert id="boardWrite" parameterType="BoardDto">
-	INSERT INTO BRD (BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT)
-	VALUES (BRD_SQ.NEXTVAL, #{bcode}, #{brd_ttl}, #{emp_sq}, #{brd_ctt}, #{brd_dt}, #{brd_hits}, #{brd_fl_onm}, #{brd_fl_mnm}, #{brd_fl_rt})
-	</insert>
-
-	<select id="getNextSeq" resultType="int">
-	SELECT BRD_SQ.NEXTVAL
-	FROM DUAL
-	</select>
-
-	<select id="boardView" parameterType="BoardDto" resultType="BoardDto">
-	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
-	FROM BRD
-	WHERE BRD_SQ = #{brd_sq}
+	<select id="listArticle" parameterType="java.util.Map" resultType="BoardDetailDto">
+		SELECT * 
+		FROM (SELECT rownum rn, t.*
+		      FROM (SELECT BRD_SQ, b.BCODE, l.BNAME, BRD_TTL, b.EMP_SQ, e.EMP_NM EMP_NM, BRD_CTT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT,
+		                   decode(to_char(b.BRD_DT, 'yymmdd'),
+		                          to_char(sysdate, 'yymmdd'), to_char(b.BRD_DT, 'hh24:mi:ss'),
+		                          to_char(b.BRD_DT, 'yy.mm.dd')) BRD_DT
+		            FROM BRD b, BRD_LIST l, EMP e
+		            WHERE b.EMP_SQ = e.EMP_SQ
+		            AND b.BCODE = #{bcode}
+		            AND b.BCODE = l.BCODE
+		            <if test="word != null and word != ''">
+		            	<choose>
+		            		<when test="key=='subject'">
+		            			AND b.BRD_TTL like '%'||#{word}||'%'
+		            		</when>
+		            		<otherwise>
+		            			AND b.${key} = #{word}
+		            		</otherwise>
+		            	</choose>
+		            </if>
+		            ORDER BY BRD_SQ DESC) t
+		      WHERE rownum &lt;= #{end}) a
+		WHERE a.rn &gt; #{start}
 	</select>
 	
 	<select id="boardSearch" parameterType="map" resultType="BoardDto">

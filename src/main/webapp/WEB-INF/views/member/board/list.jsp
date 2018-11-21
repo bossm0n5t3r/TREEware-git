@@ -15,6 +15,19 @@ control = "${root}/member/board/";
 
 $(document).ready(function(){
 	getBrdList();
+	
+	$(".firstpage").click(function() {
+		moveBoard('${bcode}', '1', '', '', '0', 'list');
+	})
+	
+	$(".movepage").click(function() {
+		moveBoard('${bcode}', $(this).attr("mv-page-no"), '${key}', '${word}', '0', 'list');
+	})
+	
+	$(".posting").click(function() {
+		moveBoard('${bcode}', '${pg}', '${key}', '${word}', $(this).attr("article-seq"), 'view');
+	})
+	
 });
 </script>
 </head>
@@ -28,7 +41,7 @@ $(document).ready(function(){
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
-								<div class="card-title">${userBoardInfo.bname}</div>
+								<div class="card-title">${boardName}</div>
 							</div>
 							<div class="card-body">
 								<div class="row" align="center">
@@ -38,7 +51,7 @@ $(document).ready(function(){
 											<div class="buttonmenu" align="center" style="margin:5px 0 5px 0">
 												<div class="row" style="width:100%">
 													<div style="width:50%;text-align:left;padding:10px">
-														<p id="page" style="color:#007bff">전체목록 [<span id="pageNumber"></span>개]</p>
+														<p id="page" style="color:#007bff">새 글 / 전체글 [${navigator.newArticleCount} / ${navigator.totalArticleCount}]</p>
 													</div>
 													<div style="width:50%;text-align:right">
 														<div class="row" style="float:right">
@@ -57,8 +70,7 @@ $(document).ready(function(){
 																		<input id="word" type="text" style="width:100%;width:150px;height:30px">
 																	</td>
 																	<td>
-																		<button class="simplebtn1" id="searchBtn" style="width:70px;height:30px">검색</button>
-																		<button class="simplebtn2" id="writeBtn" style="width:70px;height:30px">글쓰기</button>
+																		<button class="searchBtn" style="width:70px;height:30px">검색</button>
 																	</td>
 																</tr>
 															</table>
@@ -78,62 +90,37 @@ $(document).ready(function(){
 															</div>
 														</th>
 														<th width="10%">글번호</th>
-														<th width="50%">제목</th>
-														<th width="9%">작성자</th>
+														<th width="60%">제목</th>
+														<th width="10%">작성자</th>
 														<th width="10%">작성일</th>
-														<th width="6%">조회수</th>
-														<th width="8%">북마크</th>
+														<th width="10%">조회수</th>
 													</tr>
 												</thead>
 												<tbody id="view" class="listcursor">
-<%-- 												<c:forEach var="board" items="${board}"> --%>
-<!-- 													<tr> -->
-<!-- 														<td> -->
-<!-- 															<div class="form-check"> -->
-<!-- 																<label class="form-check-label"> -->
-<!-- 																	<input class="form-check-input task-select" type="checkbox"> -->
-<!-- 																	<span class="form-check-sign"></span> -->
-<!-- 																</label> -->
-<!-- 															</div> -->
-<!-- 														</td> -->
-<%-- 														<c:set var="emp_sq" value="${board.emp_sq}" /> --%>
-<%-- 														<td style="text-align:center">${board.brd_sq}</td> --%>
-<%-- 														<td id="${board.brd_sq}" onclick="javascript:boardClick(this)" style="text-align:left">${board.brd_ttl}<img src="${root}/assets/img/icon_new1.gif"></td> --%>
-<%-- 														<td>${boardEmpName[emp_sq]}</td> --%>
-<%-- 														<td>${board.brd_dt}</td> --%>
-<%-- 														<td>${board.brd_hits}</td> --%>
-<!-- 														<td><a href="#">추가</a></td> -->
-<!-- 													</tr> -->
-<%-- 												</c:forEach> --%>
+													<c:forEach var="article" items="${boardList}">
+														<tr class="posting" article-seq="${article.brd_sq}">
+															<td>
+																<div class="form-check">
+																	<label class="form-check-label">
+																		<input class="form-check-input task-select" type="checkbox">
+																		<span class="form-check-sign"></span>
+																	</label>
+																</div>
+															</td>
+															<c:set var="emp_sq" value="${article.emp_sq}" />
+															<td style="text-align:center">${article.brd_sq}</td>
+															<td id="${article.brd_sq}" onclick="javascript:boardClick(this)" style="text-align:left">${article.brd_ttl}</td>
+															<td>${article.emp_nm}</td>
+															<td>${article.brd_dt}</td>
+															<td>${article.brd_hits}</td>
+														</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 											<div class="clear"></div>
 											<div align="center">
-												<table style="width:230px;margin:40px 0 60px 0">
-													<tr>
-														<td colspan="2">
-															<ul id="paging" class="pagination pg-default pg-small">
-<!-- 																<li class="page-item"> -->
-<!-- 																	<a class="page-link" href="#" aria-label="Previous"> -->
-<!-- 																		<span aria-hidden="true">&laquo;</span> -->
-<!-- 																		<span class="sr-only">Previous</span> -->
-<!-- 																	</a> -->
-<!-- 																</li> -->
-<!-- 																<li class="page-item active"><a class="page-link" href="#">1</a></li> -->
-<!-- 																<li class="page-item"><a class="page-link" href="#">2</a></li> -->
-<!-- 																<li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!-- 																<li class="page-item"><a class="page-link" href="#">4</a></li> -->
-<!-- 																<li class="page-item"><a class="page-link" href="#">5</a></li> -->
-<!-- 																<li class="page-item"> -->
-<!-- 																	<a class="page-link" href="#" aria-label="Next"> -->
-<!-- 																		<span aria-hidden="true">&raquo;</span> -->
-<!-- 																		<span class="sr-only">Next</span> -->
-<!-- 																	</a> -->
-<!-- 																</li> -->
-															</ul>
-														</td>
-													</tr>
-												</table>
+												<!-- Paging part -->
+												${navigator.navigator}
 											</div>
 										<!-- 글목록 끝 -->
 									</div>

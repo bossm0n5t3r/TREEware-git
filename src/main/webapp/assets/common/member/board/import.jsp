@@ -5,6 +5,19 @@ input[type=text]{
 	margin:10px 0px;
 }
 </style>
+
+<c:set var="bcode" value="${param.bcode }"/>
+<c:set var="pg" value="${param.pg }"/>
+<c:set var="key" value="${param.key }"/>
+<c:set var="word" value="${param.word }"/>
+<form name="commonform" id="commonform">
+	<input type="hidden" name="bcode" id="bcode" value="">
+	<input type="hidden" name="pg" id="pg" value="">
+	<input type="hidden" name="key" id="key" value="">
+	<input type="hidden" name="word" id="word" value="">
+	<input type="hidden" name="seq" id="seq" value="">
+</form>
+
 <script type="text/javascript" src="${root}/assets/js/member/board/board.js"></script>
 <script type="text/javascript">
 var brdList;
@@ -53,15 +66,3 @@ function makeBrdListInSide(data) {
 	}
 }
 </script>
-
-<c:set var="bcode" value="${param.bcode }"/>
-<c:set var="pg" value="${param.pg }"/>
-<c:set var="key" value="${param.key }"/>
-<c:set var="word" value="${param.word }"/>
-<form name="commonform" id="commonform">
-<input type="hidden" name="bcode" id="bcode" value="">
-<input type="hidden" name="pg" id="pg" value="">
-<input type="hidden" name="key" id="key" value="">
-<input type="hidden" name="word" id="word" value="">
-<input type="hidden" name="seq" id="seq" value="">
-</form>
