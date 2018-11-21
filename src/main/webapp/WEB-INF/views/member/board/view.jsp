@@ -5,6 +5,11 @@
 <head>
 <%@ include file="/assets/common/import.jsp" %>
 <%@ include file="/assets/common/member/board/import.jsp" %>
+<style type="text/css">
+.listcursor:hover{
+	cursor:pointer;
+}
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	getBrdList();
@@ -41,7 +46,7 @@ $(document).ready(function(){
 										</a>
 									</div>
 								</div>
-								<div class="row" style="padding:0 35px 40px 35px">
+								<div class="row" style="padding:0 35px 20px 35px">
 									<form name="writeform" id="writeform" method="post" style="width:100%">
 											<p><b>조회수&ensp;:</b>&ensp;<span>${article.brd_hits}</span></p>
 											<p><b>작성자&ensp;:</b>&ensp;<span>${article.emp_nm}</span></p>
@@ -50,27 +55,111 @@ $(document).ready(function(){
 											</p>
 									</form>
 								</div>
-								<div class="row">
-									<div class="container">
-								        <form name="commentInsertForm">
-									        <label>comment</label>
-								            <div class="input-group">
-								               <input type="text" class="form-control" placeholder="내용을 입력하세요.">
-								               <div class="input-group-append">
-								                    <button class="btn btn-default" type="button">등록</button>
-								               </div>
-											</div>
-								        </form>
-								    </div>
-								    <div class="container">
-								        <div class="commentList">
-								        	<p>에베베베</p>
-								        	<p>에베베베</p>
-								        	<p>에베베베</p>
-								        	<p>에베베베</p>
-								        	<p>에베베베</p>
-								        </div>
-								    </div>
+								<div class="row" style="padding:0 35px 10px 35px">
+									<form style="width:100%">
+									<table style="width:100%;font-size:100%;text-align:center">
+										<tr style="border-bottom:1px #ddd solid">
+											<td width="10%">
+												${article.emp_nm}
+											</td>
+											<td width="80%">
+												<input type="text" class="form-control" placeholder="내용을 입력하세요.">
+											</td>
+											<td width="10%">
+												<button class="btn btn-default" type="button">등록</button>
+											</td>
+										</tr>
+									</table>
+									</form>
+								</div>
+								<div class="row" style="padding:0 35px 10px 35px">
+									<table style="width:100%;font-size:100%;text-align:center">
+										<tr>
+											<td width="10%">
+												아이디
+											</td>
+											<td width="70%">
+												댓글
+											</td>
+											<td width="15%">
+												등록시간
+											</td>
+											<td width="5%"></td>
+										</tr>
+									</table>
+								</div>
+								<div class="row" style="padding:0 35px 50px 35px">
+									<table style="width:100%;font-size:100%;text-align:center">
+										<thead>
+											<tr>
+												<th width="10%">
+												</th>
+												<th width="70%">
+												</th>
+												<th width="15%">
+												</th>
+												<th width="5%"></th>
+											</tr>
+										</thead>
+										<tbody class="listcursor">
+											<tr>
+												<td>
+													아이디!!!
+												</td>
+												<td>
+													에베베베
+												</td>
+												<td>
+													18-11-22
+												</td>
+												<td>
+													삭제
+												</td>
+											</tr>
+											<tr>
+												<td>
+													아이디!!!
+												</td>
+												<td>
+													에베베베
+												</td>
+												<td>
+													18-11-22
+												</td>
+												<td>
+													삭제
+												</td>
+											</tr>
+											<tr>
+												<td>
+													아이디!!!
+												</td>
+												<td>
+													에베베베
+												</td>
+												<td>
+													18-11-22
+												</td>
+												<td>
+													삭제
+												</td>
+											</tr>
+											<tr>
+												<td>
+													아이디!!!
+												</td>
+												<td>
+													에베베베
+												</td>
+												<td>
+													18-11-22
+												</td>
+												<td>
+													삭제
+												</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
