@@ -13,10 +13,49 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	getBrdList();
+	getCommentList();
 	
 	$("#listBtn").click(function(){
 		$(location).attr("href","${root}/member/board/mvBoard.tree?bcode=${param.bcode}&pg=${param.pg}&key=${param.key}&word=${param.word}&seq=${param.seq}")
 	});
+	
+	$("#commentBtn").click(function(){
+		$.ajax({
+			type : "POST"
+			,url : "${root}/member/comment/add.tree"
+			,data : {
+				"brd_sq" : $("#brd_sq").val()
+				,"emp_sq" : $("#emp_sq").val()
+				,"rpl_ctt" : $("#rpl_ctt").val()
+			}
+			,dataType : "text"
+			,success : function(data) {
+				getCommentList();
+			}
+			,error : function(e) {
+				
+			}
+		})
+	});
+	
+	$(document).on('click','.deleteCommentBtn',function(){
+		var rpl_sq = $(this).siblings("input").val();
+		$.ajax({
+			type : "POST"
+			,url : "${root}/member/comment/delete.tree"
+			,data : {
+				"rpl_sq" : rpl_sq
+			}
+			,dataType : "text"
+			,success : function(data) {
+				getCommentList();
+			}
+			,error : function(e) {
+				
+			}
+		})
+	});
+	
 });
 </script>
 </head>
@@ -40,9 +79,7 @@ $(document).ready(function(){
 									</div>
 									<div class="col-md-2" align="right" style="padding:10px 25px">
 										<a>
-											<button type="button" class="btn btn-sm btn-default" id="listBtn">
-												목록으로
-											</button>
+											<button type="button" class="btn btn-sm btn-default" id="listBtn">목록으로</button>
 										</a>
 									</div>
 								</div>
@@ -56,34 +93,30 @@ $(document).ready(function(){
 									</form>
 								</div>
 								<div class="row" style="padding:0 35px 10px 35px">
-									<form style="width:100%">
-									<table style="width:100%;font-size:100%;text-align:center">
-										<tr style="border-bottom:1px #ddd solid">
-											<td width="10%">
-												${article.emp_nm}
-											</td>
-											<td width="80%">
-												<input type="text" class="form-control" placeholder="내용을 입력하세요.">
-											</td>
-											<td width="10%">
-												<button class="btn btn-default" type="button">등록</button>
-											</td>
-										</tr>
-									</table>
+									<form id="commentForm" style="width:100%">
+										<input type="hidden" id="brd_sq" name="brd_sq" value="${article.brd_sq }">
+										<input type="hidden" id="emp_sq" name="emp_sq" value="${article.emp_sq }">
+										<table style="width:100%;font-size:100%;text-align:center">
+											<tr style="border-bottom:1px #ddd solid">
+												<td width="10%">
+													${article.emp_nm}
+												</td>
+												<td width="80%">
+													<input type="text" id="rpl_ctt" name="rpl_ctt" class="form-control" placeholder="내용을 입력하세요.">
+												</td>
+												<td width="10%">
+													<button id="commentBtn" class="btn btn-default" type="button">등록</button>
+												</td>
+											</tr>
+										</table>
 									</form>
 								</div>
 								<div class="row" style="padding:0 35px 10px 35px">
 									<table style="width:100%;font-size:100%;text-align:center">
 										<tr>
-											<td width="10%">
-												아이디
-											</td>
-											<td width="70%">
-												댓글
-											</td>
-											<td width="15%">
-												등록시간
-											</td>
+											<td width="10%">아이디</td>
+											<td width="70%">댓글</td>
+											<td width="15%">작성시간</td>
 											<td width="5%"></td>
 										</tr>
 									</table>
@@ -92,72 +125,13 @@ $(document).ready(function(){
 									<table style="width:100%;font-size:100%;text-align:center">
 										<thead>
 											<tr>
-												<th width="10%">
-												</th>
-												<th width="70%">
-												</th>
-												<th width="15%">
-												</th>
+												<th width="10%"></th>
+												<th width="70%"></th>
+												<th width="15%"></th>
 												<th width="5%"></th>
 											</tr>
 										</thead>
-										<tbody class="listcursor">
-											<tr>
-												<td>
-													아이디!!!
-												</td>
-												<td>
-													에베베베
-												</td>
-												<td>
-													18-11-22
-												</td>
-												<td>
-													삭제
-												</td>
-											</tr>
-											<tr>
-												<td>
-													아이디!!!
-												</td>
-												<td>
-													에베베베
-												</td>
-												<td>
-													18-11-22
-												</td>
-												<td>
-													삭제
-												</td>
-											</tr>
-											<tr>
-												<td>
-													아이디!!!
-												</td>
-												<td>
-													에베베베
-												</td>
-												<td>
-													18-11-22
-												</td>
-												<td>
-													삭제
-												</td>
-											</tr>
-											<tr>
-												<td>
-													아이디!!!
-												</td>
-												<td>
-													에베베베
-												</td>
-												<td>
-													18-11-22
-												</td>
-												<td>
-													삭제
-												</td>
-											</tr>
+										<tbody id="commentList" class="listcursor">
 										</tbody>
 									</table>
 								</div>

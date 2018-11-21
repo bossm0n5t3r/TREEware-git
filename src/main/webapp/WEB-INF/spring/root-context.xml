@@ -33,6 +33,8 @@
 				<!-- 게시판 -->
 				<value>classpath:com/treeware/config/mybatis/board.xml</value>
 				<value>classpath:com/treeware/config/mybatis/adminBoard.xml</value>
+				<!-- 댓글 -->
+				<value>classpath:com/treeware/config/mybatis/comment.xml</value>
 				<!-- 결재 -->
 				<value>classpath:com/treeware/config/mybatis/form.xml</value>
 				<!-- 페이징 -->

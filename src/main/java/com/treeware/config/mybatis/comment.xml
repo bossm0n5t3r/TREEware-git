@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.treeware.comment.dao.CommentDao">
+
+	<insert id="add" parameterType="RplDto">
+		INSERT INTO RPL(RPL_SQ, BRD_SQ, EMP_SQ, RPL_CTT, RPL_REGISTER, RPL_EDIT, RPL_CHKDLT)
+		VALUES (#{rpl_sq}, #{brd_sq}, #{emp_sq}, #{rpl_ctt}, SYSDATE, SYSDATE, #{rpl_chkdlt})
+	</insert>
+
+	<update id="delete" parameterType="java.util.Map">
+		UPDATE RPL
+		SET RPL_EDIT = SYSDATE, RPL_CHKDLT = 1
+		WHERE RPL_SQ = #{rpl_sq}
+	</update>
+
+	<select id="listComment" parameterType="java.util.Map" resultType="RplDto">
+		SELECT RPL_SQ, BRD_SQ, r.EMP_SQ, e.EMP_NM, RPL_CTT, RPL_EDIT, RPL_CHKDLT,
+			   decode(to_char(RPL_REGISTER, 'yymmdd'),
+		              to_char(sysdate, 'yymmdd'), to_char(RPL_REGISTER, 'hh24:mi:ss'),
+		              to_char(RPL_REGISTER, 'yy.mm.dd')) RPL_REGISTER
+		FROM RPL r, EMP e
+		WHERE BRD_SQ = #{brd_sq}
+		AND RPL_CHKDLT = #{rpl_chkdlt}
+		AND r.EMP_SQ = e.EMP_SQ
+		ORDER BY RPL_SQ DESC
+	</select>
+
+</mapper>

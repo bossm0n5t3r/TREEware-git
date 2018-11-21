@@ -30,6 +30,9 @@
 		<typeAlias alias="BoardListDto" type="com.treeware.admin.board.model.BoardListDto"/>
 		<typeAlias alias="CategoryDto" type="com.treeware.admin.board.model.CategoryDto"/>
 		
+		<!-- 댓글 -->
+		<typeAlias alias="RplDto" type="com.treeware.comment.model.RplDto"/>
+		
 		<!-- 결재 -->
 		<typeAlias alias="FormDto" type="com.treeware.form.model.FormDto"/>
 		

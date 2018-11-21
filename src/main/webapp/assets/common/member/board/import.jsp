@@ -21,6 +21,7 @@ input[type=text]{
 <script type="text/javascript" src="${root}/assets/js/member/board/board.js"></script>
 <script type="text/javascript">
 var brdList;
+var commentList;
 
 //	게시판 종류 가져오기
 function getBrdList() {
@@ -63,6 +64,50 @@ function makeBrdListInSide(data) {
 		var board = $("<li></li>").attr("class", "nav-item")
 								  .append(atag);
 		$('#boardlist').append(board);
+	}
+}
+
+//	댓글 가져오기
+function getCommentList() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/member/comment/listComment.tree"
+		,data : {
+			"brd_sq" : $("#brd_sq").val()
+			,"rpl_chkdlt" : "0"
+		}
+		,dataType : "json"
+		,success : function(data) {
+			$("#rpl_ctt").val("");
+			makeCommentList(data);
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function makeCommentList(data) {
+	$("#commentList").empty();
+	var sCommentList = data.commentList;
+	commentList = sCommentList;
+	for (var i = 0; i < commentList.length; i++) {
+		var idTag = $("<input>").attr("type", "hidden")
+								.attr("class", "rpl_sq")
+								.attr("value", commentList[i].rpl_sq);
+		var nameTag = $("<td></td>").text(commentList[i].emp_nm);
+		var commentTag = $("<td></td>").text(commentList[i].rpl_ctt);
+		var registerTag = $("<td></td>").text(commentList[i].rpl_register);
+		var deleteTag = $("<td></td>").attr("class", "deleteCommentBtn")
+									  .text("삭제");
+		var comment = $("<tr></tr>").append(idTag)
+									.append(nameTag)
+									.append(commentTag)
+									.append(registerTag);
+		if (commentList[i].rpl_sq[0] !== "") {
+			comment.append(deleteTag);
+		}
+		$("#commentList").append(comment);
 	}
 }
 </script>
