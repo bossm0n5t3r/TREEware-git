@@ -48,7 +48,6 @@ public class BoardController {
 		return "member/board/write";
 	}
 	
-	//TODO member/board/view.jsp 에서 댓글창 어떻게 만들지!?
 	//	글보기 페이지 이동
 	@RequestMapping(value="/view.tree", method=RequestMethod.GET)
 	public ModelAndView view(@RequestParam Map<String, String> map, HttpSession session) {

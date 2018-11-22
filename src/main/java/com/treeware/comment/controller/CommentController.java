@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.treeware.comment.model.RplDto;
 import com.treeware.comment.service.CommentService;
 import com.treeware.util.NumberCheck;
+import com.treeware.util.StringCheck;
 
 @Controller
 @RequestMapping("/member/comment")
@@ -23,14 +24,17 @@ public class CommentController {
 	//	댓글 추가
 	@RequestMapping(value="/add.tree", method=RequestMethod.POST)
 	public @ResponseBody String add(@RequestParam Map<String, String> map) {
-		// 1. RplDto 객체 생성
-		RplDto rplDto = new RplDto();
-		// 2. brd_sq, emp_sq, rpl_ctt 입력
-		rplDto.setBrd_sq(NumberCheck.nullToZero(map.get("brd_sq")));
-		rplDto.setEmp_sq(map.get("emp_sq"));
-		rplDto.setRpl_ctt(map.get("rpl_ctt"));
-		// 3. 댓글 DB에 추가
-		commentService.add(rplDto);
+		// 0. 댓글이 입력됐는지 체크
+		if (!"".equals(StringCheck.nullToBlank(map.get("rpl_ctt")))) {
+			// 1. RplDto 객체 생성
+			RplDto rplDto = new RplDto();
+			// 2. brd_sq, emp_sq, rpl_ctt 입력
+			rplDto.setBrd_sq(NumberCheck.nullToZero(map.get("brd_sq")));
+			rplDto.setEmp_sq(map.get("emp_sq"));
+			rplDto.setRpl_ctt(map.get("rpl_ctt"));
+			// 3. 댓글 DB에 추가
+			commentService.add(rplDto);
+		}
 		return "success";
 	}
 	

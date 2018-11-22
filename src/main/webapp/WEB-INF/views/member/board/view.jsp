@@ -20,40 +20,19 @@ $(document).ready(function(){
 	});
 	
 	$("#commentBtn").click(function(){
-		$.ajax({
-			type : "POST"
-			,url : "${root}/member/comment/add.tree"
-			,data : {
-				"brd_sq" : $("#brd_sq").val()
-				,"emp_sq" : $("#emp_sq").val()
-				,"rpl_ctt" : $("#rpl_ctt").val()
-			}
-			,dataType : "text"
-			,success : function(data) {
-				getCommentList();
-			}
-			,error : function(e) {
-				
-			}
-		})
+		addComment();
+	});
+	
+	$("#rpl_ctt").keydown(function(e) {
+		if(e.keyCode == 13) {
+			e.preventDefault();
+			addComment();
+		}
 	});
 	
 	$(document).on('click','.deleteCommentBtn',function(){
 		var rpl_sq = $(this).siblings("input").val();
-		$.ajax({
-			type : "POST"
-			,url : "${root}/member/comment/delete.tree"
-			,data : {
-				"rpl_sq" : rpl_sq
-			}
-			,dataType : "text"
-			,success : function(data) {
-				getCommentList();
-			}
-			,error : function(e) {
-				
-			}
-		})
+		deleteComment();
 	});
 	
 });

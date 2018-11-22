@@ -110,4 +110,40 @@ function makeCommentList(data) {
 		$("#commentList").append(comment);
 	}
 }
+
+function addComment() {
+	$.ajax({
+		type : "POST"
+		,url : "${root}/member/comment/add.tree"
+		,data : {
+			"brd_sq" : $("#brd_sq").val()
+			,"emp_sq" : $("#emp_sq").val()
+			,"rpl_ctt" : $("#rpl_ctt").val()
+		}
+		,dataType : "text"
+		,success : function(data) {
+			getCommentList();
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function deleteComment() {
+	$.ajax({
+		type : "POST"
+		,url : "${root}/member/comment/delete.tree"
+		,data : {
+			"rpl_sq" : rpl_sq
+		}
+		,dataType : "text"
+		,success : function(data) {
+			getCommentList();
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
 </script>
