@@ -32,11 +32,11 @@
 			</div>
 		</div>
 		<ul class="nav">
-<!-- 			<li id="menu1" class="nav-item"> -->
-<%-- 				<a href="${root}/admin/board/main.tree"> --%>
-<!-- 					<p>게시판목록</p> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
+			<li id="menu1" class="nav-item">
+				<a href="${root}/admin/board/main.tree">
+					<p>게시판목록</p>
+				</a>
+			</li>
 			<li id="menu2" class="nav-item">
 				<a href="${root}/admin/board/register.tree">
 					<p>게시판등록</p>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.treeware.admin.board.dao.AdminBoardDao;
 import com.treeware.admin.board.model.BoardListDto;
+import com.treeware.admin.board.model.BoardTypeDto;
 
 @Service
 public class AdminBoardServiceImpl implements AdminBoardService {
@@ -18,6 +19,11 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	@Override
 	public List<BoardListDto> getBrdList() {
 		return sqlSession.getMapper(AdminBoardDao.class).getBrdList();
+	}
+
+	@Override
+	public List<BoardTypeDto> getBtypeList() {
+		return sqlSession.getMapper(AdminBoardDao.class).getBtypeList();
 	}
 
 }

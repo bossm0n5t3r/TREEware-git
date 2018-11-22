@@ -103,4 +103,14 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return sqlSession.getMapper(AdminMemberDao.class).getRank(rnk_sq);
 	}
 
+	@Override
+	public List<DepartmentDto> getDptList() {
+		return sqlSession.getMapper(AdminMemberDao.class).getDptList();
+	}
+
+	@Override
+	public List<RankDto> getRnkList() {
+		return sqlSession.getMapper(AdminMemberDao.class).getRnkList();
+	}
+
 }

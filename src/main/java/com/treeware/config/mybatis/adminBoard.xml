@@ -9,6 +9,12 @@
 		SELECT BCODE, BNAME, BTYPE, CCODE
 		FROM BRD_LIST
 	</select>
+	
+	<select id="getBtypeList" resultType="BoardTypeDto">
+		SELECT BTYPE, BTYPE_NAME
+		FROM BRD_TYPE
+		ORDER BY BTYPE
+	</select>
 
 	<insert id="addBoard" parameterType="BoardListDto">
 		INSERT INTO BRD_LIST (bcode, bname, btype, ccode)

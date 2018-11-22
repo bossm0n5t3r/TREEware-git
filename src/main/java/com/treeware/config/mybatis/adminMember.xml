@@ -130,4 +130,16 @@
 		FROM EMP
 	</select>
 	
+	<select id="getDptList" resultType="DepartmentDto">
+		SELECT DPT_SQ, DPT_NM
+		FROM DPT
+		ORDER BY DPT_SQ
+	</select>
+	
+	<select id="getRnkList" resultType="RankDto">
+		SELECT RNK_SQ, RNK_NM
+		FROM RNK
+		ORDER BY RNK_SQ
+	</select>
+	
 </mapper>

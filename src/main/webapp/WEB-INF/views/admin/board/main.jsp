@@ -19,76 +19,101 @@ $(document).ready(function(){
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid" style="height:1100px">
-				
-				<div class="col-md-12">
-				<div class="card">
-					<div class="card-header">
-						<div class="card-title">게시판목록</div>
-					</div>
-					<div class="card-body">
-						<div class="row">
-								<div class="col-md-3">
-									<div class="card-sub">
-										<div style="width:170px">
-										<table style="width:100%">
-											<tr>
-												<td><input type="text" style="width:130px" placeholder="검색어입력"></td>
-												<td><input type="button" value="검색" style="font-size:70%;padding:4px 10px"></td>
-											</tr>
-										</table>
-										<hr><ul id="tree" class="ztree" style="width:100%;overflow:auto;"></ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-9" style="padding:0 20px ">
-								<!-- 주소록 콘텐츠 페이지  -->
-								<%@ include file="/assets/common/admin/board/list.jsp" %>
-<%-- 								<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING="no" width=100% height=100% SRC="${root}/assets/common/admin/board/list.jsp"></IFRAME> --%>
-								<!-- 주소록 콘텐츠 끝 -->
-								<br><br><br><hr><br>
-									<div class="clear"></div>
-									<div align="center">
-											<table style="width:230px">
-												<tr>
-													<td colspan="2">
-														<ul class="pagination pg-default pg-small">
-															<li class="page-item">
-																<a class="page-link" href="#" aria-label="Previous">
-																	<span aria-hidden="true">&laquo;</span>
-																	<span class="sr-only">Previous</span>
-																</a>
-															</li>
-															<li class="page-item active"><a class="page-link" href="#">1</a></li>
-															<li class="page-item"><a class="page-link" href="#">2</a></li>
-															<li class="page-item"><a class="page-link" href="#">3</a></li>
-															<li class="page-item"><a class="page-link" href="#">4</a></li>
-															<li class="page-item"><a class="page-link" href="#">5</a></li>
-															<li class="page-item">
-																<a class="page-link" href="#" aria-label="Next">
-																	<span aria-hidden="true">&raquo;</span>
-																	<span class="sr-only">Next</span>
-																</a>
-															</li>
-														</ul>
-													</td>
-												</tr>
-												<tr><td colspan="2"></td></tr>
-												<tr>
-													<td><input type="text" style="width:100%"></td>
-													<td><input type="button" value="검색" style="font-size:70%;padding:5px 10px"></td>
-												</tr>
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<div class="card-title">게시판목록</div>
+							</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-1"></div>
+									<div class="col-md-10" style="padding:0px 0 0 0 ">
+										<!-- 글목록 시작  -->
+											<div class="buttonmenu" align="center" style="margin:5px 0 5px 0">
+												<div class="row" style="width:100%">
+													<div style="width:50%;text-align:left;padding:10px">
+														<p id="page" style="color:#007bff">새 글 / 전체글 [${navigator.newArticleCount} / ${navigator.totalArticleCount}]</p>
+													</div>
+													<div style="width:50%;text-align:right">
+														<div class="row" style="float:right">
+															<table>
+																<tr>
+																	<td>
+																		<select id="key" name="key" class="form-control" style="width:100%;font-size:100%;height:30px">
+																		<option value='0'>카테고리</option>
+																		<option value='brd_sq'>글번호</option>
+																		<option value='brd_ttl'>제목</option>
+		<!-- 																		<option value='emp_sq'>작성자</option> -->
+																		<option value='brd_dt'>작성일</option>
+																		</select>
+																	</td>
+																	<td>
+																		<input id="word" type="text" style="width:100%;width:150px;height:30px">
+																	</td>
+																	<td>
+																		<button class="searchBtn" style="width:70px;height:30px">검색</button>
+																	</td>
+																</tr>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+											<table class="table-hover" id="listtable" style="width:100%;font-size:100%;text-align:center">
+												<thead>
+													<tr style="border-bottom:1px #ddd solid">
+														<th width="7">
+															<div class="form-check" >
+																<label class="form-check-label">
+																	<input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
+																	<span class="form-check-sign"></span>
+																</label>
+															</div>
+														</th>
+														<th width="10%">글번호</th>
+														<th width="60%">제목</th>
+														<th width="10%">작성자</th>
+														<th width="10%">작성일</th>
+														<th width="10%">조회수</th>
+													</tr>
+												</thead>
+												<tbody id="view" class="listcursor">
+													<c:forEach var="article" items="${boardList}">
+														<tr class="posting" article-seq="${article.brd_sq}">
+															<td>
+																<div class="form-check">
+																	<label class="form-check-label">
+																		<input class="form-check-input task-select" type="checkbox">
+																		<span class="form-check-sign"></span>
+																	</label>
+																</div>
+															</td>
+															<c:set var="emp_sq" value="${article.emp_sq}" />
+															<td style="text-align:center">${article.brd_sq}</td>
+															<td id="${article.brd_sq}" onclick="javascript:boardClick(this)" style="text-align:left">${article.brd_ttl}</td>
+															<td>${article.emp_nm}</td>
+															<td>${article.brd_dt}</td>
+															<td>${article.brd_hits}</td>
+														</tr>
+													</c:forEach>
+												</tbody>
 											</table>
-										</div>
-									<br><br><br>
+											<div class="clear"></div>
+											<div align="center">
+												<!-- Paging part -->
+												${navigator.navigator}
+											</div>
+										<!-- 글목록 끝 -->
+									</div>
+									<div class="col-md-1"></div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-				</div>
-			</div>
-		<%@ include file="/assets/common/footer.jsp" %>
 		</div>
+		<%@ include file="/assets/common/footer.jsp" %>
 	</div>
 </body>
 </html>

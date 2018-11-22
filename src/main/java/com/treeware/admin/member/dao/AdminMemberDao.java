@@ -23,4 +23,8 @@ public interface AdminMemberDao {
 	public int deleteMember(String id);
 	public int idSetup(Map<String, String> map);
 	public int idCheck(String id);
+	//	부서 리스트 얻기
+	public List<DepartmentDto> getDptList();
+	//	직위 리스트 얻기
+	public List<RankDto> getRnkList();
 }

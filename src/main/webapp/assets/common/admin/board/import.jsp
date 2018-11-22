@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="${root}/assets/css/zTreeStyle.css" type="text/css">
 <style>
 #listtable th, #listtable td{
     padding: 8px;
@@ -8,83 +7,87 @@
     border-top: 1px solid #eee;
 }
 </style>
-<script type="text/javascript" src="${root}/assets/js/plugin/jquery-ztree/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript" >
-  
-	var zTree;
-	var demoIframe;
+var dptList;
+var rnkList;
+var btypeList;
 
-	var setting = {
-		view: {
-			dblClickExpand: false,
-			showLine: true,
-			selectedMulti: false
-		},
-		data: {
-			simpleData: {
-				enable:true,
-				idKey: "id",
-				pIdKey: "pId",
-				rootPId: ""
-			}
-		},
-		callback: {
-			beforeClick: function(treeId, treeNode) {
-				var zTree = $.fn.zTree.getZTreeObj("tree");
-				if (treeNode.isParent) {
-					zTree.expandNode(treeNode);
-					return false;
-				} else {
-					demoIframe.attr("src",treeNode.file + ".html");
-					return true;
-				}
-			}
+function getDptList() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/admin/member/getDptList.tree"
+		,dataType : "json"
+		,success : function(data) {
+			makeDptList(data);
 		}
-	};
+		,error : function(e) {
+			
+		}
+	})
+}
 
-	var zNodes =[
-		{ name:"일반게시판",
-			children: [
-				{ name:"자유게시판"}
-			]},
-		{ name:"앨범게시판",
-			children: [
-				{ name:"자랑해요"},
-
-				{ name:"여행갔다왔어요"},
-
-				{ name:"행사사진"}
-
-			]},
-		{ name:"자료게시판", open:true,
-				children: [
-					{ name:"좋은거", open:true},
-
-					{ name:"필요한거", open:true},
-
-					{ name:"애매한거", open:true}
-
-				]}
-
-	];
-
-	$(document).ready(function(){
-		var t = $("#tree");
-		t = $.fn.zTree.init(t, setting, zNodes);
-		demoIframe = $("#testIframe");
-		demoIframe.bind("load", loadReady);
-		var zTree = $.fn.zTree.getZTreeObj("tree");
-		zTree.selectNode(zTree.getNodeByParam("id", 101));
-	
-	});
-
-	function loadReady() {
-		var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
-		htmlH = demoIframe.contents().find("html").get(0).scrollHeight,
-		maxH = Math.max(bodyH, htmlH), minH = Math.min(bodyH, htmlH),
-		h = demoIframe.height() >= maxH ? minH:maxH ;
-		if (h < 530) h = 530;
-		demoIframe.height(h);
+function makeDptList(data) {
+	$('.dpt').empty();
+	var sDptList = data.dptList;
+	dptList = sDptList;
+// 	$('.dpt').append("<option selected='selected' disabled>부서 선택</option>");
+	for (var i = 0; i < dptList.length; i++) {
+		var option = $("<option></option>").attr("value", dptList[i].DPT_SQ)
+										   .text(dptList[i].DPT_NM);
+		$('.dpt').append(option);
 	}
-  
+}
+
+function getRnkList() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/admin/member/getRnkList.tree"
+		,dataType : "json"
+		,success : function(data) {
+			makeRnkList(data);
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function makeRnkList(data) {
+	$('.rnk').empty();
+	var sRnkList = data.rnkList;
+	rnkList = sRnkList;
+// 	$('.rnk').append("<option selected='selected' disabled>직위 선택</option>");
+	for (var i = 0; i < rnkList.length; i++) {
+		var option = $("<option></option>").attr("value", rnkList[i].RNK_SQ)
+										   .text(rnkList[i].RNK_NM);
+		$('.rnk').append(option);
+	}
+}
+
+function getBtypeList() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/admin/board/getBtypeList.tree"
+		,dataType : "json"
+		,success : function(data) {
+			makeBtypeList(data);
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function makeBtypeList(data) {
+	$('#btype').empty();
+	var sBtypeList = data.btypeList;
+	btypeList = sBtypeList;
+	$('#btype').append("<option selected='selected' disabled>게시판 종류 선택</option>");
+	for (var i = 0; i < btypeList.length; i++) {
+		var option = $("<option></option>").attr("value", btypeList[i].BTYPE)
+										   .text(btypeList[i].BTYPE_NAME);
+		$('#btype').append(option);
+	}
+}
+
 </script>
