@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
 <style>
 #listtable th, #listtable td{
-    padding: 8px;
-    text-align: left;
-    border-top: 1px solid #eee;
+    padding: 15px;
+    text-align: center;
 }
 </style>
 <script type="text/javascript" >
@@ -109,7 +108,7 @@ function makeBtypeList(data) {
 	$('#btype').empty();
 	var sBtypeList = data.btypeList;
 	btypeList = sBtypeList;
-	$('#btype').append("<option selected='selected' disabled>게시판 종류 선택</option>");
+	$('#btype').append("<option selected='selected' disabled>게시판 타입 선택</option>");
 	for (var i = 0; i < btypeList.length; i++) {
 		var option = $("<option></option>").attr("value", btypeList[i].BTYPE)
 										   .text(btypeList[i].BTYPE_NAME);

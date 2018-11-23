@@ -19,9 +19,9 @@ $(document).ready(function(){
 		if($("#bname").val() === '') {
 			alert("게시판 이름을 입력해주세요.");
 		} else if ($("#ccode").val() === null) {
-			alert("카테고리 종류를 선택해주세요.");
+			alert("카테고리를 선택해주세요.");
 		} else if ($("#btype").val() === null) {
-			alert("게시판 종류를 선택해주세요.");
+			alert("게시판 타입을 선택해주세요.");
 		} else {
 			$.ajax({
 				type : "POST"
@@ -54,11 +54,11 @@ $(document).ready(function(){
 			<div class="content">
 				<div class="container-fluid" style="height:1000px">
 					<div align="center" style="padding:10px;margin:30px 0">
-						<div class="col-md-10">
+						<div class="col-md-12">
 							<!-- card -->
 							<div class="card" style="width:100%;padding:30px 30px 60px 30px;text-align:left">
 								<div class="card-header">
-									<div class="card-title">게시판등록</div>
+									<div class="card-title">게시판 등록</div>
 								</div>
 								<div class="card-body" style="text-align:center">
 									<!-- 사원등록1 -->
@@ -74,14 +74,14 @@ $(document).ready(function(){
 										</div>
 										<div class="row" style="padding:0 20px">
 											<div style="width:25%;padding:10px;" class="box-group">
-												카테고리 선택
+												카테고리
 											</div>
 											<div style="width:25%" class="box-group">
 												<select id="ccode" name="ccode" class="form-control ctgry" style="font-size:100%">
 												</select>
 											</div>
 											<div style="width:25%;padding:10px;" class="box-group">
-												게시판 종류
+												게시판 타입
 											</div>
 											<div style="width:25%" class="box-group">
 												<select id="btype" name="btype" class="form-control" style="font-size:100%">

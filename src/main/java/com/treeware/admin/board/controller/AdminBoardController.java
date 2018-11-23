@@ -33,7 +33,6 @@ public class AdminBoardController {
 	}
 	
 	//	게시판 리스트 가져가기
-	//TODO 쓰기권한, 읽기권한 추가 수정
 	@RequestMapping(value="/getBrdList.tree", method=RequestMethod.GET)
 	public @ResponseBody String getBrdList() {
 		JSONObject object = new JSONObject();
