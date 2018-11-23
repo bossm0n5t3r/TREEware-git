@@ -17,7 +17,7 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<BoardListDto> getBrdList() {
+	public List<BoardListDetailDto> getBrdList() {
 		return sqlSession.getMapper(AdminBoardDao.class).getBrdList();
 	}
 

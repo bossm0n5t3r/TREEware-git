@@ -6,7 +6,7 @@ import com.treeware.admin.board.model.*;
 
 public interface AdminBoardService {
 	
-	public List<BoardListDto> getBrdList();
+	public List<BoardListDetailDto> getBrdList();
 	public List<BoardTypeDto> getBtypeList();
 	public List<CategoryDto> getCategoryList();
 	public int register(BoardListDto boardListDto);

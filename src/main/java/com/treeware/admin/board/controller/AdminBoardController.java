@@ -37,13 +37,15 @@ public class AdminBoardController {
 	public @ResponseBody String getBrdList() {
 		JSONObject object = new JSONObject();
 		JSONArray array = new JSONArray();
-		List <BoardListDto> list = adminBoardService.getBrdList();
-		for (BoardListDto dto : list) {
+		List <BoardListDetailDto> list = adminBoardService.getBrdList();
+		for (BoardListDetailDto dto : list) {
 			JSONObject brdList = new JSONObject();
 			brdList.put("BCODE", dto.getBcode());
 			brdList.put("BNAME", dto.getBname());
 			brdList.put("BTYPE", dto.getBtype());
+			brdList.put("BTYPE_NAME", dto.getBtype_name());
 			brdList.put("CCODE", dto.getCcode());
+			brdList.put("CNAME", dto.getCname());
 			array.put(brdList);
 		}
 		object.put("brdList", array);

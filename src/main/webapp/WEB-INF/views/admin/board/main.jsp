@@ -9,6 +9,8 @@
 $(document).ready(function(){
 	document.getElementById("menu1").setAttribute("class", "nav-item active");
 	document.getElementById("menu2").setAttribute("class", "nav-item");
+	
+	getBrdList();
 })
 </script>
 </head>
@@ -37,7 +39,7 @@ $(document).ready(function(){
 													<th width="60%">게시판 이름</th>
 												</tr>
 											</thead>
-											<tbody id="view" class="listcursor">
+											<tbody id="boardList" class="listcursor">
 											</tbody>
 										</table>
 										<div class="clear"></div>

@@ -5,9 +5,12 @@
 
 <mapper namespace="com.treeware.admin.board.dao.AdminBoardDao">
 
-	<select id="getBrdList" resultType="BoardListDto">
-		SELECT BCODE, BNAME, BTYPE, CCODE
-		FROM BRD_LIST
+	<select id="getBrdList" resultType="BoardListDetailDto">
+		SELECT BCODE, BNAME, l.BTYPE, t.BTYPE_NAME, l.CCODE, c.CNAME
+		FROM BRD_LIST l, BRD_TYPE t, CATEGORY c
+		WHERE l.BTYPE = t.BTYPE
+		AND l.CCODE = c.CCODE
+		ORDER BY BCODE
 	</select>
 	
 	<select id="getBtypeList" resultType="BoardTypeDto">

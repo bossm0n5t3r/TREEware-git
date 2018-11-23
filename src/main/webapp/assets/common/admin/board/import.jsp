@@ -7,6 +7,7 @@
 }
 </style>
 <script type="text/javascript" >
+var brdList;
 var dptList;
 var categoryList;
 var rnkList;
@@ -116,4 +117,37 @@ function makeBtypeList(data) {
 	}
 }
 
+//	게시판 종류 가져오기
+function getBrdList() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/admin/board/getBrdList.tree"
+		,dataType : "json"
+		,success : function(data) {
+			makeBrdList(data);
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+//	게시판 분류를 글쓰기 화면에서 보여주기
+function makeBrdList(data) {
+	$('#boardList').empty();
+	var sBrdList = data.brdList;
+	brdList = sBrdList;
+	for (var i = 0; i < brdList.length; i++) {
+		var categoryTag = $("<td></td>").attr("value", brdList[i].CCODE)
+										.text(brdList[i].CNAME);
+		var btypeTag = $("<td></td>").attr("value", brdList[i].BTYPE)
+									 .text(brdList[i].BTYPE_NAME);
+		var nameTag = $("<td></td>").attr("value", brdList[i].BCODE)
+									.text(brdList[i].BNAME);
+		var trTag = $("<tr></tr>").append(categoryTag)
+								  .append(btypeTag)
+								  .append(nameTag)
+		$('#boardList').append(trTag);
+	}
+}
 </script>
