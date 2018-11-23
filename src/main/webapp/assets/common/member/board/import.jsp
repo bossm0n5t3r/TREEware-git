@@ -18,7 +18,7 @@ input[type=text]{
 	<input type="hidden" name="seq" id="seq" value="">
 </form>
 
-<script type="text/javascript" src="${root}/assets/js/member/board/board.js"></script>
+<script type="text/javascript" src="${root}/assets/js/board/board.js"></script>
 <script type="text/javascript">
 var brdList;
 var commentList;

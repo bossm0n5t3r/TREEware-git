@@ -6,6 +6,20 @@
     text-align: center;
 }
 </style>
+
+<c:set var="bcode" value="${param.bcode }"/>
+<c:set var="pg" value="${param.pg }"/>
+<c:set var="key" value="${param.key }"/>
+<c:set var="word" value="${param.word }"/>
+<form name="commonform" id="commonform">
+	<input type="hidden" name="bcode" id="bcode" value="">
+	<input type="hidden" name="pg" id="pg" value="">
+	<input type="hidden" name="key" id="key" value="">
+	<input type="hidden" name="word" id="word" value="">
+	<input type="hidden" name="seq" id="seq" value="">
+</form>
+
+<script type="text/javascript" src="${root}/assets/js/board/board.js"></script>
 <script type="text/javascript" >
 var brdList;
 var dptList;
@@ -138,13 +152,14 @@ function makeBrdList(data) {
 	var sBrdList = data.brdList;
 	brdList = sBrdList;
 	for (var i = 0; i < brdList.length; i++) {
-		var categoryTag = $("<td></td>").attr("value", brdList[i].CCODE)
-										.text(brdList[i].CNAME);
-		var btypeTag = $("<td></td>").attr("value", brdList[i].BTYPE)
-									 .text(brdList[i].BTYPE_NAME);
-		var nameTag = $("<td></td>").attr("value", brdList[i].BCODE)
-									.text(brdList[i].BNAME);
-		var trTag = $("<tr></tr>").append(categoryTag)
+		var categoryTag = $("<td></td>").text(brdList[i].CNAME);
+		var btypeTag = $("<td></td>").text(brdList[i].BTYPE_NAME);
+		var nameTag = $("<td></td>").text(brdList[i].BNAME);
+		var trTag = $("<tr></tr>").attr("class", "board")
+								  .attr("ccode", brdList[i].CCODE)
+								  .attr("btype", brdList[i].BTYPE)
+								  .attr("bcode", brdList[i].BCODE)
+								  .append(categoryTag)
 								  .append(btypeTag)
 								  .append(nameTag)
 		$('#boardList').append(trTag);

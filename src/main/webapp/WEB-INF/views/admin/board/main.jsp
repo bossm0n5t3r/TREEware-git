@@ -6,11 +6,18 @@
 <%@ include file="/assets/common/import.jsp" %>
 <%@ include file="/assets/common/admin/board/import.jsp" %>
 <script type="text/javascript">
+control = "${root}/admin/board/";
+
 $(document).ready(function(){
 	document.getElementById("menu1").setAttribute("class", "nav-item active");
 	document.getElementById("menu2").setAttribute("class", "nav-item");
 	
 	getBrdList();
+	
+	$(document).on('click', '.board', function(){
+		$(location).attr("href", "${root}/admin/board/mvBoard.tree?bcode=" + $(this).attr("bcode") + "&pg=1&key=&word=&seq=")
+	});
+	
 })
 </script>
 </head>
@@ -43,10 +50,10 @@ $(document).ready(function(){
 											</tbody>
 										</table>
 										<div class="clear"></div>
-										<div align="center">
-											<!-- Paging part -->
-											${navigator.navigator}
-										</div>
+<!-- 										<div align="center"> -->
+<!-- 											Paging part -->
+<%-- 											${navigator.navigator} --%>
+<!-- 										</div> -->
 										<!-- 글목록 끝 -->
 									</div>
 									<div class="col-md-1"></div>
