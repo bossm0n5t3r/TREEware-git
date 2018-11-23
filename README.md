@@ -38,7 +38,7 @@ This is a final unsolved team project in KITRI Academy.
       - - [x] 페이징
       - - [x] 댓글 디자인
       - - [x] 댓글
-      - - [ ] 게시판 생성
+      - - [x] 게시판 생성
       - - [x] 게시판 보여주기
       - - [ ] 게시판에서 글목록 처리
       - - [ ] 관리자 게시판 설정
