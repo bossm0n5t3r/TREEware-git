@@ -9,6 +9,7 @@
 </style>
 <script type="text/javascript" >
 var dptList;
+var categoryList;
 var rnkList;
 var btypeList;
 
@@ -35,6 +36,32 @@ function makeDptList(data) {
 		var option = $("<option></option>").attr("value", dptList[i].DPT_SQ)
 										   .text(dptList[i].DPT_NM);
 		$('.dpt').append(option);
+	}
+}
+
+function getCategoryList() {
+	$.ajax({
+		type : "GET"
+		,url : "${root}/admin/board/getCategoryList.tree"
+		,dataType : "json"
+		,success : function(data) {
+			makeCategoryList(data);
+		}
+		,error : function(e) {
+			
+		}
+	})
+}
+
+function makeCategoryList(data) {
+	$('.ctgry').empty();
+	var sCategoryList = data.categoryList;
+	categoryList = sCategoryList;
+	$('.ctgry').append("<option selected='selected' disabled>카테고리 선택</option>");
+	for (var i = 0; i < categoryList.length; i++) {
+		var option = $("<option></option>").attr("value", categoryList[i].CCODE)
+										   .text(categoryList[i].CNAME);
+		$('.ctgry').append(option);
 	}
 }
 

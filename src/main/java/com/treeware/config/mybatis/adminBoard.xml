@@ -16,9 +16,15 @@
 		ORDER BY BTYPE
 	</select>
 
-	<insert id="addBoard" parameterType="BoardListDto">
+	<select id="getCategoryList" resultType="CategoryDto">
+		SELECT CCODE, CNAME
+		FROM CATEGORY
+		ORDER BY CCODE
+	</select>
+
+	<insert id="register" parameterType="BoardListDto">
 		INSERT INTO BRD_LIST (bcode, bname, btype, ccode)
-		VALUES(BRD_LIST_SQ.NEXTVAL, #{bname}, #{btype}, #{ccode})
+		VALUES(#{bcode}, #{bname}, #{btype}, #{ccode})
 	</insert>
 	
 	<select id="getBoardCount" parameterType="String" resultType="int">

@@ -12,13 +12,35 @@ $(document).ready(function(){
 	document.getElementById("menu1").setAttribute("class", "nav-item");
 	document.getElementById("menu2").setAttribute("class", "nav-item active");
 	
-	getDptList();
-	getRnkList();
+	getCategoryList();
 	getBtypeList();
 	
 	$('#registerBtn').click(function(){
-		 $('#registerMemberForm').attr("action", "${root}/admin/board/register.tree");
-		 $('#registerMemberForm').submit();
+		if($("#bname").val() === '') {
+			alert("게시판 이름을 입력해주세요.");
+		} else if ($("#ccode").val() === null) {
+			alert("카테고리 종류를 선택해주세요.");
+		} else if ($("#btype").val() === null) {
+			alert("게시판 종류를 선택해주세요.");
+		} else {
+			$.ajax({
+				type : "POST"
+				,url : "${root}/admin/board/register.tree"
+				,dataType : "text"
+				,data : {
+					"bname" : $("#bname").val()
+					,"ccode" : $("#ccode").val()
+					,"btype" : $("#btype").val()
+				}
+				,success : function(data) {
+					alert("등록되었습니다!");
+					$(location).attr("href", "${root}/admin/board/register.tree");
+				}
+				,error : function() {
+					
+				}
+			})
+		}
 	});
 });
 
@@ -41,62 +63,28 @@ $(document).ready(function(){
 								<div class="card-body" style="text-align:center">
 									<!-- 사원등록1 -->
 									<br>
-									<form class="form" method="POST" id="registerMemberForm" name="registerMemberForm" action="">
+									<form class="form" id="registerMemberForm" name="registerMemberForm" action="">
 										<div class="row" style="padding:0 20px">
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												게시판 제목
+											<div style="width:25%;padding:10px;" class="box-group" style="pading:5px">
+												게시판 이름
 											</div>
-											<div style="width:85%" class="box-group">
+											<div style="width:75%" class="box-group">
 												<input id="bname" name="bname" type="text" class="mainbox">
 											</div>
 										</div>
 										<div class="row" style="padding:0 20px">
-											<div style="width:15%;padding:10px;" class="box-group">
-												부서 선택
+											<div style="width:25%;padding:10px;" class="box-group">
+												카테고리 선택
 											</div>
-											<div style="width:85%" class="box-group">
-												<select id="ccode" name="ccode" class="form-control dpt" style="font-size:100%">
+											<div style="width:25%" class="box-group">
+												<select id="ccode" name="ccode" class="form-control ctgry" style="font-size:100%">
 												</select>
 											</div>
-										</div>
-										<div class="row" style="padding:0 20px">
-											<div style="width:15%;padding:10px;" class="box-group">
+											<div style="width:25%;padding:10px;" class="box-group">
 												게시판 종류
 											</div>
-											<div style="width:85%" class="box-group">
+											<div style="width:25%" class="box-group">
 												<select id="btype" name="btype" class="form-control" style="font-size:100%">
-												</select>
-											</div>
-										</div>
-										<div class="row" style="padding:0 20px">
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												쓰기권한부서
-											</div>
-											<div style="width:35%" class="box-group">
-												<select class="form-control dpt" style="font-size:100%">
-												</select>
-											</div>
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												읽기권한부서
-											</div>
-											<div style="width:35%" class="box-group">
-												<select class="form-control dpt" style="font-size:100%">
-												</select>
-											</div>
-										</div>
-										<div class="row" style="padding:0 20px 20px 20px">
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												쓰기권한사원
-											</div>
-											<div style="width:35%" class="box-group">
-												<select class="form-control rnk" style="font-size:100%">
-												</select>
-											</div>
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												읽기권한사원
-											</div>
-											<div style="width:35%" class="box-group">
-												<select class="form-control rnk" style="font-size:100%">
 												</select>
 											</div>
 										</div>

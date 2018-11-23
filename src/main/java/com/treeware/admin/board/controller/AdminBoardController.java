@@ -1,6 +1,7 @@
 package com.treeware.admin.board.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import com.treeware.admin.board.model.BoardListDto;
-import com.treeware.admin.board.model.BoardTypeDto;
+import com.treeware.admin.board.model.*;
 import com.treeware.admin.board.service.AdminBoardService;
+import com.treeware.util.NumberCheck;
 
 @Controller
 @RequestMapping("/admin/board")
@@ -49,7 +50,7 @@ public class AdminBoardController {
 		object.put("brdList", array);
 		return object.toString();
 	}
-	
+
 	//	게시판 종류 가져가기
 	@RequestMapping(value="/getBtypeList.tree", method=RequestMethod.GET)
 	public @ResponseBody String getBtypeList() {
@@ -66,4 +67,30 @@ public class AdminBoardController {
 		return object.toString();
 	}
 	
+	//	카테고리 종류 가져가기
+	@RequestMapping(value="/getCategoryList.tree", method=RequestMethod.GET)
+	public @ResponseBody String getCategoryList() {
+		JSONObject object = new JSONObject();
+		List<CategoryDto> list = adminBoardService.getCategoryList();
+		JSONArray array = new JSONArray();
+		for (CategoryDto dto : list) {
+			JSONObject ctgry = new JSONObject();
+			ctgry.put("CCODE", dto.getCcode());
+			ctgry.put("CNAME", dto.getCname());
+			array.put(ctgry);
+		}
+		object.put("categoryList", array);
+		return object.toString();
+	}
+	
+	//	게시판 등록
+	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
+	public @ResponseBody String register(@RequestParam Map<String, String> map) {
+		BoardListDto boardListDto = new BoardListDto();
+		boardListDto.setBname(map.get("bname"));
+		boardListDto.setBtype(NumberCheck.nullToOne(map.get("btype")));
+		boardListDto.setCcode(NumberCheck.nullToZero(map.get("ccode")));
+		adminBoardService.register(boardListDto);
+		return "success";
+	}
 }
