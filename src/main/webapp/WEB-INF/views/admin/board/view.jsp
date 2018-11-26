@@ -40,7 +40,7 @@ $(document).ready(function(){
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/assets/common/top.jsp" %>
+		<%@ include file="/assets/common/admin/home/top.jsp" %>
 		<%@ include file="/assets/common/admin/board/side.jsp" %>
 		<div class="main-panel" >
 			<div class="content">
