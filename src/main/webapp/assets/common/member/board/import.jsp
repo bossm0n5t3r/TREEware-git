@@ -121,7 +121,7 @@ function addComment() {
 		,url : "${root}/member/comment/add.tree"
 		,data : {
 			"brd_sq" : $("#brd_sq").val()
-			,"emp_sq" : ${userInfo.emp_sq}
+			,"emp_sq" : "${userInfo.emp_sq}"
 			,"rpl_ctt" : $("#rpl_ctt").val()
 		}
 		,dataType : "text"

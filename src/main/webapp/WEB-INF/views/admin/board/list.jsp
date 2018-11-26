@@ -100,7 +100,7 @@ $(document).ready(function(){
 															</td>
 															<c:set var="emp_sq" value="${article.emp_sq}" />
 															<td style="text-align:center">${article.brd_sq}</td>
-															<td id="${article.brd_sq}" onclick="javascript:boardClick(this)" style="text-align:left">${article.brd_ttl}</td>
+															<td style="text-align:left">${article.brd_ttl}</td>
 															<td>${article.emp_nm}</td>
 															<td>${article.brd_dt}</td>
 															<td>${article.brd_hits}</td>
