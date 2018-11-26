@@ -105,7 +105,11 @@ function makeCommentList(data) {
 									.append(commentTag)
 									.append(registerTag);
 		if (commentList[i].rpl_sq[0] !== "") {
-			comment.append(deleteTag);
+			if (commentList[i].emp_sq[0] == ${userInfo.emp_sq}) {
+				comment.append(deleteTag);
+			}
+			console.log(${userInfo.emp_sq});
+			console.log(commentList[i].emp_sq[0]);
 		}
 		$("#commentList").append(comment);
 	}
@@ -117,7 +121,7 @@ function addComment() {
 		,url : "${root}/member/comment/add.tree"
 		,data : {
 			"brd_sq" : $("#brd_sq").val()
-			,"emp_sq" : $("#emp_sq").val()
+			,"emp_sq" : ${userInfo.emp_sq}
 			,"rpl_ctt" : $("#rpl_ctt").val()
 		}
 		,dataType : "text"

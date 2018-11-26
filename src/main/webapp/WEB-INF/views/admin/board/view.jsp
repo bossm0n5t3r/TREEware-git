@@ -93,7 +93,7 @@ $(document).ready(function(){
 								<div class="row" style="padding:0 35px 10px 35px">
 									<table style="width:100%;font-size:100%;text-align:center">
 										<tr>
-											<td width="10%">아이디</td>
+											<td width="10%">이름</td>
 											<td width="70%">댓글</td>
 											<td width="15%">작성시간</td>
 											<td width="5%"></td>
