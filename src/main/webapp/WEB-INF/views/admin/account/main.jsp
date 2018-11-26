@@ -401,7 +401,7 @@ function searchajax(){
 		,error : function(e) {
 			alert("에러");
 		}
-});
+	});
 }
 //사원검색 페이지
 function searchPaging(){
