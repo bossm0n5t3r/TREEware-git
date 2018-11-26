@@ -31,8 +31,10 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click','.deleteCommentBtn',function(){
-		var rpl_sq = $(this).siblings("input").val();
-		deleteComment(rpl_sq);
+		if(confirm("삭제하시겠습니까?")) {
+			var rpl_sq = $(this).siblings("input").val();
+			deleteComment(rpl_sq);
+		}
 	});
 	
 });
