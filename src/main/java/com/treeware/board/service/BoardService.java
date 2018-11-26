@@ -3,16 +3,14 @@ package com.treeware.board.service;
 import java.util.List;
 import java.util.Map;
 
+import com.treeware.admin.board.model.BoardDetailDto;
 import com.treeware.admin.board.model.BoardDto;
-import com.treeware.admin.board.model.BoardListDto;
 
 public interface BoardService {
 
-	List<BoardListDto> getBoardList();
-	List<BoardDto> getBoardInfo(String bcode);
-	int boardWrite(BoardDto boardDto);
-	int getNextSeq();
-	BoardDto boardView(int brd_sq);
-	String getBoardEmpName(String emp_sq);
-	List<BoardDto> boardSearch(Map<String, String> map);
+	public int write(BoardDto boardDto);
+	public String getBoardName(Map<String, String> map);
+	public BoardDetailDto viewArticle(int brd_sq);
+	public List<BoardDetailDto> listArticle(Map<String, String> map);
+	
 }

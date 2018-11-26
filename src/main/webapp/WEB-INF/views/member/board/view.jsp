@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/assets/common/import.jsp" %>
-<%@ include file="/assets/common/admin/board/import.jsp" %>
+<%@ include file="/assets/common/member/board/import.jsp" %>
 <style type="text/css">
 .listcursor:hover{
 	cursor:pointer;
@@ -16,7 +16,7 @@ $(document).ready(function(){
 	getCommentList();
 	
 	$("#listBtn").click(function(){
-		$(location).attr("href","${root}/admin/board/mvBoard.tree?bcode=${param.bcode}&pg=${param.pg}&key=${param.key}&word=${param.word}&seq=${param.seq}")
+		$(location).attr("href","${root}/member/board/mvBoard.tree?bcode=${param.bcode}&pg=${param.pg}&key=${param.key}&word=${param.word}&seq=${param.seq}")
 	});
 	
 	$("#commentBtn").click(function(){
@@ -42,8 +42,8 @@ $(document).ready(function(){
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/assets/common/admin/home/top.jsp" %>
-		<%@ include file="/assets/common/admin/board/side.jsp" %>
+		<%@ include file="/assets/common/top.jsp" %>
+		<%@ include file="/assets/common/member/board/side.jsp" %>
 		<div class="main-panel" >
 			<div class="content">
 				<div class="container-fluid">

@@ -1,158 +1,138 @@
 package com.treeware.board.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.treeware.admin.board.model.BoardDetailDto;
 import com.treeware.admin.board.model.BoardDto;
-import com.treeware.admin.board.model.BoardListDto;
-import com.treeware.admin.board.service.AdminBoardService;
 import com.treeware.admin.member.model.EmployeeDto;
 import com.treeware.board.service.BoardService;
+import com.treeware.common.service.CommonService;
+import com.treeware.util.PageNavigation;
 
 @Controller
 @RequestMapping("/member/board")
 public class BoardController {
 
 	@Autowired
+	private ServletContext servletContext;
+	
+	@Autowired
 	private BoardService boardService;
 	
 	@Autowired
-	private AdminBoardService adminBoardService;
+	private CommonService commonService;
 	
-	// 게시판 메인 페이지
-	@RequestMapping("/main.tree")
+	//	메인 페이지 이동
+	@RequestMapping(value="/main.tree", method=RequestMethod.GET)
 	public String main() {
 		return "member/board/main";
 	}
 	
-	//게시판 이동
-	@RequestMapping("/boardsortlist.tree")
-	public ModelAndView boardsortlist(@RequestParam Map<String,String> map, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		Map <String, String> userMap = new HashMap<String, String>();
-		Map <String, String> pageMap = new HashMap<String, String>();
-		Map <String, String> boardEmpName = new HashMap<String, String>();
-		List<BoardDto> boardDto = boardService.getBoardInfo(map.get("bcode"));
-		int cnt = adminBoardService.getBoardCount(map.get("bcode"));
-		for(int i=0;i<boardDto.size();i++) {
-			boardEmpName.put(boardDto.get(i).getEmp_sq(), adminBoardService.getBoardEmpName(boardDto.get(i).getEmp_sq()));	
-		}
-		mav.addObject("boardEmpName", boardEmpName);
-		mav.addObject("cnt", cnt);
-		mav.addObject("board", boardDto);
-		mav.addObject("pageMap", pageMap);
-		mav.setViewName("member/board/boardsortlist");
-		userMap.put("bcode", map.get("bcode"));
-		userMap.put("btype", map.get("btype"));
-		userMap.put("bname", map.get("bname"));
-		userMap.put("pg", "1");
-		userMap.put("key", "");
-		userMap.put("word", "");
-		session.setAttribute("userBoardInfo", userMap);
-		return mav;
-	}
-	
-	//side list 출력
-	@RequestMapping("/boardlist.tree")
-	public @ResponseBody String boardlist() {
-		List<BoardListDto> boardListDto = boardService.getBoardList();
-		JSONObject json = new JSONObject();
-		json.put("boardList", boardListDto);
-		return json.toString();
-	}
-	
-	@RequestMapping("/bookmark.tree")
-	public ModelAndView bookmark() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/board/bookmark");
-		return mav;
-	}
-	
-	@RequestMapping("/freeboard.tree")
-	public ModelAndView freeboard() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/board/freeboard");
-		return mav;
-	}
-	
-	// 글쓰기
-	//TODO 상태가 엉망임. 1. 왜 Map으로 캐스팅하는가 - 그냥 RequestParam으로 받으면 되지않는가, 2. redirect 시키면 날아감. 왜 담아?
-	@RequestMapping(value="/write.tree", method=RequestMethod.POST)
-	public ModelAndView write(BoardDto boardDto, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
-		Map<String, String> map = (Map<String, String>) session.getAttribute("userBoardInfo");
-		boardDto.setEmp_sq(employeeDto.getEmp_sq());
-		boardService.boardWrite(boardDto);
-		mav.addObject("bcode", map.get("bcode"));
-		mav.addObject("btype", map.get("btype"));
-		mav.addObject("bname", map.get("bname"));
-		mav.setViewName("redirect:boardsortlist.tree");
-		return mav;
-	}
-	
-	//글쓰기이동
+	//	글쓰기 페이지 이동
 	@RequestMapping(value="/write.tree", method=RequestMethod.GET)
-	public String write() {
+	public String mvWrite() {
 		return "member/board/write";
 	}
 	
-	//보기
-	@RequestMapping(value="/boardview.tree", method=RequestMethod.GET)
-	public ModelAndView boardview(BoardDto boardDto) {
-		ModelAndView mav = new ModelAndView();
-		BoardDto boardView = boardService.boardView(boardDto.getBrd_sq());
-		
-//		List<BoardDto> list = new ArrayList<BoardDto>();
-//		int num=boardDto.getBrd_sq();
-//		int cnt=0;
-//		for(int i=0 ; i<5 ; i++) {
-//			if(boardService.boardView(num)!=null) {
-//				list.add(boardService.boardView(num));
-//				cnt++;
-//			}else {
-//				num--;
-//			}
-//		}
-//		mav.addObject("boardList", list);
-//		mav.addObject("listCnt", cnt);
-		mav.addObject("boardView", boardView);
-		mav.setViewName("member/board/boardview");
+	//	글보기 페이지 이동
+	@RequestMapping(value="/view.tree", method=RequestMethod.GET)
+	public ModelAndView view(@RequestParam Map<String, String> map, HttpSession session) {
+		ModelAndView mav = new ModelAndView("member/board/view");
+		// 1. 로그인 체크
+		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
+		if (employeeDto != null) {
+			// 2. 글번호 가져오기
+			int brd_sq = Integer.parseInt(map.get("seq"));
+			// 3. 해당 글 가져오기
+			BoardDetailDto article = boardService.viewArticle(brd_sq);
+			// 4. 해당 글 담기
+			mav.addObject("article", article);
+		}
+		// 5. view 페이지로 이동
 		return mav;
-		
 	}
 	
-	//글검색
-		@RequestMapping("/boardsearch.tree")
-		public @ResponseBody String memberSearch(@RequestParam Map<String, String> map) {
-			JSONObject json = new JSONObject();
-			JSONArray jarray = new JSONArray();
-			List<BoardDto> list = new ArrayList<BoardDto>();
-			list = boardService.boardSearch(map);
-			for(BoardDto boardDto : list) {
-				JSONObject boards = new JSONObject();
-				boards.put("brd_sq", boardDto.getBrd_sq());
-				boards.put("brd_ttl", boardDto.getBrd_ttl());
-				boards.put("emp_sq", boardDto.getEmp_sq());
-				boards.put("brd_dt", boardDto.getBrd_dt());
-				boards.put("brd_hits", boardDto.getBrd_hits());
-				jarray.put(boards);
-			}
-			json.put("board", jarray);
-			return json.toString();
+	//	해당 게시판으로 이동
+	@RequestMapping(value="/mvBoard.tree", method=RequestMethod.GET)
+	public ModelAndView mvBoard(@RequestParam Map<String, String> map, HttpSession session, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("member/board/list");
+		// 1. 로그인 되어있는지 확인
+		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
+		if (employeeDto != null) {
+			// 2. BCODE 를 통해서 게시판 이름 받기
+			String boardName = boardService.getBoardName(map);
+			// 3. 받아온 게시판 이름을 저장
+			mav.addObject("boardName", boardName);			
+			// 4. 글목록 받기
+			List <BoardDetailDto> boardList = boardService.listArticle(map);
+			// 5. 받아온 글 목록 저장
+			mav.addObject("boardList", boardList);
+			// 6. 하단 페이징 처리 및 저장
+			PageNavigation navigator = commonService.makePageNavigation(map);
+			navigator.setRoot(request.getContextPath());
+			navigator.setKey(map.get("key"));
+			navigator.setWord(map.get("word"));
+			navigator.setNavigator();
+			mav.addObject("navigator", navigator);
 		}
+		// 7. list 페이지로 이동		
+		return mav;
+	}
+	
+	//	글쓰기
+	@RequestMapping(value="/write.tree", method=RequestMethod.POST)
+	public ModelAndView write(BoardDto boardDto, @RequestParam("brdFile") MultipartFile multipartFile, @RequestParam Map<String, String> map, HttpSession session) {
+		ModelAndView mav = new ModelAndView("member/board/main");
+		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
+		if (employeeDto != null) {
+			boardDto.setEmp_sq(employeeDto.getEmp_sq());
+			if (multipartFile != null && !multipartFile.isEmpty()) {
+				String ofile = multipartFile.getOriginalFilename();
+				
+				String realPath = servletContext.getRealPath("/assets/img/board");
+				
+				DateFormat df = new SimpleDateFormat("yyMMdd");
+				String saveFolder = df.format(new Date());
+				String realSaveFolder = realPath + File.separator + saveFolder;
+				File dir = new File(realSaveFolder);
+				if (!dir.exists()) {
+					dir.mkdirs();
+				}
+				
+				String sfile = UUID.randomUUID().toString() + ofile.substring(ofile.lastIndexOf("."));
+				
+				File file = new File(realSaveFolder, sfile);
+				
+				try {
+					multipartFile.transferTo(file);
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				boardDto.setBrd_fl_onm(ofile);
+				boardDto.setBrd_fl_mnm(sfile);
+				boardDto.setBrd_fl_rt(saveFolder);
+			}
+			boardService.write(boardDto);
+		}
+		return mav;
+	}
+	
+	
 }

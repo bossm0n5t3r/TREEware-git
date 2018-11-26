@@ -7,7 +7,14 @@
 <%@ include file="/assets/common/member/board/import.jsp" %>
 <script>
 $(document).ready(function(){
+	control = "${root}/member/board/";
+
+	//	게시판 분류를 글쓰기 화면에서 보여주기
+	//	게시판 종류를 side에 표시. 클릭시 해당 게시판의 첫 페이지로 이동
+	getBrdList();
+	
 	$('#menu0').attr("class", "nav-item active");
+	
 // 	document.getElementById("menu0").setAttribute("class", "nav-item active");
 // 	document.getElementById("menu1").setAttribute("class", "nav-item");
 // 	document.getElementById("menu2").setAttribute("class", "nav-item");

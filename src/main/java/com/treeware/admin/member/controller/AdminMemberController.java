@@ -30,7 +30,7 @@ public class AdminMemberController {
 	@Autowired
 	private ServletContext servletContext;
 	
-	// 계정관리 메인페이지
+	//	계정관리 메인페이지
 	@RequestMapping("/main.tree")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
@@ -57,7 +57,7 @@ public class AdminMemberController {
 		return mav;
 	}
 	
-	//사원등록
+	//	사원등록
 	@RequestMapping(value="/register.tree", method=RequestMethod.POST)
 	public ModelAndView register(EmployeePicDto employeePicDto, @RequestParam("file") MultipartFile multipartFile) {
 		ModelAndView mav = new ModelAndView("admin/account/main");
@@ -171,7 +171,7 @@ public class AdminMemberController {
 		return mav;
 	}
 	
-	// 사원정보 얻기
+	//	사원정보 얻기
 	@RequestMapping("/getmember.tree")
 	public @ResponseBody String getMember(@RequestParam String emp_sq) {
 		EmployeeDto employeeDto = new EmployeeDto();
@@ -205,7 +205,7 @@ public class AdminMemberController {
 		return json.toString();
 	}
 	
-	//사원검색
+	//	사원검색
 	@RequestMapping("/membersearch.tree")
 	public @ResponseBody String memberSearch(@RequestParam Map<String, String> map) {
 		JSONObject json = new JSONObject();
@@ -238,7 +238,7 @@ public class AdminMemberController {
 		return json.toString();
 	}
 
-	// 권한명 얻기
+	//	권한명 얻기
 	@RequestMapping(value="/getPermission.tree", method=RequestMethod.POST)
 	public @ResponseBody String getPermission(@RequestParam Map<String, String> map) {
 		JSONObject object = new JSONObject();
@@ -247,7 +247,7 @@ public class AdminMemberController {
 		return object.toString();
 	}
 	
-	// 부서명 얻기
+	//	부서명 얻기
 	@RequestMapping(value="/getDepartment.tree", method=RequestMethod.POST)
 	public @ResponseBody String getDepartment(@RequestParam Map<String, String> map) {
 		JSONObject object = new JSONObject();
@@ -256,7 +256,7 @@ public class AdminMemberController {
 		return object.toString();
 	}
 	
-	// 직위명 얻기
+	//	직위명 얻기
 	@RequestMapping(value="/getRank.tree", method=RequestMethod.POST)
 	public @ResponseBody String getRank(@RequestParam Map<String, String> map) {
 		JSONObject object = new JSONObject();
@@ -265,12 +265,44 @@ public class AdminMemberController {
 		return object.toString();
 	}
 	
-	// 직책명 얻기
+	//	직책명 얻기
 	@RequestMapping(value="/getPosition.tree", method=RequestMethod.POST)
 	public @ResponseBody String getPosition(@RequestParam Map<String, String> map) {
 		JSONObject object = new JSONObject();
 		PositionDto positionDto = adminMemberService.getPosition(NumberCheck.nullToZero(map.get("pst_sq")));
 		object.put("PST_NM", positionDto.getPst_nm());
+		return object.toString();
+	}
+	
+	//	전체 부서명 얻기
+	@RequestMapping(value="/getDptList.tree", method=RequestMethod.GET)
+	public @ResponseBody String getDptList() {
+		JSONObject object = new JSONObject();
+		List<DepartmentDto> list = adminMemberService.getDptList();
+		JSONArray array = new JSONArray();
+		for (DepartmentDto dto : list) {
+			JSONObject dpt = new JSONObject();
+			dpt.put("DPT_SQ", dto.getDpt_sq());
+			dpt.put("DPT_NM", dto.getDpt_nm());
+			array.put(dpt);
+		}
+		object.put("dptList", array);
+		return object.toString();
+	}
+	
+	//	전체 직위명 얻기
+	@RequestMapping(value="/getRnkList.tree", method=RequestMethod.GET)
+	public @ResponseBody String getRnkList() {
+		JSONObject object = new JSONObject();
+		List<RankDto> list = adminMemberService.getRnkList();
+		JSONArray array = new JSONArray();
+		for (RankDto dto : list) {
+			JSONObject rnk = new JSONObject();
+			rnk.put("RNK_SQ", dto.getRnk_sq());
+			rnk.put("RNK_NM", dto.getRnk_nm());
+			array.put(rnk);
+		}
+		object.put("rnkList", array);
 		return object.toString();
 	}
 }

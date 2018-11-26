@@ -6,8 +6,8 @@ import com.treeware.util.PageNavigation;
 
 public interface CommonService {
 	
-	PageNavigation makePageNavigation(Map<String, String> map);
+	public int getNextBrdSeq();
+
+	public PageNavigation makePageNavigation(Map<String, String> map);
 	
-
-
 }

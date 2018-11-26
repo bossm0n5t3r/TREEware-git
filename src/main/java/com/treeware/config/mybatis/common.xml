@@ -6,33 +6,42 @@
   
 <mapper namespace="com.treeware.common.dao.CommonDao">
 
-	<select id="getNextSeq" resultType="int">
-	select ML_SQ.nextval
-	from dual
+	<select id="getNextBrdSeq" resultType="int">
+		SELECT BRD_SQ.NEXTVAL
+		FROM DUAL
+	</select>
+	
+	<select id="getNextRplSeq" resultType="int">
+		SELECT RPL_SQ.NEXTVAL
+		FROM DUAL
+	</select>
+	
+	<select id="getNextBcodeSeq" resultType="int">
+		SELECT BRD_LIST_SQ.NEXTVAL
+		FROM DUAL
 	</select>
 
-	<select id="getNewArticleCount" parameterType="map" resultType="int">
-	select count(ML_SQ)
-	from ML
-	where ML_GRP_SQ = #{ml_grp_sq}
-	and to_char(ML_SEND_DATE,'yymmdd') = to_char(sysdate,'yymmdd')
+	<select id="getNewArticleCount" parameterType="int" resultType="int">
+		SELECT COUNT(BRD_SQ)
+		FROM BRD
+		WHERE bcode = #{bcode}
+		AND to_char(brd_dt, 'yymmdd') = to_char(sysdate, 'yymmdd')
 	</select>
 	
-	<select id="getTotalArticleCount" parameterType="map" resultType="int">
-	select count(ML_SQ)
-	from ML
-	where ML_GRP_SQ = #{ml_grp_sq}
+	<select id="getTotalArticleCount" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(BRD_SQ)
+		FROM BRD
+		WHERE bcode = #{bcode}
 		<if test="word != null and word != ''">
-				<choose>
-					<when test="key == 'ml_ttl'">
-					and ML_TTL like '%'||#{word}||'%'
-					</when>
-					<when test="key == 'ml_rcv_add'">
-					and ML_RCV_ADD like '%'||#{word}||'%'
-					</when>
-				</choose>
-			</if>
+			<choose>
+				<when test="key=='subject'">
+					AND b.BRD_TTL like '%'||#{word}||'%'
+				</when>
+				<otherwise>
+					AND b.${key} = #{word}
+				</otherwise>
+			</choose>
+		</if>
 	</select>
-	
 
 </mapper>

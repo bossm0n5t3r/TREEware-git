@@ -2,24 +2,49 @@
 <!DOCTYPE html>
 <html lang="kor">
 <head>
-	<title>트리웨어 관리자</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%@ include file="/assets/common/import.jsp" %>
+<title>트리웨어 관리자</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%@ include file="/assets/common/import.jsp" %>
+<%@ include file="/assets/common/admin/board/import.jsp" %>
 <script>
 $(document).ready(function(){
-// 	document.getElementById("menu1").setAttribute("class", "nav-item");
+	document.getElementById("menu1").setAttribute("class", "nav-item");
 	document.getElementById("menu2").setAttribute("class", "nav-item active");
 	
+	getCategoryList();
+	getBtypeList();
+	
 	$('#registerBtn').click(function(){
-		 $('#registerMemberForm').attr("action", "${root}/admin/board/register.tree");
-		 $('#registerMemberForm').submit();
-	})
+		if($("#bname").val() === '') {
+			alert("게시판 이름을 입력해주세요.");
+		} else if ($("#ccode").val() === null) {
+			alert("카테고리를 선택해주세요.");
+		} else if ($("#btype").val() === null) {
+			alert("게시판 타입을 선택해주세요.");
+		} else {
+			$.ajax({
+				type : "POST"
+				,url : "${root}/admin/board/register.tree"
+				,dataType : "text"
+				,data : {
+					"bname" : $("#bname").val()
+					,"ccode" : $("#ccode").val()
+					,"btype" : $("#btype").val()
+				}
+				,success : function(data) {
+					alert("등록되었습니다!");
+					$(location).attr("href", "${root}/admin/board/register.tree");
+				}
+				,error : function() {
+					
+				}
+			})
+		}
+	});
 });
-	function goback(){
-		location.href="${root}/index.jsp";
-	}
-	</script>
+
+</script>
 </head>
 <body>
 	<div class="wrapper">
@@ -29,108 +54,37 @@ $(document).ready(function(){
 			<div class="content">
 				<div class="container-fluid" style="height:1000px">
 					<div align="center" style="padding:10px;margin:30px 0">
-						<div class="col-md-10">
+						<div class="col-md-12">
 							<!-- card -->
 							<div class="card" style="width:100%;padding:30px 30px 60px 30px;text-align:left">
 								<div class="card-header">
-									<div class="card-title">게시판등록</div>
+									<div class="card-title">게시판 등록</div>
 								</div>
-								<div class="card-body">
+								<div class="card-body" style="text-align:center">
 									<!-- 사원등록1 -->
 									<br>
-									<form class="form" method="POST" id="registerMemberForm" name="registerMemberForm" action="">
+									<form class="form" id="registerMemberForm" name="registerMemberForm" action="">
 										<div class="row" style="padding:0 20px">
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												게시판 제목
+											<div style="width:25%;padding:10px;" class="box-group" style="pading:5px">
+												게시판 이름
 											</div>
-											<div style="width:85%" class="box-group">
+											<div style="width:75%" class="box-group">
 												<input id="bname" name="bname" type="text" class="mainbox">
 											</div>
 										</div>
 										<div class="row" style="padding:0 20px">
-											<div style="width:15%;padding:10px;" class="box-group">
+											<div style="width:25%;padding:10px;" class="box-group">
 												카테고리
 											</div>
-											<div style="width:85%" class="box-group">
-												<select id="ccode" name="ccode" class="form-control" style="font-size:100%">
-													<option value='0'>전체부서</option>
-													<option value='1'>관리부</option>
-													<option value='2'>인사부</option>
-													<option value='3'>무역부</option>
-													<option value='4'>영업부</option>
-													<option value='5'>판매부</option>
+											<div style="width:25%" class="box-group">
+												<select id="ccode" name="ccode" class="form-control ctgry" style="font-size:100%">
 												</select>
 											</div>
-										</div>
-										<div class="row" style="padding:0 20px">
-											<div style="width:15%;padding:10px;" class="box-group">
-												게시판 종류
+											<div style="width:25%;padding:10px;" class="box-group">
+												게시판 타입
 											</div>
-											<div style="width:85%" class="box-group">
+											<div style="width:25%" class="box-group">
 												<select id="btype" name="btype" class="form-control" style="font-size:100%">
-													<option value='0' disabled>게시판선택</option>
-													<option value='1'>일반게시판</option>
-													<option value='2'>앨범게시판</option>
-													<option value='3'>자료실</option>
-												</select>
-												<input type="hidden" id="bname" name="bname">
-											</div>
-										</div>
-										<div class="row" style="padding:0 20px">
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												쓰기부서
-											</div>
-											<div style="width:35%" class="box-group">
-												<select id="jw" name="jw" class="form-control" style="font-size:100%">
-													<option value='0'>전체부서</option>
-													<option value='1'>관리부</option>
-													<option value='2'>인사부</option>
-													<option value='3'>무역부</option>
-													<option value='4'>영업부</option>
-													<option value='5'>판매부</option>
-												</select>
-											</div>
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												읽기부서
-											</div>
-											<div style="width:35%" class="box-group">
-												<select id="jw" name="jw" class="form-control" style="font-size:100%">
-													<option value='0'>전체부서</option>
-													<option value='1'>관리부</option>
-													<option value='2'>인사부</option>
-													<option value='3'>무역부</option>
-													<option value='4'>영업부</option>
-													<option value='5'>판매부</option>
-												</select>
-											</div>
-										</div>
-										<div class="row" style="padding:0 20px 20px 20px">
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												쓰기권한
-											</div>
-											<div style="width:35%" class="box-group">
-												<select id="jw" name="jw" class="form-control" style="font-size:100%">
-													<option value='0'>전체사원</option>
-													<option value='1'>사원</option>
-													<option value='2'>대리</option>
-													<option value='3'>과장</option>
-													<option value='4'>차장</option>
-													<option value='5'>부장</option>
-													<option value='6'>사장</option>
-												</select>
-											</div>
-											<div style="width:15%;padding:10px;" class="box-group" style="pading:5px">
-												읽기권한
-											</div>
-											<div style="width:35%" class="box-group">
-												<select id="jw" name="jw" class="form-control" style="font-size:100%">
-													<option value='0'>전체사원</option>
-													<option value='1'>사원</option>
-													<option value='2'>대리</option>
-													<option value='3'>과장</option>
-													<option value='4'>차장</option>
-													<option value='5'>부장</option>
-													<option value='6'>사장</option>
 												</select>
 											</div>
 										</div>
@@ -138,7 +92,7 @@ $(document).ready(function(){
 								</div>
 							<div class="card-footer" align="center">
 								<button class="btn btn-success" id="registerBtn" style="width:120px;padding:10px;margin:5px">등록하기</button>
-								<button class="btn btn-danger" onclick="javascript:goback()" style="width:120px;padding:10px;margin:5px">등록취소</button>
+								<button class="btn btn-danger" style="width:120px;padding:10px;margin:5px">등록취소</button>
 							</div>
 							</div>
 							<!-- card end -->

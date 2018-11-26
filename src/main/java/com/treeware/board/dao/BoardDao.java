@@ -3,14 +3,15 @@ package com.treeware.board.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.treeware.admin.board.model.BoardDetailDto;
 import com.treeware.admin.board.model.BoardDto;
-import com.treeware.admin.board.model.BoardListDto;
 
 public interface BoardDao {
-	List<BoardListDto> getBoardList();
-	List<BoardDto> getBoardInfo(String bcode);
-	int boardWrite(BoardDto boardDto);
-	int getNextSeq();
-	BoardDto boardView(int brd_sq);
-	List<BoardDto> boardSearch(Map<String, String> map);
+	
+	public void updateHit(int brd_sq);
+	public int write(BoardDto boardDto);
+	public String getBoardName(Map<String, String> map);
+	public BoardDetailDto viewArticle(int brd_sq);
+	public List<BoardDetailDto> listArticle(Map<String, String> map);
+	
 }

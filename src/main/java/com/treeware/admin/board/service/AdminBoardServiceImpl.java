@@ -7,40 +7,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.treeware.admin.board.dao.AdminBoardDao;
-import com.treeware.admin.board.model.BoardDto;
-import com.treeware.admin.board.model.BoardListDto;
+import com.treeware.admin.board.model.*;
+import com.treeware.common.dao.CommonDao;
 
 @Service
 public class AdminBoardServiceImpl implements AdminBoardService {
 
 	@Autowired
 	private SqlSession sqlSession;
+
+	@Override
+	public List<BoardListDetailDto> getBrdList() {
+		return sqlSession.getMapper(AdminBoardDao.class).getBrdList();
+	}
+
+	@Override
+	public List<BoardTypeDto> getBtypeList() {
+		return sqlSession.getMapper(AdminBoardDao.class).getBtypeList();
+	}
+
+	@Override
+	public List<CategoryDto> getCategoryList() {
+		return sqlSession.getMapper(AdminBoardDao.class).getCategoryList();
+	}
 	
 	@Override
-	public int addBoard(BoardListDto boardListDto) {
-		return sqlSession.getMapper(AdminBoardDao.class).addBoard(boardListDto);
+	public int register(BoardListDto boardListDto) {
+		int bcode = sqlSession.getMapper(CommonDao.class).getNextBcodeSeq();
+		boardListDto.setBcode(bcode);
+		return sqlSession.getMapper(AdminBoardDao.class).register(boardListDto) != 0 ? bcode : 0;
 	}
-
-	@Override
-	public int getBoardCount(String bcode) {
-		return sqlSession.getMapper(AdminBoardDao.class).getBoardCount(bcode);
-	}
-
-	@Override
-	public List<BoardDto> boardViewsBcode(int bcode) {
-		return sqlSession.getMapper(AdminBoardDao.class).boardViewsBcode(bcode);
-	}
-
-	@Override
-	public List<BoardDto> boardViews() {
-		return sqlSession.getMapper(AdminBoardDao.class).boardViews();
-	}
-
-	@Override
-	public String getBoardEmpName(String emp_sq) {
-		return sqlSession.getMapper(AdminBoardDao.class).getBoardEmpName(emp_sq);
-	}
-
-
 
 }

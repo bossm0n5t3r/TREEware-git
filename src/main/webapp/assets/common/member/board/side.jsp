@@ -1,30 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script>
-$(document).ready(function(){
-	$.ajax({
-		type : "GET"
-		,url : "${root}/member/board/boardlist.tree"
-		,dataType : "json"
-		,success : function(data) {
-			boardList = data.boardList;
-			board_list(boardList);
-		}
-		,error : function(e) {
-			alert("에러");
-		}
-	});
-})
-function board_list(boardList){
-	for(var i=0;i<boardList.length;i++){
-		var bname = boardList[i].bname.replace(",", "");
-		var bcode = boardList[i].bcode;
-		var btype = boardList[i].btype;
-		$('#boardlist').append('<li id="menu'+i+'" class="nav-item"><a href="${root}/member/board/boardsortlist.tree?bcode='+bcode+'&bname='+bname+'&btype='+btype+'"><p>'+bname+'</p></a></li>');
-	}
-}
-
-</script>
 <div class="sidebar">
 	<div class="scrollbar-inner sidebar-wrapper">
 		<%@ include file="/assets/common/user.jsp" %>
@@ -51,8 +26,8 @@ function board_list(boardList){
 		</div>
 		
 		<div style="margin:20px 0 10px 0" align="center">
-<%-- 		<a href="${root}/member/board/write.tree"><button class="btn btn-outline-primary" style="width:220px;"> --%>
-<!-- 		<i class="la la-edit"></i> &nbsp;글쓰기</button></a> -->
+			<a href="${root}/member/board/write.tree"><button class="btn btn-outline-primary" style="width:220px;">
+			<i class="la la-edit"></i> &nbsp;글쓰기</button></a>
 		</div>
 		<ul class="nav" id="boardlist">
 <!-- 			<li id="menu1" class="nav-item active"> -->
