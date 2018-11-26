@@ -11,6 +11,7 @@ public class BoardDto {
 	private String brd_fl_onm;
 	private String brd_fl_mnm;
 	private String brd_fl_rt;
+	private int brd_chkdlt;
 
 	public int getBrd_sq() {
 		return brd_sq;
@@ -90,6 +91,14 @@ public class BoardDto {
 
 	public void setBrd_fl_rt(String brd_fl_rt) {
 		this.brd_fl_rt = brd_fl_rt;
+	}
+
+	public int getBrd_chkdlt() {
+		return brd_chkdlt;
+	}
+
+	public void setBrd_chkdlt(int brd_chkdlt) {
+		this.brd_chkdlt = brd_chkdlt;
 	}
 
 }

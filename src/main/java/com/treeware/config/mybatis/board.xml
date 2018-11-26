@@ -12,8 +12,8 @@
 	</update>
 
 	<insert id="write" parameterType="BoardDto">
-		INSERT INTO BRD(BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT)
-		VALUES (#{brd_sq}, #{bcode}, #{brd_ttl}, #{emp_sq}, #{brd_ctt}, sysdate, #{brd_hits}, #{brd_fl_onm, jdbcType=VARCHAR}, #{brd_fl_mnm, jdbcType=VARCHAR}, #{brd_fl_rt, jdbcType=VARCHAR})
+		INSERT INTO BRD(BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT, BRD_CHKDLT)
+		VALUES (#{brd_sq}, #{bcode}, #{brd_ttl}, #{emp_sq}, #{brd_ctt}, sysdate, #{brd_hits}, #{brd_fl_onm, jdbcType=VARCHAR}, #{brd_fl_mnm, jdbcType=VARCHAR}, #{brd_fl_rt, jdbcType=VARCHAR}, #{brd_chkdlt})
 	</insert>
 	
 	<select id="getBoardName" parameterType="java.util.Map" resultType="String">
@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="viewArticle" parameterType="int" resultType="BoardDetailDto">
-		SELECT BRD_SQ, b.BCODE, l.BNAME, BRD_TTL, b.EMP_SQ, e.EMP_NM, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
+		SELECT BRD_SQ, b.BCODE, l.BNAME, BRD_TTL, b.EMP_SQ, e.EMP_NM, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT, BRD_CHKDLT
 		FROM BRD b, BRD_LIST l, EMP e
 		WHERE BRD_SQ = #{brd_sq}
 		AND b.EMP_SQ = e.EMP_SQ
@@ -33,7 +33,7 @@
 	<select id="listArticle" parameterType="java.util.Map" resultType="BoardDetailDto">
 		SELECT * 
 		FROM (SELECT rownum rn, t.*
-		      FROM (SELECT BRD_SQ, b.BCODE, l.BNAME, BRD_TTL, b.EMP_SQ, e.EMP_NM EMP_NM, BRD_CTT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT,
+		      FROM (SELECT BRD_SQ, b.BCODE, l.BNAME, BRD_TTL, b.EMP_SQ, e.EMP_NM EMP_NM, BRD_CTT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT, BRD_CHKDLT,
 		                   decode(to_char(b.BRD_DT, 'yymmdd'),
 		                          to_char(sysdate, 'yymmdd'), to_char(b.BRD_DT, 'hh24:mi:ss'),
 		                          to_char(b.BRD_DT, 'yy.mm.dd')) BRD_DT
@@ -41,6 +41,7 @@
 		            WHERE b.EMP_SQ = e.EMP_SQ
 		            AND b.BCODE = #{bcode}
 		            AND b.BCODE = l.BCODE
+		            AND BRD_CHKDLT = 0
 		            <if test="word != null and word != ''">
 		            	<choose>
 		            		<when test="key=='subject'">
@@ -57,7 +58,7 @@
 	</select>
 	
 	<select id="boardSearch" parameterType="map" resultType="BoardDto">
-	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT
+	SELECT BRD_SQ, BCODE, BRD_TTL, EMP_SQ, BRD_CTT, BRD_DT, BRD_HITS, BRD_FL_ONM, BRD_FL_MNM, BRD_FL_RT, BRD_CHKDLT
 	FROM BRD
 	WHERE BCODE = #{bcode}
 	<if test="word != null and word != ''">
