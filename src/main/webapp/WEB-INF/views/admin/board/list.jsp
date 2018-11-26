@@ -11,7 +11,7 @@
 }
 </style>
 <script type="text/javascript">
-control = "${root}/member/board/";
+control = "${root}/admin/board/";
 
 $(document).ready(function(){
 	

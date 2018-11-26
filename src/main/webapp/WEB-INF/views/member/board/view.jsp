@@ -32,7 +32,7 @@ $(document).ready(function(){
 	
 	$(document).on('click','.deleteCommentBtn',function(){
 		var rpl_sq = $(this).siblings("input").val();
-		deleteComment();
+		deleteComment(rpl_sq);
 	});
 	
 });

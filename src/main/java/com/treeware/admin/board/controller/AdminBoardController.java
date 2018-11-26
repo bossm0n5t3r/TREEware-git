@@ -135,4 +135,22 @@ public class AdminBoardController {
 		// 7. list 페이지로 이동		
 		return mav;
 	}
+	
+	//	글보기 페이지 이동
+	@RequestMapping(value="/view.tree", method=RequestMethod.GET)
+	public ModelAndView view(@RequestParam Map<String, String> map, HttpSession session) {
+		ModelAndView mav = new ModelAndView("admin/board/view");
+		// 1. 로그인 체크
+		EmployeeDto employeeDto = (EmployeeDto) session.getAttribute("userInfo");
+		if (employeeDto != null) {
+			// 2. 글번호 가져오기
+			int brd_sq = Integer.parseInt(map.get("seq"));
+			// 3. 해당 글 가져오기
+			BoardDetailDto article = boardService.viewArticle(brd_sq);
+			// 4. 해당 글 담기
+			mav.addObject("article", article);
+		}
+		// 5. view 페이지로 이동
+		return mav;
+	}
 }

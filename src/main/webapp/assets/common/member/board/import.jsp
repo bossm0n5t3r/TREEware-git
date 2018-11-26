@@ -130,7 +130,7 @@ function addComment() {
 	})
 }
 
-function deleteComment() {
+function deleteComment(rpl_sq) {
 	$.ajax({
 		type : "POST"
 		,url : "${root}/member/comment/delete.tree"
