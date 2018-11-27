@@ -7,6 +7,7 @@ public interface CommonDao {
 	public int getNextBrdSeq();
 	public int getNextRplSeq();
 	public int getNextBcodeSeq();
+	public int getNextScheduleSq();
 	public int getNewArticleCount(int bcode);
 	public int getTotalArticleCount(Map<String, String> map);
 	

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.treeware.admin.schedule.model.ScheduleDto;
+import com.treeware.common.dao.CommonDao;
 import com.treeware.schedule.dao.ScheduleDao;
 
 @Service
@@ -22,7 +23,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 	
 	@Override
 	public int registerSchedule(Map<String, String> map) {
-		int scd_sq = sqlSession.getMapper(ScheduleDao.class).getNextScheduleSq();
+		int scd_sq = sqlSession.getMapper(CommonDao.class).getNextScheduleSq();
 		map.put("scd_sq", scd_sq + "");
 		return sqlSession.getMapper(ScheduleDao.class).registerSchedule(map) != 0 ? scd_sq : 0;
 	}

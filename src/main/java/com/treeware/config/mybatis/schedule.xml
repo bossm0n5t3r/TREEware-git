@@ -5,11 +5,6 @@
 
 <mapper namespace="com.treeware.schedule.dao.ScheduleDao">
 
-	<select id="getNextScheduleSq" resultType="int">
-		SELECT SCD_SQ.nextval
-		FROM dual
-	</select>
-
 	<select id="getSchedule" parameterType="int" resultType="ScheduleDto">
 		SELECT s.scd_sq, s.scd_div_sq, d.scd_div_nm, s.emp_sq, s.scd_nm, s.scd_pst, s.scd_sday, s.scd_eday, s.scd_dct
 		FROM SCD s, SCD_DIV d

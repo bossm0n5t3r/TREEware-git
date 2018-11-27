@@ -21,6 +21,11 @@
 		FROM DUAL
 	</select>
 
+	<select id="getNextScheduleSq" resultType="int">
+		SELECT SCD_SQ.NEXTVAL
+		FROM DUAL
+	</select>
+
 	<select id="getNewArticleCount" parameterType="int" resultType="int">
 		SELECT COUNT(BRD_SQ)
 		FROM BRD
