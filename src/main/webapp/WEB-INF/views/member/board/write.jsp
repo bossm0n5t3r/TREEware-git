@@ -51,7 +51,7 @@ $(document).ready(function(){
 						<textarea name="brd_ctt" id="brd_ctt" rows="20" style="width:100%;margin:10px 0"></textarea>
 						<input type="file" name="brdFile" id="brdFile" style="background-color:white;width:200px;button-radius:5px"><br><br>
 						<button class="btn btn-success" id="writeBtn" style="width:120px;padding:10px;margin:5px">글쓰기</button>
-						<button class="btn btn-danger" id="returnBtn" style="width:120px;padding:10px;margin:5px">작성취소</button>
+						<button type="button" class="btn btn-danger" id="returnBtn" style="width:120px;padding:10px;margin:5px">작성취소</button>
 				    </div>
 				</form>
 			</div>
