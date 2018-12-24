@@ -4,17 +4,19 @@ This is a final unsolved team project in KITRI Academy.
 
 ## Pages
 
-### Login page
+  - ### Login page
 
 <img width="964" height="512" src="src/main/webapp/assets/doc/login.png"/>
 
-### User main page
+  - ### User main page
 
 <img width="964" height="512" src="src/main/webapp/assets/doc/user_main.png"/>
 
-### Admin main page
+  - ### Admin main page
 
 <img width="964" height="512" src="src/main/webapp/assets/doc/admin_main.png"/>
+
+---
 
 ## To-Do List
 
