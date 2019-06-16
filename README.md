@@ -41,6 +41,8 @@ This is a final unsolved team project in KITRI Academy.
 ---
 
   - ### NOT NOW
+    
+    - [ ] To-Do list 정리 및 업데이트 계획 세우기
 
     - #### 프로젝트 전체
       - - [x] DB IMPORT 하기
