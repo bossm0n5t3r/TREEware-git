@@ -1,6 +1,6 @@
-# TREEware-git
+# TREEware groupware
 
-This is a final unsolved team project in KITRI Academy.
+**Java, Spring Framework, BootStrap 기반 MVC 패턴을 적용한 Web Application "TREEware"**
 
 ## Pages
 
